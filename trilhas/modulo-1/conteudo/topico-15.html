@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Constraints Completas | Trilha 1 | Oracle DBA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#C74634',
+            dark: { 900: '#0f172a', 800: '#1e293b', 700: '#334155', 600: '#475569' }
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #0f172a; }
+    /* Light mode - versão colorida e vibrante */
+    html:not(.dark) body { background-color: #f0fdf4; }
+    html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
+    html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
+    html:not(.dark) .bg-dark-700 { background-color: #ecfdf5 !important; }
+    html:not(.dark) .bg-dark-700\/50 { background-color: #d1fae5 !important; }
+    html:not(.dark) .border-dark-600 { border-color: #a7f3d0 !important; }
+    html:not(.dark) .border-dark-700 { border-color: #6ee7b7 !important; }
+    html:not(.dark) .text-neutral-100 { color: #064e3b !important; }
+    html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
+    html:not(.dark) .text-neutral-400 { color: #047857 !important; }
+    html:not(.dark) .text-neutral-500 { color: #059669 !important; }
+    /* Navegação no modo claro */
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
+    /* Cores das trilhas - vibrantes */
+    html:not(.dark) .text-emerald-400 { color: #047857 !important; }
+    html:not(.dark) .text-cyan-400 { color: #0e7490 !important; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed !important; }
+    html:not(.dark) .text-orange-400 { color: #c2410c !important; }
+    html:not(.dark) .text-red-400 { color: #b91c1c !important; }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8 !important; }
+    html:not(.dark) .text-amber-400 { color: #b45309 !important; }
+    /* Backgrounds coloridos - mais saturados */
+    html:not(.dark) .bg-emerald-500\/20, html:not(.dark) .bg-emerald-900\/20, html:not(.dark) .bg-emerald-900\/30 { background-color: #d1fae5 !important; }
+    html:not(.dark) .bg-cyan-500\/20, html:not(.dark) .bg-cyan-900\/20, html:not(.dark) .bg-cyan-900\/30 { background-color: #cffafe !important; }
+    html:not(.dark) .bg-purple-500\/20, html:not(.dark) .bg-purple-900\/20, html:not(.dark) .bg-purple-900\/30 { background-color: #ede9fe !important; }
+    html:not(.dark) .bg-orange-500\/20, html:not(.dark) .bg-orange-900\/20, html:not(.dark) .bg-orange-900\/30 { background-color: #ffedd5 !important; }
+    html:not(.dark) .bg-red-500\/20, html:not(.dark) .bg-red-900\/20, html:not(.dark) .bg-red-900\/30 { background-color: #fee2e2 !important; }
+    html:not(.dark) .bg-blue-500\/20, html:not(.dark) .bg-blue-900\/20, html:not(.dark) .bg-blue-900\/30 { background-color: #dbeafe !important; }
+    html:not(.dark) .bg-amber-500\/20, html:not(.dark) .bg-amber-900\/20, html:not(.dark) .bg-amber-900\/30 { background-color: #fef3c7 !important; }
+    /* Bordas coloridas - mais fortes */
+    html:not(.dark) .border-emerald-500, html:not(.dark) .border-emerald-500\/30 { border-color: #10b981 !important; }
+    html:not(.dark) .border-cyan-500, html:not(.dark) .border-cyan-500\/30 { border-color: #06b6d4 !important; }
+    html:not(.dark) .border-purple-500, html:not(.dark) .border-purple-500\/30 { border-color: #8b5cf6 !important; }
+    html:not(.dark) .border-orange-500, html:not(.dark) .border-orange-500\/30 { border-color: #f97316 !important; }
+    html:not(.dark) .border-red-500, html:not(.dark) .border-red-500\/30 { border-color: #ef4444 !important; }
+    html:not(.dark) .border-blue-500, html:not(.dark) .border-blue-500\/30 { border-color: #3b82f6 !important; }
+    html:not(.dark) .border-amber-500, html:not(.dark) .border-amber-500\/30 { border-color: #f59e0b !important; }
+    /* Gradientes no modo claro */
+    html:not(.dark) .from-emerald-900\/30 { --tw-gradient-from: #d1fae5 !important; }
+    html:not(.dark) .from-cyan-900\/30 { --tw-gradient-from: #cffafe !important; }
+    html:not(.dark) .from-purple-900\/30 { --tw-gradient-from: #ede9fe !important; }
+    html:not(.dark) .from-orange-900\/30 { --tw-gradient-from: #ffedd5 !important; }
+    html:not(.dark) .from-red-900\/30 { --tw-gradient-from: #fee2e2 !important; }
+    html:not(.dark) .from-blue-900\/30 { --tw-gradient-from: #dbeafe !important; }
+    html:not(.dark) .from-amber-900\/30 { --tw-gradient-from: #fef3c7 !important; }
+    html:not(.dark) .to-dark-800 { --tw-gradient-to: #ffffff !important; }
+    /* Botões no modo claro */
+    html:not(.dark) .bg-emerald-600 { background-color: #059669 !important; }
+    html:not(.dark) .bg-cyan-600 { background-color: #0891b2 !important; }
+    html:not(.dark) .bg-purple-600 { background-color: #7c3aed !important; }
+    html:not(.dark) .bg-orange-600 { background-color: #ea580c !important; }
+    html:not(.dark) .bg-red-600 { background-color: #dc2626 !important; }
+    html:not(.dark) .bg-blue-600 { background-color: #2563eb !important; }
+    html:not(.dark) .bg-amber-600 { background-color: #d97706 !important; }
+    pre code { border-radius: 0.5rem; }    /* Código no modo claro - fundo claro */
+    html:not(.dark) .hljs { background: #f1f5f9 !important; color: #1e293b !important; }
+    html:not(.dark) .hljs-comment { color: #64748b !important; }
+    html:not(.dark) .hljs-keyword { color: #7c3aed !important; }
+    html:not(.dark) .hljs-string { color: #059669 !important; }
+    html:not(.dark) .hljs-number { color: #ea580c !important; }
+    html:not(.dark) .hljs-built_in { color: #0891b2 !important; }
+    html:not(.dark) pre code { background: #f1f5f9 !important; border: 1px solid #cbd5e1 !important; }
+    /* Textos dentro de cards no modo claro */
+    html:not(.dark) .text-sm { color: #1e293b !important; }
+    html:not(.dark) .text-xs { color: #475569 !important; }
+    html:not(.dark) p { color: #1e293b !important; }
+    html:not(.dark) li { color: #1e293b !important; }
+    html:not(.dark) code { color: #7c3aed !important; background: #f1f5f9 !important; }
+    /* Botões mais visíveis no modo claro */
+    html:not(.dark) .bg-dark-700 { background-color: #e2e8f0 !important; border: 1px solid #94a3b8 !important; }
+    html:not(.dark) .bg-dark-700:hover { background-color: #cbd5e1 !important; }
+    html:not(.dark) .bg-primary { background-color: #dc2626 !important; }
+    html:not(.dark) .bg-primary/10 { background-color: #fee2e2 !important; }
+    html:not(.dark) .border-primary/30 { border-color: #f87171 !important; }
+
+    .hljs { background: #1e293b !important; padding: 1.5rem !important; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <a href="../../../index.html" class="flex items-center space-x-3">
+          <span class="text-2xl">🗄️</span>
+          <span class="text-xl font-bold text-primary">Oracle DBA</span>
+        </a>
+        <div class="hidden md:flex items-center space-x-1">
+          <a href="../../introducao/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-blue-400 hover:bg-blue-500/20 transition-colors">🎯 T0</a>
+          <a href="../../modulo-1/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">📊 T1</a>
+          <a href="../../modulo-2/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-cyan-400 hover:bg-cyan-500/20 transition-colors">⚙️ T2</a>
+          <a href="../../modulo-3/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-purple-400 hover:bg-purple-500/20 transition-colors">🔒 T3</a>
+          <a href="../../modulo-4/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-orange-400 hover:bg-orange-500/20 transition-colors">⚡ T4</a>
+          <a href="../../modulo-5/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-red-400 hover:bg-red-500/20 transition-colors">🛡️ T5</a>
+          <a href="../../recursos/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-amber-400 hover:bg-amber-500/20 transition-colors">📚 Recursos</a>
+        </div>
+        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-emerald-900/30 to-dark-800 py-8 border-b border-dark-600">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="flex items-center gap-2 text-emerald-400 text-sm mb-4">
+        <a href="../../../index.html" class="hover:underline">Início</a>
+        <span>/</span>
+        <a href="../index.html" class="hover:underline">Trilha 1</a>
+        <span>/</span>
+        <a href="index.html" class="hover:underline">Conteúdo</a>
+        <span>/</span>
+        <span>Tópico 15</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center">
+          <span class="text-2xl font-bold text-emerald-400">15</span>
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold">Constraints Completas</h1>
+          <p class="text-neutral-400">Todas as constraints e integridade de dados no Oracle</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 py-8">
+
+    <!-- Seção 1: Definição -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">📖</span>
+        </div>
+        <h2 class="text-xl font-bold text-emerald-400">Definição</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">O que são Constraints?</h3>
+        <p class="text-neutral-300 mb-4">
+          <strong class="text-emerald-400">Constraints</strong> são regras aplicadas a colunas ou tabelas
+          para garantir a <strong>integridade e validade</strong> dos dados. O Oracle automaticamente
+          valida e aplica essas regras em todas as operações DML.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-emerald-400 mb-2">Inline</h4>
+            <p class="text-neutral-300 text-sm">
+              Definida diretamente na coluna durante CREATE TABLE.
+            </p>
+          </div>
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-cyan-400 mb-2">Out-of-line</h4>
+            <p class="text-neutral-300 text-sm">
+              Definida separadamente, após as colunas ou via ALTER TABLE.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <h3 class="text-lg font-semibold mb-4">Tipos de Constraints</h3>
+
+        <div class="space-y-3">
+          <div class="bg-emerald-900/20 rounded-lg p-3 border-l-4 border-emerald-500">
+            <h4 class="font-semibold text-emerald-400 text-sm">PRIMARY KEY (PK)</h4>
+            <p class="text-neutral-300 text-xs">Identifica unicamente cada registro. Não permite NULL nem duplicatas.</p>
+          </div>
+          <div class="bg-cyan-900/20 rounded-lg p-3 border-l-4 border-cyan-500">
+            <h4 class="font-semibold text-cyan-400 text-sm">FOREIGN KEY (FK)</h4>
+            <p class="text-neutral-300 text-xs">Estabelece relacionamentos entre tabelas, referenciando uma PK.</p>
+          </div>
+          <div class="bg-purple-900/20 rounded-lg p-3 border-l-4 border-purple-500">
+            <h4 class="font-semibold text-purple-400 text-sm">UNIQUE (UK)</h4>
+            <p class="text-neutral-300 text-xs">Garante valores únicos na coluna. Permite NULL (apenas um por coluna).</p>
+          </div>
+          <div class="bg-blue-900/20 rounded-lg p-3 border-l-4 border-blue-500">
+            <h4 class="font-semibold text-blue-400 text-sm">NOT NULL (NN)</h4>
+            <p class="text-neutral-300 text-xs">Obriga que a coluna sempre tenha um valor.</p>
+          </div>
+          <div class="bg-orange-900/20 rounded-lg p-3 border-l-4 border-orange-500">
+            <h4 class="font-semibold text-orange-400 text-sm">CHECK (CK)</h4>
+            <p class="text-neutral-300 text-xs">Valida valores baseado em condições customizadas.</p>
+          </div>
+          <div class="bg-amber-900/20 rounded-lg p-3 border-l-4 border-amber-500">
+            <h4 class="font-semibold text-amber-400 text-sm">DEFAULT</h4>
+            <p class="text-neutral-300 text-xs">Define valor padrão quando nenhum valor é fornecido.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 2: Aplicação Prática -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">🛠️</span>
+        </div>
+        <h2 class="text-xl font-bold text-cyan-400">Aplicação Prática</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">PRIMARY KEY - Inline e Out-of-line</h3>
+
+        <pre><code class="language-sql">-- PRIMARY KEY INLINE (simples)
+CREATE TABLE departamentos (
+    id_departamento   NUMBER(10) PRIMARY KEY,
+    nome_departamento VARCHAR2(100) NOT NULL
+);
+
+-- PRIMARY KEY OUT-OF-LINE (nomeada)
+CREATE TABLE departamentos (
+    id_departamento   NUMBER(10),
+    nome_departamento VARCHAR2(100) NOT NULL,
+    CONSTRAINT pk_departamentos PRIMARY KEY (id_departamento)
+);
+
+-- PRIMARY KEY COMPOSTA (múltiplas colunas)
+CREATE TABLE alocacoes (
+    funcionario_id NUMBER(10),
+    projeto_id     NUMBER(10),
+    horas          NUMBER(6,2),
+    data_alocacao  DATE DEFAULT SYSDATE,
+    CONSTRAINT pk_alocacoes PRIMARY KEY (funcionario_id, projeto_id)
+);</code></pre>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">FOREIGN KEY - ON DELETE CASCADE e SET NULL</h3>
+
+        <pre><code class="language-sql">-- FOREIGN KEY INLINE (comportamento padrão: restritivo)
+CREATE TABLE funcionarios (
+    id_funcionario  NUMBER(10) PRIMARY KEY,
+    nome            VARCHAR2(100) NOT NULL,
+    departamento_id NUMBER(10) REFERENCES departamentos(id_departamento)
+);
+
+-- FOREIGN KEY OUT-OF-LINE com ON DELETE CASCADE
+-- Ao deletar departamento, deleta funcionários automaticamente
+CREATE TABLE funcionarios (
+    id_funcionario  NUMBER(10),
+    nome            VARCHAR2(100) NOT NULL,
+    departamento_id NUMBER(10),
+    CONSTRAINT pk_funcionarios PRIMARY KEY (id_funcionario),
+    CONSTRAINT fk_func_depto FOREIGN KEY (departamento_id)
+        REFERENCES departamentos(id_departamento)
+        ON DELETE CASCADE
+);
+
+-- FOREIGN KEY com ON DELETE SET NULL
+-- Ao deletar departamento, define departamento_id como NULL
+CREATE TABLE funcionarios (
+    id_funcionario  NUMBER(10),
+    nome            VARCHAR2(100) NOT NULL,
+    departamento_id NUMBER(10),
+    CONSTRAINT pk_funcionarios PRIMARY KEY (id_funcionario),
+    CONSTRAINT fk_func_depto FOREIGN KEY (departamento_id)
+        REFERENCES departamentos(id_departamento)
+        ON DELETE SET NULL
+);
+
+-- FOREIGN KEY composta
+CREATE TABLE alocacoes (
+    funcionario_id NUMBER(10),
+    projeto_id     NUMBER(10),
+    horas          NUMBER(6,2),
+    CONSTRAINT pk_alocacoes PRIMARY KEY (funcionario_id, projeto_id),
+    CONSTRAINT fk_aloc_func FOREIGN KEY (funcionario_id)
+        REFERENCES funcionarios(id_funcionario) ON DELETE CASCADE,
+    CONSTRAINT fk_aloc_proj FOREIGN KEY (projeto_id)
+        REFERENCES projetos(id_projeto) ON DELETE CASCADE
+);</code></pre>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">UNIQUE e NOT NULL</h3>
+
+        <pre><code class="language-sql">-- UNIQUE INLINE
+CREATE TABLE funcionarios (
+    id_funcionario NUMBER(10) PRIMARY KEY,
+    nome           VARCHAR2(100) NOT NULL,
+    email          VARCHAR2(100) UNIQUE,
+    cpf            VARCHAR2(14) NOT NULL UNIQUE
+);
+
+-- UNIQUE OUT-OF-LINE (nomeada)
+CREATE TABLE funcionarios (
+    id_funcionario NUMBER(10),
+    nome           VARCHAR2(100) NOT NULL,
+    email          VARCHAR2(100),
+    cpf            VARCHAR2(14) NOT NULL,
+    CONSTRAINT pk_funcionarios PRIMARY KEY (id_funcionario),
+    CONSTRAINT uk_func_email UNIQUE (email),
+    CONSTRAINT uk_func_cpf UNIQUE (cpf)
+);
+
+-- UNIQUE COMPOSTA (combinação de colunas)
+CREATE TABLE contratos (
+    id_contrato   NUMBER(10) PRIMARY KEY,
+    fornecedor_id NUMBER(10) NOT NULL,
+    numero_nf     VARCHAR2(20) NOT NULL,
+    serie_nf      VARCHAR2(5) NOT NULL,
+    valor         NUMBER(15,2),
+    CONSTRAINT uk_nf_fornecedor UNIQUE (fornecedor_id, numero_nf, serie_nf)
+);
+
+-- NOT NULL sempre é inline
+CREATE TABLE produtos (
+    id_produto     NUMBER(10) PRIMARY KEY,
+    nome           VARCHAR2(200) NOT NULL,
+    descricao      VARCHAR2(4000),  -- Opcional (permite NULL)
+    preco          NUMBER(10,2) NOT NULL,
+    estoque_minimo NUMBER(10) DEFAULT 0 NOT NULL
+);</code></pre>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">CHECK - Validações Customizadas</h3>
+
+        <pre><code class="language-sql">-- CHECK INLINE
+CREATE TABLE funcionarios (
+    id_funcionario NUMBER(10) PRIMARY KEY,
+    nome           VARCHAR2(100) NOT NULL,
+    salario        NUMBER(10,2) CHECK (salario > 0),
+    idade          NUMBER(3) CHECK (idade >= 18 AND idade <= 70)
+);
+
+-- CHECK OUT-OF-LINE (nomeada e mais complexa)
+CREATE TABLE funcionarios (
+    id_funcionario NUMBER(10),
+    nome           VARCHAR2(100) NOT NULL,
+    salario        NUMBER(10,2),
+    comissao       NUMBER(10,2),
+    tipo_contrato  VARCHAR2(20),
+    data_admissao  DATE NOT NULL,
+    data_demissao  DATE,
+    CONSTRAINT pk_funcionarios PRIMARY KEY (id_funcionario),
+    CONSTRAINT ck_func_salario CHECK (salario > 0),
+    CONSTRAINT ck_func_comissao CHECK (comissao >= 0 AND comissao < salario),
+    CONSTRAINT ck_func_tipo CHECK (tipo_contrato IN ('CLT', 'PJ', 'ESTAGIO', 'TEMPORARIO')),
+    CONSTRAINT ck_func_datas CHECK (data_demissao IS NULL OR data_demissao > data_admissao)
+);
+
+-- CHECK com múltiplas condições
+CREATE TABLE pedidos (
+    id_pedido      NUMBER(10) PRIMARY KEY,
+    valor_produtos NUMBER(15,2) NOT NULL,
+    valor_desconto NUMBER(15,2) DEFAULT 0,
+    valor_frete    NUMBER(15,2) DEFAULT 0,
+    valor_total    NUMBER(15,2) NOT NULL,
+    status         VARCHAR2(20) NOT NULL,
+    CONSTRAINT ck_pedido_valores CHECK (
+        valor_produtos > 0 AND
+        valor_desconto >= 0 AND
+        valor_desconto <= valor_produtos AND
+        valor_frete >= 0 AND
+        valor_total = valor_produtos - valor_desconto + valor_frete
+    ),
+    CONSTRAINT ck_pedido_status CHECK (
+        status IN ('PENDENTE', 'PAGO', 'ENVIADO', 'ENTREGUE', 'CANCELADO')
+    )
+);</code></pre>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">DEFAULT - Valores Padrão</h3>
+
+        <pre><code class="language-sql">CREATE TABLE auditoria_login (
+    id_log          NUMBER(10) PRIMARY KEY,
+    usuario_id      NUMBER(10) NOT NULL,
+    data_login      DATE DEFAULT SYSDATE NOT NULL,
+    ip_origem       VARCHAR2(45),
+    sucesso         CHAR(1) DEFAULT 'S' CHECK (sucesso IN ('S', 'N')),
+    tentativas      NUMBER(2) DEFAULT 1,
+    sessao_id       VARCHAR2(100) DEFAULT SYS_GUID()
+);
+
+-- DEFAULT com funções Oracle
+CREATE TABLE documentos (
+    id_documento    NUMBER(10) PRIMARY KEY,
+    titulo          VARCHAR2(200) NOT NULL,
+    conteudo        CLOB,
+    data_criacao    TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    data_modificacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    versao          NUMBER(5) DEFAULT 1 NOT NULL,
+    ativo           CHAR(1) DEFAULT 'S' CHECK (ativo IN ('S', 'N'))
+);</code></pre>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Constraints Nomeadas vs Não Nomeadas</h3>
+
+        <div class="bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500 mb-4">
+          <h4 class="font-semibold text-amber-400 mb-2">Importante!</h4>
+          <p class="text-neutral-300 text-sm">
+            Sempre nomeie suas constraints usando <strong>CONSTRAINT nome</strong>.
+            Constraints não nomeadas recebem nomes automáticos (SYS_C0012345) difíceis de identificar.
+          </p>
+        </div>
+
+        <pre><code class="language-sql">-- ❌ RUIM: Constraint não nomeada
+CREATE TABLE clientes (
+    id_cliente NUMBER(10) PRIMARY KEY,
+    email      VARCHAR2(100) UNIQUE,
+    cpf        VARCHAR2(14) CHECK (LENGTH(cpf) = 14)
+);
+-- Constraints recebem nomes como: SYS_C0012345, SYS_C0012346, SYS_C0012347
+
+-- ✅ BOM: Constraints nomeadas
+CREATE TABLE clientes (
+    id_cliente NUMBER(10),
+    email      VARCHAR2(100),
+    cpf        VARCHAR2(14),
+    CONSTRAINT pk_clientes PRIMARY KEY (id_cliente),
+    CONSTRAINT uk_clientes_email UNIQUE (email),
+    CONSTRAINT ck_clientes_cpf CHECK (LENGTH(cpf) = 14)
+);
+-- Fácil identificar e gerenciar!</code></pre>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">ALTER TABLE - Adicionar e Remover Constraints</h3>
+
+        <pre><code class="language-sql">-- Adicionar PRIMARY KEY
+ALTER TABLE funcionarios
+ADD CONSTRAINT pk_funcionarios PRIMARY KEY (id_funcionario);
+
+-- Adicionar FOREIGN KEY
+ALTER TABLE funcionarios
+ADD CONSTRAINT fk_func_depto FOREIGN KEY (departamento_id)
+    REFERENCES departamentos(id_departamento) ON DELETE SET NULL;
+
+-- Adicionar UNIQUE
+ALTER TABLE funcionarios
+ADD CONSTRAINT uk_func_email UNIQUE (email);
+
+-- Adicionar CHECK
+ALTER TABLE funcionarios
+ADD CONSTRAINT ck_func_salario CHECK (salario > 0);
+
+-- Modificar coluna para NOT NULL
+ALTER TABLE funcionarios
+MODIFY nome VARCHAR2(100) NOT NULL;
+
+-- Remover constraint
+ALTER TABLE funcionarios
+DROP CONSTRAINT ck_func_salario;
+
+-- Remover PRIMARY KEY (e suas FKs dependentes)
+ALTER TABLE departamentos
+DROP PRIMARY KEY CASCADE;
+
+-- Desabilitar constraint (temporariamente)
+ALTER TABLE funcionarios
+DISABLE CONSTRAINT fk_func_depto;
+
+-- Reabilitar constraint
+ALTER TABLE funcionarios
+ENABLE CONSTRAINT fk_func_depto;
+
+-- Reabilitar validando dados existentes
+ALTER TABLE funcionarios
+ENABLE VALIDATE CONSTRAINT fk_func_depto;</code></pre>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <h3 class="text-lg font-semibold mb-4">Consultando Constraints</h3>
+
+        <pre><code class="language-sql">-- Listar todas as constraints de uma tabela
+SELECT
+    constraint_name,
+    constraint_type,
+    status,
+    search_condition
+FROM user_constraints
+WHERE table_name = 'FUNCIONARIOS';
+
+-- Tipos de constraints:
+-- P = PRIMARY KEY
+-- R = FOREIGN KEY (Referential)
+-- U = UNIQUE
+-- C = CHECK ou NOT NULL
+
+-- Ver detalhes de colunas nas constraints
+SELECT
+    c.constraint_name,
+    c.constraint_type,
+    cc.column_name,
+    cc.position
+FROM user_constraints c
+JOIN user_cons_columns cc ON c.constraint_name = cc.constraint_name
+WHERE c.table_name = 'FUNCIONARIOS'
+ORDER BY c.constraint_name, cc.position;
+
+-- Ver FOREIGN KEYs e suas referências
+SELECT
+    fk.constraint_name AS fk_name,
+    fk.table_name AS tabela_filho,
+    fk_col.column_name AS coluna_filho,
+    pk.constraint_name AS pk_name,
+    pk.table_name AS tabela_pai,
+    pk_col.column_name AS coluna_pai,
+    fk.delete_rule
+FROM user_constraints fk
+JOIN user_cons_columns fk_col ON fk.constraint_name = fk_col.constraint_name
+JOIN user_constraints pk ON fk.r_constraint_name = pk.constraint_name
+JOIN user_cons_columns pk_col ON pk.constraint_name = pk_col.constraint_name
+WHERE fk.constraint_type = 'R'
+  AND fk.table_name = 'FUNCIONARIOS';
+
+-- Ver constraints CHECK com suas condições
+SELECT
+    constraint_name,
+    search_condition
+FROM user_constraints
+WHERE table_name = 'FUNCIONARIOS'
+  AND constraint_type = 'C'
+  AND search_condition IS NOT NULL;</code></pre>
+      </div>
+    </section>
+
+    <!-- Seção 3: Resultado Esperado -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">✅</span>
+        </div>
+        <h2 class="text-xl font-bold text-purple-400">Resultado Esperado</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">O que você deve dominar após este tópico:</h3>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Todas as constraints</h4>
+                <p class="text-neutral-400 text-sm">Dominar PK, FK, UNIQUE, NOT NULL, CHECK, DEFAULT</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Inline vs Out-of-line</h4>
+                <p class="text-neutral-400 text-sm">Escolher a sintaxe adequada para cada caso</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Foreign keys cascata</h4>
+                <p class="text-neutral-400 text-sm">Usar ON DELETE CASCADE e SET NULL</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Nomear constraints</h4>
+                <p class="text-neutral-400 text-sm">Criar nomes significativos e padronizados</p>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">CHECK constraints</h4>
+                <p class="text-neutral-400 text-sm">Criar validações customizadas complexas</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">ALTER TABLE</h4>
+                <p class="text-neutral-400 text-sm">Adicionar, remover e modificar constraints</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Consultar metadata</h4>
+                <p class="text-neutral-400 text-sm">Usar USER_CONSTRAINTS e USER_CONS_COLUMNS</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Integridade de dados</h4>
+                <p class="text-neutral-400 text-sm">Garantir qualidade e consistência dos dados</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Exercícios -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-amber-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="text-xl font-bold text-amber-400">Exercícios Práticos</h2>
+      </div>
+
+      <div class="space-y-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 1: Sistema de Pedidos</h3>
+          <p class="text-neutral-300 mb-4">
+            Crie as tabelas CLIENTES, PEDIDOS e ITENS_PEDIDO com todas as constraints apropriadas,
+            incluindo PKs, FKs com CASCADE, CHECKs de validação e DEFAULTs.
+          </p>
+
+          <details class="mt-4">
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <div class="mt-4">
+              <pre><code class="language-sql">CREATE TABLE clientes (
+    id_cliente     NUMBER(10),
+    nome           VARCHAR2(200) NOT NULL,
+    cpf            VARCHAR2(14) NOT NULL,
+    email          VARCHAR2(100),
+    telefone       VARCHAR2(20),
+    data_cadastro  DATE DEFAULT SYSDATE NOT NULL,
+    status         VARCHAR2(20) DEFAULT 'ATIVO' NOT NULL,
+    CONSTRAINT pk_clientes PRIMARY KEY (id_cliente),
+    CONSTRAINT uk_clientes_cpf UNIQUE (cpf),
+    CONSTRAINT uk_clientes_email UNIQUE (email),
+    CONSTRAINT ck_clientes_cpf CHECK (LENGTH(cpf) = 14),
+    CONSTRAINT ck_clientes_status CHECK (status IN ('ATIVO', 'INATIVO', 'BLOQUEADO'))
+);
+
+CREATE TABLE pedidos (
+    id_pedido      NUMBER(10),
+    cliente_id     NUMBER(10) NOT NULL,
+    data_pedido    DATE DEFAULT SYSDATE NOT NULL,
+    valor_produtos NUMBER(15,2) NOT NULL,
+    valor_desconto NUMBER(15,2) DEFAULT 0,
+    valor_frete    NUMBER(15,2) DEFAULT 0,
+    valor_total    NUMBER(15,2) NOT NULL,
+    status         VARCHAR2(20) DEFAULT 'PENDENTE' NOT NULL,
+    CONSTRAINT pk_pedidos PRIMARY KEY (id_pedido),
+    CONSTRAINT fk_pedidos_cliente FOREIGN KEY (cliente_id)
+        REFERENCES clientes(id_cliente) ON DELETE CASCADE,
+    CONSTRAINT ck_pedidos_valores CHECK (
+        valor_produtos > 0 AND
+        valor_desconto >= 0 AND
+        valor_desconto <= valor_produtos AND
+        valor_total = valor_produtos - valor_desconto + valor_frete
+    ),
+    CONSTRAINT ck_pedidos_status CHECK (
+        status IN ('PENDENTE', 'PAGO', 'ENVIADO', 'ENTREGUE', 'CANCELADO')
+    )
+);
+
+CREATE TABLE itens_pedido (
+    pedido_id      NUMBER(10),
+    produto_id     NUMBER(10),
+    sequencia      NUMBER(3),
+    quantidade     NUMBER(10,2) NOT NULL,
+    preco_unitario NUMBER(15,2) NOT NULL,
+    desconto       NUMBER(15,2) DEFAULT 0,
+    valor_total    NUMBER(15,2) NOT NULL,
+    CONSTRAINT pk_itens_pedido PRIMARY KEY (pedido_id, produto_id, sequencia),
+    CONSTRAINT fk_itens_pedido FOREIGN KEY (pedido_id)
+        REFERENCES pedidos(id_pedido) ON DELETE CASCADE,
+    CONSTRAINT ck_itens_qtd CHECK (quantidade > 0),
+    CONSTRAINT ck_itens_preco CHECK (preco_unitario > 0),
+    CONSTRAINT ck_itens_desconto CHECK (desconto >= 0 AND desconto < preco_unitario),
+    CONSTRAINT ck_itens_total CHECK (
+        valor_total = (preco_unitario - desconto) * quantidade
+    )
+);</code></pre>
+            </div>
+          </details>
+        </div>
+
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 2: Adicionar Constraints</h3>
+          <p class="text-neutral-300 mb-4">
+            Uma tabela PRODUTOS foi criada sem constraints. Adicione todas as constraints necessárias
+            usando ALTER TABLE para garantir integridade dos dados.
+          </p>
+
+          <details class="mt-4">
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <div class="mt-4">
+              <pre><code class="language-sql">-- Adicionar PRIMARY KEY
+ALTER TABLE produtos
+ADD CONSTRAINT pk_produtos PRIMARY KEY (id_produto);
+
+-- Adicionar NOT NULL
+ALTER TABLE produtos
+MODIFY nome VARCHAR2(200) NOT NULL;
+
+ALTER TABLE produtos
+MODIFY preco NUMBER(10,2) NOT NULL;
+
+-- Adicionar UNIQUE
+ALTER TABLE produtos
+ADD CONSTRAINT uk_produtos_codigo UNIQUE (codigo_barras);
+
+-- Adicionar CHECK constraints
+ALTER TABLE produtos
+ADD CONSTRAINT ck_produtos_preco CHECK (preco > 0);
+
+ALTER TABLE produtos
+ADD CONSTRAINT ck_produtos_estoque CHECK (estoque_atual >= 0);
+
+ALTER TABLE produtos
+ADD CONSTRAINT ck_produtos_status CHECK (
+    status IN ('ATIVO', 'INATIVO', 'DESCONTINUADO')
+);
+
+-- Adicionar FOREIGN KEY
+ALTER TABLE produtos
+ADD CONSTRAINT fk_produtos_categoria FOREIGN KEY (categoria_id)
+    REFERENCES categorias(id_categoria) ON DELETE SET NULL;
+
+-- Adicionar DEFAULT (requer MODIFY)
+ALTER TABLE produtos
+MODIFY status VARCHAR2(20) DEFAULT 'ATIVO';
+
+ALTER TABLE produtos
+MODIFY data_cadastro DATE DEFAULT SYSDATE;</code></pre>
+            </div>
+          </details>
+        </div>
+
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 3: Auditoria de Constraints</h3>
+          <p class="text-neutral-300 mb-4">
+            Crie consultas SQL para listar todas as constraints de um schema, identificar FKs sem índices,
+            e encontrar tabelas sem PRIMARY KEY.
+          </p>
+
+          <details class="mt-4">
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <div class="mt-4">
+              <pre><code class="language-sql">-- Listar todas as constraints por tipo
+SELECT
+    table_name,
+    constraint_type,
+    COUNT(*) AS quantidade
+FROM user_constraints
+GROUP BY table_name, constraint_type
+ORDER BY table_name, constraint_type;
+
+-- Encontrar tabelas sem PRIMARY KEY
+SELECT table_name
+FROM user_tables
+WHERE table_name NOT IN (
+    SELECT table_name
+    FROM user_constraints
+    WHERE constraint_type = 'P'
+)
+ORDER BY table_name;
+
+-- Listar todas as FOREIGN KEYs com detalhes
+SELECT
+    fk.table_name AS tabela_filho,
+    fk_col.column_name AS coluna_fk,
+    pk.table_name AS tabela_pai,
+    pk_col.column_name AS coluna_pk,
+    fk.constraint_name,
+    fk.delete_rule,
+    fk.status
+FROM user_constraints fk
+JOIN user_cons_columns fk_col ON fk.constraint_name = fk_col.constraint_name
+JOIN user_constraints pk ON fk.r_constraint_name = pk.constraint_name
+JOIN user_cons_columns pk_col ON pk.constraint_name = pk_col.constraint_name
+WHERE fk.constraint_type = 'R'
+ORDER BY fk.table_name, fk_col.position;
+
+-- Identificar FKs sem índice (problema de performance)
+SELECT
+    c.table_name,
+    c.constraint_name,
+    cc.column_name
+FROM user_constraints c
+JOIN user_cons_columns cc ON c.constraint_name = cc.constraint_name
+WHERE c.constraint_type = 'R'
+  AND NOT EXISTS (
+    SELECT 1
+    FROM user_ind_columns ic
+    WHERE ic.table_name = c.table_name
+      AND ic.column_name = cc.column_name
+      AND ic.column_position = 1
+)
+ORDER BY c.table_name;</code></pre>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Action Buttons -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-r from-emerald-900/30 to-cyan-900/30 rounded-xl border border-emerald-500/30 p-6">
+        <h3 class="text-lg font-semibold mb-4 text-center">Parabéns! Você completou a Trilha 1</h3>
+        <p class="text-neutral-300 text-center mb-6">
+          Continue sua jornada avançando para a Trilha 2, onde você aprenderá sobre Arquitetura e Administração do Oracle Database.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="index.html" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+            Ver Conteúdo Completo
+          </a>
+          <a href="../../modulo-2/index.html" class="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+            Ir para Trilha 2
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <div class="flex justify-between items-center pt-8 border-t border-dark-600">
+      <a href="topico-14.html" class="flex items-center gap-2 text-neutral-400 hover:text-emerald-400 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        <span>Anterior: Views e Synonyms</span>
+      </a>
+      <a href="../../modulo-2/index.html" class="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors">
+        <span>Próxima Trilha: Arquitetura Oracle</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark-900 border-t border-dark-700 py-8 mt-12">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <p class="text-neutral-500 text-sm">Oracle DBA - Trilha 1: Fundamentos de BD e SQL - Tópico 15</p>
+    </div>
+  </footer>
+
+  <script>
+    hljs.highlightAll();
+
+    // Theme toggle
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+    if (localStorage.getItem('color-theme') === 'light' ||
+        (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+      document.documentElement.classList.remove('dark');
+      themeToggleDarkIcon.classList.remove('hidden');
+    } else {
+      document.documentElement.classList.add('dark');
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+
+    themeToggleBtn.addEventListener('click', function() {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('color-theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
+      }
+    });
+  </script>
+</body>
+</html>

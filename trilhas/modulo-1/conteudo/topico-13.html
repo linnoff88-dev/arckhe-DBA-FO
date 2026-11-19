@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GROUP BY e Agregação | Trilha 1 | Oracle DBA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#C74634',
+            dark: { 900: '#0f172a', 800: '#1e293b', 700: '#334155', 600: '#475569' }
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #0f172a; }
+    /* Light mode - versão colorida e vibrante */
+    html:not(.dark) body { background-color: #f0fdf4; }
+    html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
+    html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
+    html:not(.dark) .bg-dark-700 { background-color: #ecfdf5 !important; }
+    html:not(.dark) .bg-dark-700\/50 { background-color: #d1fae5 !important; }
+    html:not(.dark) .border-dark-600 { border-color: #a7f3d0 !important; }
+    html:not(.dark) .border-dark-700 { border-color: #6ee7b7 !important; }
+    html:not(.dark) .text-neutral-100 { color: #064e3b !important; }
+    html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
+    html:not(.dark) .text-neutral-400 { color: #047857 !important; }
+    html:not(.dark) .text-neutral-500 { color: #059669 !important; }
+    /* Navegação no modo claro */
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
+    /* Cores das trilhas - vibrantes */
+    html:not(.dark) .text-emerald-400 { color: #047857 !important; }
+    html:not(.dark) .text-cyan-400 { color: #0e7490 !important; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed !important; }
+    html:not(.dark) .text-orange-400 { color: #c2410c !important; }
+    html:not(.dark) .text-red-400 { color: #b91c1c !important; }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8 !important; }
+    html:not(.dark) .text-amber-400 { color: #b45309 !important; }
+    /* Backgrounds coloridos - mais saturados */
+    html:not(.dark) .bg-emerald-500\/20, html:not(.dark) .bg-emerald-900\/20, html:not(.dark) .bg-emerald-900\/30 { background-color: #d1fae5 !important; }
+    html:not(.dark) .bg-cyan-500\/20, html:not(.dark) .bg-cyan-900\/20, html:not(.dark) .bg-cyan-900\/30 { background-color: #cffafe !important; }
+    html:not(.dark) .bg-purple-500\/20, html:not(.dark) .bg-purple-900\/20, html:not(.dark) .bg-purple-900\/30 { background-color: #ede9fe !important; }
+    html:not(.dark) .bg-orange-500\/20, html:not(.dark) .bg-orange-900\/20, html:not(.dark) .bg-orange-900\/30 { background-color: #ffedd5 !important; }
+    html:not(.dark) .bg-red-500\/20, html:not(.dark) .bg-red-900\/20, html:not(.dark) .bg-red-900\/30 { background-color: #fee2e2 !important; }
+    html:not(.dark) .bg-blue-500\/20, html:not(.dark) .bg-blue-900\/20, html:not(.dark) .bg-blue-900\/30 { background-color: #dbeafe !important; }
+    html:not(.dark) .bg-amber-500\/20, html:not(.dark) .bg-amber-900\/20, html:not(.dark) .bg-amber-900\/30 { background-color: #fef3c7 !important; }
+    /* Bordas coloridas - mais fortes */
+    html:not(.dark) .border-emerald-500, html:not(.dark) .border-emerald-500\/30 { border-color: #10b981 !important; }
+    html:not(.dark) .border-cyan-500, html:not(.dark) .border-cyan-500\/30 { border-color: #06b6d4 !important; }
+    html:not(.dark) .border-purple-500, html:not(.dark) .border-purple-500\/30 { border-color: #8b5cf6 !important; }
+    html:not(.dark) .border-orange-500, html:not(.dark) .border-orange-500\/30 { border-color: #f97316 !important; }
+    html:not(.dark) .border-red-500, html:not(.dark) .border-red-500\/30 { border-color: #ef4444 !important; }
+    html:not(.dark) .border-blue-500, html:not(.dark) .border-blue-500\/30 { border-color: #3b82f6 !important; }
+    html:not(.dark) .border-amber-500, html:not(.dark) .border-amber-500\/30 { border-color: #f59e0b !important; }
+    /* Gradientes no modo claro */
+    html:not(.dark) .from-emerald-900\/30 { --tw-gradient-from: #d1fae5 !important; }
+    html:not(.dark) .from-cyan-900\/30 { --tw-gradient-from: #cffafe !important; }
+    html:not(.dark) .from-purple-900\/30 { --tw-gradient-from: #ede9fe !important; }
+    html:not(.dark) .from-orange-900\/30 { --tw-gradient-from: #ffedd5 !important; }
+    html:not(.dark) .from-red-900\/30 { --tw-gradient-from: #fee2e2 !important; }
+    html:not(.dark) .from-blue-900\/30 { --tw-gradient-from: #dbeafe !important; }
+    html:not(.dark) .from-amber-900\/30 { --tw-gradient-from: #fef3c7 !important; }
+    html:not(.dark) .to-dark-800 { --tw-gradient-to: #ffffff !important; }
+    /* Botões no modo claro */
+    html:not(.dark) .bg-emerald-600 { background-color: #059669 !important; }
+    html:not(.dark) .bg-cyan-600 { background-color: #0891b2 !important; }
+    html:not(.dark) .bg-purple-600 { background-color: #7c3aed !important; }
+    html:not(.dark) .bg-orange-600 { background-color: #ea580c !important; }
+    html:not(.dark) .bg-red-600 { background-color: #dc2626 !important; }
+    html:not(.dark) .bg-blue-600 { background-color: #2563eb !important; }
+    html:not(.dark) .bg-amber-600 { background-color: #d97706 !important; }
+    pre code { border-radius: 0.5rem; }    /* Código no modo claro - fundo claro */
+    html:not(.dark) .hljs { background: #f1f5f9 !important; color: #1e293b !important; }
+    html:not(.dark) .hljs-comment { color: #64748b !important; }
+    html:not(.dark) .hljs-keyword { color: #7c3aed !important; }
+    html:not(.dark) .hljs-string { color: #059669 !important; }
+    html:not(.dark) .hljs-number { color: #ea580c !important; }
+    html:not(.dark) .hljs-built_in { color: #0891b2 !important; }
+    html:not(.dark) pre code { background: #f1f5f9 !important; border: 1px solid #cbd5e1 !important; }
+    /* Textos dentro de cards no modo claro */
+    html:not(.dark) .text-sm { color: #1e293b !important; }
+    html:not(.dark) .text-xs { color: #475569 !important; }
+    html:not(.dark) p { color: #1e293b !important; }
+    html:not(.dark) li { color: #1e293b !important; }
+    html:not(.dark) code { color: #7c3aed !important; background: #f1f5f9 !important; }
+    /* Botões mais visíveis no modo claro */
+    html:not(.dark) .bg-dark-700 { background-color: #e2e8f0 !important; border: 1px solid #94a3b8 !important; }
+    html:not(.dark) .bg-dark-700:hover { background-color: #cbd5e1 !important; }
+    html:not(.dark) .bg-primary { background-color: #dc2626 !important; }
+    html:not(.dark) .bg-primary/10 { background-color: #fee2e2 !important; }
+    html:not(.dark) .border-primary/30 { border-color: #f87171 !important; }
+
+    .hljs { background: #1e293b !important; padding: 1.5rem !important; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <a href="../../../index.html" class="flex items-center space-x-3">
+          <span class="text-2xl">🗄️</span>
+          <span class="text-xl font-bold text-primary">Oracle DBA</span>
+        </a>
+        <div class="hidden md:flex items-center space-x-1">
+          <a href="../../introducao/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-blue-400 hover:bg-blue-500/20 transition-colors">🎯 T0</a>
+          <a href="../../modulo-1/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">📊 T1</a>
+          <a href="../../modulo-2/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-cyan-400 hover:bg-cyan-500/20 transition-colors">⚙️ T2</a>
+          <a href="../../modulo-3/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-purple-400 hover:bg-purple-500/20 transition-colors">🔒 T3</a>
+          <a href="../../modulo-4/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-orange-400 hover:bg-orange-500/20 transition-colors">⚡ T4</a>
+          <a href="../../modulo-5/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-red-400 hover:bg-red-500/20 transition-colors">🛡️ T5</a>
+          <a href="../../recursos/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-amber-400 hover:bg-amber-500/20 transition-colors">📚 Recursos</a>
+        </div>
+        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-emerald-900/30 to-dark-800 py-8 border-b border-dark-600">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="flex items-center gap-2 text-emerald-400 text-sm mb-4">
+        <a href="../../../index.html" class="hover:underline">Início</a>
+        <span>/</span>
+        <a href="../index.html" class="hover:underline">Trilha 1</a>
+        <span>/</span>
+        <a href="index.html" class="hover:underline">Conteúdo</a>
+        <span>/</span>
+        <span>Tópico 13</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center">
+          <span class="text-2xl font-bold text-emerald-400">13</span>
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold">GROUP BY e Agregação</h1>
+          <p class="text-neutral-400">Funções de agregação, agrupamento e filtragem de grupos</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 py-8">
+
+    <!-- Seção 1: Definição -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">📖</span>
+        </div>
+        <h2 class="text-xl font-bold text-emerald-400">Definição</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Funções de Agregação</h3>
+        <p class="text-neutral-300 mb-4">
+          As <strong class="text-emerald-400">funções de agregação</strong> realizam cálculos em um conjunto de valores
+          e retornam um único valor. São fundamentais para análise de dados e geração de relatórios estatísticos.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-4 mt-4">
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-emerald-400 mb-2">COUNT</h4>
+            <p class="text-neutral-300 text-sm">
+              Conta o número de linhas ou valores não-nulos em uma coluna.
+            </p>
+          </div>
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-emerald-400 mb-2">SUM</h4>
+            <p class="text-neutral-300 text-sm">
+              Calcula a soma de valores numéricos em uma coluna.
+            </p>
+          </div>
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-emerald-400 mb-2">AVG</h4>
+            <p class="text-neutral-300 text-sm">
+              Calcula a média aritmética dos valores numéricos.
+            </p>
+          </div>
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-emerald-400 mb-2">MIN / MAX</h4>
+            <p class="text-neutral-300 text-sm">
+              Retorna o menor ou maior valor em uma coluna.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">COUNT: Diferenças Importantes</h3>
+
+        <div class="space-y-4">
+          <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
+            <h4 class="font-semibold text-emerald-400 mb-2">COUNT(*)</h4>
+            <p class="text-neutral-300 text-sm mb-2">
+              Conta <strong>todas as linhas</strong> da tabela, incluindo linhas com valores NULL.
+            </p>
+            <pre><code class="language-sql">SELECT COUNT(*) FROM funcionarios;
+-- Retorna: 150 (total de funcionários)</code></pre>
+          </div>
+
+          <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
+            <h4 class="font-semibold text-cyan-400 mb-2">COUNT(coluna)</h4>
+            <p class="text-neutral-300 text-sm mb-2">
+              Conta apenas valores <strong>não-nulos</strong> na coluna especificada.
+            </p>
+            <pre><code class="language-sql">SELECT COUNT(comissao) FROM funcionarios;
+-- Retorna: 35 (apenas funcionários com comissão)</code></pre>
+          </div>
+
+          <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+            <h4 class="font-semibold text-purple-400 mb-2">COUNT(DISTINCT coluna)</h4>
+            <p class="text-neutral-300 text-sm mb-2">
+              Conta apenas valores <strong>únicos e não-nulos</strong> na coluna.
+            </p>
+            <pre><code class="language-sql">SELECT COUNT(DISTINCT departamento_id) FROM funcionarios;
+-- Retorna: 11 (quantidade de departamentos diferentes)</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <h3 class="text-lg font-semibold mb-4">GROUP BY - Agrupando Resultados</h3>
+        <p class="text-neutral-300 mb-4">
+          A cláusula <strong class="text-emerald-400">GROUP BY</strong> agrupa linhas que possuem valores iguais
+          em colunas específicas, permitindo aplicar funções de agregação a cada grupo.
+        </p>
+
+        <div class="bg-dark-700 rounded-lg p-4">
+          <h4 class="font-semibold text-neutral-100 mb-2">Sintaxe Básica:</h4>
+          <pre><code class="language-sql">SELECT coluna_agrupamento, FUNCAO_AGREGACAO(coluna)
+FROM tabela
+WHERE condicao              -- Filtra ANTES de agrupar
+GROUP BY coluna_agrupamento
+HAVING condicao_grupo       -- Filtra DEPOIS de agrupar
+ORDER BY coluna;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 2: Aplicação Prática -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">🛠️</span>
+        </div>
+        <h2 class="text-xl font-bold text-cyan-400">Aplicação Prática</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Funções de Agregação Básicas</h3>
+
+        <pre><code class="language-sql">-- Estatísticas gerais de salários
+SELECT
+    COUNT(*) AS total_funcionarios,
+    COUNT(comissao) AS funcionarios_com_comissao,
+    COUNT(DISTINCT departamento_id) AS total_departamentos,
+    SUM(salario) AS folha_pagamento_total,
+    AVG(salario) AS salario_medio,
+    MIN(salario) AS menor_salario,
+    MAX(salario) AS maior_salario,
+    MAX(salario) - MIN(salario) AS diferenca_salarial
+FROM funcionarios;
+
+-- Resultado:
+-- TOTAL_FUNCIONARIOS  FUNCIONARIOS_COM_COMISSAO  TOTAL_DEPARTAMENTOS  FOLHA_PAGAMENTO_TOTAL  SALARIO_MEDIO  MENOR_SALARIO  MAIOR_SALARIO  DIFERENCA_SALARIAL
+-- 107                 35                         11                   691416.00              6461.83        2100.00        24000.00       21900.00</code></pre>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">GROUP BY - Relatórios por Grupo</h3>
+
+        <pre><code class="language-sql">-- Estatísticas salariais por departamento
+SELECT
+    departamento_id,
+    COUNT(*) AS qtd_funcionarios,
+    SUM(salario) AS folha_total,
+    AVG(salario) AS salario_medio,
+    MIN(salario) AS menor_salario,
+    MAX(salario) AS maior_salario
+FROM funcionarios
+GROUP BY departamento_id
+ORDER BY folha_total DESC;
+
+-- Resultado:
+-- DEPARTAMENTO_ID  QTD_FUNCIONARIOS  FOLHA_TOTAL  SALARIO_MEDIO  MENOR_SALARIO  MAIOR_SALARIO
+-- 50               45                156400.00    3475.56        2100.00        8200.00
+-- 80               34                304500.00    8955.88        6100.00        14000.00
+-- 100              6                 51608.00     8601.33        6900.00        12008.00</code></pre>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">HAVING - Filtrando Grupos</h3>
+
+        <p class="text-neutral-300 mb-4">
+          A cláusula <strong class="text-emerald-400">HAVING</strong> filtra grupos <strong>após</strong> a agregação,
+          enquanto <strong>WHERE</strong> filtra linhas <strong>antes</strong> da agregação.
+        </p>
+
+        <pre><code class="language-sql">-- Departamentos com mais de 5 funcionários e salário médio > 5000
+SELECT
+    departamento_id,
+    COUNT(*) AS qtd_funcionarios,
+    AVG(salario) AS salario_medio,
+    SUM(salario) AS folha_total
+FROM funcionarios
+WHERE salario > 2000              -- Filtra ANTES de agrupar
+GROUP BY departamento_id
+HAVING COUNT(*) > 5               -- Filtra DEPOIS de agrupar
+   AND AVG(salario) > 5000
+ORDER BY salario_medio DESC;
+
+-- Diferença entre WHERE e HAVING:
+-- WHERE:  Filtra linhas individuais antes da agregação
+-- HAVING: Filtra grupos resultantes após a agregação</code></pre>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">GROUP BY com Múltiplas Colunas</h3>
+
+        <pre><code class="language-sql">-- Estatísticas por departamento e cargo
+SELECT
+    departamento_id,
+    cargo_id,
+    COUNT(*) AS qtd_funcionarios,
+    AVG(salario) AS salario_medio
+FROM funcionarios
+GROUP BY departamento_id, cargo_id
+ORDER BY departamento_id, cargo_id;
+
+-- Combinando GROUP BY com JOIN
+SELECT
+    d.nome_departamento,
+    j.titulo_cargo,
+    COUNT(*) AS qtd_funcionarios,
+    AVG(f.salario) AS salario_medio,
+    SUM(f.salario) AS folha_total
+FROM funcionarios f
+JOIN departamentos d ON f.departamento_id = d.id_departamento
+JOIN cargos j ON f.cargo_id = j.id_cargo
+GROUP BY d.nome_departamento, j.titulo_cargo
+HAVING COUNT(*) >= 2
+ORDER BY d.nome_departamento, salario_medio DESC;</code></pre>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <h3 class="text-lg font-semibold mb-4">Erros Comuns e Como Evitá-los</h3>
+
+        <div class="bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500 mb-4">
+          <h4 class="font-semibold text-red-400 mb-2">Erro: Coluna não agregada no SELECT</h4>
+          <pre><code class="language-sql">-- INCORRETO: nome não está no GROUP BY nem em função de agregação
+SELECT departamento_id, nome, AVG(salario)
+FROM funcionarios
+GROUP BY departamento_id;
+-- ORA-00979: not a GROUP BY expression</code></pre>
+        </div>
+
+        <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
+          <h4 class="font-semibold text-emerald-400 mb-2">Regra de Ouro do GROUP BY</h4>
+          <p class="text-neutral-300 mb-2">
+            <strong>Toda coluna no SELECT deve estar:</strong>
+          </p>
+          <ul class="list-disc list-inside text-neutral-300 space-y-1">
+            <li>Na cláusula GROUP BY, OU</li>
+            <li>Dentro de uma função de agregação (COUNT, SUM, AVG, MIN, MAX)</li>
+          </ul>
+        </div>
+
+        <pre class="mt-4"><code class="language-sql">-- CORRETO: Usando MAX para incluir o nome
+SELECT
+    departamento_id,
+    MAX(nome) KEEP (DENSE_RANK FIRST ORDER BY salario DESC) AS funcionario_maior_salario,
+    AVG(salario) AS salario_medio
+FROM funcionarios
+GROUP BY departamento_id;
+
+-- CORRETO: Incluindo todas as colunas não agregadas no GROUP BY
+SELECT departamento_id, cargo_id, AVG(salario)
+FROM funcionarios
+GROUP BY departamento_id, cargo_id;</code></pre>
+      </div>
+    </section>
+
+    <!-- Seção 3: Resultado Esperado -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">✅</span>
+        </div>
+        <h2 class="text-xl font-bold text-purple-400">Resultado Esperado</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">O que você deve dominar após este tópico:</h3>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Funções de agregação</h4>
+                <p class="text-neutral-400 text-sm">Usar COUNT, SUM, AVG, MIN, MAX corretamente</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Diferenças do COUNT</h4>
+                <p class="text-neutral-400 text-sm">Distinguir COUNT(*), COUNT(coluna), COUNT(DISTINCT)</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Agrupar dados</h4>
+                <p class="text-neutral-400 text-sm">Usar GROUP BY com uma ou múltiplas colunas</p>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Filtrar grupos</h4>
+                <p class="text-neutral-400 text-sm">Distinguir e usar WHERE vs HAVING corretamente</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Evitar erros comuns</h4>
+                <p class="text-neutral-400 text-sm">Identificar e corrigir problemas de agregação</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Gerar relatórios</h4>
+                <p class="text-neutral-400 text-sm">Criar análises estatísticas e relatórios gerenciais</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Exercícios -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-amber-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="text-xl font-bold text-amber-400">Exercícios Práticos</h2>
+      </div>
+
+      <div class="space-y-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 1: Análise de Vendas</h3>
+          <p class="text-neutral-300 mb-4">
+            Crie uma consulta que mostre o total de vendas, ticket médio e quantidade de pedidos por região,
+            apenas para regiões com mais de 100 pedidos, ordenado por total de vendas decrescente.
+          </p>
+
+          <details class="mt-4">
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <div class="mt-4">
+              <pre><code class="language-sql">SELECT
+    r.nome_regiao,
+    COUNT(*) AS qtd_pedidos,
+    SUM(p.valor_total) AS total_vendas,
+    AVG(p.valor_total) AS ticket_medio,
+    MIN(p.valor_total) AS menor_venda,
+    MAX(p.valor_total) AS maior_venda
+FROM pedidos p
+JOIN clientes c ON p.cliente_id = c.id_cliente
+JOIN regioes r ON c.regiao_id = r.id_regiao
+GROUP BY r.nome_regiao
+HAVING COUNT(*) > 100
+ORDER BY total_vendas DESC;</code></pre>
+            </div>
+          </details>
+        </div>
+
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 2: Relatório de RH</h3>
+          <p class="text-neutral-300 mb-4">
+            Identifique departamentos onde o salário médio está acima da média geral da empresa
+            e que tenham pelo menos 3 funcionários.
+          </p>
+
+          <details class="mt-4">
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <div class="mt-4">
+              <pre><code class="language-sql">SELECT
+    d.nome_departamento,
+    COUNT(*) AS qtd_funcionarios,
+    AVG(f.salario) AS salario_medio_depto,
+    (SELECT AVG(salario) FROM funcionarios) AS salario_medio_empresa,
+    AVG(f.salario) - (SELECT AVG(salario) FROM funcionarios) AS diferenca
+FROM funcionarios f
+JOIN departamentos d ON f.departamento_id = d.id_departamento
+GROUP BY d.nome_departamento
+HAVING COUNT(*) >= 3
+   AND AVG(f.salario) > (SELECT AVG(salario) FROM funcionarios)
+ORDER BY salario_medio_depto DESC;</code></pre>
+            </div>
+          </details>
+        </div>
+
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 3: Análise Temporal</h3>
+          <p class="text-neutral-300 mb-4">
+            Crie um relatório mostrando a quantidade de contratações e a média salarial por ano e mês,
+            apenas para meses com mais de 2 contratações.
+          </p>
+
+          <details class="mt-4">
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <div class="mt-4">
+              <pre><code class="language-sql">SELECT
+    EXTRACT(YEAR FROM data_admissao) AS ano,
+    EXTRACT(MONTH FROM data_admissao) AS mes,
+    TO_CHAR(data_admissao, 'MONTH', 'NLS_DATE_LANGUAGE=PORTUGUESE') AS nome_mes,
+    COUNT(*) AS qtd_contratacoes,
+    AVG(salario) AS salario_medio_contratados,
+    MIN(salario) AS menor_salario,
+    MAX(salario) AS maior_salario
+FROM funcionarios
+GROUP BY
+    EXTRACT(YEAR FROM data_admissao),
+    EXTRACT(MONTH FROM data_admissao),
+    TO_CHAR(data_admissao, 'MONTH', 'NLS_DATE_LANGUAGE=PORTUGUESE')
+HAVING COUNT(*) > 2
+ORDER BY ano DESC, mes DESC;</code></pre>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Action Buttons -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-r from-emerald-900/30 to-cyan-900/30 rounded-xl border border-emerald-500/30 p-6">
+        <h3 class="text-lg font-semibold mb-4 text-center">Continue sua jornada</h3>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="index.html" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+            Ver Conteúdo Completo
+          </a>
+          <a href="../index.html" class="px-6 py-3 bg-dark-700 hover:bg-dark-600 text-neutral-100 rounded-lg font-medium transition-colors flex items-center gap-2 border border-dark-600">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+            </svg>
+            Conteúdo Compacto
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <div class="flex justify-between items-center pt-8 border-t border-dark-600">
+      <a href="index.html" class="flex items-center gap-2 text-neutral-400 hover:text-emerald-400 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        <span>Voltar ao Índice</span>
+      </a>
+      <a href="topico-14.html" class="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors">
+        <span>Próximo: Views e Synonyms</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark-900 border-t border-dark-700 py-8 mt-12">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <p class="text-neutral-500 text-sm">Oracle DBA - Trilha 1: Fundamentos de BD e SQL - Tópico 13</p>
+    </div>
+  </footer>
+
+  <script>
+    hljs.highlightAll();
+
+    // Theme toggle
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+    if (localStorage.getItem('color-theme') === 'light' ||
+        (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+      document.documentElement.classList.remove('dark');
+      themeToggleDarkIcon.classList.remove('hidden');
+    } else {
+      document.documentElement.classList.add('dark');
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+
+    themeToggleBtn.addEventListener('click', function() {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('color-theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
+      }
+    });
+  </script>
+</body>
+</html>

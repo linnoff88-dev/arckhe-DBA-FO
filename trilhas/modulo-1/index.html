@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1: Fundamentos SQL | Curso Oracle DBA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#C74634',
+            oracle: '#F80000',
+            dark: { 900: '#0f172a', 800: '#1e293b', 700: '#334155', 600: '#475569' }
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #0f172a; }
+    /* Light mode - versão colorida e vibrante */
+    html:not(.dark) body { background-color: #f0fdf4; }
+    html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
+    html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
+    html:not(.dark) .bg-dark-700 { background-color: #ecfdf5 !important; }
+    html:not(.dark) .bg-dark-700\/50 { background-color: #d1fae5 !important; }
+    html:not(.dark) .border-dark-600 { border-color: #a7f3d0 !important; }
+    html:not(.dark) .border-dark-700 { border-color: #6ee7b7 !important; }
+    html:not(.dark) .text-neutral-100 { color: #064e3b !important; }
+    html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
+    html:not(.dark) .text-neutral-400 { color: #047857 !important; }
+    html:not(.dark) .text-neutral-500 { color: #059669 !important; }
+    /* Navegação no modo claro */
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
+    /* Cores das trilhas - vibrantes */
+    html:not(.dark) .text-emerald-400 { color: #047857 !important; }
+    html:not(.dark) .text-cyan-400 { color: #0e7490 !important; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed !important; }
+    html:not(.dark) .text-orange-400 { color: #c2410c !important; }
+    html:not(.dark) .text-red-400 { color: #b91c1c !important; }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8 !important; }
+    html:not(.dark) .text-amber-400 { color: #b45309 !important; }
+    /* Backgrounds coloridos - mais saturados */
+    html:not(.dark) .bg-emerald-500\/20, html:not(.dark) .bg-emerald-900\/20, html:not(.dark) .bg-emerald-900\/30 { background-color: #d1fae5 !important; }
+    html:not(.dark) .bg-cyan-500\/20, html:not(.dark) .bg-cyan-900\/20, html:not(.dark) .bg-cyan-900\/30 { background-color: #cffafe !important; }
+    html:not(.dark) .bg-purple-500\/20, html:not(.dark) .bg-purple-900\/20, html:not(.dark) .bg-purple-900\/30 { background-color: #ede9fe !important; }
+    html:not(.dark) .bg-orange-500\/20, html:not(.dark) .bg-orange-900\/20, html:not(.dark) .bg-orange-900\/30 { background-color: #ffedd5 !important; }
+    html:not(.dark) .bg-red-500\/20, html:not(.dark) .bg-red-900\/20, html:not(.dark) .bg-red-900\/30 { background-color: #fee2e2 !important; }
+    html:not(.dark) .bg-blue-500\/20, html:not(.dark) .bg-blue-900\/20, html:not(.dark) .bg-blue-900\/30 { background-color: #dbeafe !important; }
+    html:not(.dark) .bg-amber-500\/20, html:not(.dark) .bg-amber-900\/20, html:not(.dark) .bg-amber-900\/30 { background-color: #fef3c7 !important; }
+    /* Bordas coloridas - mais fortes */
+    html:not(.dark) .border-emerald-500, html:not(.dark) .border-emerald-500\/30 { border-color: #10b981 !important; }
+    html:not(.dark) .border-cyan-500, html:not(.dark) .border-cyan-500\/30 { border-color: #06b6d4 !important; }
+    html:not(.dark) .border-purple-500, html:not(.dark) .border-purple-500\/30 { border-color: #8b5cf6 !important; }
+    html:not(.dark) .border-orange-500, html:not(.dark) .border-orange-500\/30 { border-color: #f97316 !important; }
+    html:not(.dark) .border-red-500, html:not(.dark) .border-red-500\/30 { border-color: #ef4444 !important; }
+    html:not(.dark) .border-blue-500, html:not(.dark) .border-blue-500\/30 { border-color: #3b82f6 !important; }
+    html:not(.dark) .border-amber-500, html:not(.dark) .border-amber-500\/30 { border-color: #f59e0b !important; }
+    /* Gradientes no modo claro */
+    html:not(.dark) .from-emerald-900\/30 { --tw-gradient-from: #d1fae5 !important; }
+    html:not(.dark) .from-cyan-900\/30 { --tw-gradient-from: #cffafe !important; }
+    html:not(.dark) .from-purple-900\/30 { --tw-gradient-from: #ede9fe !important; }
+    html:not(.dark) .from-orange-900\/30 { --tw-gradient-from: #ffedd5 !important; }
+    html:not(.dark) .from-red-900\/30 { --tw-gradient-from: #fee2e2 !important; }
+    html:not(.dark) .from-blue-900\/30 { --tw-gradient-from: #dbeafe !important; }
+    html:not(.dark) .from-amber-900\/30 { --tw-gradient-from: #fef3c7 !important; }
+    html:not(.dark) .to-dark-800 { --tw-gradient-to: #ffffff !important; }
+    /* Botões no modo claro */
+    html:not(.dark) .bg-emerald-600 { background-color: #059669 !important; }
+    html:not(.dark) .bg-cyan-600 { background-color: #0891b2 !important; }
+    html:not(.dark) .bg-purple-600 { background-color: #7c3aed !important; }
+    html:not(.dark) .bg-orange-600 { background-color: #ea580c !important; }
+    html:not(.dark) .bg-red-600 { background-color: #dc2626 !important; }
+    html:not(.dark) .bg-blue-600 { background-color: #2563eb !important; }
+    html:not(.dark) .bg-amber-600 { background-color: #d97706 !important; }
+    /* Código no modo claro - fundo claro */
+    html:not(.dark) .hljs { background: #f1f5f9 !important; color: #1e293b !important; }
+    html:not(.dark) .hljs-comment { color: #64748b !important; }
+    html:not(.dark) .hljs-keyword { color: #7c3aed !important; }
+    html:not(.dark) .hljs-string { color: #059669 !important; }
+    html:not(.dark) .hljs-number { color: #ea580c !important; }
+    html:not(.dark) .hljs-built_in { color: #0891b2 !important; }
+    html:not(.dark) pre code { background: #f1f5f9 !important; border: 1px solid #cbd5e1 !important; }
+    /* Textos dentro de cards no modo claro */
+    html:not(.dark) .text-sm { color: #1e293b !important; }
+    html:not(.dark) .text-xs { color: #475569 !important; }
+    html:not(.dark) p { color: #1e293b !important; }
+    html:not(.dark) li { color: #1e293b !important; }
+    html:not(.dark) code { color: #7c3aed !important; background: #f1f5f9 !important; }
+    /* Botões mais visíveis no modo claro */
+    html:not(.dark) .bg-dark-700 { background-color: #e2e8f0 !important; border: 1px solid #94a3b8 !important; }
+    html:not(.dark) .bg-dark-700:hover { background-color: #cbd5e1 !important; }
+    html:not(.dark) .bg-primary { background-color: #dc2626 !important; }
+    html:not(.dark) .bg-primary\/10 { background-color: #fee2e2 !important; }
+    html:not(.dark) .border-primary\/30 { border-color: #f87171 !important; }
+    pre code { border-radius: 0.5rem; }
+    details summary { cursor: pointer; }
+    details summary::-webkit-details-marker { display: none; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <a href="../../index.html" class="flex items-center space-x-3">
+          <span class="text-2xl">🗄️</span>
+          <span class="text-xl font-bold text-primary">Oracle DBA</span>
+        </a>
+        <div class="hidden md:flex items-center space-x-1">
+          <a href="../introducao/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-blue-400 hover:bg-blue-500/20 transition-colors">🎯 T0</a>
+          <a href="../modulo-1/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">📊 T1</a>
+          <a href="../modulo-2/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-cyan-400 hover:bg-cyan-500/20 transition-colors">⚙️ T2</a>
+          <a href="../modulo-3/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-purple-400 hover:bg-purple-500/20 transition-colors">🔒 T3</a>
+          <a href="../modulo-4/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-orange-400 hover:bg-orange-500/20 transition-colors">⚡ T4</a>
+          <a href="../modulo-5/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-red-400 hover:bg-red-500/20 transition-colors">🛡️ T5</a>
+          <a href="../recursos/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-amber-400 hover:bg-amber-500/20 transition-colors">📚 Recursos</a>
+        </div>
+        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <span class="inline-block px-4 py-2 bg-emerald-500/20 text-emerald-400 rounded-full text-sm font-semibold mb-4">
+        MÓDULO 1 - FUNDAMENTOS
+      </span>
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">📊 Fundamentos de BD e SQL</h1>
+      <p class="text-xl text-neutral-400 max-w-2xl mx-auto">
+        A base de todo conhecimento de um DBA Oracle
+      </p>
+    </div>
+
+    <!-- Info Banner: Conteúdo Compacto -->
+    <div class="bg-emerald-900/20 border border-emerald-500/30 rounded-xl p-4 mb-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <span class="text-2xl">📄</span>
+          <div>
+            <p class="text-emerald-400 font-semibold">Você está no Conteúdo Compacto</p>
+            <p class="text-neutral-400 text-sm">Resumo da trilha em uma única página</p>
+          </div>
+        </div>
+        <a href="conteudo/index.html" class="flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-medium transition-colors text-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          Ver Conteúdo Completo
+        </a>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-4 gap-4 mb-12">
+      <div class="bg-dark-800 rounded-xl p-4 text-center border border-dark-600">
+        <div class="text-2xl font-bold text-emerald-400">6</div>
+        <div class="text-xs text-neutral-400">Seções</div>
+      </div>
+      <div class="bg-dark-800 rounded-xl p-4 text-center border border-dark-600">
+        <div class="text-2xl font-bold text-emerald-400">10</div>
+        <div class="text-xs text-neutral-400">Exercícios</div>
+      </div>
+      <div class="bg-dark-800 rounded-xl p-4 text-center border border-dark-600">
+        <div class="text-2xl font-bold text-emerald-400">SQL</div>
+        <div class="text-xs text-neutral-400">Linguagem</div>
+      </div>
+      <div class="bg-dark-800 rounded-xl p-4 text-center border border-dark-600">
+        <div class="text-2xl font-bold text-emerald-400">Base</div>
+        <div class="text-xs text-neutral-400">Nível</div>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-2xl p-8 border border-emerald-500/30">
+        <h2 class="text-2xl font-bold text-emerald-400 mb-4">Introdução</h2>
+        <p class="text-neutral-300 text-lg">
+          Bem-vindo ao início de sua jornada para se tornar um <strong class="text-emerald-400">Administrador de Banco de Dados (DBA) Oracle</strong>.
+          Este primeiro módulo é a base de todo o conhecimento que você irá adquirir. Aqui, vamos explorar os conceitos essenciais
+          que sustentam os bancos de dados relacionais e aprender a linguagem fundamental para interagir com eles: o <strong class="text-emerald-400">SQL</strong>.
+        </p>
+      </div>
+    </section>
+
+    <!-- 1.1 Conceitos de BD Relacional -->
+    <section class="mb-12">
+      <div class="bg-dark-800 rounded-2xl p-8 border border-dark-600">
+        <div class="flex items-center mb-6">
+          <span class="text-4xl mr-4">🏛️</span>
+          <div>
+            <h2 class="text-2xl font-bold text-neutral-100">1.1 Conceitos de BD Relacional</h2>
+            <p class="text-neutral-400">A estrutura fundamental</p>
+          </div>
+        </div>
+
+        <p class="text-neutral-300 mb-6">
+          Um <strong class="text-emerald-400">banco de dados relacional</strong> é um sistema que organiza os dados em tabelas.
+          Pense em uma tabela como uma planilha, com linhas e colunas. Cada linha representa um registro (por exemplo, um cliente)
+          e cada coluna representa um atributo desse registro (por exemplo, nome, email, telefone).
+        </p>
+
+        <div class="bg-dark-700/50 rounded-xl p-6 mb-6">
+          <h4 class="font-bold text-emerald-400 mb-4">Conceitos Principais</h4>
+          <div class="space-y-4">
+            <div class="flex items-start">
+              <span class="bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded text-xs font-semibold mr-3 mt-0.5">Tabela</span>
+              <p class="text-neutral-300">A estrutura fundamental de armazenamento, composta por linhas e colunas.</p>
+            </div>
+            <div class="flex items-start">
+              <span class="bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded text-xs font-semibold mr-3 mt-0.5">Coluna</span>
+              <p class="text-neutral-300">Um atributo específico de uma tabela. Possui um nome e um tipo de dado (texto, número, data, etc.).</p>
+            </div>
+            <div class="flex items-start">
+              <span class="bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded text-xs font-semibold mr-3 mt-0.5">Linha</span>
+              <p class="text-neutral-300">Um registro único dentro de uma tabela.</p>
+            </div>
+            <div class="flex items-start">
+              <span class="bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded text-xs font-semibold mr-3 mt-0.5">PK</span>
+              <p class="text-neutral-300"><strong>Chave Primária:</strong> Uma ou mais colunas que identificam unicamente cada linha. Não pode haver duas linhas com a mesma PK.</p>
+            </div>
+            <div class="flex items-start">
+              <span class="bg-purple-500/20 text-purple-400 px-2 py-1 rounded text-xs font-semibold mr-3 mt-0.5">FK</span>
+              <p class="text-neutral-300"><strong>Chave Estrangeira:</strong> Uma coluna que se refere à chave primária de outra tabela. Cria o "relacionamento" entre tabelas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1.2 Modelagem de Dados -->
+    <section class="mb-12">
+      <div class="bg-dark-800 rounded-2xl p-8 border border-dark-600">
+        <div class="flex items-center mb-6">
+          <span class="text-4xl mr-4">📐</span>
+          <div>
+            <h2 class="text-2xl font-bold text-neutral-100">1.2 Modelagem de Dados</h2>
+            <p class="text-neutral-400">Diagrama Entidade-Relacionamento</p>
+          </div>
+        </div>
+
+        <p class="text-neutral-300 mb-6">
+          A modelagem de dados é o processo de criar um diagrama que representa a estrutura do banco de dados.
+          O modelo mais comum é o <strong class="text-emerald-400">Diagrama Entidade-Relacionamento (DER)</strong>.
+        </p>
+
+        <div class="bg-dark-700/50 rounded-xl p-6 mb-6">
+          <div class="grid md:grid-cols-3 gap-4">
+            <div class="bg-dark-800 rounded-lg p-4 border border-dark-600">
+              <h4 class="font-bold text-emerald-400 mb-2">Entidade</h4>
+              <p class="text-neutral-300 text-sm">Objeto do mundo real sobre o qual armazenamos informações (ex: CLIENTES, PRODUTOS).</p>
+            </div>
+            <div class="bg-dark-800 rounded-lg p-4 border border-dark-600">
+              <h4 class="font-bold text-cyan-400 mb-2">Atributo</h4>
+              <p class="text-neutral-300 text-sm">Característica de uma entidade (ex: nome do cliente, preço do produto).</p>
+            </div>
+            <div class="bg-dark-800 rounded-lg p-4 border border-dark-600">
+              <h4 class="font-bold text-purple-400 mb-2">Relacionamento</h4>
+              <p class="text-neutral-300 text-sm">Associação entre entidades (ex: CLIENTE faz PEDIDO).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-900/20 p-4 rounded-xl border border-blue-500/30">
+          <p class="text-blue-400 text-sm">
+            <strong>📷 Diagrama ER:</strong> Veja a imagem <code>diagrama_er.png</code> na seção de Recursos para um exemplo visual.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1.3 Ambiente Oracle -->
+    <section class="mb-12">
+      <div class="bg-dark-800 rounded-2xl p-8 border border-dark-600">
+        <div class="flex items-center mb-6">
+          <span class="text-4xl mr-4">🛠️</span>
+          <div>
+            <h2 class="text-2xl font-bold text-neutral-100">1.3 O Ambiente Oracle</h2>
+            <p class="text-neutral-400">SQL Developer e SQL*Plus</p>
+          </div>
+        </div>
+
+        <p class="text-neutral-300 mb-6">
+          Para interagir com o banco de dados Oracle, utilizamos ferramentas cliente.
+          As duas mais importantes para um DBA são:
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-emerald-900/20 p-6 rounded-xl border border-emerald-500/30">
+            <h4 class="font-bold text-emerald-400 mb-3">SQL Developer</h4>
+            <p class="text-neutral-300 text-sm mb-3">
+              Interface gráfica (GUI) completa e gratuita da Oracle. Permite escrever e executar queries SQL,
+              administrar objetos, importar/exportar dados.
+            </p>
+            <span class="text-xs bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded">Ideal para o dia a dia</span>
+          </div>
+          <div class="bg-cyan-900/20 p-6 rounded-xl border border-cyan-500/30">
+            <h4 class="font-bold text-cyan-400 mb-3">SQL*Plus</h4>
+            <p class="text-neutral-300 text-sm mb-3">
+              Ferramenta de linha de comando (CLI). Menos amigável, mas extremamente poderosa para
+              automação e execução de scripts.
+            </p>
+            <span class="text-xs bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded">Essencial para DBAs</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1.4 Linguagem SQL -->
+    <section class="mb-12">
+      <div class="bg-dark-800 rounded-2xl p-8 border border-dark-600">
+        <div class="flex items-center mb-6">
+          <span class="text-4xl mr-4">📝</span>
+          <div>
+            <h2 class="text-2xl font-bold text-neutral-100">1.4 A Linguagem SQL</h2>
+            <p class="text-neutral-400">A base de tudo</p>
+          </div>
+        </div>
+
+        <p class="text-neutral-300 mb-6">
+          <strong class="text-emerald-400">SQL (Structured Query Language)</strong> é a linguagem padrão para gerenciar
+          e manipular bancos de dados relacionais. Ela é dividida em subconjuntos de comandos:
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-4 mb-6">
+          <div class="bg-dark-700/50 rounded-xl p-4 border-l-4 border-emerald-500">
+            <h4 class="font-bold text-emerald-400 mb-1">DQL</h4>
+            <p class="text-neutral-400 text-xs mb-2">Data Query Language</p>
+            <p class="text-neutral-300 text-sm">Para consultas. Comando: <code class="text-emerald-400">SELECT</code></p>
+          </div>
+          <div class="bg-dark-700/50 rounded-xl p-4 border-l-4 border-cyan-500">
+            <h4 class="font-bold text-cyan-400 mb-1">DML</h4>
+            <p class="text-neutral-400 text-xs mb-2">Data Manipulation Language</p>
+            <p class="text-neutral-300 text-sm">Comandos: <code class="text-cyan-400">INSERT</code>, <code class="text-cyan-400">UPDATE</code>, <code class="text-cyan-400">DELETE</code></p>
+          </div>
+          <div class="bg-dark-700/50 rounded-xl p-4 border-l-4 border-purple-500">
+            <h4 class="font-bold text-purple-400 mb-1">DDL</h4>
+            <p class="text-neutral-400 text-xs mb-2">Data Definition Language</p>
+            <p class="text-neutral-300 text-sm">Comandos: <code class="text-purple-400">CREATE</code>, <code class="text-purple-400">ALTER</code>, <code class="text-purple-400">DROP</code></p>
+          </div>
+          <div class="bg-dark-700/50 rounded-xl p-4 border-l-4 border-orange-500">
+            <h4 class="font-bold text-orange-400 mb-1">DCL</h4>
+            <p class="text-neutral-400 text-xs mb-2">Data Control Language</p>
+            <p class="text-neutral-300 text-sm">Comandos: <code class="text-orange-400">GRANT</code>, <code class="text-orange-400">REVOKE</code></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1.5 Comandos SQL na Prática -->
+    <section class="mb-12">
+      <div class="bg-dark-800 rounded-2xl p-8 border border-dark-600">
+        <div class="flex items-center mb-6">
+          <span class="text-4xl mr-4">💻</span>
+          <div>
+            <h2 class="text-2xl font-bold text-neutral-100">1.5 Comandos SQL na Prática</h2>
+            <p class="text-neutral-400">Exemplos com tabelas reais</p>
+          </div>
+        </div>
+
+        <!-- Tabelas de Exemplo -->
+        <div class="bg-dark-700/50 rounded-xl p-6 mb-6">
+          <h4 class="font-bold text-emerald-400 mb-4">Tabelas de Exemplo</h4>
+
+          <div class="overflow-x-auto mb-4">
+            <p class="text-neutral-400 text-sm mb-2">Tabela: DEPARTAMENTOS</p>
+            <table class="w-full text-sm">
+              <thead class="bg-dark-600">
+                <tr>
+                  <th class="text-left py-2 px-3 text-emerald-400">DEPT_ID (PK)</th>
+                  <th class="text-left py-2 px-3 text-neutral-300">NOME_DEP</th>
+                </tr>
+              </thead>
+              <tbody class="text-neutral-300">
+                <tr class="border-b border-dark-600"><td class="py-2 px-3">10</td><td class="py-2 px-3">'FINANCEIRO'</td></tr>
+                <tr class="border-b border-dark-600"><td class="py-2 px-3">20</td><td class="py-2 px-3">'TI'</td></tr>
+                <tr><td class="py-2 px-3">30</td><td class="py-2 px-3">'RH'</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="overflow-x-auto">
+            <p class="text-neutral-400 text-sm mb-2">Tabela: EMPREGADOS</p>
+            <table class="w-full text-sm">
+              <thead class="bg-dark-600">
+                <tr>
+                  <th class="text-left py-2 px-3 text-emerald-400">EMP_ID (PK)</th>
+                  <th class="text-left py-2 px-3 text-neutral-300">NOME_EMP</th>
+                  <th class="text-left py-2 px-3 text-neutral-300">SALARIO</th>
+                  <th class="text-left py-2 px-3 text-purple-400">DEPT_ID (FK)</th>
+                </tr>
+              </thead>
+              <tbody class="text-neutral-300">
+                <tr class="border-b border-dark-600"><td class="py-2 px-3">101</td><td class="py-2 px-3">'JOÃO SILVA'</td><td class="py-2 px-3">5000</td><td class="py-2 px-3">10</td></tr>
+                <tr class="border-b border-dark-600"><td class="py-2 px-3">102</td><td class="py-2 px-3">'ANA LIMA'</td><td class="py-2 px-3">7000</td><td class="py-2 px-3">20</td></tr>
+                <tr class="border-b border-dark-600"><td class="py-2 px-3">103</td><td class="py-2 px-3">'CARLOS SOUZA'</td><td class="py-2 px-3">6500</td><td class="py-2 px-3">20</td></tr>
+                <tr><td class="py-2 px-3">104</td><td class="py-2 px-3">'MARIA GOMES'</td><td class="py-2 px-3">4000</td><td class="py-2 px-3">10</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- SELECT -->
+        <div class="bg-dark-700/50 rounded-xl p-6 mb-6">
+          <h4 class="font-bold text-emerald-400 mb-3">SELECT: Consultando Dados</h4>
+          <p class="text-neutral-300 text-sm mb-4">
+            O comando <code class="text-emerald-400">SELECT</code> é usado para buscar dados.
+            Sintaxe: <code>SELECT colunas FROM tabela WHERE condição</code>
+          </p>
+          <pre><code class="language-sql">-- Selecionar todos os empregados
+SELECT * FROM EMPREGADOS;
+
+-- Selecionar nome e salário dos empregados do departamento de TI (DEPT_ID = 20)
+SELECT NOME_EMP, SALARIO FROM EMPREGADOS WHERE DEPT_ID = 20;</code></pre>
+        </div>
+
+        <!-- INSERT -->
+        <div class="bg-dark-700/50 rounded-xl p-6 mb-6">
+          <h4 class="font-bold text-cyan-400 mb-3">INSERT: Inserindo Novos Dados</h4>
+          <p class="text-neutral-300 text-sm mb-4">
+            O <code class="text-cyan-400">INSERT</code> adiciona novas linhas a uma tabela.
+          </p>
+          <pre><code class="language-sql">-- Inserir um novo departamento
+INSERT INTO DEPARTAMENTOS (DEPT_ID, NOME_DEP) VALUES (40, 'VENDAS');
+
+-- Inserir um novo empregado
+INSERT INTO EMPREGADOS (EMP_ID, NOME_EMP, SALARIO, DEPT_ID)
+VALUES (105, 'PEDRO COSTA', 5500, 40);</code></pre>
+        </div>
+
+        <!-- UPDATE -->
+        <div class="bg-dark-700/50 rounded-xl p-6 mb-6">
+          <h4 class="font-bold text-orange-400 mb-3">UPDATE: Atualizando Dados</h4>
+          <p class="text-neutral-300 text-sm mb-4">
+            O <code class="text-orange-400">UPDATE</code> modifica registros existentes na tabela.
+          </p>
+          <pre><code class="language-sql">-- Aumentar o salário dos empregados do Financeiro em 10%
+UPDATE EMPREGADOS
+SET SALARIO = SALARIO * 1.10
+WHERE DEPT_ID = 10;</code></pre>
+        </div>
+
+        <!-- DELETE -->
+        <div class="bg-dark-700/50 rounded-xl p-6">
+          <h4 class="font-bold text-red-400 mb-3">DELETE: Removendo Dados</h4>
+          <div class="bg-red-900/20 p-3 rounded-lg border border-red-500/30 mb-4">
+            <p class="text-red-400 text-sm"><strong>⚠️ Cuidado:</strong> Use sempre a cláusula WHERE para não apagar todos os dados!</p>
+          </div>
+          <pre><code class="language-sql">-- Remover o empregado com ID 105
+DELETE FROM EMPREGADOS WHERE EMP_ID = 105;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1.6 Joins, Funções e Subqueries -->
+    <section class="mb-12">
+      <div class="bg-dark-800 rounded-2xl p-8 border border-dark-600">
+        <div class="flex items-center mb-6">
+          <span class="text-4xl mr-4">🔗</span>
+          <div>
+            <h2 class="text-2xl font-bold text-neutral-100">1.6 Joins, Funções e Subqueries</h2>
+            <p class="text-neutral-400">Recursos avançados de SQL</p>
+          </div>
+        </div>
+
+        <!-- JOINs -->
+        <div class="bg-dark-700/50 rounded-xl p-6 mb-6">
+          <h4 class="font-bold text-emerald-400 mb-3">Joins: Combinando Tabelas</h4>
+          <p class="text-neutral-300 text-sm mb-4">
+            O <code class="text-emerald-400">JOIN</code> permite combinar linhas de duas ou mais tabelas com base em uma coluna relacionada.
+          </p>
+          <pre><code class="language-sql">-- Selecionar o nome de cada empregado e o nome do seu departamento
+SELECT E.NOME_EMP, D.NOME_DEP
+FROM EMPREGADOS E
+JOIN DEPARTAMENTOS D ON E.DEPT_ID = D.DEPT_ID;</code></pre>
+        </div>
+
+        <!-- Funções -->
+        <div class="bg-dark-700/50 rounded-xl p-6 mb-6">
+          <h4 class="font-bold text-cyan-400 mb-3">Funções: Manipulando Dados</h4>
+          <p class="text-neutral-300 text-sm mb-4">
+            O Oracle oferece uma vasta biblioteca de funções para manipular texto, números e datas.
+          </p>
+          <div class="grid md:grid-cols-3 gap-4 mb-4">
+            <div class="bg-dark-800 rounded-lg p-3 border border-dark-600">
+              <p class="text-neutral-400 text-xs mb-1">Agregação</p>
+              <code class="text-cyan-400 text-sm">COUNT(), SUM(), AVG(), MAX(), MIN()</code>
+            </div>
+            <div class="bg-dark-800 rounded-lg p-3 border border-dark-600">
+              <p class="text-neutral-400 text-xs mb-1">String</p>
+              <code class="text-cyan-400 text-sm">UPPER(), LOWER(), SUBSTR()</code>
+            </div>
+            <div class="bg-dark-800 rounded-lg p-3 border border-dark-600">
+              <p class="text-neutral-400 text-xs mb-1">Numéricas</p>
+              <code class="text-cyan-400 text-sm">ROUND(), TRUNC()</code>
+            </div>
+          </div>
+          <pre><code class="language-sql">-- Contar quantos empregados existem em cada departamento
+SELECT DEPT_ID, COUNT(*) AS TOTAL_EMPREGADOS
+FROM EMPREGADOS
+GROUP BY DEPT_ID;</code></pre>
+        </div>
+
+        <!-- Subqueries -->
+        <div class="bg-dark-700/50 rounded-xl p-6">
+          <h4 class="font-bold text-purple-400 mb-3">Subqueries: Consultas Aninhadas</h4>
+          <p class="text-neutral-300 text-sm mb-4">
+            Uma subquery é uma consulta <code>SELECT</code> dentro de outra consulta. Úteis para filtros complexos.
+          </p>
+          <pre><code class="language-sql">-- Encontrar empregados que ganham mais que a média salarial
+SELECT NOME_EMP, SALARIO
+FROM EMPREGADOS
+WHERE SALARIO > (SELECT AVG(SALARIO) FROM EMPREGADOS);</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Exercícios Práticos -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-2xl p-8 border border-emerald-500/30">
+        <div class="flex items-center mb-6">
+          <span class="text-4xl mr-4">📝</span>
+          <div>
+            <h2 class="text-2xl font-bold text-emerald-400">Exercícios Práticos</h2>
+            <p class="text-neutral-400">Hora de praticar!</p>
+          </div>
+        </div>
+
+        <div class="bg-dark-700/50 rounded-xl p-6 mb-6">
+          <h4 class="font-bold text-neutral-100 mb-4">Cenário: Livraria</h4>
+          <p class="text-neutral-300 text-sm mb-4">
+            Você foi contratado como DBA júnior de uma pequena livraria. O banco de dados possui as seguintes tabelas:
+          </p>
+
+          <div class="overflow-x-auto mb-4">
+            <p class="text-neutral-400 text-xs mb-2">Tabela: AUTORES</p>
+            <table class="w-full text-xs">
+              <thead class="bg-dark-600">
+                <tr>
+                  <th class="text-left py-2 px-3 text-emerald-400">AUTOR_ID</th>
+                  <th class="text-left py-2 px-3 text-neutral-300">NOME_AUTOR</th>
+                  <th class="text-left py-2 px-3 text-neutral-300">PAIS_ORIGEM</th>
+                </tr>
+              </thead>
+              <tbody class="text-neutral-300">
+                <tr class="border-b border-dark-600"><td class="py-1 px-3">1</td><td class="py-1 px-3">'J.K. Rowling'</td><td class="py-1 px-3">'Reino Unido'</td></tr>
+                <tr class="border-b border-dark-600"><td class="py-1 px-3">2</td><td class="py-1 px-3">'George Orwell'</td><td class="py-1 px-3">'Reino Unido'</td></tr>
+                <tr><td class="py-1 px-3">3</td><td class="py-1 px-3">'Machado de Assis'</td><td class="py-1 px-3">'Brasil'</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="overflow-x-auto">
+            <p class="text-neutral-400 text-xs mb-2">Tabela: LIVROS</p>
+            <table class="w-full text-xs">
+              <thead class="bg-dark-600">
+                <tr>
+                  <th class="text-left py-2 px-3 text-emerald-400">LIVRO_ID</th>
+                  <th class="text-left py-2 px-3 text-neutral-300">TITULO</th>
+                  <th class="text-left py-2 px-3 text-neutral-300">ANO</th>
+                  <th class="text-left py-2 px-3 text-neutral-300">PRECO</th>
+                  <th class="text-left py-2 px-3 text-purple-400">AUTOR_ID</th>
+                </tr>
+              </thead>
+              <tbody class="text-neutral-300">
+                <tr class="border-b border-dark-600"><td class="py-1 px-3">101</td><td class="py-1 px-3">'Harry Potter...'</td><td class="py-1 px-3">1997</td><td class="py-1 px-3">35.00</td><td class="py-1 px-3">1</td></tr>
+                <tr class="border-b border-dark-600"><td class="py-1 px-3">102</td><td class="py-1 px-3">'1984'</td><td class="py-1 px-3">1949</td><td class="py-1 px-3">28.50</td><td class="py-1 px-3">2</td></tr>
+                <tr class="border-b border-dark-600"><td class="py-1 px-3">103</td><td class="py-1 px-3">'Dom Casmurro'</td><td class="py-1 px-3">1899</td><td class="py-1 px-3">22.00</td><td class="py-1 px-3">3</td></tr>
+                <tr><td class="py-1 px-3">104</td><td class="py-1 px-3">'A Revolução dos Bichos'</td><td class="py-1 px-3">1945</td><td class="py-1 px-3">25.00</td><td class="py-1 px-3">2</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Questões -->
+        <div class="space-y-4">
+          <div class="bg-dark-700/50 rounded-xl p-4">
+            <p class="text-neutral-100 font-semibold mb-2">1. SELECT Básico</p>
+            <p class="text-neutral-400 text-sm">Escreva uma query para selecionar o título e o ano de publicação de todos os livros.</p>
+          </div>
+          <div class="bg-dark-700/50 rounded-xl p-4">
+            <p class="text-neutral-100 font-semibold mb-2">2. SELECT com WHERE</p>
+            <p class="text-neutral-400 text-sm">Escreva uma query para encontrar todos os livros publicados antes de 1950.</p>
+          </div>
+          <div class="bg-dark-700/50 rounded-xl p-4">
+            <p class="text-neutral-100 font-semibold mb-2">3. INSERT</p>
+            <p class="text-neutral-400 text-sm">Insira um novo autor: ID 4, Nome 'J.R.R. Tolkien', País 'África do Sul'.</p>
+          </div>
+          <div class="bg-dark-700/50 rounded-xl p-4">
+            <p class="text-neutral-100 font-semibold mb-2">4. INSERT</p>
+            <p class="text-neutral-400 text-sm">Insira um novo livro: ID 105, Título 'O Hobbit', Ano 1937, Preço 45.00, Autor ID 4.</p>
+          </div>
+          <div class="bg-dark-700/50 rounded-xl p-4">
+            <p class="text-neutral-100 font-semibold mb-2">5. UPDATE</p>
+            <p class="text-neutral-400 text-sm">O preço do livro '1984' subiu. Atualize para 32.75.</p>
+          </div>
+          <div class="bg-dark-700/50 rounded-xl p-4">
+            <p class="text-neutral-100 font-semibold mb-2">6. DELETE</p>
+            <p class="text-neutral-400 text-sm">O livro 'O Hobbit' foi removido do catálogo. Apague-o.</p>
+          </div>
+          <div class="bg-dark-700/50 rounded-xl p-4">
+            <p class="text-neutral-100 font-semibold mb-2">7. JOIN</p>
+            <p class="text-neutral-400 text-sm">Mostre o título de cada livro e o nome do seu respectivo autor.</p>
+          </div>
+          <div class="bg-dark-700/50 rounded-xl p-4">
+            <p class="text-neutral-100 font-semibold mb-2">8. Função de Agregação</p>
+            <p class="text-neutral-400 text-sm">Calcule o preço médio de todos os livros.</p>
+          </div>
+          <div class="bg-dark-700/50 rounded-xl p-4">
+            <p class="text-neutral-100 font-semibold mb-2">9. Subquery</p>
+            <p class="text-neutral-400 text-sm">Encontre o título dos livros que são mais caros que a média.</p>
+          </div>
+          <div class="bg-dark-700/50 rounded-xl p-4">
+            <p class="text-neutral-100 font-semibold mb-2">10. JOIN com WHERE</p>
+            <p class="text-neutral-400 text-sm">Liste os títulos dos livros escritos por autores do 'Reino Unido'.</p>
+          </div>
+        </div>
+
+        <!-- Gabarito -->
+        <details class="mt-6">
+          <summary class="bg-emerald-500/20 text-emerald-400 px-4 py-3 rounded-lg font-semibold cursor-pointer hover:bg-emerald-500/30 transition-colors">
+            📋 Ver Gabarito dos Exercícios
+          </summary>
+          <div class="mt-4 space-y-4">
+            <div class="bg-dark-700/50 rounded-xl p-4">
+              <p class="text-emerald-400 font-semibold mb-2">1. SELECT Básico</p>
+              <pre><code class="language-sql">SELECT TITULO, ANO_PUBLICACAO FROM LIVROS;</code></pre>
+            </div>
+            <div class="bg-dark-700/50 rounded-xl p-4">
+              <p class="text-emerald-400 font-semibold mb-2">2. SELECT com WHERE</p>
+              <pre><code class="language-sql">SELECT * FROM LIVROS WHERE ANO_PUBLICACAO < 1950;</code></pre>
+            </div>
+            <div class="bg-dark-700/50 rounded-xl p-4">
+              <p class="text-emerald-400 font-semibold mb-2">3. INSERT Autor</p>
+              <pre><code class="language-sql">INSERT INTO AUTORES (AUTOR_ID, NOME_AUTOR, PAIS_ORIGEM)
+VALUES (4, 'J.R.R. Tolkien', 'África do Sul');</code></pre>
+            </div>
+            <div class="bg-dark-700/50 rounded-xl p-4">
+              <p class="text-emerald-400 font-semibold mb-2">4. INSERT Livro</p>
+              <pre><code class="language-sql">INSERT INTO LIVROS (LIVRO_ID, TITULO, ANO_PUBLICACAO, PRECO, AUTOR_ID)
+VALUES (105, 'O Hobbit', 1937, 45.00, 4);</code></pre>
+            </div>
+            <div class="bg-dark-700/50 rounded-xl p-4">
+              <p class="text-emerald-400 font-semibold mb-2">5. UPDATE</p>
+              <pre><code class="language-sql">UPDATE LIVROS SET PRECO = 32.75 WHERE TITULO = '1984';</code></pre>
+            </div>
+            <div class="bg-dark-700/50 rounded-xl p-4">
+              <p class="text-emerald-400 font-semibold mb-2">6. DELETE</p>
+              <pre><code class="language-sql">DELETE FROM LIVROS WHERE TITULO = 'O Hobbit';</code></pre>
+            </div>
+            <div class="bg-dark-700/50 rounded-xl p-4">
+              <p class="text-emerald-400 font-semibold mb-2">7. JOIN</p>
+              <pre><code class="language-sql">SELECT L.TITULO, A.NOME_AUTOR
+FROM LIVROS L
+JOIN AUTORES A ON L.AUTOR_ID = A.AUTOR_ID;</code></pre>
+            </div>
+            <div class="bg-dark-700/50 rounded-xl p-4">
+              <p class="text-emerald-400 font-semibold mb-2">8. Função de Agregação</p>
+              <pre><code class="language-sql">SELECT AVG(PRECO) AS PRECO_MEDIO FROM LIVROS;</code></pre>
+            </div>
+            <div class="bg-dark-700/50 rounded-xl p-4">
+              <p class="text-emerald-400 font-semibold mb-2">9. Subquery</p>
+              <pre><code class="language-sql">SELECT TITULO, PRECO
+FROM LIVROS
+WHERE PRECO > (SELECT AVG(PRECO) FROM LIVROS);</code></pre>
+            </div>
+            <div class="bg-dark-700/50 rounded-xl p-4">
+              <p class="text-emerald-400 font-semibold mb-2">10. JOIN com WHERE</p>
+              <pre><code class="language-sql">SELECT L.TITULO
+FROM LIVROS L
+JOIN AUTORES A ON L.AUTOR_ID = A.AUTOR_ID
+WHERE A.PAIS_ORIGEM = 'Reino Unido';</code></pre>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <section class="mb-12">
+      <div class="bg-primary/10 rounded-2xl p-8 border border-primary/30">
+        <h2 class="text-2xl font-bold text-primary mb-6 text-center">🎉 Módulo 1 Concluído!</h2>
+        <p class="text-neutral-300 text-center mb-8">
+          Parabéns! Você aprendeu os fundamentos de SQL. No próximo módulo, vamos começar a
+          administração do Oracle Database.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="../modulo-2/index.html" class="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-primary text-white rounded-lg font-bold hover:bg-primary/90 transition-colors">
+            <span>Próximo: Módulo 2</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          <a href="../../index.html" class="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-bold hover:bg-dark-600 transition-colors">
+            <span>Voltar ao Curso</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark-900 border-t border-dark-700 py-8">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <p class="text-neutral-500 text-sm">
+        Curso Oracle DBA - Módulo 1: Fundamentos de BD e SQL
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+    if (localStorage.getItem('color-theme') === 'light' ||
+        (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+      document.documentElement.classList.remove('dark');
+      themeToggleDarkIcon.classList.remove('hidden');
+    } else {
+      document.documentElement.classList.add('dark');
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+
+    themeToggleBtn.addEventListener('click', function() {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('color-theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
+      }
+    });
+    hljs.highlightAll();
+  </script>
+</body>
+</html>

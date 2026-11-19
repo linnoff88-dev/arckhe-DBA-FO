@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 5: Alta Disponibilidade | Curso Oracle DBA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#C74634',
+            dark: { 900: '#0f172a', 800: '#1e293b', 700: '#334155', 600: '#475569' }
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #0f172a; }
+    /* Light mode - versão colorida e vibrante */
+    html:not(.dark) body { background-color: #f0fdf4; }
+    html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
+    html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
+    html:not(.dark) .bg-dark-700 { background-color: #ecfdf5 !important; }
+    html:not(.dark) .bg-dark-700\/50 { background-color: #d1fae5 !important; }
+    html:not(.dark) .border-dark-600 { border-color: #a7f3d0 !important; }
+    html:not(.dark) .border-dark-700 { border-color: #6ee7b7 !important; }
+    html:not(.dark) .text-neutral-100 { color: #064e3b !important; }
+    html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
+    html:not(.dark) .text-neutral-400 { color: #047857 !important; }
+    html:not(.dark) .text-neutral-500 { color: #059669 !important; }
+    /* Navegação no modo claro */
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
+    /* Cores das trilhas - vibrantes */
+    html:not(.dark) .text-emerald-400 { color: #047857 !important; }
+    html:not(.dark) .text-cyan-400 { color: #0e7490 !important; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed !important; }
+    html:not(.dark) .text-orange-400 { color: #c2410c !important; }
+    html:not(.dark) .text-red-400 { color: #b91c1c !important; }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8 !important; }
+    html:not(.dark) .text-amber-400 { color: #b45309 !important; }
+    /* Backgrounds coloridos - mais saturados */
+    html:not(.dark) .bg-emerald-500\/20, html:not(.dark) .bg-emerald-900\/20, html:not(.dark) .bg-emerald-900\/30 { background-color: #d1fae5 !important; }
+    html:not(.dark) .bg-cyan-500\/20, html:not(.dark) .bg-cyan-900\/20, html:not(.dark) .bg-cyan-900\/30 { background-color: #cffafe !important; }
+    html:not(.dark) .bg-purple-500\/20, html:not(.dark) .bg-purple-900\/20, html:not(.dark) .bg-purple-900\/30 { background-color: #ede9fe !important; }
+    html:not(.dark) .bg-orange-500\/20, html:not(.dark) .bg-orange-900\/20, html:not(.dark) .bg-orange-900\/30 { background-color: #ffedd5 !important; }
+    html:not(.dark) .bg-red-500\/20, html:not(.dark) .bg-red-900\/20, html:not(.dark) .bg-red-900\/30 { background-color: #fee2e2 !important; }
+    html:not(.dark) .bg-blue-500\/20, html:not(.dark) .bg-blue-900\/20, html:not(.dark) .bg-blue-900\/30 { background-color: #dbeafe !important; }
+    html:not(.dark) .bg-amber-500\/20, html:not(.dark) .bg-amber-900\/20, html:not(.dark) .bg-amber-900\/30 { background-color: #fef3c7 !important; }
+    /* Bordas coloridas - mais fortes */
+    html:not(.dark) .border-emerald-500, html:not(.dark) .border-emerald-500\/30 { border-color: #10b981 !important; }
+    html:not(.dark) .border-cyan-500, html:not(.dark) .border-cyan-500\/30 { border-color: #06b6d4 !important; }
+    html:not(.dark) .border-purple-500, html:not(.dark) .border-purple-500\/30 { border-color: #8b5cf6 !important; }
+    html:not(.dark) .border-orange-500, html:not(.dark) .border-orange-500\/30 { border-color: #f97316 !important; }
+    html:not(.dark) .border-red-500, html:not(.dark) .border-red-500\/30 { border-color: #ef4444 !important; }
+    html:not(.dark) .border-blue-500, html:not(.dark) .border-blue-500\/30 { border-color: #3b82f6 !important; }
+    html:not(.dark) .border-amber-500, html:not(.dark) .border-amber-500\/30 { border-color: #f59e0b !important; }
+    /* Gradientes no modo claro */
+    html:not(.dark) .from-emerald-900\/30 { --tw-gradient-from: #d1fae5 !important; }
+    html:not(.dark) .from-cyan-900\/30 { --tw-gradient-from: #cffafe !important; }
+    html:not(.dark) .from-purple-900\/30 { --tw-gradient-from: #ede9fe !important; }
+    html:not(.dark) .from-orange-900\/30 { --tw-gradient-from: #ffedd5 !important; }
+    html:not(.dark) .from-red-900\/30 { --tw-gradient-from: #fee2e2 !important; }
+    html:not(.dark) .from-blue-900\/30 { --tw-gradient-from: #dbeafe !important; }
+    html:not(.dark) .from-amber-900\/30 { --tw-gradient-from: #fef3c7 !important; }
+    html:not(.dark) .to-dark-800 { --tw-gradient-to: #ffffff !important; }
+    /* Botões no modo claro */
+    html:not(.dark) .bg-emerald-600 { background-color: #059669 !important; }
+    html:not(.dark) .bg-cyan-600 { background-color: #0891b2 !important; }
+    html:not(.dark) .bg-purple-600 { background-color: #7c3aed !important; }
+    html:not(.dark) .bg-orange-600 { background-color: #ea580c !important; }
+    html:not(.dark) .bg-red-600 { background-color: #dc2626 !important; }
+    html:not(.dark) .bg-blue-600 { background-color: #2563eb !important; }
+    html:not(.dark) .bg-amber-600 { background-color: #d97706 !important; }
+    /* Código no modo claro - fundo claro */
+    html:not(.dark) .hljs { background: #f1f5f9 !important; color: #1e293b !important; }
+    html:not(.dark) .hljs-comment { color: #64748b !important; }
+    html:not(.dark) .hljs-keyword { color: #7c3aed !important; }
+    html:not(.dark) .hljs-string { color: #059669 !important; }
+    html:not(.dark) .hljs-number { color: #ea580c !important; }
+    html:not(.dark) .hljs-built_in { color: #0891b2 !important; }
+    html:not(.dark) pre code { background: #f1f5f9 !important; border: 1px solid #cbd5e1 !important; }
+    /* Textos dentro de cards no modo claro */
+    html:not(.dark) .text-sm { color: #1e293b !important; }
+    html:not(.dark) .text-xs { color: #475569 !important; }
+    html:not(.dark) p { color: #1e293b !important; }
+    html:not(.dark) li { color: #1e293b !important; }
+    html:not(.dark) code { color: #7c3aed !important; background: #f1f5f9 !important; }
+    /* Botões mais visíveis no modo claro */
+    html:not(.dark) .bg-dark-700 { background-color: #e2e8f0 !important; border: 1px solid #94a3b8 !important; }
+    html:not(.dark) .bg-dark-700:hover { background-color: #cbd5e1 !important; }
+    html:not(.dark) .bg-primary { background-color: #dc2626 !important; }
+    html:not(.dark) .bg-primary\/10 { background-color: #fee2e2 !important; }
+    html:not(.dark) .border-primary\/30 { border-color: #f87171 !important; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <a href="../../index.html" class="flex items-center space-x-3">
+          <span class="text-2xl">🗄️</span>
+          <span class="text-xl font-bold text-primary">Oracle DBA</span>
+        </a>
+        <div class="hidden md:flex items-center space-x-1">
+          <a href="../introducao/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-blue-400 hover:bg-blue-500/20 transition-colors">🎯 T0</a>
+          <a href="../modulo-1/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-emerald-400 hover:bg-emerald-500/20 transition-colors">📊 T1</a>
+          <a href="../modulo-2/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-cyan-400 hover:bg-cyan-500/20 transition-colors">⚙️ T2</a>
+          <a href="../modulo-3/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-purple-400 hover:bg-purple-500/20 transition-colors">🔒 T3</a>
+          <a href="../modulo-4/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-orange-400 hover:bg-orange-500/20 transition-colors">⚡ T4</a>
+          <a href="../modulo-5/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-red-500/20 text-red-400 border border-red-500/30">🛡️ T5</a>
+          <a href="../recursos/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-amber-400 hover:bg-amber-500/20 transition-colors">📚 Recursos</a>
+        </div>
+        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <div class="text-center mb-12">
+      <span class="inline-block px-4 py-2 bg-red-500/20 text-red-400 rounded-full text-sm font-semibold mb-4">
+        MÓDULO 5 - ALTA DISPONIBILIDADE
+      </span>
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">🛡️ Alta Disponibilidade e Clusters</h1>
+      <p class="text-xl text-neutral-400 max-w-2xl mx-auto">
+        RAC, ASM, Data Guard e Arquitetura MAA
+      </p>
+    </div>
+
+    <!-- Info Banner: Conteúdo Compacto -->
+    <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-4 mb-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <span class="text-2xl">📄</span>
+          <div>
+            <p class="text-red-400 font-semibold">Você está no Conteúdo Compacto</p>
+            <p class="text-neutral-400 text-sm">Resumo da trilha em uma única página</p>
+          </div>
+        </div>
+        <a href="conteudo/index.html" class="flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors text-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          Ver Conteúdo Completo
+        </a>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-4 gap-4 mb-12">
+      <div class="bg-dark-800 rounded-xl p-4 text-center border border-dark-600">
+        <div class="text-2xl font-bold text-red-400">4</div>
+        <div class="text-xs text-neutral-400">Seções</div>
+      </div>
+      <div class="bg-dark-800 rounded-xl p-4 text-center border border-dark-600">
+        <div class="text-2xl font-bold text-red-400">RAC</div>
+        <div class="text-xs text-neutral-400">Cluster</div>
+      </div>
+      <div class="bg-dark-800 rounded-xl p-4 text-center border border-dark-600">
+        <div class="text-2xl font-bold text-red-400">DG</div>
+        <div class="text-xs text-neutral-400">Data Guard</div>
+      </div>
+      <div class="bg-dark-800 rounded-xl p-4 text-center border border-dark-600">
+        <div class="text-2xl font-bold text-red-400">Expert</div>
+        <div class="text-xs text-neutral-400">Nível</div>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-red-900/30 to-dark-800 rounded-2xl p-8 border border-red-500/30">
+        <h2 class="text-2xl font-bold text-red-400 mb-4">Introdução</h2>
+        <p class="text-neutral-300 text-lg">
+          Para aplicações críticas, onde cada segundo de inatividade representa uma perda significativa, a <strong class="text-red-400">alta disponibilidade (High Availability - HA)</strong> não é um luxo, é uma necessidade. Vamos explorar as soluções mais avançadas da Oracle para garantir que o banco permaneça operacional mesmo diante de falhas de hardware, software ou desastres.
+        </p>
+      </div>
+    </section>
+
+    <!-- 5.1 Oracle RAC -->
+    <section class="mb-12">
+      <div class="bg-dark-800 rounded-2xl p-8 border border-dark-600">
+        <div class="flex items-center mb-6">
+          <span class="text-4xl mr-4">🔗</span>
+          <div>
+            <h2 class="text-2xl font-bold text-neutral-100">5.1 Oracle RAC</h2>
+            <p class="text-neutral-400">Real Application Clusters</p>
+          </div>
+        </div>
+
+        <p class="text-neutral-300 mb-6">
+          O <strong class="text-red-400">Oracle RAC</strong> permite que múltiplas instâncias Oracle, rodando em servidores diferentes, acessem o mesmo banco de dados (os mesmos data files).
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div class="bg-emerald-900/20 p-6 rounded-xl border border-emerald-500/30">
+            <h4 class="font-bold text-emerald-400 mb-3">Alta Disponibilidade</h4>
+            <p class="text-neutral-300 text-sm">
+              Se um servidor (nó) falhar, as aplicações se reconectam automaticamente aos nós sobreviventes. O serviço continua sem interrupção.
+            </p>
+          </div>
+          <div class="bg-cyan-900/20 p-6 rounded-xl border border-cyan-500/30">
+            <h4 class="font-bold text-cyan-400 mb-3">Escalabilidade (Scale-Out)</h4>
+            <p class="text-neutral-300 text-sm">
+              Em vez de trocar o servidor por um mais potente (scale-up), adicione novos nós ao cluster para aumentar capacidade.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-dark-700/50 rounded-xl p-6">
+          <h4 class="font-bold text-red-400 mb-3">Componentes Principais</h4>
+          <div class="space-y-3">
+            <div class="flex items-start">
+              <span class="bg-red-500/20 text-red-400 px-2 py-1 rounded text-xs font-semibold mr-3 mt-0.5">Clusterware</span>
+              <p class="text-neutral-300 text-sm">Software que gerencia os nós do cluster</p>
+            </div>
+            <div class="flex items-start">
+              <span class="bg-red-500/20 text-red-400 px-2 py-1 rounded text-xs font-semibold mr-3 mt-0.5">Cache Fusion</span>
+              <p class="text-neutral-300 text-sm">Sincroniza a memória (SGA) de todas as instâncias, garantindo visão consistente dos dados</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5.2 ASM -->
+    <section class="mb-12">
+      <div class="bg-dark-800 rounded-2xl p-8 border border-dark-600">
+        <div class="flex items-center mb-6">
+          <span class="text-4xl mr-4">💾</span>
+          <div>
+            <h2 class="text-2xl font-bold text-neutral-100">5.2 ASM</h2>
+            <p class="text-neutral-400">Automatic Storage Management</p>
+          </div>
+        </div>
+
+        <p class="text-neutral-300 mb-6">
+          O <strong class="text-red-400">ASM</strong> é um sistema de arquivos e gerenciador de volumes lógicos projetado especificamente para arquivos de banco de dados Oracle. O DBA entrega os discos para o ASM, que organiza em <strong>Disk Groups</strong>.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="bg-red-900/20 p-4 rounded-xl border border-red-500/30">
+            <h4 class="font-bold text-red-400 mb-2">Gerenciamento Simplificado</h4>
+            <p class="text-neutral-300 text-sm">Adicionar/remover discos com <code>ALTER DISKGROUP</code></p>
+          </div>
+          <div class="bg-red-900/20 p-4 rounded-xl border border-red-500/30">
+            <h4 class="font-bold text-red-400 mb-2">Performance</h4>
+            <p class="text-neutral-300 text-sm">Distribui (stripe) dados uniformemente, otimizando I/O</p>
+          </div>
+          <div class="bg-red-900/20 p-4 rounded-xl border border-red-500/30">
+            <h4 class="font-bold text-red-400 mb-2">Redundância</h4>
+            <p class="text-neutral-300 text-sm">Espelha (mirror) dados entre discos. Redundância normal (2 vias) ou alta (3 vias)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5.3 Data Guard -->
+    <section class="mb-12">
+      <div class="bg-dark-800 rounded-2xl p-8 border border-dark-600">
+        <div class="flex items-center mb-6">
+          <span class="text-4xl mr-4">🔄</span>
+          <div>
+            <h2 class="text-2xl font-bold text-neutral-100">5.3 Oracle Data Guard</h2>
+            <p class="text-neutral-400">Proteção contra falhas de site</p>
+          </div>
+        </div>
+
+        <p class="text-neutral-300 mb-6">
+          Enquanto o RAC protege contra falhas de servidor, o <strong class="text-red-400">Data Guard</strong> protege contra falhas de site (desastres). Mantém cópias sincronizadas do banco principal (Primary) em bancos de standby que podem estar em outro data center.
+        </p>
+
+        <div class="bg-dark-700/50 rounded-xl p-6 mb-6">
+          <h4 class="font-bold text-red-400 mb-4">Modos de Proteção</h4>
+          <div class="space-y-4">
+            <div class="bg-dark-800 rounded-lg p-4 border border-dark-600">
+              <div class="flex items-center mb-2">
+                <span class="bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded text-xs font-semibold mr-2">Maximum Performance</span>
+                <span class="text-neutral-400 text-xs">(Assíncrono)</span>
+              </div>
+              <p class="text-neutral-300 text-sm">Melhor performance. Pequeno risco de perda de dados se o primário falhar antes do redo ser enviado.</p>
+            </div>
+            <div class="bg-dark-800 rounded-lg p-4 border border-dark-600">
+              <div class="flex items-center mb-2">
+                <span class="bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded text-xs font-semibold mr-2">Maximum Availability</span>
+                <span class="text-neutral-400 text-xs">(Síncrono)</span>
+              </div>
+              <p class="text-neutral-300 text-sm">Zero perda de dados em caso de falha. Pequeno impacto na performance.</p>
+            </div>
+            <div class="bg-dark-800 rounded-lg p-4 border border-dark-600">
+              <div class="flex items-center mb-2">
+                <span class="bg-red-500/20 text-red-400 px-2 py-1 rounded text-xs font-semibold mr-2">Maximum Protection</span>
+                <span class="text-neutral-400 text-xs">(Mais seguro)</span>
+              </div>
+              <p class="text-neutral-300 text-sm">Zero perda de dados garantida. Primário desliga se não conseguir comunicar com standby.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-orange-900/20 p-4 rounded-xl border border-orange-500/30">
+          <h4 class="font-bold text-orange-400 mb-2">Failover</h4>
+          <p class="text-neutral-300 text-sm">
+            Em caso de desastre no site primário, o DBA executa uma operação de <strong>failover</strong>, transformando o standby no novo primário em questão de minutos.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5.4 MAA -->
+    <section class="mb-12">
+      <div class="bg-dark-800 rounded-2xl p-8 border border-dark-600">
+        <div class="flex items-center mb-6">
+          <span class="text-4xl mr-4">🏛️</span>
+          <div>
+            <h2 class="text-2xl font-bold text-neutral-100">5.4 Arquitetura de Máxima Disponibilidade</h2>
+            <p class="text-neutral-400">Maximum Availability Architecture (MAA)</p>
+          </div>
+        </div>
+
+        <p class="text-neutral-300 mb-6">
+          A <strong class="text-red-400">MAA</strong> não é um produto, mas uma blueprint - um conjunto de melhores práticas que combinam RAC, ASM e Data Guard para atingir os mais altos níveis de disponibilidade.
+        </p>
+
+        <div class="bg-gradient-to-br from-red-900/30 to-dark-700 rounded-xl p-6">
+          <h4 class="font-bold text-red-400 mb-4">Configuração Típica MAA</h4>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-dark-800/50 rounded-lg p-4">
+              <div class="flex items-center mb-3">
+                <span class="bg-emerald-500 w-3 h-3 rounded-full mr-2"></span>
+                <span class="font-semibold text-emerald-400">Site Primário</span>
+              </div>
+              <ul class="space-y-2 text-neutral-300 text-sm">
+                <li>• Banco de dados RAC</li>
+                <li>• Rodando sobre ASM</li>
+                <li>• Múltiplos nós de cluster</li>
+              </ul>
+            </div>
+            <div class="bg-dark-800/50 rounded-lg p-4">
+              <div class="flex items-center mb-3">
+                <span class="bg-cyan-500 w-3 h-3 rounded-full mr-2"></span>
+                <span class="font-semibold text-cyan-400">Site de DR</span>
+              </div>
+              <ul class="space-y-2 text-neutral-300 text-sm">
+                <li>• Banco de dados standby</li>
+                <li>• Pode ser RAC também</li>
+                <li>• Atualizado pelo Data Guard</li>
+              </ul>
+            </div>
+          </div>
+          <p class="text-neutral-400 text-sm mt-4 text-center">
+            Protege contra praticamente todos os tipos de falha, desde falha de disco até perda completa de um data center.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary -->
+    <section class="mb-12">
+      <div class="bg-dark-800 rounded-2xl p-8 border border-dark-600">
+        <div class="flex items-center mb-6">
+          <span class="text-4xl mr-4">📋</span>
+          <div>
+            <h2 class="text-2xl font-bold text-neutral-100">Resumo das Tecnologias</h2>
+            <p class="text-neutral-400">Comparação rápida</p>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-dark-700">
+              <tr>
+                <th class="text-left py-3 px-4 text-red-400">Tecnologia</th>
+                <th class="text-left py-3 px-4 text-neutral-300">Protege Contra</th>
+                <th class="text-left py-3 px-4 text-neutral-300">Nível</th>
+              </tr>
+            </thead>
+            <tbody class="text-neutral-300">
+              <tr class="border-b border-dark-600">
+                <td class="py-3 px-4 font-semibold">Oracle RAC</td>
+                <td class="py-3 px-4">Falhas de servidor/nó</td>
+                <td class="py-3 px-4">Cluster local</td>
+              </tr>
+              <tr class="border-b border-dark-600">
+                <td class="py-3 px-4 font-semibold">ASM</td>
+                <td class="py-3 px-4">Falhas de disco</td>
+                <td class="py-3 px-4">Armazenamento</td>
+              </tr>
+              <tr class="border-b border-dark-600">
+                <td class="py-3 px-4 font-semibold">Data Guard</td>
+                <td class="py-3 px-4">Falhas de site/desastres</td>
+                <td class="py-3 px-4">Data center remoto</td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 font-semibold">MAA</td>
+                <td class="py-3 px-4">Todas as falhas</td>
+                <td class="py-3 px-4">Arquitetura completa</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-primary/20 to-emerald-500/20 rounded-2xl p-8 border border-primary/30">
+        <h2 class="text-3xl font-bold text-center mb-4">🎓 Parabéns!</h2>
+        <h3 class="text-xl font-bold text-primary mb-6 text-center">Você Concluiu o Curso Oracle DBA!</h3>
+        <p class="text-neutral-300 text-center mb-8 max-w-2xl mx-auto">
+          Você percorreu toda a jornada: desde os fundamentos de SQL até as arquiteturas de alta disponibilidade mais avançadas.
+          Agora você tem a base sólida para se tornar um DBA Oracle de sucesso!
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="../recursos/index.html" class="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-primary text-white rounded-lg font-bold hover:bg-primary/90 transition-colors">
+            <span>Ver Recursos</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          <a href="../../index.html" class="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-bold hover:bg-dark-600 transition-colors">
+            <span>Voltar ao Início</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-dark-900 border-t border-dark-700 py-8">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <p class="text-neutral-500 text-sm">Curso Oracle DBA - Módulo 5: Alta Disponibilidade e Clusters</p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+    if (localStorage.getItem('color-theme') === 'light' ||
+        (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+      document.documentElement.classList.remove('dark');
+      themeToggleDarkIcon.classList.remove('hidden');
+    } else {
+      document.documentElement.classList.add('dark');
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+
+    themeToggleBtn.addEventListener('click', function() {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('color-theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
+      }
+    });
+  </script>
+</body>
+</html>

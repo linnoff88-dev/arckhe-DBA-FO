@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Startup e Shutdown do Banco | Trilha 2 | Oracle DBA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#C74634',
+            dark: { 900: '#0f172a', 800: '#1e293b', 700: '#334155', 600: '#475569' }
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #0f172a; }
+    /* Light mode - versão colorida e vibrante */
+    html:not(.dark) body { background-color: #f0fdf4; }
+    html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
+    html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
+    html:not(.dark) .bg-dark-700 { background-color: #ecfdf5 !important; }
+    html:not(.dark) .bg-dark-700\/50 { background-color: #d1fae5 !important; }
+    html:not(.dark) .border-dark-600 { border-color: #a7f3d0 !important; }
+    html:not(.dark) .border-dark-700 { border-color: #6ee7b7 !important; }
+    html:not(.dark) .text-neutral-100 { color: #064e3b !important; }
+    html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
+    html:not(.dark) .text-neutral-400 { color: #047857 !important; }
+    html:not(.dark) .text-neutral-500 { color: #059669 !important; }
+    /* Navegação no modo claro */
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
+    /* Cores das trilhas - vibrantes */
+    html:not(.dark) .text-emerald-400 { color: #047857 !important; }
+    html:not(.dark) .text-cyan-400 { color: #0e7490 !important; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed !important; }
+    html:not(.dark) .text-orange-400 { color: #c2410c !important; }
+    html:not(.dark) .text-red-400 { color: #b91c1c !important; }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8 !important; }
+    html:not(.dark) .text-amber-400 { color: #b45309 !important; }
+    /* Backgrounds coloridos - mais saturados */
+    html:not(.dark) .bg-emerald-500\/20, html:not(.dark) .bg-emerald-900\/20, html:not(.dark) .bg-emerald-900\/30 { background-color: #d1fae5 !important; }
+    html:not(.dark) .bg-cyan-500\/20, html:not(.dark) .bg-cyan-900\/20, html:not(.dark) .bg-cyan-900\/30 { background-color: #cffafe !important; }
+    html:not(.dark) .bg-purple-500\/20, html:not(.dark) .bg-purple-900\/20, html:not(.dark) .bg-purple-900\/30 { background-color: #ede9fe !important; }
+    html:not(.dark) .bg-orange-500\/20, html:not(.dark) .bg-orange-900\/20, html:not(.dark) .bg-orange-900\/30 { background-color: #ffedd5 !important; }
+    html:not(.dark) .bg-red-500\/20, html:not(.dark) .bg-red-900\/20, html:not(.dark) .bg-red-900\/30 { background-color: #fee2e2 !important; }
+    html:not(.dark) .bg-blue-500\/20, html:not(.dark) .bg-blue-900\/20, html:not(.dark) .bg-blue-900\/30 { background-color: #dbeafe !important; }
+    html:not(.dark) .bg-amber-500\/20, html:not(.dark) .bg-amber-900\/20, html:not(.dark) .bg-amber-900\/30 { background-color: #fef3c7 !important; }
+    /* Bordas coloridas - mais fortes */
+    html:not(.dark) .border-emerald-500, html:not(.dark) .border-emerald-500\/30 { border-color: #10b981 !important; }
+    html:not(.dark) .border-cyan-500, html:not(.dark) .border-cyan-500\/30 { border-color: #06b6d4 !important; }
+    html:not(.dark) .border-purple-500, html:not(.dark) .border-purple-500\/30 { border-color: #8b5cf6 !important; }
+    html:not(.dark) .border-orange-500, html:not(.dark) .border-orange-500\/30 { border-color: #f97316 !important; }
+    html:not(.dark) .border-red-500, html:not(.dark) .border-red-500\/30 { border-color: #ef4444 !important; }
+    html:not(.dark) .border-blue-500, html:not(.dark) .border-blue-500\/30 { border-color: #3b82f6 !important; }
+    html:not(.dark) .border-amber-500, html:not(.dark) .border-amber-500\/30 { border-color: #f59e0b !important; }
+    /* Gradientes no modo claro */
+    html:not(.dark) .from-emerald-900\/30 { --tw-gradient-from: #d1fae5 !important; }
+    html:not(.dark) .from-cyan-900\/30 { --tw-gradient-from: #cffafe !important; }
+    html:not(.dark) .from-purple-900\/30 { --tw-gradient-from: #ede9fe !important; }
+    html:not(.dark) .from-orange-900\/30 { --tw-gradient-from: #ffedd5 !important; }
+    html:not(.dark) .from-red-900\/30 { --tw-gradient-from: #fee2e2 !important; }
+    html:not(.dark) .from-blue-900\/30 { --tw-gradient-from: #dbeafe !important; }
+    html:not(.dark) .from-amber-900\/30 { --tw-gradient-from: #fef3c7 !important; }
+    html:not(.dark) .to-dark-800 { --tw-gradient-to: #ffffff !important; }
+    /* Botões no modo claro */
+    html:not(.dark) .bg-emerald-600 { background-color: #059669 !important; }
+    html:not(.dark) .bg-cyan-600 { background-color: #0891b2 !important; }
+    html:not(.dark) .bg-purple-600 { background-color: #7c3aed !important; }
+    html:not(.dark) .bg-orange-600 { background-color: #ea580c !important; }
+    html:not(.dark) .bg-red-600 { background-color: #dc2626 !important; }
+    html:not(.dark) .bg-blue-600 { background-color: #2563eb !important; }
+    html:not(.dark) .bg-amber-600 { background-color: #d97706 !important; }
+    pre code { border-radius: 0.5rem; }    /* Código no modo claro - fundo claro */
+    html:not(.dark) .hljs { background: #f1f5f9 !important; color: #1e293b !important; }
+    html:not(.dark) .hljs-comment { color: #64748b !important; }
+    html:not(.dark) .hljs-keyword { color: #7c3aed !important; }
+    html:not(.dark) .hljs-string { color: #059669 !important; }
+    html:not(.dark) .hljs-number { color: #ea580c !important; }
+    html:not(.dark) .hljs-built_in { color: #0891b2 !important; }
+    html:not(.dark) pre code { background: #f1f5f9 !important; border: 1px solid #cbd5e1 !important; }
+    /* Textos dentro de cards no modo claro */
+    html:not(.dark) .text-sm { color: #1e293b !important; }
+    html:not(.dark) .text-xs { color: #475569 !important; }
+    html:not(.dark) p { color: #1e293b !important; }
+    html:not(.dark) li { color: #1e293b !important; }
+    html:not(.dark) code { color: #7c3aed !important; background: #f1f5f9 !important; }
+    /* Botões mais visíveis no modo claro */
+    html:not(.dark) .bg-dark-700 { background-color: #e2e8f0 !important; border: 1px solid #94a3b8 !important; }
+    html:not(.dark) .bg-dark-700:hover { background-color: #cbd5e1 !important; }
+    html:not(.dark) .bg-primary { background-color: #dc2626 !important; }
+    html:not(.dark) .bg-primary/10 { background-color: #fee2e2 !important; }
+    html:not(.dark) .border-primary/30 { border-color: #f87171 !important; }
+
+    .hljs { background: #1e293b !important; padding: 1.5rem !important; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <a href="../../../index.html" class="flex items-center space-x-3">
+          <span class="text-2xl">🗄️</span>
+          <span class="text-xl font-bold text-primary">Oracle DBA</span>
+        </a>
+        <div class="hidden md:flex items-center space-x-1">
+          <a href="../../introducao/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-blue-400 hover:bg-blue-500/20 transition-colors">🎯 T0</a>
+          <a href="../../modulo-1/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-emerald-400 hover:bg-emerald-500/20 transition-colors">📊 T1</a>
+          <a href="../../modulo-2/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">⚙️ T2</a>
+          <a href="../../modulo-3/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-purple-400 hover:bg-purple-500/20 transition-colors">🔒 T3</a>
+          <a href="../../modulo-4/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-orange-400 hover:bg-orange-500/20 transition-colors">⚡ T4</a>
+          <a href="../../modulo-5/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-red-400 hover:bg-red-500/20 transition-colors">🛡️ T5</a>
+          <a href="../../recursos/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-amber-400 hover:bg-amber-500/20 transition-colors">📚 Recursos</a>
+        </div>
+        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-cyan-900/30 to-dark-800 py-8 border-b border-dark-600">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="flex items-center gap-2 text-cyan-400 text-sm mb-4">
+        <a href="../../../index.html" class="hover:underline">Início</a>
+        <span>/</span>
+        <a href="../index.html" class="hover:underline">Trilha 2</a>
+        <span>/</span>
+        <a href="index.html" class="hover:underline">Conteúdo</a>
+        <span>/</span>
+        <span>Tópico 4</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 bg-cyan-500/20 rounded-xl flex items-center justify-center">
+          <span class="text-2xl font-bold text-cyan-400">4</span>
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold">Startup e Shutdown do Banco de Dados</h1>
+          <p class="text-neutral-400">Modos de startup, opções de shutdown, troubleshooting</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 py-8">
+
+    <!-- Seção 1: Modos de Startup -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">🚀</span>
+        </div>
+        <h2 class="text-xl font-bold text-cyan-400">Modos de Startup do Banco de Dados</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Sequência de Startup</h3>
+        <p class="text-neutral-300 mb-4">
+          O startup de um banco de dados Oracle ocorre em <strong>três estágios</strong> sequenciais.
+          Cada estágio disponibiliza um conjunto diferente de funcionalidades.
+        </p>
+
+        <div class="space-y-4">
+          <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded text-sm font-bold">1</span>
+              <h4 class="font-semibold text-cyan-400">NOMOUNT</h4>
+            </div>
+            <p class="text-neutral-300 text-sm mb-2">
+              <strong>Instância iniciada</strong>, mas banco de dados ainda não associado.
+              SGA é alocada, processos de background são iniciados, e arquivo de parâmetros é lido.
+            </p>
+            <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
+              <li><strong>Usado para:</strong> Criar novo banco de dados, recriar control files</li>
+              <li><strong>Arquivo lido:</strong> SPFILE ou PFILE</li>
+              <li><strong>Disponível:</strong> Apenas operações na instância</li>
+            </ul>
+            <pre class="mt-3"><code class="language-sql">STARTUP NOMOUNT;</code></pre>
+          </div>
+
+          <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="px-2 py-1 bg-purple-500/20 text-purple-400 rounded text-sm font-bold">2</span>
+              <h4 class="font-semibold text-purple-400">MOUNT</h4>
+            </div>
+            <p class="text-neutral-300 text-sm mb-2">
+              <strong>Banco montado</strong> - Control files são abertos e lidos. Oracle conhece a localização
+              de todos os datafiles e redo log files, mas ainda não os abriu.
+            </p>
+            <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
+              <li><strong>Usado para:</strong> Operações de manutenção (backup completo, recovery, archivelog)</li>
+              <li><strong>Arquivo lido:</strong> Control files</li>
+              <li><strong>Disponível:</strong> Comandos de manutenção do banco</li>
+            </ul>
+            <pre class="mt-3"><code class="language-sql">STARTUP MOUNT;
+-- Ou a partir de NOMOUNT:
+ALTER DATABASE MOUNT;</code></pre>
+          </div>
+
+          <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded text-sm font-bold">3</span>
+              <h4 class="font-semibold text-emerald-400">OPEN</h4>
+            </div>
+            <p class="text-neutral-300 text-sm mb-2">
+              <strong>Banco aberto</strong> - Todos os datafiles e redo log files online são abertos.
+              O banco está disponível para operações normais de usuários.
+            </p>
+            <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
+              <li><strong>Usado para:</strong> Operações normais do banco de dados</li>
+              <li><strong>Arquivos abertos:</strong> Datafiles, redo log files</li>
+              <li><strong>Disponível:</strong> Acesso completo aos dados</li>
+            </ul>
+            <pre class="mt-3"><code class="language-sql">STARTUP;  -- Padrão, vai até OPEN
+-- Ou a partir de MOUNT:
+ALTER DATABASE OPEN;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <h3 class="text-lg font-semibold mb-4">Opções Especiais de Startup</h3>
+
+        <div class="space-y-3">
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-cyan-400 mb-2">STARTUP FORCE</h4>
+            <p class="text-neutral-300 text-sm mb-2">
+              Força o shutdown e reinicialização do banco. Equivale a SHUTDOWN ABORT seguido de STARTUP.
+            </p>
+            <pre><code class="language-sql">STARTUP FORCE;</code></pre>
+          </div>
+
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-purple-400 mb-2">STARTUP RESTRICT</h4>
+            <p class="text-neutral-300 text-sm mb-2">
+              Abre o banco em modo restrito. Apenas usuários com privilégio RESTRICTED SESSION podem conectar.
+              Útil para manutenção.
+            </p>
+            <pre><code class="language-sql">STARTUP RESTRICT;
+
+-- Habilitar/desabilitar modo restrito em banco aberto:
+ALTER SYSTEM ENABLE RESTRICTED SESSION;
+ALTER SYSTEM DISABLE RESTRICTED SESSION;</code></pre>
+          </div>
+
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-orange-400 mb-2">STARTUP READ ONLY</h4>
+            <p class="text-neutral-300 text-sm mb-2">
+              Abre o banco em modo somente leitura. Nenhuma modificação é permitida.
+              Ideal para ambientes de relatório ou standby databases.
+            </p>
+            <pre><code class="language-sql">STARTUP MOUNT;
+ALTER DATABASE OPEN READ ONLY;
+
+-- Verificar modo:
+SELECT open_mode FROM v$database;</code></pre>
+          </div>
+
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-emerald-400 mb-2">STARTUP UPGRADE</h4>
+            <p class="text-neutral-300 text-sm mb-2">
+              Usado durante upgrade de versão do Oracle. Abre o banco com compatibilidade reduzida.
+            </p>
+            <pre><code class="language-sql">STARTUP UPGRADE;</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 2: Opções de Shutdown -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">🛑</span>
+        </div>
+        <h2 class="text-xl font-bold text-orange-400">Opções de Shutdown</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Quatro Modos de Shutdown</h3>
+        <p class="text-neutral-300 mb-4">
+          O Oracle oferece quatro modos de shutdown, cada um com diferentes níveis de "gentileza"
+          com as sessões conectadas e transações em andamento.
+        </p>
+
+        <div class="space-y-4">
+          <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
+            <div class="flex items-center justify-between mb-3">
+              <h4 class="font-semibold text-emerald-400">SHUTDOWN NORMAL</h4>
+              <span class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded text-xs">Mais Seguro</span>
+            </div>
+            <p class="text-neutral-300 text-sm mb-3">
+              O modo mais <strong>"gentil"</strong> e seguro. Aguarda todos os usuários se desconectarem.
+            </p>
+            <div class="bg-dark-700/50 rounded p-3 mb-2">
+              <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
+                <li>❌ Não permite novas conexões</li>
+                <li>⏳ Aguarda todos os usuários desconectarem</li>
+                <li>✅ Commit automático de transações abertas</li>
+                <li>✅ Checkpoint é feito</li>
+                <li>✅ Não requer instance recovery no próximo startup</li>
+              </ul>
+            </div>
+            <p class="text-neutral-400 text-xs mb-2">
+              <strong>Quando usar:</strong> Shutdown planejado em produção sem pressa
+            </p>
+            <pre><code class="language-sql">SHUTDOWN NORMAL;
+-- Pode demorar MUITO se houver sessões que não desconectam</code></pre>
+          </div>
+
+          <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
+            <div class="flex items-center justify-between mb-3">
+              <h4 class="font-semibold text-cyan-400">SHUTDOWN TRANSACTIONAL</h4>
+              <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded text-xs">Recomendado</span>
+            </div>
+            <p class="text-neutral-300 text-sm mb-3">
+              Aguarda apenas que as <strong>transações em andamento</strong> terminem.
+            </p>
+            <div class="bg-dark-700/50 rounded p-3 mb-2">
+              <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
+                <li>❌ Não permite novas conexões</li>
+                <li>❌ Não permite novas transações em sessões existentes</li>
+                <li>⏳ Aguarda transações ativas finalizarem (COMMIT ou ROLLBACK)</li>
+                <li>🔌 Desconecta sessões assim que transações terminam</li>
+                <li>✅ Checkpoint é feito</li>
+                <li>✅ Não requer instance recovery no próximo startup</li>
+              </ul>
+            </div>
+            <p class="text-neutral-400 text-xs mb-2">
+              <strong>Quando usar:</strong> Shutdown planejado em produção (modo mais usado)</p>
+            <pre><code class="language-sql">SHUTDOWN TRANSACTIONAL;</code></pre>
+          </div>
+
+          <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+            <div class="flex items-center justify-between mb-3">
+              <h4 class="font-semibold text-purple-400">SHUTDOWN IMMEDIATE</h4>
+              <span class="px-2 py-1 bg-purple-500/20 text-purple-400 rounded text-xs">Mais Usado</span>
+            </div>
+            <p class="text-neutral-300 text-sm mb-3">
+              O modo mais comum na prática. <strong>Força desconexão</strong> de todos os usuários imediatamente.
+            </p>
+            <div class="bg-dark-700/50 rounded p-3 mb-2">
+              <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
+                <li>❌ Não permite novas conexões</li>
+                <li>🔄 Faz ROLLBACK de transações ativas (não commitadas)</li>
+                <li>🔌 Desconecta todas as sessões imediatamente</li>
+                <li>✅ Checkpoint é feito</li>
+                <li>✅ Não requer instance recovery no próximo startup</li>
+              </ul>
+            </div>
+            <p class="text-neutral-400 text-xs mb-2">
+              <strong>Quando usar:</strong> Manutenções programadas, situação normal de shutdown
+            </p>
+            <pre><code class="language-sql">SHUTDOWN IMMEDIATE;
+-- Modo padrão recomendado pela Oracle para uso geral</code></pre>
+          </div>
+
+          <div class="bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500">
+            <div class="flex items-center justify-between mb-3">
+              <h4 class="font-semibold text-red-400">SHUTDOWN ABORT</h4>
+              <span class="px-2 py-1 bg-red-500/20 text-red-400 rounded text-xs">⚠️ Emergência</span>
+            </div>
+            <p class="text-neutral-300 text-sm mb-3">
+              O modo mais <strong>agressivo</strong>. Equivale a "puxar o cabo de força" do servidor.
+            </p>
+            <div class="bg-dark-700/50 rounded p-3 mb-2">
+              <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
+                <li>❌ Não permite novas conexões</li>
+                <li>❌ NÃO faz ROLLBACK de transações</li>
+                <li>🔌 Desconecta todas as sessões instantaneamente</li>
+                <li>❌ NÃO faz checkpoint</li>
+                <li>⚠️ <strong>REQUER instance recovery no próximo startup</strong></li>
+              </ul>
+            </div>
+            <p class="text-neutral-400 text-xs mb-2">
+              <strong>Quando usar:</strong> Apenas em emergências ou quando IMMEDIATE falha
+            </p>
+            <pre><code class="language-sql">SHUTDOWN ABORT;
+-- Startup seguinte será mais demorado (instance recovery)
+-- Equivalente a: kill -9 nos processos Oracle</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <h3 class="text-lg font-semibold mb-4">Comparação dos Modos de Shutdown</h3>
+
+        <div class="overflow-x-auto">
+          <table class="w-full border-collapse text-sm">
+            <thead>
+              <tr class="bg-cyan-900/30">
+                <th class="border border-dark-600 px-3 py-2 text-left text-cyan-400">Comportamento</th>
+                <th class="border border-dark-600 px-3 py-2 text-center text-cyan-400">NORMAL</th>
+                <th class="border border-dark-600 px-3 py-2 text-center text-cyan-400">TRANS.</th>
+                <th class="border border-dark-600 px-3 py-2 text-center text-cyan-400">IMMED.</th>
+                <th class="border border-dark-600 px-3 py-2 text-center text-cyan-400">ABORT</th>
+              </tr>
+            </thead>
+            <tbody class="text-neutral-300">
+              <tr>
+                <td class="border border-dark-600 px-3 py-2">Permite novas conexões</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">❌</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">❌</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">❌</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">❌</td>
+              </tr>
+              <tr class="bg-dark-700/50">
+                <td class="border border-dark-600 px-3 py-2">Aguarda sessões desconectarem</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">✅</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">⏳</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">❌</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">❌</td>
+              </tr>
+              <tr>
+                <td class="border border-dark-600 px-3 py-2">Aguarda transações finalizarem</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">✅</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">✅</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">❌</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">❌</td>
+              </tr>
+              <tr class="bg-dark-700/50">
+                <td class="border border-dark-600 px-3 py-2">Faz checkpoint</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">✅</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">✅</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">✅</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">❌</td>
+              </tr>
+              <tr>
+                <td class="border border-dark-600 px-3 py-2">Faz rollback</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">✅</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">✅</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">✅</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">❌</td>
+              </tr>
+              <tr class="bg-dark-700/50">
+                <td class="border border-dark-600 px-3 py-2">Requer recovery no startup</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">❌</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">❌</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">❌</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">✅</td>
+              </tr>
+              <tr>
+                <td class="border border-dark-600 px-3 py-2">Velocidade de shutdown</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">🐌 Lento</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">⏱️ Médio</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">⚡ Rápido</td>
+                <td class="border border-dark-600 px-3 py-2 text-center">⚡ Instantâneo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 3: Troubleshooting -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">🔧</span>
+        </div>
+        <h2 class="text-xl font-bold text-purple-400">Troubleshooting de Startup e Shutdown</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Problemas Comuns no Startup</h3>
+
+        <div class="space-y-4">
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-red-400 mb-2">Erro: ORA-01078 / ORA-01565 - Arquivo de parâmetros não encontrado</h4>
+            <p class="text-neutral-300 text-sm mb-3">
+              Oracle não consegue localizar o SPFILE ou PFILE.
+            </p>
+            <pre><code class="language-sql">-- Verificar localização padrão
+-- Linux: $ORACLE_HOME/dbs/spfile<SID>.ora ou init<SID>.ora
+-- Windows: %ORACLE_HOME%\database\spfile<SID>.ora
+
+-- Solução: especificar PFILE manualmente
+STARTUP PFILE='/caminho/para/initORCL.ora';
+
+-- Ou criar SPFILE a partir de PFILE
+CREATE SPFILE FROM PFILE='/caminho/para/initORCL.ora';</code></pre>
+          </div>
+
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-red-400 mb-2">Erro: ORA-00205 - Control file identificado incorretamente</h4>
+            <p class="text-neutral-300 text-sm mb-3">
+              Control file corrompido ou não encontrado.
+            </p>
+            <pre><code class="language-sql">-- Ver localização dos control files
+SHOW PARAMETER control_files;
+
+-- Solução 1: Copiar de backup
+-- cp /backup/control01.ctl /u02/oradata/ORCL/control01.ctl
+
+-- Solução 2: Recriar control file (último recurso)
+-- Executar script gerado previamente por:
+-- ALTER DATABASE BACKUP CONTROLFILE TO TRACE;</code></pre>
+          </div>
+
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-red-400 mb-2">Erro: ORA-01157 / ORA-01110 - Datafile não encontrado</h4>
+            <p class="text-neutral-300 text-sm mb-3">
+              Um datafile especificado no control file não existe ou não é acessível.
+            </p>
+            <pre><code class="language-sql">-- Identificar datafile problemático
+SELECT file_id, file_name, status
+FROM dba_data_files
+WHERE status != 'AVAILABLE';
+
+-- Solução 1: Restaurar datafile de backup
+-- cp /backup/users01.dbf /u02/oradata/ORCL/users01.dbf
+
+-- Solução 2: Se tablespace não for crítico, fazer offline
+ALTER DATABASE DATAFILE '/u02/oradata/ORCL/users01.dbf' OFFLINE DROP;
+ALTER DATABASE OPEN;</code></pre>
+          </div>
+
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-red-400 mb-2">Erro: ORA-00600 - Erro interno Oracle</h4>
+            <p class="text-neutral-300 text-sm mb-3">
+              Erro interno grave. Pode indicar corrupção.
+            </p>
+            <pre><code class="language-sql">-- Verificar alert log para mais detalhes
+-- Localização: $ORACLE_BASE/diag/rdbms/<dbname>/<SID>/trace/alert_<SID>.log
+
+-- Tentar startup em modo restrito
+STARTUP RESTRICT;
+
+-- Se falhar, abrir SR (Service Request) com Oracle Support</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Problemas Comuns no Shutdown</h3>
+
+        <div class="space-y-4">
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-orange-400 mb-2">Shutdown IMMEDIATE demora muito / trava</h4>
+            <p class="text-neutral-300 text-sm mb-3">
+              Geralmente causado por transações longas ou rollback extenso.
+            </p>
+            <pre><code class="language-sql">-- Identificar sessões ativas
+SELECT sid, serial#, username, status, program
+FROM v$session
+WHERE type != 'BACKGROUND';
+
+-- Verificar transações longas
+SELECT s.sid, s.serial#, t.used_ublk, t.used_urec
+FROM v$transaction t, v$session s
+WHERE t.addr = s.taddr
+ORDER BY t.used_ublk DESC;
+
+-- Solução: Aguardar ou usar SHUTDOWN ABORT
+SHUTDOWN ABORT;</code></pre>
+          </div>
+
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-orange-400 mb-2">Não consigo fazer shutdown (permissão negada)</h4>
+            <p class="text-neutral-300 text-sm mb-3">
+              Usuário não tem privilégio SYSDBA ou SYSOPER.
+            </p>
+            <pre><code class="language-sql">-- Conectar como SYSDBA
+sqlplus / as sysdba
+-- ou
+sqlplus sys/password@ORCL as sysdba
+
+-- Verificar privilégios
+SELECT * FROM v$pwfile_users;</code></pre>
+          </div>
+
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-orange-400 mb-2">Banco travado após SHUTDOWN ABORT</h4>
+            <p class="text-neutral-300 text-sm mb-3">
+              Startup normal após ABORT pode demorar devido ao instance recovery.
+            </p>
+            <pre><code class="language-sql">-- Após SHUTDOWN ABORT, sempre fazer startup completo
+STARTUP;
+
+-- Monitorar progresso do recovery
+SELECT * FROM v$recovery_progress;
+
+-- Ver quanto falta (pode demorar minutos/horas dependendo do volume)
+SELECT * FROM v$instance_recovery;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <h3 class="text-lg font-semibold mb-4">Comandos Úteis para Diagnóstico</h3>
+
+        <pre><code class="language-sql">-- Verificar status da instância
+SELECT instance_name, status, database_status
+FROM v$instance;
+
+-- Verificar status do banco de dados
+SELECT name, open_mode, log_mode
+FROM v$database;
+
+-- Listar sessões conectadas
+SELECT COUNT(*) FROM v$session WHERE type != 'BACKGROUND';
+
+-- Ver detalhes das sessões
+SELECT sid, serial#, username, status, machine, program
+FROM v$session
+WHERE type != 'BACKGROUND'
+ORDER BY username;
+
+-- Matar uma sessão específica (em casos extremos)
+ALTER SYSTEM KILL SESSION 'sid,serial#' IMMEDIATE;
+
+-- Ver últimas linhas do alert log (Linux)
+-- tail -100 $ORACLE_BASE/diag/rdbms/orcl/ORCL/trace/alert_ORCL.log
+
+-- Verificar se banco está em modo restrito
+SELECT logins FROM v$instance;
+-- ALLOWED = normal, RESTRICTED = modo restrito</code></pre>
+      </div>
+    </section>
+
+    <!-- Seção 4: Práticas Recomendadas -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">✨</span>
+        </div>
+        <h2 class="text-xl font-bold text-emerald-400">Práticas Recomendadas</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <div class="space-y-4">
+          <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
+            <h4 class="font-semibold text-emerald-400 mb-2">1. Sempre use SHUTDOWN IMMEDIATE para manutenções</h4>
+            <p class="text-neutral-300 text-sm">
+              É o melhor equilíbrio entre rapidez e segurança. SHUTDOWN NORMAL pode demorar indefinidamente.
+            </p>
+          </div>
+
+          <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
+            <h4 class="font-semibold text-cyan-400 mb-2">2. Reserve SHUTDOWN ABORT apenas para emergências</h4>
+            <p class="text-neutral-300 text-sm">
+              O startup seguinte será mais demorado devido ao instance recovery. Use apenas quando IMMEDIATE falha.
+            </p>
+          </div>
+
+          <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+            <h4 class="font-semibold text-purple-400 mb-2">3. Monitore o alert log após problemas</h4>
+            <p class="text-neutral-300 text-sm">
+              O alert log é sua principal fonte de informação sobre erros durante startup/shutdown.
+            </p>
+          </div>
+
+          <div class="bg-orange-900/20 rounded-lg p-4 border-l-4 border-orange-500">
+            <h4 class="font-semibold text-orange-400 mb-2">4. Documente sequências de startup especiais</h4>
+            <p class="text-neutral-300 text-sm">
+              Se seu ambiente requer passos específicos (ex: montar ASM primeiro), documente claramente.
+            </p>
+          </div>
+
+          <div class="bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500">
+            <h4 class="font-semibold text-amber-400 mb-2">5. Automatize startup com init scripts ou systemd</h4>
+            <p class="text-neutral-300 text-sm">
+              Configure o banco para iniciar automaticamente após reboot do servidor.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resultado Esperado -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">🎯</span>
+        </div>
+        <h2 class="text-xl font-bold text-purple-400">Resultado Esperado</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <h3 class="text-lg font-semibold mb-4">O que você deve dominar após este tópico:</h3>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <span class="text-cyan-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Entender estágios de startup</h4>
+                <p class="text-neutral-400 text-sm">NOMOUNT, MOUNT, OPEN e quando usar cada um</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-cyan-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Escolher modo de shutdown</h4>
+                <p class="text-neutral-400 text-sm">NORMAL, TRANSACTIONAL, IMMEDIATE, ABORT</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-cyan-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Usar opções especiais</h4>
+                <p class="text-neutral-400 text-sm">FORCE, RESTRICT, READ ONLY, UPGRADE</p>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <span class="text-cyan-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Diagnosticar problemas</h4>
+                <p class="text-neutral-400 text-sm">Interpretar erros comuns e consultar alert log</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-cyan-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Monitorar sessões</h4>
+                <p class="text-neutral-400 text-sm">Identificar sessões ativas e transações longas</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-cyan-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Aplicar best practices</h4>
+                <p class="text-neutral-400 text-sm">Seguir recomendações para ambientes produtivos</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Action Buttons -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-r from-cyan-900/30 to-purple-900/30 rounded-xl border border-cyan-500/30 p-6">
+        <h3 class="text-lg font-semibold mb-4 text-center">Continue sua jornada</h3>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="index.html" class="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+            Ver Conteúdo Completo
+          </a>
+          <a href="../index.html" class="px-6 py-3 bg-dark-700 hover:bg-dark-600 text-neutral-100 rounded-lg font-medium transition-colors flex items-center gap-2 border border-dark-600">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+            </svg>
+            Conteúdo Compacto
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <div class="flex justify-between items-center pt-8 border-t border-dark-600">
+      <a href="topico-3.html" class="flex items-center gap-2 text-neutral-400 hover:text-cyan-400 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        <span>Anterior: Criando Database com DBCA</span>
+      </a>
+      <a href="topico-5.html" class="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors">
+        <span>Próximo: Parâmetros de Inicialização</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark-900 border-t border-dark-700 py-8 mt-12">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <p class="text-neutral-500 text-sm">Oracle DBA - Trilha 2: Administração Básica Oracle - Tópico 4</p>
+    </div>
+  </footer>
+
+  <script>
+    hljs.highlightAll();
+
+    // Theme toggle
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+    if (localStorage.getItem('color-theme') === 'light' ||
+        (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+      document.documentElement.classList.remove('dark');
+      themeToggleDarkIcon.classList.remove('hidden');
+    } else {
+      document.documentElement.classList.add('dark');
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+
+    themeToggleBtn.addEventListener('click', function() {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('color-theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
+      }
+    });
+  </script>
+</body>
+</html>

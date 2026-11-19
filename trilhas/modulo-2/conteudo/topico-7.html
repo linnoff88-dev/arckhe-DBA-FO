@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schemas e Owners | Trilha 2 | Oracle DBA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#C74634',
+            dark: { 900: '#0f172a', 800: '#1e293b', 700: '#334155', 600: '#475569' }
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #0f172a; }
+    /* Light mode - versão colorida e vibrante */
+    html:not(.dark) body { background-color: #f0fdf4; }
+    html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
+    html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
+    html:not(.dark) .bg-dark-700 { background-color: #ecfdf5 !important; }
+    html:not(.dark) .bg-dark-700\/50 { background-color: #d1fae5 !important; }
+    html:not(.dark) .border-dark-600 { border-color: #a7f3d0 !important; }
+    html:not(.dark) .border-dark-700 { border-color: #6ee7b7 !important; }
+    html:not(.dark) .text-neutral-100 { color: #064e3b !important; }
+    html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
+    html:not(.dark) .text-neutral-400 { color: #047857 !important; }
+    html:not(.dark) .text-neutral-500 { color: #059669 !important; }
+    /* Navegação no modo claro */
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
+    /* Cores das trilhas - vibrantes */
+    html:not(.dark) .text-emerald-400 { color: #047857 !important; }
+    html:not(.dark) .text-cyan-400 { color: #0e7490 !important; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed !important; }
+    html:not(.dark) .text-orange-400 { color: #c2410c !important; }
+    html:not(.dark) .text-red-400 { color: #b91c1c !important; }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8 !important; }
+    html:not(.dark) .text-amber-400 { color: #b45309 !important; }
+    /* Backgrounds coloridos - mais saturados */
+    html:not(.dark) .bg-emerald-500\/20, html:not(.dark) .bg-emerald-900\/20, html:not(.dark) .bg-emerald-900\/30 { background-color: #d1fae5 !important; }
+    html:not(.dark) .bg-cyan-500\/20, html:not(.dark) .bg-cyan-900\/20, html:not(.dark) .bg-cyan-900\/30 { background-color: #cffafe !important; }
+    html:not(.dark) .bg-purple-500\/20, html:not(.dark) .bg-purple-900\/20, html:not(.dark) .bg-purple-900\/30 { background-color: #ede9fe !important; }
+    html:not(.dark) .bg-orange-500\/20, html:not(.dark) .bg-orange-900\/20, html:not(.dark) .bg-orange-900\/30 { background-color: #ffedd5 !important; }
+    html:not(.dark) .bg-red-500\/20, html:not(.dark) .bg-red-900\/20, html:not(.dark) .bg-red-900\/30 { background-color: #fee2e2 !important; }
+    html:not(.dark) .bg-blue-500\/20, html:not(.dark) .bg-blue-900\/20, html:not(.dark) .bg-blue-900\/30 { background-color: #dbeafe !important; }
+    html:not(.dark) .bg-amber-500\/20, html:not(.dark) .bg-amber-900\/20, html:not(.dark) .bg-amber-900\/30 { background-color: #fef3c7 !important; }
+    /* Bordas coloridas - mais fortes */
+    html:not(.dark) .border-emerald-500, html:not(.dark) .border-emerald-500\/30 { border-color: #10b981 !important; }
+    html:not(.dark) .border-cyan-500, html:not(.dark) .border-cyan-500\/30 { border-color: #06b6d4 !important; }
+    html:not(.dark) .border-purple-500, html:not(.dark) .border-purple-500\/30 { border-color: #8b5cf6 !important; }
+    html:not(.dark) .border-orange-500, html:not(.dark) .border-orange-500\/30 { border-color: #f97316 !important; }
+    html:not(.dark) .border-red-500, html:not(.dark) .border-red-500\/30 { border-color: #ef4444 !important; }
+    html:not(.dark) .border-blue-500, html:not(.dark) .border-blue-500\/30 { border-color: #3b82f6 !important; }
+    html:not(.dark) .border-amber-500, html:not(.dark) .border-amber-500\/30 { border-color: #f59e0b !important; }
+    /* Gradientes no modo claro */
+    html:not(.dark) .from-emerald-900\/30 { --tw-gradient-from: #d1fae5 !important; }
+    html:not(.dark) .from-cyan-900\/30 { --tw-gradient-from: #cffafe !important; }
+    html:not(.dark) .from-purple-900\/30 { --tw-gradient-from: #ede9fe !important; }
+    html:not(.dark) .from-orange-900\/30 { --tw-gradient-from: #ffedd5 !important; }
+    html:not(.dark) .from-red-900\/30 { --tw-gradient-from: #fee2e2 !important; }
+    html:not(.dark) .from-blue-900\/30 { --tw-gradient-from: #dbeafe !important; }
+    html:not(.dark) .from-amber-900\/30 { --tw-gradient-from: #fef3c7 !important; }
+    html:not(.dark) .to-dark-800 { --tw-gradient-to: #ffffff !important; }
+    /* Botões no modo claro */
+    html:not(.dark) .bg-emerald-600 { background-color: #059669 !important; }
+    html:not(.dark) .bg-cyan-600 { background-color: #0891b2 !important; }
+    html:not(.dark) .bg-purple-600 { background-color: #7c3aed !important; }
+    html:not(.dark) .bg-orange-600 { background-color: #ea580c !important; }
+    html:not(.dark) .bg-red-600 { background-color: #dc2626 !important; }
+    html:not(.dark) .bg-blue-600 { background-color: #2563eb !important; }
+    html:not(.dark) .bg-amber-600 { background-color: #d97706 !important; }
+    pre code { border-radius: 0.5rem; }    /* Código no modo claro - fundo claro */
+    html:not(.dark) .hljs { background: #f1f5f9 !important; color: #1e293b !important; }
+    html:not(.dark) .hljs-comment { color: #64748b !important; }
+    html:not(.dark) .hljs-keyword { color: #7c3aed !important; }
+    html:not(.dark) .hljs-string { color: #059669 !important; }
+    html:not(.dark) .hljs-number { color: #ea580c !important; }
+    html:not(.dark) .hljs-built_in { color: #0891b2 !important; }
+    html:not(.dark) pre code { background: #f1f5f9 !important; border: 1px solid #cbd5e1 !important; }
+    /* Textos dentro de cards no modo claro */
+    html:not(.dark) .text-sm { color: #1e293b !important; }
+    html:not(.dark) .text-xs { color: #475569 !important; }
+    html:not(.dark) p { color: #1e293b !important; }
+    html:not(.dark) li { color: #1e293b !important; }
+    html:not(.dark) code { color: #7c3aed !important; background: #f1f5f9 !important; }
+    /* Botões mais visíveis no modo claro */
+    html:not(.dark) .bg-dark-700 { background-color: #e2e8f0 !important; border: 1px solid #94a3b8 !important; }
+    html:not(.dark) .bg-dark-700:hover { background-color: #cbd5e1 !important; }
+    html:not(.dark) .bg-primary { background-color: #dc2626 !important; }
+    html:not(.dark) .bg-primary/10 { background-color: #fee2e2 !important; }
+    html:not(.dark) .border-primary/30 { border-color: #f87171 !important; }
+
+    .hljs { background: #1e293b !important; padding: 1.5rem !important; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <a href="../../../index.html" class="flex items-center space-x-3">
+          <span class="text-2xl">🗄️</span>
+          <span class="text-xl font-bold text-primary">Oracle DBA</span>
+        </a>
+        <div class="hidden md:flex items-center space-x-1">
+          <a href="../../introducao/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-blue-400 hover:bg-blue-500/20 transition-colors">🎯 T0</a>
+          <a href="../../modulo-1/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-emerald-400 hover:bg-emerald-500/20 transition-colors">📊 T1</a>
+          <a href="../../modulo-2/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">⚙️ T2</a>
+          <a href="../../modulo-3/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-purple-400 hover:bg-purple-500/20 transition-colors">🔒 T3</a>
+          <a href="../../modulo-4/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-orange-400 hover:bg-orange-500/20 transition-colors">⚡ T4</a>
+          <a href="../../modulo-5/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-red-400 hover:bg-red-500/20 transition-colors">🛡️ T5</a>
+          <a href="../../recursos/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-amber-400 hover:bg-amber-500/20 transition-colors">📚 Recursos</a>
+        </div>
+        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-cyan-900/30 to-dark-800 py-8 border-b border-dark-600">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="flex items-center gap-2 text-cyan-400 text-sm mb-4">
+        <a href="../../../index.html" class="hover:underline">Início</a>
+        <span>/</span>
+        <a href="../index.html" class="hover:underline">Trilha 2</a>
+        <span>/</span>
+        <a href="index.html" class="hover:underline">Conteúdo</a>
+        <span>/</span>
+        <span>Tópico 7</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 bg-cyan-500/20 rounded-xl flex items-center justify-center">
+          <span class="text-2xl font-bold text-cyan-400">7</span>
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold">Schemas e Owners</h1>
+          <p class="text-neutral-400">Organização de objetos, propriedade e acesso no Oracle</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 py-8">
+
+    <!-- Seção 1: O que é um Schema -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">📖</span>
+        </div>
+        <h2 class="text-xl font-bold text-cyan-400">O que é um Schema no Oracle?</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Definição</h3>
+        <p class="text-neutral-300 mb-4">
+          Um <strong class="text-cyan-400">Schema</strong> no Oracle é uma coleção lógica de objetos de banco de dados
+          (tabelas, views, índices, procedures, etc.) que pertencem a um usuário específico. É o namespace que agrupa
+          e organiza todos os objetos criados por ou para um determinado usuário.
+        </p>
+
+        <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500 mb-4">
+          <h4 class="font-semibold text-cyan-400 mb-2">Particularidade do Oracle: Schema = User</h4>
+          <p class="text-neutral-300 text-sm mb-2">
+            No Oracle, <strong>todo usuário possui automaticamente um schema com o mesmo nome</strong>. Quando você
+            cria um usuário, o Oracle cria um schema correspondente. Esta é uma característica única do Oracle que
+            difere de outros SGBDs como PostgreSQL, SQL Server e MySQL.
+          </p>
+          <ul class="list-disc list-inside text-neutral-300 text-sm space-y-1">
+            <li>Criar usuário <code class="text-cyan-400">HR</code> automaticamente cria o schema <code class="text-cyan-400">HR</code></li>
+            <li>O schema não pode existir sem o usuário correspondente</li>
+            <li>Objetos criados pelo usuário <code class="text-cyan-400">HR</code> pertencem ao schema <code class="text-cyan-400">HR</code></li>
+          </ul>
+        </div>
+
+        <div class="bg-dark-700 rounded-lg p-4">
+          <h4 class="font-semibold text-neutral-100 mb-2">Comparação com outros SGBDs:</h4>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm text-neutral-300">
+              <thead class="bg-dark-900/50">
+                <tr>
+                  <th class="px-3 py-2 text-left">SGBD</th>
+                  <th class="px-3 py-2 text-left">Conceito de Schema</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-dark-600">
+                <tr>
+                  <td class="px-3 py-2 font-semibold text-cyan-400">Oracle</td>
+                  <td class="px-3 py-2">Schema = User (1:1, inseparável)</td>
+                </tr>
+                <tr>
+                  <td class="px-3 py-2 font-semibold text-purple-400">PostgreSQL</td>
+                  <td class="px-3 py-2">Schema é namespace independente, user pode ter múltiplos schemas</td>
+                </tr>
+                <tr>
+                  <td class="px-3 py-2 font-semibold text-blue-400">SQL Server</td>
+                  <td class="px-3 py-2">Schema é namespace, separado de usuários/logins</td>
+                </tr>
+                <tr>
+                  <td class="px-3 py-2 font-semibold text-orange-400">MySQL</td>
+                  <td class="px-3 py-2">Schema = Database (sinônimos), separado de usuários</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <h3 class="text-lg font-semibold mb-4">Exemplo Prático</h3>
+        <pre><code class="language-sql">-- Criar usuário automaticamente cria o schema
+CREATE USER app_vendas IDENTIFIED BY senha123
+DEFAULT TABLESPACE users
+TEMPORARY TABLESPACE temp
+QUOTA UNLIMITED ON users;
+
+GRANT CONNECT, RESOURCE TO app_vendas;
+
+-- Conectar como app_vendas
+CONNECT app_vendas/senha123
+
+-- Criar objetos - eles pertencem ao schema APP_VENDAS
+CREATE TABLE produtos (
+    produto_id NUMBER PRIMARY KEY,
+    nome VARCHAR2(100),
+    preco NUMBER(10,2)
+);
+
+CREATE TABLE clientes (
+    cliente_id NUMBER PRIMARY KEY,
+    nome VARCHAR2(100),
+    email VARCHAR2(100)
+);
+
+-- Verificar schema atual
+SELECT SYS_CONTEXT('USERENV', 'CURRENT_SCHEMA') FROM DUAL;
+-- Retorna: APP_VENDAS</code></pre>
+      </div>
+    </section>
+
+    <!-- Seção 2: Owner de Objetos -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">👤</span>
+        </div>
+        <h2 class="text-xl font-bold text-cyan-400">Owner de Objetos</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Conceito de Owner (Proprietário)</h3>
+        <p class="text-neutral-300 mb-4">
+          O <strong class="text-cyan-400">Owner</strong> de um objeto é o schema (e portanto o usuário) que o criou.
+          O owner tem privilégios completos sobre o objeto sem necessidade de grants explícitos.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+          <div class="bg-cyan-900/20 p-4 rounded-xl border border-cyan-500/30">
+            <h4 class="font-bold text-cyan-400 mb-2">Privilégios do Owner</h4>
+            <ul class="list-disc list-inside text-neutral-300 text-sm space-y-1">
+              <li>Controle total sobre o objeto</li>
+              <li>Pode alterar estrutura (ALTER)</li>
+              <li>Pode deletar o objeto (DROP)</li>
+              <li>Pode conceder acesso a outros (GRANT)</li>
+              <li>Não precisa de permissões explícitas</li>
+            </ul>
+          </div>
+
+          <div class="bg-purple-900/20 p-4 rounded-xl border border-purple-500/30">
+            <h4 class="font-bold text-purple-400 mb-2">Transferir Ownership</h4>
+            <p class="text-neutral-300 text-sm mb-2">
+              O Oracle <strong>não permite transferir ownership</strong> diretamente. Para mudar o owner, é necessário:
+            </p>
+            <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
+              <li>Exportar com DATAPUMP ou exp</li>
+              <li>Importar para o novo schema</li>
+              <li>Ou recriar o objeto no novo schema</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-dark-700 rounded-lg p-4">
+          <h4 class="font-semibold text-neutral-100 mb-2">Identificar o Owner de um Objeto:</h4>
+          <pre><code class="language-sql">-- Ver owner de tabelas específicas
+SELECT owner, table_name, tablespace_name
+FROM ALL_TABLES
+WHERE table_name = 'PRODUTOS';
+
+-- Ver todos os objetos e seus owners
+SELECT owner, object_name, object_type, status
+FROM ALL_OBJECTS
+WHERE object_name LIKE 'PROD%'
+ORDER BY owner, object_type, object_name;
+
+-- Ver objetos de um schema específico
+SELECT object_name, object_type, created, last_ddl_time
+FROM ALL_OBJECTS
+WHERE owner = 'APP_VENDAS'
+ORDER BY object_type, object_name;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 3: Prefixação schema.objeto -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">🔗</span>
+        </div>
+        <h2 class="text-xl font-bold text-cyan-400">Prefixação schema.objeto</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Notação Completa</h3>
+        <p class="text-neutral-300 mb-4">
+          A forma completa de referenciar um objeto no Oracle é: <code class="text-cyan-400">SCHEMA.OBJETO</code>.
+          Quando você omite o schema, o Oracle assume que você está referenciando um objeto no schema atual.
+        </p>
+
+        <div class="bg-dark-700 rounded-lg p-4 mb-4">
+          <h4 class="font-semibold text-neutral-100 mb-3">Formas de Referenciar Objetos:</h4>
+          <pre><code class="language-sql">-- Conectado como APP_VENDAS
+
+-- 1. Sem prefixo - assume schema atual (APP_VENDAS)
+SELECT * FROM produtos;
+-- Oracle procura: APP_VENDAS.PRODUTOS
+
+-- 2. Com prefixo explícito - acessa outro schema
+SELECT * FROM hr.employees;
+-- Oracle procura: HR.EMPLOYEES (precisa de privilégio)
+
+-- 3. Próprio schema explícito (redundante mas válido)
+SELECT * FROM app_vendas.produtos;
+-- Oracle procura: APP_VENDAS.PRODUTOS
+
+-- 4. JOIN entre schemas diferentes
+SELECT
+    v.produto_id,
+    v.nome AS produto,
+    e.first_name AS vendedor
+FROM app_vendas.produtos v
+INNER JOIN hr.employees e ON v.vendedor_id = e.employee_id;</code></pre>
+        </div>
+
+        <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
+          <h4 class="font-semibold text-cyan-400 mb-2">Boas Práticas de Prefixação</h4>
+          <ul class="list-disc list-inside text-neutral-300 text-sm space-y-1">
+            <li><strong>Em código SQL de aplicação:</strong> sempre use prefixo <code>schema.objeto</code> para clareza e evitar ambiguidade</li>
+            <li><strong>Em PL/SQL packages:</strong> prefixe objetos de outros schemas, não os do próprio schema</li>
+            <li><strong>Em scripts de deploy:</strong> sempre use prefixo para garantir que o objeto correto é afetado</li>
+            <li><strong>Em desenvolvimento ad-hoc:</strong> pode omitir prefixo se estiver no schema correto</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <h3 class="text-lg font-semibold mb-4">Resolução de Nomes (Name Resolution)</h3>
+        <p class="text-neutral-300 mb-4">
+          Quando você referencia um objeto sem schema, o Oracle segue esta ordem de busca:
+        </p>
+
+        <div class="space-y-3">
+          <div class="flex items-start gap-3 bg-dark-700 rounded-lg p-3">
+            <span class="text-cyan-400 font-bold">1.</span>
+            <div>
+              <p class="font-semibold text-neutral-100">Schema Atual (CURRENT_SCHEMA)</p>
+              <p class="text-neutral-400 text-sm">Primeiro procura no schema da sessão atual</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 bg-dark-700 rounded-lg p-3">
+            <span class="text-cyan-400 font-bold">2.</span>
+            <div>
+              <p class="font-semibold text-neutral-100">Sinônimos Privados</p>
+              <p class="text-neutral-400 text-sm">Verifica se existe sinônimo privado no schema atual</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 bg-dark-700 rounded-lg p-3">
+            <span class="text-cyan-400 font-bold">3.</span>
+            <div>
+              <p class="font-semibold text-neutral-100">Sinônimos Públicos (PUBLIC)</p>
+              <p class="text-neutral-400 text-sm">Por último, verifica sinônimos públicos</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <pre><code class="language-sql">-- Exemplo de resolução de nomes
+-- Conectado como APP_VENDAS
+
+-- Busca nesta ordem:
+-- 1. APP_VENDAS.EMPLOYEES
+-- 2. Sinônimo privado APP_VENDAS.EMPLOYEES
+-- 3. Sinônimo público PUBLIC.EMPLOYEES
+SELECT * FROM employees;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 4: Acessando Objetos de Outro Schema -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">🔐</span>
+        </div>
+        <h2 class="text-xl font-bold text-purple-400">Acessando Objetos de Outro Schema</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Privilégios Necessários</h3>
+        <p class="text-neutral-300 mb-4">
+          Para acessar objetos de outro schema, você precisa de privilégios explícitos concedidos pelo owner
+          ou por um usuário com privilégio <code class="text-cyan-400">GRANT ANY OBJECT PRIVILEGE</code>.
+        </p>
+
+        <div class="bg-dark-700 rounded-lg p-4 mb-4">
+          <h4 class="font-semibold text-neutral-100 mb-3">Concessão de Privilégios Entre Schemas:</h4>
+          <pre><code class="language-sql">-- Conectado como HR (owner da tabela EMPLOYEES)
+
+-- Conceder SELECT para outro usuário/schema
+GRANT SELECT ON hr.employees TO app_vendas;
+
+-- Conceder múltiplos privilégios
+GRANT SELECT, INSERT, UPDATE ON hr.departments TO app_vendas;
+
+-- Conceder com opção de repassar (WITH GRANT OPTION)
+GRANT SELECT ON hr.jobs TO app_vendas WITH GRANT OPTION;
+
+-- Agora APP_VENDAS pode acessar
+CONNECT app_vendas/senha123
+
+SELECT employee_id, first_name, last_name
+FROM hr.employees
+WHERE department_id = 50;
+
+-- E pode repassar o privilégio (porque recebeu WITH GRANT OPTION)
+GRANT SELECT ON hr.jobs TO outro_usuario;</code></pre>
+        </div>
+
+        <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+          <h4 class="font-semibold text-purple-400 mb-2">Tipos de Privilégios de Objeto</h4>
+          <ul class="list-disc list-inside text-neutral-300 text-sm space-y-1">
+            <li><code>SELECT</code> - Consultar dados</li>
+            <li><code>INSERT</code> - Inserir novas linhas</li>
+            <li><code>UPDATE</code> - Modificar dados existentes</li>
+            <li><code>DELETE</code> - Remover linhas</li>
+            <li><code>ALTER</code> - Alterar estrutura (raro conceder)</li>
+            <li><code>INDEX</code> - Criar índices na tabela</li>
+            <li><code>REFERENCES</code> - Criar foreign keys</li>
+            <li><code>EXECUTE</code> - Executar procedures/functions/packages</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <h3 class="text-lg font-semibold mb-4">Verificar Privilégios Concedidos</h3>
+        <pre><code class="language-sql">-- Ver privilégios que VOCÊ concedeu a outros
+SELECT grantee, table_name, privilege, grantable
+FROM USER_TAB_PRIVS_MADE
+ORDER BY grantee, table_name;
+
+-- Ver privilégios que VOCÊ recebeu de outros
+SELECT owner, table_name, privilege, grantable
+FROM USER_TAB_PRIVS_RECD
+ORDER BY owner, table_name;
+
+-- Ver TODOS os privilégios de objetos (como DBA)
+SELECT owner, table_name, grantee, privilege, grantable
+FROM DBA_TAB_PRIVS
+WHERE owner = 'HR'
+ORDER BY table_name, grantee;
+
+-- Revogar privilégios
+REVOKE SELECT ON hr.employees FROM app_vendas;
+REVOKE ALL ON hr.departments FROM app_vendas;</code></pre>
+      </div>
+    </section>
+
+    <!-- Seção 5: ALTER SESSION SET CURRENT_SCHEMA -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">🔄</span>
+        </div>
+        <h2 class="text-xl font-bold text-cyan-400">ALTER SESSION SET CURRENT_SCHEMA</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Mudando o Schema Padrão da Sessão</h3>
+        <p class="text-neutral-300 mb-4">
+          O comando <code class="text-cyan-400">ALTER SESSION SET CURRENT_SCHEMA</code> permite que você mude
+          o schema padrão da sessão <strong>sem se reconectar</strong>. Isso é útil quando você precisa trabalhar
+          com objetos de outro schema mas não quer prefixar cada referência.
+        </p>
+
+        <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500 mb-4">
+          <h4 class="font-semibold text-cyan-400 mb-2">Importante:</h4>
+          <ul class="list-disc list-inside text-neutral-300 text-sm space-y-1">
+            <li>Muda apenas o <strong>schema padrão</strong>, não o usuário conectado</li>
+            <li>Você continua autenticado como o usuário original</li>
+            <li>Privilégios permanecem os do usuário original</li>
+            <li>Muito usado em scripts de manutenção e ferramentas de migração</li>
+            <li>A mudança dura apenas a sessão atual</li>
+          </ul>
+        </div>
+
+        <div class="bg-dark-700 rounded-lg p-4">
+          <h4 class="font-semibold text-neutral-100 mb-3">Exemplo Prático:</h4>
+          <pre><code class="language-sql">-- Conectado como SYSTEM
+CONNECT system/senha
+
+-- Verificar schema atual
+SELECT SYS_CONTEXT('USERENV', 'CURRENT_SCHEMA') AS current_schema,
+       SYS_CONTEXT('USERENV', 'SESSION_USER') AS session_user
+FROM DUAL;
+-- current_schema: SYSTEM
+-- session_user: SYSTEM
+
+-- Mudar para schema HR
+ALTER SESSION SET CURRENT_SCHEMA = hr;
+
+-- Verificar novamente
+SELECT SYS_CONTEXT('USERENV', 'CURRENT_SCHEMA') AS current_schema,
+       SYS_CONTEXT('USERENV', 'SESSION_USER') AS session_user
+FROM DUAL;
+-- current_schema: HR
+-- session_user: SYSTEM (ainda conectado como SYSTEM!)
+
+-- Agora pode referenciar objetos sem prefixo
+SELECT COUNT(*) FROM employees;  -- Acessa HR.EMPLOYEES
+SELECT COUNT(*) FROM departments;  -- Acessa HR.DEPARTMENTS
+
+-- Voltar ao schema original
+ALTER SESSION SET CURRENT_SCHEMA = system;</code></pre>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <h3 class="text-lg font-semibold mb-4">Casos de Uso Comuns</h3>
+
+        <div class="space-y-4">
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-cyan-400 mb-2">1. Scripts de Manutenção como DBA</h4>
+            <pre><code class="language-sql">-- Conectar como DBA mas trabalhar no schema da aplicação
+CONNECT dba_user/senha
+ALTER SESSION SET CURRENT_SCHEMA = app_vendas;
+
+-- Executar manutenção sem prefixar cada objeto
+ANALYZE TABLE produtos COMPUTE STATISTICS;
+REBUILD INDEX idx_produtos_nome ONLINE;
+UPDATE produtos SET status = 'ATIVO' WHERE status IS NULL;
+COMMIT;</code></pre>
+          </div>
+
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-purple-400 mb-2">2. Ferramentas de Migração</h4>
+            <pre><code class="language-sql">-- Conectar com usuário administrativo
+CONNECT migration_user/senha
+
+-- Trabalhar em cada schema sem reconectar
+ALTER SESSION SET CURRENT_SCHEMA = schema1;
+-- importar dados do schema1
+
+ALTER SESSION SET CURRENT_SCHEMA = schema2;
+-- importar dados do schema2
+
+ALTER SESSION SET CURRENT_SCHEMA = schema3;
+-- importar dados do schema3</code></pre>
+          </div>
+
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-orange-400 mb-2">3. Debugging e Troubleshooting</h4>
+            <pre><code class="language-sql">-- DBA investigando problema reportado por usuário
+CONNECT dba/senha
+ALTER SESSION SET CURRENT_SCHEMA = app_user;
+
+-- Reproduzir queries do usuário exatamente como ele vê
+SELECT * FROM minha_tabela WHERE status = 'ERRO';
+
+-- Ver os mesmos objetos que o usuário vê
+SELECT table_name FROM user_tables;</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 6: PUBLIC Schema -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">🌐</span>
+        </div>
+        <h2 class="text-xl font-bold text-emerald-400">PUBLIC Schema</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">O que é PUBLIC?</h3>
+        <p class="text-neutral-300 mb-4">
+          <code class="text-emerald-400">PUBLIC</code> é um schema especial no Oracle que representa
+          <strong>todos os usuários do banco de dados</strong>. Não é um usuário real, mas sim um grupo
+          lógico usado para conceder privilégios ou criar sinônimos acessíveis por todos.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+          <div class="bg-emerald-900/20 p-4 rounded-xl border border-emerald-500/30">
+            <h4 class="font-bold text-emerald-400 mb-2">Sinônimos Públicos</h4>
+            <p class="text-neutral-300 text-sm mb-2">
+              Permitem que objetos sejam acessados sem prefixo de schema por todos os usuários.
+            </p>
+            <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
+              <li>Criados com CREATE PUBLIC SYNONYM</li>
+              <li>Úteis para objetos compartilhados</li>
+              <li>Evitam prefixação em aplicações</li>
+            </ul>
+          </div>
+
+          <div class="bg-cyan-900/20 p-4 rounded-xl border border-cyan-500/30">
+            <h4 class="font-bold text-cyan-400 mb-2">Privilégios Públicos</h4>
+            <p class="text-neutral-300 text-sm mb-2">
+              Conceder privilégio a PUBLIC dá acesso a todos os usuários existentes e futuros.
+            </p>
+            <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
+              <li>GRANT ... TO PUBLIC</li>
+              <li>Útil mas deve ser usado com cautela</li>
+              <li>Implicação de segurança</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-dark-700 rounded-lg p-4">
+          <h4 class="font-semibold text-neutral-100 mb-3">Exemplos de Sinônimos Públicos:</h4>
+          <pre><code class="language-sql">-- Criar um sinônimo público (requer privilégio CREATE PUBLIC SYNONYM)
+CONNECT system/senha
+
+-- Tabela compartilhada acessível por todos
+CREATE PUBLIC SYNONYM feriados FOR hr.feriados_nacionais;
+
+-- Agora qualquer usuário pode acessar sem prefixo
+CONNECT app_vendas/senha123
+SELECT * FROM feriados;  -- Funciona! Resolve para HR.FERIADOS_NACIONAIS
+
+-- Ver sinônimos públicos
+SELECT synonym_name, table_owner, table_name
+FROM ALL_SYNONYMS
+WHERE owner = 'PUBLIC'
+  AND synonym_name LIKE 'FERIADOS%';
+
+-- Remover sinônimo público
+CONNECT system/senha
+DROP PUBLIC SYNONYM feriados;</code></pre>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <h3 class="text-lg font-semibold mb-4">Privilégios para PUBLIC</h3>
+
+        <div class="bg-orange-900/20 rounded-lg p-4 border-l-4 border-orange-500 mb-4">
+          <h4 class="font-semibold text-orange-400 mb-2">Atenção com Segurança!</h4>
+          <p class="text-neutral-300 text-sm">
+            Conceder privilégios a PUBLIC pode criar vulnerabilidades de segurança. Todo usuário do banco,
+            incluindo contas de serviço e usuários criados no futuro, terão acesso. Use com cautela!
+          </p>
+        </div>
+
+        <pre><code class="language-sql">-- Conceder SELECT a todos os usuários (usar com cautela!)
+GRANT SELECT ON hr.feriados TO PUBLIC;
+
+-- Agora QUALQUER usuário pode consultar
+CONNECT qualquer_usuario/senha
+SELECT * FROM hr.feriados;
+
+-- Ver privilégios concedidos a PUBLIC
+SELECT table_name, privilege
+FROM DBA_TAB_PRIVS
+WHERE grantee = 'PUBLIC'
+  AND owner = 'HR';
+
+-- Revogar privilégio de PUBLIC
+REVOKE SELECT ON hr.feriados FROM PUBLIC;
+
+-- Exemplo de sinônimo público + privilégio público
+-- (padrão do Oracle para views do dicionário de dados)
+CREATE PUBLIC SYNONYM v$session FOR sys.v_$session;
+GRANT SELECT ON sys.v_$session TO PUBLIC;
+
+-- Resultado: todos podem fazer
+SELECT sid, username, status FROM v$session;</code></pre>
+      </div>
+    </section>
+
+    <!-- Seção 7: Consultando Schemas -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">🔍</span>
+        </div>
+        <h2 class="text-xl font-bold text-cyan-400">Consultando Schemas</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Views do Dicionário de Dados</h3>
+        <p class="text-neutral-300 mb-4">
+          O Oracle fornece várias views para consultar informações sobre schemas, usuários e objetos.
+        </p>
+
+        <div class="bg-dark-700 rounded-lg p-4 mb-4">
+          <h4 class="font-semibold text-neutral-100 mb-3">Principais Views:</h4>
+          <ul class="list-disc list-inside text-neutral-300 space-y-2">
+            <li><code class="text-cyan-400">DBA_USERS</code> - Todos os usuários/schemas do banco</li>
+            <li><code class="text-cyan-400">ALL_USERS</code> - Usuários visíveis para você</li>
+            <li><code class="text-cyan-400">USER_USERS</code> - Informações do seu próprio usuário</li>
+            <li><code class="text-cyan-400">DBA_OBJECTS</code> - Todos os objetos de todos os schemas</li>
+            <li><code class="text-cyan-400">ALL_OBJECTS</code> - Objetos que você pode acessar</li>
+            <li><code class="text-cyan-400">USER_OBJECTS</code> - Objetos do seu schema</li>
+            <li><code class="text-cyan-400">DBA_TABLES</code> - Todas as tabelas do banco</li>
+            <li><code class="text-cyan-400">ALL_TABLES</code> - Tabelas que você pode ver</li>
+            <li><code class="text-cyan-400">USER_TABLES</code> - Tabelas do seu schema</li>
+          </ul>
+        </div>
+
+        <div class="bg-dark-700 rounded-lg p-4">
+          <h4 class="font-semibold text-neutral-100 mb-3">Consultas Úteis:</h4>
+          <pre><code class="language-sql">-- Listar todos os schemas/usuários
+SELECT username,
+       account_status,
+       created,
+       default_tablespace,
+       temporary_tablespace
+FROM DBA_USERS
+WHERE username NOT IN ('SYS', 'SYSTEM', 'OUTLN', 'XDB')
+ORDER BY created DESC;
+
+-- Listar schemas de aplicação (excluindo Oracle internal)
+SELECT username
+FROM DBA_USERS
+WHERE oracle_maintained = 'N'  -- Oracle 12c+
+ORDER BY username;
+
+-- Contar objetos por schema
+SELECT owner,
+       COUNT(*) AS total_objects,
+       COUNT(DISTINCT object_type) AS distinct_types
+FROM DBA_OBJECTS
+WHERE owner NOT IN ('SYS', 'SYSTEM')
+GROUP BY owner
+ORDER BY total_objects DESC;
+
+-- Ver tipos de objetos em um schema específico
+SELECT object_type,
+       COUNT(*) AS quantity,
+       SUM(CASE WHEN status = 'VALID' THEN 1 ELSE 0 END) AS valid,
+       SUM(CASE WHEN status = 'INVALID' THEN 1 ELSE 0 END) AS invalid
+FROM DBA_OBJECTS
+WHERE owner = 'APP_VENDAS'
+GROUP BY object_type
+ORDER BY quantity DESC;
+
+-- Tamanho ocupado por cada schema
+SELECT owner,
+       ROUND(SUM(bytes)/1024/1024, 2) AS size_mb,
+       COUNT(*) AS num_segments
+FROM DBA_SEGMENTS
+WHERE owner NOT IN ('SYS', 'SYSTEM')
+GROUP BY owner
+ORDER BY size_mb DESC;
+
+-- Tabelas e seu owner
+SELECT owner, table_name, num_rows, last_analyzed
+FROM DBA_TABLES
+WHERE table_name LIKE 'PROD%'
+ORDER BY owner, table_name;</code></pre>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <h3 class="text-lg font-semibold mb-4">Explorar Objetos de um Schema</h3>
+        <pre><code class="language-sql">-- Ver estrutura de objetos no schema
+SELECT object_type, COUNT(*) AS qty
+FROM USER_OBJECTS
+GROUP BY object_type
+ORDER BY qty DESC;
+
+-- Listar todas as tabelas do schema atual
+SELECT table_name, tablespace_name, num_rows
+FROM USER_TABLES
+ORDER BY table_name;
+
+-- Ver colunas de uma tabela específica
+SELECT column_name, data_type, data_length, nullable, data_default
+FROM USER_TAB_COLUMNS
+WHERE table_name = 'PRODUTOS'
+ORDER BY column_id;
+
+-- Ver dependências entre objetos
+SELECT name, type, referenced_owner, referenced_name, referenced_type
+FROM USER_DEPENDENCIES
+WHERE referenced_owner = 'HR'
+ORDER BY name;
+
+-- Objetos inválidos no schema
+SELECT object_name, object_type, status
+FROM USER_OBJECTS
+WHERE status = 'INVALID'
+ORDER BY object_type, object_name;</code></pre>
+      </div>
+    </section>
+
+    <!-- Seção 8: Boas Práticas -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">✨</span>
+        </div>
+        <h2 class="text-xl font-bold text-emerald-400">Boas Práticas de Organização</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Estratégias de Organização de Schemas</h3>
+
+        <div class="space-y-4">
+          <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
+            <h4 class="font-semibold text-emerald-400 mb-2">1. Schema por Aplicação</h4>
+            <p class="text-neutral-300 text-sm mb-2">
+              Criar um schema dedicado para cada aplicação ou módulo de sistema.
+            </p>
+            <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
+              <li>Exemplo: <code>APP_VENDAS</code>, <code>APP_ESTOQUE</code>, <code>APP_FINANCEIRO</code></li>
+              <li>Separação clara de responsabilidades</li>
+              <li>Facilita backup e manutenção por módulo</li>
+              <li>Controle granular de acesso</li>
+            </ul>
+          </div>
+
+          <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
+            <h4 class="font-semibold text-cyan-400 mb-2">2. Schema de Dados vs Schema de Código</h4>
+            <p class="text-neutral-300 text-sm mb-2">
+              Separar objetos de dados (tabelas) de objetos de código (packages, procedures).
+            </p>
+            <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
+              <li>Schema <code>VENDAS_DATA</code> - tabelas, índices, constraints</li>
+              <li>Schema <code>VENDAS_CODE</code> - packages, procedures, functions</li>
+              <li>Facilita deploys de código sem afetar dados</li>
+              <li>Controle de privilégios mais refinado</li>
+            </ul>
+          </div>
+
+          <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+            <h4 class="font-semibold text-purple-400 mb-2">3. Convenções de Nomenclatura</h4>
+            <p class="text-neutral-300 text-sm mb-2">
+              Estabelecer padrões claros de nomes para schemas.
+            </p>
+            <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
+              <li>Prefixos: <code>APP_</code>, <code>SRV_</code>, <code>ETL_</code></li>
+              <li>Ambiente: <code>DEV_</code>, <code>HML_</code>, <code>PROD_</code> (se necessário)</li>
+              <li>Evitar nomes genéricos: <code>DATA</code>, <code>TEST</code>, <code>USER1</code></li>
+              <li>Usar nomes descritivos e consistentes</li>
+            </ul>
+          </div>
+
+          <div class="bg-orange-900/20 rounded-lg p-4 border-l-4 border-orange-500">
+            <h4 class="font-semibold text-orange-400 mb-2">4. Schemas de Serviço</h4>
+            <p class="text-neutral-300 text-sm mb-2">
+              Não usar schemas de aplicação para conectar diretamente. Criar schemas de serviço.
+            </p>
+            <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
+              <li>Schema <code>APP_VENDAS</code> - contém os objetos (owner)</li>
+              <li>Schema <code>APP_VENDAS_APP</code> - usado pela aplicação (apenas SELECT/INSERT/UPDATE/DELETE)</li>
+              <li>Princípio do menor privilégio</li>
+              <li>Protege objetos de alterações acidentais</li>
+            </ul>
+          </div>
+
+          <div class="bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500">
+            <h4 class="font-semibold text-red-400 mb-2">5. Evitar SYS e SYSTEM</h4>
+            <p class="text-neutral-300 text-sm mb-2">
+              Nunca criar objetos de aplicação em schemas do sistema.
+            </p>
+            <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
+              <li>SYS e SYSTEM são para objetos internos do Oracle</li>
+              <li>Criar objetos neles pode causar problemas em upgrades</li>
+              <li>Dificulta manutenção e backup seletivo</li>
+              <li>Violação de boas práticas de Oracle</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <h3 class="text-lg font-semibold mb-4">Exemplo de Estrutura Organizada</h3>
+        <pre><code class="language-sql">-- 1. Criar schemas de dados (owners)
+CREATE USER vendas_data IDENTIFIED BY senha_forte
+DEFAULT TABLESPACE app_data
+QUOTA UNLIMITED ON app_data;
+
+GRANT CONNECT, RESOURCE TO vendas_data;
+
+-- 2. Criar objetos no schema de dados
+CONNECT vendas_data/senha_forte
+
+CREATE TABLE clientes (
+    cliente_id NUMBER PRIMARY KEY,
+    nome VARCHAR2(100),
+    email VARCHAR2(100)
+);
+
+CREATE TABLE pedidos (
+    pedido_id NUMBER PRIMARY KEY,
+    cliente_id NUMBER REFERENCES clientes,
+    data_pedido DATE,
+    total NUMBER(10,2)
+);
+
+-- 3. Criar schema de código
+CREATE USER vendas_code IDENTIFIED BY senha_forte
+DEFAULT TABLESPACE app_data
+QUOTA UNLIMITED ON app_data;
+
+GRANT CONNECT, RESOURCE TO vendas_code;
+GRANT SELECT, INSERT, UPDATE, DELETE ON vendas_data.clientes TO vendas_code;
+GRANT SELECT, INSERT, UPDATE, DELETE ON vendas_data.pedidos TO vendas_code;
+
+-- 4. Criar procedures no schema de código
+CONNECT vendas_code/senha_forte
+
+CREATE OR REPLACE PACKAGE pkg_vendas AS
+    PROCEDURE registrar_pedido(p_cliente_id NUMBER, p_total NUMBER);
+END;
+/
+
+CREATE OR REPLACE PACKAGE BODY pkg_vendas AS
+    PROCEDURE registrar_pedido(p_cliente_id NUMBER, p_total NUMBER) IS
+    BEGIN
+        INSERT INTO vendas_data.pedidos (pedido_id, cliente_id, data_pedido, total)
+        VALUES (seq_pedidos.NEXTVAL, p_cliente_id, SYSDATE, p_total);
+        COMMIT;
+    END;
+END;
+/
+
+-- 5. Criar schema de aplicação (apenas privilégios, sem objetos)
+CREATE USER vendas_app IDENTIFIED BY senha_app;
+GRANT CONNECT TO vendas_app;
+
+-- Dar acesso apenas via procedures
+GRANT EXECUTE ON vendas_code.pkg_vendas TO vendas_app;
+
+-- Aplicação conecta como vendas_app e executa:
+-- EXECUTE vendas_code.pkg_vendas.registrar_pedido(100, 1500.00);</code></pre>
+      </div>
+    </section>
+
+    <!-- Seção 9: Exemplos Práticos Completos -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">🛠️</span>
+        </div>
+        <h2 class="text-xl font-bold text-cyan-400">Exemplos Práticos Completos</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Cenário 1: Criação e Acesso Entre Schemas</h3>
+        <pre><code class="language-sql">-- PASSO 1: Criar dois schemas
+CONNECT system/senha
+
+CREATE USER loja IDENTIFIED BY senha123
+DEFAULT TABLESPACE users
+QUOTA UNLIMITED ON users;
+
+CREATE USER relatorios IDENTIFIED BY senha456
+DEFAULT TABLESPACE users
+QUOTA 10M ON users;
+
+GRANT CONNECT, RESOURCE TO loja;
+GRANT CONNECT, RESOURCE TO relatorios;
+
+-- PASSO 2: Criar objetos no schema LOJA
+CONNECT loja/senha123
+
+CREATE TABLE produtos (
+    produto_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nome VARCHAR2(100) NOT NULL,
+    preco NUMBER(10,2) NOT NULL,
+    estoque NUMBER DEFAULT 0
+);
+
+INSERT INTO produtos (nome, preco, estoque) VALUES ('Notebook', 3500.00, 10);
+INSERT INTO produtos (nome, preco, estoque) VALUES ('Mouse', 50.00, 100);
+INSERT INTO produtos (nome, preco, estoque) VALUES ('Teclado', 150.00, 50);
+COMMIT;
+
+-- PASSO 3: Tentar acessar de RELATORIOS (vai falhar!)
+CONNECT relatorios/senha456
+
+SELECT * FROM loja.produtos;
+-- ORA-00942: table or view does not exist
+
+-- PASSO 4: Conceder privilégio
+CONNECT loja/senha123
+
+GRANT SELECT ON produtos TO relatorios;
+
+-- PASSO 5: Agora funciona!
+CONNECT relatorios/senha456
+
+SELECT produto_id, nome, preco
+FROM loja.produtos
+WHERE estoque > 0;
+
+-- PASSO 6: Criar view no schema RELATORIOS
+CREATE VIEW vw_produtos_disponiveis AS
+SELECT produto_id, nome, preco, estoque
+FROM loja.produtos
+WHERE estoque > 0;
+
+-- PASSO 7: Consultar a view
+SELECT * FROM vw_produtos_disponiveis;</code></pre>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Cenário 2: Usando ALTER SESSION e Sinônimos</h3>
+        <pre><code class="language-sql">-- PASSO 1: Conectar como DBA
+CONNECT system/senha
+
+-- PASSO 2: Mudar para schema LOJA
+ALTER SESSION SET CURRENT_SCHEMA = loja;
+
+-- PASSO 3: Trabalhar sem prefixo
+SELECT COUNT(*) FROM produtos;
+UPDATE produtos SET preco = preco * 1.1 WHERE produto_id = 1;
+COMMIT;
+
+-- PASSO 4: Criar sinônimo público para facilitar acesso
+CREATE PUBLIC SYNONYM produtos_loja FOR loja.produtos;
+
+-- PASSO 5: Conceder SELECT a PUBLIC (com cautela!)
+CONNECT loja/senha123
+GRANT SELECT ON produtos TO PUBLIC;
+
+-- PASSO 6: Qualquer usuário pode acessar
+CONNECT relatorios/senha456
+
+-- Ambas as formas funcionam agora:
+SELECT * FROM loja.produtos;        -- Forma explícita
+SELECT * FROM produtos_loja;        -- Via sinônimo público
+
+-- PASSO 7: Limpar
+CONNECT system/senha
+DROP PUBLIC SYNONYM produtos_loja;
+
+CONNECT loja/senha123
+REVOKE SELECT ON produtos FROM PUBLIC;</code></pre>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <h3 class="text-lg font-semibold mb-4">Cenário 3: Diagnóstico e Auditoria</h3>
+        <pre><code class="language-sql">-- Auditoria completa de schemas de aplicação
+CONNECT system/senha
+
+-- 1. Listar schemas e seus tamanhos
+SELECT
+    u.username,
+    u.account_status,
+    u.created,
+    u.default_tablespace,
+    NVL(ROUND(SUM(s.bytes)/1024/1024, 2), 0) AS size_mb,
+    NVL(COUNT(DISTINCT o.object_name), 0) AS num_objects
+FROM dba_users u
+LEFT JOIN dba_segments s ON u.username = s.owner
+LEFT JOIN dba_objects o ON u.username = o.owner
+WHERE u.oracle_maintained = 'N'
+GROUP BY u.username, u.account_status, u.created, u.default_tablespace
+ORDER BY size_mb DESC;
+
+-- 2. Mapear todos os privilégios entre schemas
+SELECT
+    grantee AS quem_recebe,
+    owner || '.' || table_name AS objeto,
+    privilege AS privilegio,
+    grantable AS pode_repassar
+FROM dba_tab_privs
+WHERE owner IN ('LOJA', 'RELATORIOS')
+  AND grantee NOT IN ('SYS', 'SYSTEM')
+ORDER BY grantee, owner, table_name;
+
+-- 3. Ver objetos compartilhados (com grants para outros schemas)
+SELECT
+    owner,
+    table_name,
+    COUNT(DISTINCT grantee) AS num_grantees,
+    LISTAGG(grantee || ':' || privilege, ', ')
+        WITHIN GROUP (ORDER BY grantee) AS grants
+FROM dba_tab_privs
+WHERE owner = 'LOJA'
+GROUP BY owner, table_name
+HAVING COUNT(DISTINCT grantee) > 0;
+
+-- 4. Identificar dependências entre schemas
+SELECT DISTINCT
+    d.owner AS schema_dependente,
+    d.referenced_owner AS schema_usado,
+    COUNT(*) AS num_dependencias
+FROM dba_dependencies d
+WHERE d.owner != d.referenced_owner
+  AND d.owner IN ('LOJA', 'RELATORIOS')
+GROUP BY d.owner, d.referenced_owner
+ORDER BY num_dependencias DESC;</code></pre>
+      </div>
+    </section>
+
+    <!-- Resultado Esperado -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">✅</span>
+        </div>
+        <h2 class="text-xl font-bold text-purple-400">Resultado Esperado</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">O que você deve dominar após este tópico:</h3>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <span class="text-cyan-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Entender Schema = User no Oracle</h4>
+                <p class="text-neutral-400 text-sm">Compreender a relação única do Oracle entre schemas e usuários</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-cyan-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Gerenciar ownership de objetos</h4>
+                <p class="text-neutral-400 text-sm">Identificar owners e entender privilégios associados</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-cyan-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Usar prefixação corretamente</h4>
+                <p class="text-neutral-400 text-sm">Referenciar objetos com schema.objeto quando necessário</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-cyan-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Conceder e revogar privilégios</h4>
+                <p class="text-neutral-400 text-sm">GRANT e REVOKE entre schemas diferentes</p>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <span class="text-cyan-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Usar ALTER SESSION SET CURRENT_SCHEMA</h4>
+                <p class="text-neutral-400 text-sm">Mudar schema padrão sem reconectar</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-cyan-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Trabalhar com PUBLIC</h4>
+                <p class="text-neutral-400 text-sm">Criar sinônimos públicos e entender implicações de segurança</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-cyan-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Consultar dicionário de dados</h4>
+                <p class="text-neutral-400 text-sm">Usar DBA_USERS, DBA_OBJECTS, ALL_TABLES efetivamente</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-cyan-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Aplicar boas práticas</h4>
+                <p class="text-neutral-400 text-sm">Organizar schemas de forma clara e segura</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-r from-cyan-900/30 to-purple-900/30 rounded-xl border border-cyan-500/30 p-6">
+        <h3 class="text-lg font-semibold mb-3 text-center">Parabéns!</h3>
+        <p class="text-neutral-300 text-center mb-4">
+          Você concluiu o último tópico da <strong class="text-cyan-400">Trilha 2 - Administração Básica</strong>!
+          Agora você possui os fundamentos essenciais para administrar um banco de dados Oracle.
+        </p>
+        <p class="text-neutral-400 text-center text-sm">
+          Continue para a <strong>Trilha 3</strong> para aprender sobre segurança, usuários avançados e auditoria.
+        </p>
+      </div>
+    </section>
+
+    <!-- Action Buttons -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-r from-cyan-900/30 to-purple-900/30 rounded-xl border border-cyan-500/30 p-6">
+        <h3 class="text-lg font-semibold mb-4 text-center">Continue sua jornada</h3>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="index.html" class="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+            Ver Conteúdo Completo
+          </a>
+          <a href="../index.html" class="px-6 py-3 bg-dark-700 hover:bg-dark-600 text-neutral-100 rounded-lg font-medium transition-colors flex items-center gap-2 border border-dark-600">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+            </svg>
+            Conteúdo Compacto
+          </a>
+          <a href="../../modulo-3/index.html" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2">
+            <span>Próxima Trilha: Segurança</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <div class="flex justify-between items-center pt-8 border-t border-dark-600">
+      <a href="topico-6.html" class="flex items-center gap-2 text-neutral-400 hover:text-cyan-400 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        <span>Anterior: Tablespaces e Datafiles</span>
+      </a>
+      <a href="../index.html" class="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors">
+        <span>Voltar ao Índice da Trilha</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+        </svg>
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark-900 border-t border-dark-700 py-8 mt-12">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <p class="text-neutral-500 text-sm">Oracle DBA - Trilha 2: Administração Básica Oracle - Tópico 7</p>
+    </div>
+  </footer>
+
+  <script>
+    hljs.highlightAll();
+
+    // Theme toggle
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+    if (localStorage.getItem('color-theme') === 'light' ||
+        (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+      document.documentElement.classList.remove('dark');
+      themeToggleDarkIcon.classList.remove('hidden');
+    } else {
+      document.documentElement.classList.add('dark');
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+
+    themeToggleBtn.addEventListener('click', function() {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('color-theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
+      }
+    });
+  </script>
+</body>
+</html>

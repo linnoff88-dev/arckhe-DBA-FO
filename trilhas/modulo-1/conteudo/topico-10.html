@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SELECT Avançado | Trilha 1 | Oracle DBA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#C74634',
+            dark: { 900: '#0f172a', 800: '#1e293b', 700: '#334155', 600: '#475569' }
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #0f172a; }
+    /* Light mode - versão colorida e vibrante */
+    html:not(.dark) body { background-color: #f0fdf4; }
+    html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
+    html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
+    html:not(.dark) .bg-dark-700 { background-color: #ecfdf5 !important; }
+    html:not(.dark) .bg-dark-700\/50 { background-color: #d1fae5 !important; }
+    html:not(.dark) .border-dark-600 { border-color: #a7f3d0 !important; }
+    html:not(.dark) .border-dark-700 { border-color: #6ee7b7 !important; }
+    html:not(.dark) .text-neutral-100 { color: #064e3b !important; }
+    html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
+    html:not(.dark) .text-neutral-400 { color: #047857 !important; }
+    html:not(.dark) .text-neutral-500 { color: #059669 !important; }
+    /* Navegação no modo claro */
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
+    /* Cores das trilhas - vibrantes */
+    html:not(.dark) .text-emerald-400 { color: #047857 !important; }
+    html:not(.dark) .text-cyan-400 { color: #0e7490 !important; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed !important; }
+    html:not(.dark) .text-orange-400 { color: #c2410c !important; }
+    html:not(.dark) .text-red-400 { color: #b91c1c !important; }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8 !important; }
+    html:not(.dark) .text-amber-400 { color: #b45309 !important; }
+    /* Backgrounds coloridos - mais saturados */
+    html:not(.dark) .bg-emerald-500\/20, html:not(.dark) .bg-emerald-900\/20, html:not(.dark) .bg-emerald-900\/30 { background-color: #d1fae5 !important; }
+    html:not(.dark) .bg-cyan-500\/20, html:not(.dark) .bg-cyan-900\/20, html:not(.dark) .bg-cyan-900\/30 { background-color: #cffafe !important; }
+    html:not(.dark) .bg-purple-500\/20, html:not(.dark) .bg-purple-900\/20, html:not(.dark) .bg-purple-900\/30 { background-color: #ede9fe !important; }
+    html:not(.dark) .bg-orange-500\/20, html:not(.dark) .bg-orange-900\/20, html:not(.dark) .bg-orange-900\/30 { background-color: #ffedd5 !important; }
+    html:not(.dark) .bg-red-500\/20, html:not(.dark) .bg-red-900\/20, html:not(.dark) .bg-red-900\/30 { background-color: #fee2e2 !important; }
+    html:not(.dark) .bg-blue-500\/20, html:not(.dark) .bg-blue-900\/20, html:not(.dark) .bg-blue-900\/30 { background-color: #dbeafe !important; }
+    html:not(.dark) .bg-amber-500\/20, html:not(.dark) .bg-amber-900\/20, html:not(.dark) .bg-amber-900\/30 { background-color: #fef3c7 !important; }
+    /* Bordas coloridas - mais fortes */
+    html:not(.dark) .border-emerald-500, html:not(.dark) .border-emerald-500\/30 { border-color: #10b981 !important; }
+    html:not(.dark) .border-cyan-500, html:not(.dark) .border-cyan-500\/30 { border-color: #06b6d4 !important; }
+    html:not(.dark) .border-purple-500, html:not(.dark) .border-purple-500\/30 { border-color: #8b5cf6 !important; }
+    html:not(.dark) .border-orange-500, html:not(.dark) .border-orange-500\/30 { border-color: #f97316 !important; }
+    html:not(.dark) .border-red-500, html:not(.dark) .border-red-500\/30 { border-color: #ef4444 !important; }
+    html:not(.dark) .border-blue-500, html:not(.dark) .border-blue-500\/30 { border-color: #3b82f6 !important; }
+    html:not(.dark) .border-amber-500, html:not(.dark) .border-amber-500\/30 { border-color: #f59e0b !important; }
+    /* Gradientes no modo claro */
+    html:not(.dark) .from-emerald-900\/30 { --tw-gradient-from: #d1fae5 !important; }
+    html:not(.dark) .from-cyan-900\/30 { --tw-gradient-from: #cffafe !important; }
+    html:not(.dark) .from-purple-900\/30 { --tw-gradient-from: #ede9fe !important; }
+    html:not(.dark) .from-orange-900\/30 { --tw-gradient-from: #ffedd5 !important; }
+    html:not(.dark) .from-red-900\/30 { --tw-gradient-from: #fee2e2 !important; }
+    html:not(.dark) .from-blue-900\/30 { --tw-gradient-from: #dbeafe !important; }
+    html:not(.dark) .from-amber-900\/30 { --tw-gradient-from: #fef3c7 !important; }
+    html:not(.dark) .to-dark-800 { --tw-gradient-to: #ffffff !important; }
+    /* Botões no modo claro */
+    html:not(.dark) .bg-emerald-600 { background-color: #059669 !important; }
+    html:not(.dark) .bg-cyan-600 { background-color: #0891b2 !important; }
+    html:not(.dark) .bg-purple-600 { background-color: #7c3aed !important; }
+    html:not(.dark) .bg-orange-600 { background-color: #ea580c !important; }
+    html:not(.dark) .bg-red-600 { background-color: #dc2626 !important; }
+    html:not(.dark) .bg-blue-600 { background-color: #2563eb !important; }
+    html:not(.dark) .bg-amber-600 { background-color: #d97706 !important; }
+    pre code { border-radius: 0.5rem; }    /* Código no modo claro - fundo claro */
+    html:not(.dark) .hljs { background: #f1f5f9 !important; color: #1e293b !important; }
+    html:not(.dark) .hljs-comment { color: #64748b !important; }
+    html:not(.dark) .hljs-keyword { color: #7c3aed !important; }
+    html:not(.dark) .hljs-string { color: #059669 !important; }
+    html:not(.dark) .hljs-number { color: #ea580c !important; }
+    html:not(.dark) .hljs-built_in { color: #0891b2 !important; }
+    html:not(.dark) pre code { background: #f1f5f9 !important; border: 1px solid #cbd5e1 !important; }
+    /* Textos dentro de cards no modo claro */
+    html:not(.dark) .text-sm { color: #1e293b !important; }
+    html:not(.dark) .text-xs { color: #475569 !important; }
+    html:not(.dark) p { color: #1e293b !important; }
+    html:not(.dark) li { color: #1e293b !important; }
+    html:not(.dark) code { color: #7c3aed !important; background: #f1f5f9 !important; }
+    /* Botões mais visíveis no modo claro */
+    html:not(.dark) .bg-dark-700 { background-color: #e2e8f0 !important; border: 1px solid #94a3b8 !important; }
+    html:not(.dark) .bg-dark-700:hover { background-color: #cbd5e1 !important; }
+    html:not(.dark) .bg-primary { background-color: #dc2626 !important; }
+    html:not(.dark) .bg-primary/10 { background-color: #fee2e2 !important; }
+    html:not(.dark) .border-primary/30 { border-color: #f87171 !important; }
+
+    .hljs { background: #1e293b !important; padding: 1.5rem !important; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <a href="../../../index.html" class="flex items-center space-x-3">
+          <span class="text-2xl">🗄️</span>
+          <span class="text-xl font-bold text-primary">Oracle DBA</span>
+        </a>
+        <div class="hidden md:flex items-center space-x-1">
+          <a href="../../introducao/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-blue-400 hover:bg-blue-500/20 transition-colors">🎯 T0</a>
+          <a href="../../modulo-1/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">📊 T1</a>
+          <a href="../../modulo-2/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-cyan-400 hover:bg-cyan-500/20 transition-colors">⚙️ T2</a>
+          <a href="../../modulo-3/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-purple-400 hover:bg-purple-500/20 transition-colors">🔒 T3</a>
+          <a href="../../modulo-4/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-orange-400 hover:bg-orange-500/20 transition-colors">⚡ T4</a>
+          <a href="../../modulo-5/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-red-400 hover:bg-red-500/20 transition-colors">🛡️ T5</a>
+          <a href="../../recursos/index.html" class="px-3 py-1.5 rounded-full text-xs font-semibold text-amber-400 hover:bg-amber-500/20 transition-colors">📚 Recursos</a>
+        </div>
+        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-emerald-900/30 to-dark-800 py-8 border-b border-dark-600">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="flex items-center gap-2 text-emerald-400 text-sm mb-4">
+        <a href="../../../index.html" class="hover:underline">Início</a>
+        <span>/</span>
+        <a href="../index.html" class="hover:underline">Trilha 1</a>
+        <span>/</span>
+        <a href="index.html" class="hover:underline">Conteúdo</a>
+        <span>/</span>
+        <span>Tópico 10</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center">
+          <span class="text-2xl font-bold text-emerald-400">10</span>
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold">SELECT Avançado</h1>
+          <p class="text-neutral-400">DUAL, aliases, prefixação, ORDER BY, DISTINCT, ROWNUM e paginação</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 py-8">
+
+    <!-- Seção 1: Tabela DUAL -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">📖</span>
+        </div>
+        <h2 class="text-xl font-bold text-emerald-400">Tabela DUAL</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">O que é a tabela DUAL?</h3>
+        <p class="text-neutral-300 mb-4">
+          A <strong class="text-emerald-400">DUAL</strong> é uma tabela especial do Oracle que contém apenas
+          <strong>uma linha</strong> e <strong>uma coluna</strong> (chamada DUMMY com valor 'X').
+          Ela é útil quando você precisa executar funções ou expressões sem consultar uma tabela real.
+        </p>
+
+        <div class="bg-dark-700 rounded-lg p-4 mt-4">
+          <h4 class="font-semibold text-neutral-100 mb-2">Usos da DUAL:</h4>
+          <ul class="list-disc list-inside text-neutral-300 space-y-2">
+            <li>Testar funções SQL (matemáticas, strings, datas)</li>
+            <li>Obter valores do sistema (data atual, usuário, etc.)</li>
+            <li>Avaliar expressões e cálculos</li>
+            <li>Gerar sequências ou valores constantes</li>
+          </ul>
+        </div>
+
+        <pre class="mt-4"><code class="language-sql">-- Exemplos básicos com DUAL
+SELECT SYSDATE FROM DUAL;                    -- Data/hora atual
+SELECT USER FROM DUAL;                       -- Usuário conectado
+SELECT 10 + 5 AS resultado FROM DUAL;        -- Cálculo simples
+SELECT 'Hello, Oracle!' AS mensagem FROM DUAL;  -- Literal
+SELECT UPPER('oracle database') FROM DUAL;   -- Função de string</code></pre>
+      </div>
+    </section>
+
+    <!-- Seção 2: Aliases -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">🏷️</span>
+        </div>
+        <h2 class="text-xl font-bold text-emerald-400">Aliases de Colunas e Tabelas</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Aliases de Colunas</h3>
+        <p class="text-neutral-300 mb-4">
+          Aliases permitem renomear colunas no resultado da consulta, tornando-o mais legível.
+          Você pode usar <code class="text-emerald-400">AS</code> (opcional) ou aspas duplas para nomes com espaços.
+        </p>
+
+        <pre><code class="language-sql">-- Aliases de colunas
+SELECT
+    id_funcionario AS codigo,                -- AS é opcional
+    nome funcionario,                        -- Sem AS
+    salario AS "Salário Mensal",            -- Com espaço (requer aspas)
+    salario * 12 AS salario_anual,          -- Expressão calculada
+    UPPER(email) email_maiusculo
+FROM funcionarios;
+
+-- Resultado será exibido com os nomes dos aliases</code></pre>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Aliases de Tabelas e Prefixação</h3>
+        <p class="text-neutral-300 mb-4">
+          Aliases de tabelas simplificam queries complexas com múltiplas tabelas.
+          A <strong>prefixação</strong> (tabela.coluna) evita ambiguidade quando colunas têm o mesmo nome em tabelas diferentes.
+        </p>
+
+        <pre><code class="language-sql">-- Aliases de tabelas (muito útil em JOINs)
+SELECT
+    f.id_funcionario,          -- Prefixo 'f' identifica a tabela
+    f.nome AS funcionario,
+    f.salario,
+    d.nome AS departamento,    -- Prefixo 'd' identifica a tabela
+    d.localizacao
+FROM funcionarios f            -- Alias 'f' para funcionarios
+INNER JOIN departamentos d     -- Alias 'd' para departamentos
+    ON f.departamento_id = d.id_departamento
+WHERE d.localizacao = 'São Paulo'
+ORDER BY f.nome;
+
+-- Sem aliases seria mais verboso:
+-- funcionarios.nome, departamentos.nome, etc.</code></pre>
+
+        <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500 mt-4">
+          <h4 class="font-semibold text-emerald-400 mb-2">Boa Prática</h4>
+          <p class="text-neutral-300 text-sm">
+            Sempre use prefixos (aliases de tabela) em queries com múltiplas tabelas, mesmo quando não há ambiguidade.
+            Isso torna o código mais claro e evita erros futuros se a estrutura mudar.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 3: ORDER BY -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">🔢</span>
+        </div>
+        <h2 class="text-xl font-bold text-cyan-400">ORDER BY - Ordenação de Resultados</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Ordenação Ascendente e Descendente</h3>
+        <p class="text-neutral-300 mb-4">
+          <code class="text-cyan-400">ORDER BY</code> ordena o resultado da consulta.
+          Use <code>ASC</code> (ascendente, padrão) ou <code>DESC</code> (descendente).
+        </p>
+
+        <pre><code class="language-sql">-- Ordem ascendente (padrão)
+SELECT nome, salario
+FROM funcionarios
+ORDER BY salario;              -- Menor para maior (ASC implícito)
+
+-- Ordem descendente
+SELECT nome, salario
+FROM funcionarios
+ORDER BY salario DESC;         -- Maior para menor
+
+-- Múltiplas colunas
+SELECT nome, departamento_id, salario
+FROM funcionarios
+ORDER BY departamento_id ASC, salario DESC;  -- Dept crescente, salário decrescente
+
+-- Ordenar por posição da coluna no SELECT
+SELECT nome, salario, data_admissao
+FROM funcionarios
+ORDER BY 3 DESC, 2 DESC;       -- Posição 3 (data_admissao), depois posição 2 (salario)
+
+-- Ordenar por alias
+SELECT nome AS funcionario, salario * 12 AS salario_anual
+FROM funcionarios
+ORDER BY salario_anual DESC;   -- Usa o alias definido no SELECT</code></pre>
+
+        <div class="bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500 mt-4">
+          <h4 class="font-semibold text-amber-400 mb-2">Atenção: NULLs na Ordenação</h4>
+          <p class="text-neutral-300 text-sm mb-2">
+            No Oracle, valores NULL são considerados "maiores" que qualquer valor.
+          </p>
+          <ul class="list-disc list-inside text-neutral-400 text-sm">
+            <li><code>ORDER BY coluna ASC</code> - NULLs aparecem no final</li>
+            <li><code>ORDER BY coluna DESC</code> - NULLs aparecem no início</li>
+            <li>Use <code>NULLS FIRST</code> ou <code>NULLS LAST</code> para controlar</li>
+          </ul>
+          <pre class="mt-2"><code class="language-sql">-- Controlar posição dos NULLs
+SELECT nome, data_demissao
+FROM funcionarios
+ORDER BY data_demissao NULLS LAST;  -- NULLs no final</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 4: DISTINCT -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">🎯</span>
+        </div>
+        <h2 class="text-xl font-bold text-emerald-400">DISTINCT - Eliminar Duplicatas</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Removendo Linhas Duplicadas</h3>
+        <p class="text-neutral-300 mb-4">
+          <code class="text-emerald-400">DISTINCT</code> remove linhas duplicadas do resultado,
+          considerando <strong>todas as colunas</strong> do SELECT.
+        </p>
+
+        <pre><code class="language-sql">-- Sem DISTINCT - pode retornar valores repetidos
+SELECT departamento_id
+FROM funcionarios;
+-- Resultado: 10, 20, 10, 30, 20, 10 (duplicatas)
+
+-- Com DISTINCT - valores únicos
+SELECT DISTINCT departamento_id
+FROM funcionarios;
+-- Resultado: 10, 20, 30 (sem duplicatas)
+
+-- DISTINCT em múltiplas colunas (combinação única)
+SELECT DISTINCT departamento_id, cargo
+FROM funcionarios;
+-- Retorna combinações únicas de departamento + cargo
+
+-- DISTINCT com COUNT
+SELECT COUNT(DISTINCT departamento_id) AS total_departamentos
+FROM funcionarios;
+-- Conta quantos departamentos diferentes existem</code></pre>
+
+        <div class="bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500 mt-4">
+          <h4 class="font-semibold text-amber-400 mb-2">Performance</h4>
+          <p class="text-neutral-300 text-sm">
+            DISTINCT requer ordenação/comparação de todos os registros, o que pode ser custoso em grandes volumes.
+            Use apenas quando realmente necessário. Considere se um GROUP BY seria mais apropriado.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 5: ROWNUM e Paginação -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="text-xl font-bold text-purple-400">ROWNUM e Paginação Básica</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">O que é ROWNUM?</h3>
+        <p class="text-neutral-300 mb-4">
+          <code class="text-purple-400">ROWNUM</code> é uma pseudocoluna que atribui um número sequencial
+          para cada linha <strong>no momento em que é retornada</strong> pela query.
+        </p>
+
+        <pre><code class="language-sql">-- Limitar número de linhas retornadas
+SELECT ROWNUM, nome, salario
+FROM funcionarios
+WHERE ROWNUM <= 5;             -- Retorna apenas as 5 primeiras linhas
+
+-- Top 3 maiores salários (requer subquery)
+SELECT *
+FROM (
+    SELECT nome, salario
+    FROM funcionarios
+    ORDER BY salario DESC      -- Ordenar ANTES de aplicar ROWNUM
+)
+WHERE ROWNUM <= 3;             -- Pegar os 3 primeiros da ordenação</code></pre>
+
+        <div class="bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500 mt-4">
+          <h4 class="font-semibold text-red-400 mb-2">Cuidado: ROWNUM é atribuído ANTES da ordenação</h4>
+          <p class="text-neutral-300 text-sm mb-2">
+            ROWNUM é atribuído quando a linha é retornada do FROM/WHERE, antes do ORDER BY.
+            Para paginar dados ordenados, use subquery.
+          </p>
+          <pre class="mt-2"><code class="language-sql">-- INCORRETO - ORDER BY é aplicado DEPOIS do ROWNUM
+SELECT ROWNUM, nome, salario
+FROM funcionarios
+WHERE ROWNUM <= 3
+ORDER BY salario DESC;         -- Ordena DEPOIS de pegar as 3 primeiras
+
+-- CORRETO - Subquery para ordenar ANTES do ROWNUM
+SELECT *
+FROM (
+    SELECT nome, salario
+    FROM funcionarios
+    ORDER BY salario DESC      -- Ordena primeiro
+)
+WHERE ROWNUM <= 3;             -- Depois pega as 3 primeiras</code></pre>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Paginação com ROWNUM</h3>
+        <p class="text-neutral-300 mb-4">
+          Para paginar (pular linhas e pegar um intervalo), use subquery dupla:
+        </p>
+
+        <pre><code class="language-sql">-- Página 1: linhas 1-10
+SELECT *
+FROM (
+    SELECT nome, salario
+    FROM funcionarios
+    ORDER BY nome
+)
+WHERE ROWNUM <= 10;
+
+-- Página 2: linhas 11-20 (requer subquery dupla)
+SELECT *
+FROM (
+    SELECT ROWNUM AS rn, a.*
+    FROM (
+        SELECT nome, salario
+        FROM funcionarios
+        ORDER BY nome          -- Ordenação desejada
+    ) a
+    WHERE ROWNUM <= 20         -- Limite superior
+)
+WHERE rn > 10;                 -- Limite inferior (pular primeiras 10)
+
+-- Alternativa moderna: ROW_NUMBER() (Oracle 12c+)
+SELECT nome, salario
+FROM (
+    SELECT nome, salario,
+           ROW_NUMBER() OVER (ORDER BY nome) AS rn
+    FROM funcionarios
+)
+WHERE rn BETWEEN 11 AND 20;    -- Página 2 (linhas 11-20)</code></pre>
+
+        <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500 mt-4">
+          <h4 class="font-semibold text-emerald-400 mb-2">Oracle 12c+: OFFSET e FETCH</h4>
+          <p class="text-neutral-300 text-sm mb-2">
+            A partir do Oracle 12c, você pode usar a sintaxe SQL padrão OFFSET/FETCH:
+          </p>
+          <pre class="mt-2"><code class="language-sql">-- Sintaxe moderna (Oracle 12c+)
+SELECT nome, salario
+FROM funcionarios
+ORDER BY nome
+OFFSET 10 ROWS                 -- Pular 10 linhas
+FETCH NEXT 10 ROWS ONLY;       -- Pegar as próximas 10</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Exemplos Práticos -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">🛠️</span>
+        </div>
+        <h2 class="text-xl font-bold text-cyan-400">Exemplos Práticos Completos</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold mb-4">Combinando Técnicas</h3>
+
+        <pre><code class="language-sql">-- Exemplo 1: Top 5 departamentos com mais funcionários
+SELECT departamento, total_funcionarios
+FROM (
+    SELECT
+        d.nome AS departamento,
+        COUNT(f.id_funcionario) AS total_funcionarios
+    FROM departamentos d
+    LEFT JOIN funcionarios f ON d.id_departamento = f.departamento_id
+    GROUP BY d.nome
+    ORDER BY total_funcionarios DESC
+)
+WHERE ROWNUM <= 5;
+
+-- Exemplo 2: Listar funcionários únicos por cargo (sem duplicatas)
+SELECT DISTINCT
+    f.cargo,
+    d.nome AS departamento
+FROM funcionarios f
+INNER JOIN departamentos d ON f.departamento_id = d.id_departamento
+ORDER BY f.cargo, d.nome;
+
+-- Exemplo 3: Relatório com múltiplas ordenações e aliases
+SELECT
+    ROWNUM AS posicao,
+    f.nome AS "Nome do Funcionário",
+    f.salario AS "Salário Atual",
+    f.salario * 12 AS "Salário Anual",
+    d.nome AS "Departamento"
+FROM (
+    SELECT f.*, d.nome AS dept_nome
+    FROM funcionarios f
+    INNER JOIN departamentos d ON f.departamento_id = d.id_departamento
+    ORDER BY d.nome, f.salario DESC
+) f, departamentos d
+WHERE f.departamento_id = d.id_departamento
+  AND ROWNUM <= 20;
+
+-- Exemplo 4: Contagem de funcionários por cidade (distintos)
+SELECT
+    d.localizacao AS cidade,
+    COUNT(DISTINCT f.id_funcionario) AS total_funcionarios,
+    COUNT(DISTINCT f.cargo) AS cargos_diferentes
+FROM departamentos d
+LEFT JOIN funcionarios f ON d.id_departamento = f.departamento_id
+GROUP BY d.localizacao
+ORDER BY total_funcionarios DESC NULLS LAST;</code></pre>
+      </div>
+    </section>
+
+    <!-- Resultado Esperado -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">✅</span>
+        </div>
+        <h2 class="text-xl font-bold text-purple-400">Resultado Esperado</h2>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <h3 class="text-lg font-semibold mb-4">O que você deve dominar após este tópico:</h3>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Usar DUAL efetivamente</h4>
+                <p class="text-neutral-400 text-sm">Executar funções e expressões sem tabelas reais</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Criar aliases claros</h4>
+                <p class="text-neutral-400 text-sm">Tornar queries mais legíveis com nomes apropriados</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Ordenar resultados</h4>
+                <p class="text-neutral-400 text-sm">ORDER BY com múltiplas colunas e direções</p>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Eliminar duplicatas</h4>
+                <p class="text-neutral-400 text-sm">Usar DISTINCT apropriadamente</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Limitar resultados</h4>
+                <p class="text-neutral-400 text-sm">ROWNUM para top-N queries</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-400 mt-1">✓</span>
+              <div>
+                <h4 class="font-semibold text-neutral-100">Implementar paginação</h4>
+                <p class="text-neutral-400 text-sm">Técnicas de paginação com ROWNUM e OFFSET/FETCH</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Exercícios -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-amber-500/20 rounded-lg flex items-center justify-center">
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="text-xl font-bold text-amber-400">Exercícios Práticos</h2>
+      </div>
+
+      <div class="space-y-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 1: Top 10 Salários</h3>
+          <p class="text-neutral-300 mb-4">
+            Crie uma query que retorne os 10 funcionários com maiores salários, mostrando posição, nome, cargo e salário,
+            ordenados do maior para o menor salário.
+          </p>
+
+          <details class="mt-4">
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <div class="mt-4">
+              <pre><code class="language-sql">SELECT
+    ROWNUM AS posicao,
+    nome,
+    cargo,
+    salario
+FROM (
+    SELECT nome, cargo, salario
+    FROM funcionarios
+    ORDER BY salario DESC
+)
+WHERE ROWNUM <= 10;</code></pre>
+            </div>
+          </details>
+        </div>
+
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 2: Listar Cidades Únicas</h3>
+          <p class="text-neutral-300 mb-4">
+            Liste todas as cidades únicas onde existem departamentos, ordenadas alfabeticamente.
+          </p>
+
+          <details class="mt-4">
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <div class="mt-4">
+              <pre><code class="language-sql">SELECT DISTINCT localizacao AS cidade
+FROM departamentos
+WHERE localizacao IS NOT NULL
+ORDER BY localizacao;</code></pre>
+            </div>
+          </details>
+        </div>
+
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 3: Paginação de Funcionários</h3>
+          <p class="text-neutral-300 mb-4">
+            Implemente uma query que retorne a página 3 (linhas 21-30) de funcionários ordenados por nome.
+          </p>
+
+          <details class="mt-4">
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <div class="mt-4">
+              <pre><code class="language-sql">-- Método com ROWNUM (Oracle < 12c)
+SELECT *
+FROM (
+    SELECT ROWNUM AS rn, a.*
+    FROM (
+        SELECT id_funcionario, nome, cargo, salario
+        FROM funcionarios
+        ORDER BY nome
+    ) a
+    WHERE ROWNUM <= 30
+)
+WHERE rn > 20;
+
+-- Método moderno (Oracle 12c+)
+SELECT id_funcionario, nome, cargo, salario
+FROM funcionarios
+ORDER BY nome
+OFFSET 20 ROWS
+FETCH NEXT 10 ROWS ONLY;</code></pre>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Action Buttons -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-r from-emerald-900/30 to-cyan-900/30 rounded-xl border border-emerald-500/30 p-6">
+        <h3 class="text-lg font-semibold mb-4 text-center">Continue sua jornada</h3>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="index.html" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+            Ver Conteúdo Completo
+          </a>
+          <a href="../index.html" class="px-6 py-3 bg-dark-700 hover:bg-dark-600 text-neutral-100 rounded-lg font-medium transition-colors flex items-center gap-2 border border-dark-600">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+            </svg>
+            Conteúdo Compacto
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <div class="flex justify-between items-center pt-8 border-t border-dark-600">
+      <a href="topico-9.html" class="flex items-center gap-2 text-neutral-400 hover:text-emerald-400 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        <span>Anterior: DML</span>
+      </a>
+      <a href="topico-11.html" class="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors">
+        <span>Próximo: TCL</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark-900 border-t border-dark-700 py-8 mt-12">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <p class="text-neutral-500 text-sm">Oracle DBA - Trilha 1: Fundamentos de BD e SQL - Tópico 10</p>
+    </div>
+  </footer>
+
+  <script>
+    hljs.highlightAll();
+
+    // Theme toggle
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+    if (localStorage.getItem('color-theme') === 'light' ||
+        (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+      document.documentElement.classList.remove('dark');
+      themeToggleDarkIcon.classList.remove('hidden');
+    } else {
+      document.documentElement.classList.add('dark');
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+
+    themeToggleBtn.addEventListener('click', function() {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('color-theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
+      }
+    });
+  </script>
+</body>
+</html>
