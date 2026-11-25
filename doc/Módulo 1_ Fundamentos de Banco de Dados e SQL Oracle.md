@@ -1,8 +1,8 @@
-_**"Este material foi elaborado por um profissional com vasta experiência em administração de bancos de dados Oracle, tendo atuado como DBA por muitos anos, escrito livros e ministrado aulas. O objetivo deste curso é ser autoexplicativo e didático, com exercícios práticos que simulam desafios reais do dia a dia."**_
+_**"Este material foi elaborado por um profissional com vasta experiência em administraçêo de bancos de dados Oracle, tendo atuado como DBA por muitos anos, escrito livros e ministrado aulas. O objetivo deste curso é ser autoexplicativo e didático, com exercícios práticos que simulam desafios reais do dia a dia."**_
 
 # Módulo 1: Fundamentos de Banco de Dados e SQL Oracle
 
-## Introdução
+## Introduçêo
 
 Bem-vindo ao início de sua jornada para se tornar um Administrador de Banco de Dados (DBA) Oracle. Este primeiro módulo é a base de todo o conhecimento que você irá adquirir. Aqui, vamos explorar os conceitos essenciais que sustentam os bancos de dados relacionais e aprender a linguagem fundamental para interagir com eles: o SQL.
 
@@ -10,12 +10,12 @@ Bem-vindo ao início de sua jornada para se tornar um Administrador de Banco de 
 
 Um **banco de dados relacional** é um sistema que organiza os dados em tabelas. Pense em uma tabela como uma planilha, com linhas e colunas. Cada linha representa um registro (por exemplo, um cliente) e cada coluna representa um atributo desse registro (por exemplo, nome, email, telefone).
 
-Os principais conceitos que você precisa dominar são:
+Os principais conceitos que você precisa dominar sêo:
 
 *   **Tabela (Table):** A estrutura fundamental de armazenamento, composta por linhas e colunas.
 *   **Coluna (Column):** Um atributo específico de uma tabela. Possui um nome e um tipo de dado (texto, número, data, etc.).
 *   **Linha (Row):** Um registro único dentro de uma tabela.
-*   **Chave Primária (Primary Key):** Uma ou mais colunas que identificam unicamente cada linha em uma tabela. Não pode haver duas linhas com a mesma chave primária.
+*   **Chave Primária (Primary Key):** Uma ou mais colunas que identificam unicamente cada linha em uma tabela. Nêo pode haver duas linhas com a mesma chave primária.
 *   **Chave Estrangeira (Foreign Key):** Uma coluna (ou conjunto de colunas) em uma tabela que se refere à chave primária de outra tabela. É o que cria o "relacionamento" entre as tabelas.
 
 ## 1.2. Modelagem de Dados (Entidade-Relacionamento)
@@ -26,18 +26,18 @@ A modelagem de dados é o processo de criar um diagrama que representa a estrutu
 
 *   **Entidade:** Representa um objeto do mundo real sobre o qual queremos armazenar informações (ex: `CLIENTES`, `PRODUTOS`, `PEDIDOS`). No banco de dados, uma entidade se torna uma tabela.
 *   **Atributo:** Uma característica de uma entidade (ex: `nome` do cliente, `preco` do produto). Atributos se tornam colunas.
-*   **Relacionamento:** A associação entre duas ou mais entidades (ex: um `CLIENTE` faz um `PEDIDO`). Relacionamentos são implementados usando chaves estrangeiras.
+*   **Relacionamento:** A associaçêo entre duas ou mais entidades (ex: um `CLIENTE` faz um `PEDIDO`). Relacionamentos sêo implementados usando chaves estrangeiras.
 
 ## 1.3. O Ambiente Oracle: SQL Developer e SQL*Plus
 
-Para interagir com o banco de dados Oracle, utilizamos ferramentas cliente. As duas mais importantes para um DBA são:
+Para interagir com o banco de dados Oracle, utilizamos ferramentas cliente. As duas mais importantes para um DBA sêo:
 
 *   **SQL Developer:** Uma interface gráfica (GUI) completa e gratuita da Oracle. Permite escrever e executar queries SQL, administrar objetos do banco, importar/exportar dados e muito mais. É a ferramenta ideal para o dia a dia.
-*   **SQL*Plus:** Uma ferramenta de linha de comando (CLI). Embora menos "amigável", é extremamente poderosa para automação, execução de scripts e tarefas administrativas que não exigem uma interface gráfica. Todo DBA precisa saber usar o SQL*Plus.
+*   **SQL*Plus:** Uma ferramenta de linha de comando (CLI). Embora menos "amigável", é extremamente poderosa para automaçêo, execuçêo de scripts e tarefas administrativas que nêo exigem uma interface gráfica. Todo DBA precisa saber usar o SQL*Plus.
 
 ## 1.4. A Linguagem SQL: A Base de Tudo
 
-SQL (Structured Query Language) é a linguagem padrão para gerenciar e manipular bancos de dados relacionais. Ela é dividida em subconjuntos de comandos. Os mais importantes para começar são:
+SQL (Structured Query Language) é a linguagem padrêo para gerenciar e manipular bancos de dados relacionais. Ela é dividida em subconjuntos de comandos. Os mais importantes para começar sêo:
 
 *   **DQL (Data Query Language):** Para fazer consultas. O principal comando é o `SELECT`.
 *   **DML (Data Manipulation Language):** Para manipular os dados. Inclui os comandos `INSERT` (inserir), `UPDATE` (atualizar) e `DELETE` (apagar).
@@ -60,7 +60,7 @@ Vamos agora praticar os comandos SQL essenciais. Para nossos exemplos, vamos ima
 **Tabela: EMPREGADOS**
 | EMP_ID (PK) | NOME_EMP      | SALARIO | DEPT_ID (FK) |
 |-------------|---------------|---------|--------------|
-| 101         | 'JOÃO SILVA'  | 5000    | 10           |
+| 101         | 'JOêO SILVA'  | 5000    | 10           |
 | 102         | 'ANA LIMA'    | 7000    | 20           |
 | 103         | 'CARLOS SOUZA'| 6500    | 20           |
 | 104         | 'MARIA GOMES' | 4000    | 10           |
@@ -102,7 +102,7 @@ WHERE DEPT_ID = 10;
 
 ### DELETE: Removendo Dados
 
-O `DELETE` apaga linhas de uma tabela. **Cuidado:** use sempre a cláusula `WHERE` para não apagar todos os dados!
+O `DELETE` apaga linhas de uma tabela. **Cuidado:** use sempre a cláusula `WHERE` para nêo apagar todos os dados!
 
 ```sql
 -- Remover o empregado com ID 105
@@ -126,7 +126,7 @@ JOIN DEPARTAMENTOS D ON E.DEPT_ID = D.DEPT_ID;
 
 O Oracle oferece uma vasta biblioteca de funções para manipular texto, números e datas. Elas podem ser usadas diretamente no seu `SELECT`.
 
-*   **Funções de Agregação:** `COUNT()`, `SUM()`, `AVG()`, `MAX()`, `MIN()`.
+*   **Funções de Agregaçêo:** `COUNT()`, `SUM()`, `AVG()`, `MAX()`, `MIN()`.
 *   **Funções de String:** `UPPER()`, `LOWER()`, `SUBSTR()`.
 *   **Funções Numéricas:** `ROUND()`, `TRUNC()`.
 
@@ -139,7 +139,7 @@ GROUP BY DEPT_ID;
 
 ### Subqueries: Consultas Aninhadas
 
-Uma subquery (ou subconsulta) é uma consulta `SELECT` dentro de outra consulta. Elas são úteis para realizar filtros complexos.
+Uma subquery (ou subconsulta) é uma consulta `SELECT` dentro de outra consulta. Elas sêo úteis para realizar filtros complexos.
 
 ```sql
 -- Encontrar os empregados que ganham mais que a média salarial de toda a empresa
@@ -150,7 +150,7 @@ WHERE SALARIO > (SELECT AVG(SALARIO) FROM EMPREGADOS);
 
 ## Exercícios Práticos - Módulo 1
 
-Agora é sua vez de praticar! Tente resolver os seguintes exercícios usando o SQL Developer ou SQL*Plus. As respostas estão no final desta seção.
+Agora é sua vez de praticar! Tente resolver os seguintes exercícios usando o SQL Developer ou SQL*Plus. As respostas estêo no final desta seçêo.
 
 **Cenário:** Você foi contratado como DBA júnior de uma pequena livraria. O banco de dados possui as seguintes tabelas:
 
@@ -167,19 +167,19 @@ Agora é sua vez de praticar! Tente resolver os seguintes exercícios usando o S
 | 101           | 'Harry Potter e a Pedra Filosofal' | 1997           | 35.00 | 1             |
 | 102           | '1984'                | 1949           | 28.50 | 2             |
 | 103           | 'Dom Casmurro'        | 1899           | 22.00 | 3             |
-| 104           | 'A Revolução dos Bichos'| 1945           | 25.00 | 2             |
+| 104           | 'A Revoluçêo dos Bichos'| 1945           | 25.00 | 2             |
 
 ### Questões
 
-1.  **SELECT Básico:** Escreva uma query para selecionar o título e o ano de publicação de todos os livros.
+1.  **SELECT Básico:** Escreva uma query para selecionar o título e o ano de publicaçêo de todos os livros.
 2.  **SELECT com WHERE:** Escreva uma query para encontrar todos os livros publicados antes de 1950.
 3.  **INSERT:** Insira um novo autor na tabela `AUTORES`: ID `4`, Nome `'J.R.R. Tolkien'`, País `'África do Sul'`. 
 4.  **INSERT:** Insira um novo livro para o autor recém-criado: ID `105`, Título `'O Hobbit'`, Ano `1937`, Preço `45.00`, ID do Autor `4`.
 5.  **UPDATE:** O preço do livro '1984' subiu. Atualize seu preço para `32.75`.
 6.  **DELETE:** O livro 'O Hobbit' foi removido do catálogo. Escreva o comando para apagá-lo da tabela `LIVROS`.
 7.  **JOIN:** Escreva uma query que mostre o título de cada livro e o nome do seu respectivo autor.
-8.  **Função de Agregação:** Escreva uma query para calcular o preço médio de todos os livros.
-9.  **Subquery:** Encontre o título dos livros que são mais caros que a média de todos os preços.
+8.  **Funçêo de Agregaçêo:** Escreva uma query para calcular o preço médio de todos os livros.
+9.  **Subquery:** Encontre o título dos livros que sêo mais caros que a média de todos os preços.
 10. **JOIN com WHERE:** Liste os títulos dos livros escritos por autores do 'Reino Unido'.
 
 ---

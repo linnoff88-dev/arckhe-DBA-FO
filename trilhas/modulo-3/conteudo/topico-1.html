@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -153,7 +153,7 @@
         </div>
         <div>
           <h1 class="text-2xl font-bold">RMAN - Recovery Manager</h1>
-          <p class="text-neutral-400">Conceitos, configuração, catálogo, canais e tipos de backup</p>
+          <p class="text-neutral-400">Conceitos, configuraçêo, catálogo, canais e tipos de backup</p>
         </div>
       </div>
     </div>
@@ -162,37 +162,37 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Definição -->
+    <!-- Seçêo 1: Definiçêo -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">📖</span>
         </div>
-        <h2 class="text-xl font-bold text-purple-400">Definição</h2>
+        <h2 class="text-xl font-bold text-purple-400">Definiçêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
         <h3 class="text-lg font-semibold mb-4">O que é RMAN?</h3>
         <p class="text-neutral-300 mb-4">
           <strong class="text-purple-400">RMAN (Recovery Manager)</strong> é a ferramenta oficial da Oracle para
-          realizar backup e recuperação de bancos de dados. Introduzido no Oracle 8, evoluiu para ser a solução
+          realizar backup e recuperaçêo de bancos de dados. Introduzido no Oracle 8, evoluiu para ser a soluçêo
           mais robusta e recomendada, superando backups tradicionais de sistema operacional.
         </p>
         <p class="text-neutral-300 mb-4">
-          RMAN opera diretamente no nível de bloco de dados, não no nível de arquivo do SO. Isso permite
-          funcionalidades avançadas como backup incremental, compressão, criptografia, validação de blocos
-          corrompidos e paralelização automática.
+          RMAN opera diretamente no nível de bloco de dados, nêo no nível de arquivo do SO. Isso permite
+          funcionalidades avançadas como backup incremental, compressêo, criptografia, validaçêo de blocos
+          corrompidos e paralelizaçêo automática.
         </p>
 
         <div class="bg-dark-700 rounded-lg p-4 mt-4">
           <h4 class="font-semibold text-neutral-100 mb-2">Características Principais:</h4>
           <ul class="list-disc list-inside text-neutral-300 space-y-2">
             <li><strong>Backup Incremental:</strong> Copia apenas blocos alterados desde último backup</li>
-            <li><strong>Compressão Nativa:</strong> Reduz espaço necessário (até 10x em alguns casos)</li>
+            <li><strong>Compressêo Nativa:</strong> Reduz espaço necessário (até 10x em alguns casos)</li>
             <li><strong>Criptografia TDE:</strong> Protege backups com Advanced Security Option</li>
             <li><strong>Block Change Tracking:</strong> Otimiza performance de backups incrementais</li>
-            <li><strong>Validação:</strong> Detecta blocos corrompidos durante backup</li>
-            <li><strong>Paralelização:</strong> Múltiplos canais para backup/restore simultâneos</li>
+            <li><strong>Validaçêo:</strong> Detecta blocos corrompidos durante backup</li>
+            <li><strong>Paralelizaçêo:</strong> Múltiplos canais para backup/restore simultâneos</li>
           </ul>
         </div>
       </div>
@@ -220,7 +220,7 @@
           <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
             <h4 class="font-semibold text-purple-400 mb-2">Repository (Control File ou Catalog)</h4>
             <p class="text-neutral-300 text-sm">
-              <strong>Control File:</strong> Armazena metadados de backup (padrão, limitado em histórico).<br>
+              <strong>Control File:</strong> Armazena metadados de backup (padrêo, limitado em histórico).<br>
               <strong>Recovery Catalog:</strong> Banco separado para metadados (recomendado para ambientes grandes).
             </p>
           </div>
@@ -228,7 +228,7 @@
           <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
             <h4 class="font-semibold text-purple-400 mb-2">Media Manager (MML)</h4>
             <p class="text-neutral-300 text-sm">
-              Biblioteca de terceiros para integração com storage em fita (tape libraries).
+              Biblioteca de terceiros para integraçêo com storage em fita (tape libraries).
               Exemplos: Oracle Secure Backup, NetBackup, TSM, CommVault.
             </p>
           </div>
@@ -257,9 +257,9 @@
             </thead>
             <tbody class="text-neutral-300 text-sm">
               <tr>
-                <td class="border border-dark-600 px-4 py-2 font-semibold">Configuração</td>
-                <td class="border border-dark-600 px-4 py-2">Automática (padrão)</td>
-                <td class="border border-dark-600 px-4 py-2">Requer criação manual</td>
+                <td class="border border-dark-600 px-4 py-2 font-semibold">Configuraçêo</td>
+                <td class="border border-dark-600 px-4 py-2">Automática (padrêo)</td>
+                <td class="border border-dark-600 px-4 py-2">Requer criaçêo manual</td>
               </tr>
               <tr class="bg-dark-700/50">
                 <td class="border border-dark-600 px-4 py-2 font-semibold">Histórico</td>
@@ -268,12 +268,12 @@
               </tr>
               <tr>
                 <td class="border border-dark-600 px-4 py-2 font-semibold">Múltiplos Bancos</td>
-                <td class="border border-dark-600 px-4 py-2">Não</td>
+                <td class="border border-dark-600 px-4 py-2">Nêo</td>
                 <td class="border border-dark-600 px-4 py-2">Sim (centralizado)</td>
               </tr>
               <tr class="bg-dark-700/50">
                 <td class="border border-dark-600 px-4 py-2 font-semibold">Scripts Armazenados</td>
-                <td class="border border-dark-600 px-4 py-2">Não</td>
+                <td class="border border-dark-600 px-4 py-2">Nêo</td>
                 <td class="border border-dark-600 px-4 py-2">Sim</td>
               </tr>
               <tr>
@@ -292,20 +292,20 @@
       </div>
     </section>
 
-    <!-- Seção 2: Aplicação Prática -->
+    <!-- Seçêo 2: Aplicaçêo Prática -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">🛠️</span>
         </div>
-        <h2 class="text-xl font-bold text-emerald-400">Aplicação Prática</h2>
+        <h2 class="text-xl font-bold text-emerald-400">Aplicaçêo Prática</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
         <h3 class="text-lg font-semibold mb-4">Configurando o RMAN</h3>
 
         <p class="text-neutral-300 mb-4">
-          Configuração inicial do RMAN com Fast Recovery Area:
+          Configuraçêo inicial do RMAN com Fast Recovery Area:
         </p>
 
         <pre><code class="language-sql">-- Configurar Fast Recovery Area (FRA)
@@ -315,17 +315,17 @@ ALTER SYSTEM SET DB_RECOVERY_FILE_DEST = '/u01/app/oracle/fra' SCOPE=BOTH;
 -- Habilitar controle de alterações de blocos (otimiza backups incrementais)
 ALTER DATABASE ENABLE BLOCK CHANGE TRACKING USING FILE '/u01/app/oracle/block_change_tracking.f';
 
--- Configurar retenção de backup (7 dias)
+-- Configurar retençêo de backup (7 dias)
 CONFIGURE RETENTION POLICY TO RECOVERY WINDOW OF 7 DAYS;
 
--- Configurar compressão (requer Advanced Compression)
+-- Configurar compressêo (requer Advanced Compression)
 CONFIGURE COMPRESSION ALGORITHM 'MEDIUM';
 
 -- Configurar backup de control file e spfile automático
 CONFIGURE CONTROLFILE AUTOBACKUP ON;
 CONFIGURE CONTROLFILE AUTOBACKUP FORMAT FOR DEVICE TYPE DISK TO '/backup/ctrl_%F';
 
--- Configurar paralelização (4 canais)
+-- Configurar paralelizaçêo (4 canais)
 CONFIGURE DEVICE TYPE DISK PARALLELISM 4;
 CONFIGURE CHANNEL DEVICE TYPE DISK FORMAT '/backup/db_%U';
 
@@ -337,13 +337,13 @@ CONFIGURE EXCLUDE FOR TABLESPACE temp01;</code></pre>
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
         <h3 class="text-lg font-semibold mb-4">Conectando ao RMAN</h3>
 
-        <pre><code class="language-bash"># Conexão simples (usando control file)
+        <pre><code class="language-bash"># Conexêo simples (usando control file)
 rman TARGET /
 
-# Conexão com usuário específico
+# Conexêo com usuário específico
 rman TARGET sys/senha@ORCL
 
-# Conexão com catálogo
+# Conexêo com catálogo
 rman TARGET sys/senha@ORCL CATALOG rman/rman@RMANCAT
 
 # Executar comando único
@@ -354,7 +354,7 @@ EOF</code></pre>
 
         <p class="text-neutral-300 mt-4 mb-4">Comandos básicos do RMAN:</p>
 
-        <pre><code class="language-sql">-- Verificar configuração
+        <pre><code class="language-sql">-- Verificar configuraçêo
 SHOW ALL;
 
 -- Listar backups
@@ -417,7 +417,7 @@ BACKUP DATAFILE 4,5,6;
 BACKUP ARCHIVELOG ALL DELETE INPUT;
 BACKUP ARCHIVELOG FROM TIME 'SYSDATE-1';
 
--- Backup com compressão
+-- Backup com compressêo
 BACKUP AS COMPRESSED BACKUPSET DATABASE;
 
 -- Backup para múltiplos destinos (duplexing)
@@ -452,7 +452,7 @@ BACKUP VALIDATE CHECK LOGICAL DATABASE;</code></pre>
       </div>
     </section>
 
-    <!-- Seção 3: Resultado Esperado -->
+    <!-- Seçêo 3: Resultado Esperado -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
@@ -470,7 +470,7 @@ BACKUP VALIDATE CHECK LOGICAL DATABASE;</code></pre>
               <span class="text-purple-400 mt-1">✓</span>
               <div>
                 <h4 class="font-semibold text-neutral-100">Configurar RMAN</h4>
-                <p class="text-neutral-400 text-sm">Definir FRA, retention policy, compressão e canais</p>
+                <p class="text-neutral-400 text-sm">Definir FRA, retention policy, compressêo e canais</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
@@ -493,7 +493,7 @@ BACKUP VALIDATE CHECK LOGICAL DATABASE;</code></pre>
               <span class="text-purple-400 mt-1">✓</span>
               <div>
                 <h4 class="font-semibold text-neutral-100">Otimizar Performance</h4>
-                <p class="text-neutral-400 text-sm">Paralelização, block change tracking, compressão</p>
+                <p class="text-neutral-400 text-sm">Paralelizaçêo, block change tracking, compressêo</p>
               </div>
             </div>
             <div class="flex items-start gap-3">

@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -157,14 +157,14 @@
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center"><span class="text-xl">📖</span></div>
-        <h2 class="text-xl font-bold text-red-400">Definição</h2>
+        <h2 class="text-xl font-bold text-red-400">Definiçêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
         <h3 class="text-lg font-semibold mb-4">O que é MAA?</h3>
         <p class="text-neutral-300 mb-4">
           <strong class="text-red-400">Maximum Availability Architecture (MAA)</strong> é o framework de best practices
-          da Oracle para design, implementação e operação de arquiteturas altamente disponíveis. Combina tecnologias
+          da Oracle para design, implementaçêo e operaçêo de arquiteturas altamente disponíveis. Combina tecnologias
           Oracle (RAC, Data Guard, ASM, Flashback, GoldenGate) com processos operacionais para eliminar downtime
           e minimizar perda de dados.
         </p>
@@ -174,8 +174,8 @@
             <li><strong>RTO (Recovery Time Objective):</strong> Tempo máximo de downtime aceitável (meta: minutos)</li>
             <li><strong>RPO (Recovery Point Objective):</strong> Perda de dados aceitável (meta: zero)</li>
             <li><strong>Disponibilidade 99.99%+:</strong> Menos de 1 hora de downtime por ano</li>
-            <li><strong>Proteção contra falhas:</strong> Hardware, software, site, humanas</li>
-            <li><strong>Manutenção online:</strong> Patches, upgrades sem parar aplicação</li>
+            <li><strong>Proteçêo contra falhas:</strong> Hardware, software, site, humanas</li>
+            <li><strong>Manutençêo online:</strong> Patches, upgrades sem parar aplicaçêo</li>
             <li><strong>Continuidade de negócio:</strong> Disaster recovery geográfico</li>
           </ul>
         </div>
@@ -229,7 +229,7 @@
         </div>
         <div class="grid md:grid-cols-2 gap-4">
           <div class="bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500">
-            <h4 class="font-semibold text-red-400 mb-2">Camadas de Proteção</h4>
+            <h4 class="font-semibold text-red-400 mb-2">Camadas de Proteçêo</h4>
             <ul class="text-neutral-300 text-sm list-disc list-inside">
               <li><strong>Local HA:</strong> RAC protege contra falha de servidor</li>
               <li><strong>Storage:</strong> ASM redundância + storage RAID</li>
@@ -242,8 +242,8 @@
             <ul class="text-neutral-300 text-sm list-disc list-inside">
               <li><strong>RAC:</strong> Escala e HA local</li>
               <li><strong>ASM:</strong> Storage resiliente e simplificado</li>
-              <li><strong>Data Guard:</strong> Proteção contra desastres</li>
-              <li><strong>Flashback:</strong> Recuperação de erros lógicos</li>
+              <li><strong>Data Guard:</strong> Proteçêo contra desastres</li>
+              <li><strong>Flashback:</strong> Recuperaçêo de erros lógicos</li>
             </ul>
           </div>
         </div>
@@ -259,7 +259,7 @@
             </div>
             <p class="text-neutral-300 text-sm">
               Single instance + RMAN backup. Sem redundância. RTO: horas, RPO: minutos-horas.
-              Adequado para ambientes não-críticos.
+              Adequado para ambientes nêo-críticos.
             </p>
           </div>
           <div class="bg-dark-700 rounded-lg p-4">
@@ -269,7 +269,7 @@
             </div>
             <p class="text-neutral-300 text-sm">
               Data Guard physical standby + RMAN. RTO: 1-2 horas, RPO: < 1 hora.
-              Proteção DR básica, boa para maioria dos ambientes.
+              Proteçêo DR básica, boa para maioria dos ambientes.
             </p>
           </div>
           <div class="bg-dark-700 rounded-lg p-4">
@@ -279,7 +279,7 @@
             </div>
             <p class="text-neutral-300 text-sm">
               RAC primário + Data Guard standby + ASM. RTO: 5-30 minutos, RPO: zero (SYNC).
-              Recomendado para ambientes críticos de produção.
+              Recomendado para ambientes críticos de produçêo.
             </p>
           </div>
           <div class="bg-dark-700 rounded-lg p-4">
@@ -299,7 +299,7 @@
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center"><span class="text-xl">🛠️</span></div>
-        <h2 class="text-xl font-bold text-cyan-400">Aplicação Prática</h2>
+        <h2 class="text-xl font-bold text-cyan-400">Aplicaçêo Prática</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -316,11 +316,11 @@
           </div>
 
           <div class="bg-dark-700 rounded-lg p-4">
-            <h4 class="font-semibold text-red-400 mb-2">2. Automação e Orquestração</h4>
+            <h4 class="font-semibold text-red-400 mb-2">2. Automaçêo e Orquestraçêo</h4>
             <ul class="text-neutral-300 text-sm list-disc list-inside space-y-1">
               <li>Fast-Start Failover automático com Data Guard Observer</li>
               <li>Application Continuity para replay de transações após failover</li>
-              <li>Connection pooling com detecção rápida de falhas (FAN events)</li>
+              <li>Connection pooling com detecçêo rápida de falhas (FAN events)</li>
               <li>Scripts de recovery e runbooks documentados e testados</li>
             </ul>
           </div>
@@ -329,9 +329,9 @@
             <h4 class="font-semibold text-red-400 mb-2">3. Monitoramento Proativo</h4>
             <ul class="text-neutral-300 text-sm list-disc list-inside space-y-1">
               <li>Enterprise Manager (OEM) para monitoramento centralizado</li>
-              <li>Alertas automáticos para degradação antes de falhas</li>
-              <li>Dashboards de RTO/RPO, lag de replicação, performance</li>
-              <li>Health checks regulares e predição de falhas</li>
+              <li>Alertas automáticos para degradaçêo antes de falhas</li>
+              <li>Dashboards de RTO/RPO, lag de replicaçêo, performance</li>
+              <li>Health checks regulares e prediçêo de falhas</li>
             </ul>
           </div>
 
@@ -339,8 +339,8 @@
             <h4 class="font-semibold text-red-400 mb-2">4. Testes Regulares</h4>
             <ul class="text-neutral-300 text-sm list-disc list-inside space-y-1">
               <li>Switchover planejado trimestral para validar DR</li>
-              <li>Testes de failover não-planejado (chaos engineering)</li>
-              <li>Validação de backups com restore completo</li>
+              <li>Testes de failover nêo-planejado (chaos engineering)</li>
+              <li>Validaçêo de backups com restore completo</li>
               <li>Simulações de desastres e war games com equipe</li>
             </ul>
           </div>
@@ -348,7 +348,7 @@
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Configuração MAA Gold (Exemplo)</h3>
+        <h3 class="text-lg font-semibold mb-4">Configuraçêo MAA Gold (Exemplo)</h3>
         <pre><code class="language-sql">-- Arquitetura Gold: 2-node RAC Primary + 1-node Standby
 
 -- PRIMARY SITE (RAC 2 nós)
@@ -367,7 +367,7 @@ ALTER SYSTEM SET db_flashback_retention_target=4320; -- 3 dias
 ALTER DATABASE FLASHBACK ON;
 
 -- STANDBY SITE (single instance ou RAC)
--- Configuração Data Guard Broker
+-- Configuraçêo Data Guard Broker
 CREATE CONFIGURATION maa_dg AS PRIMARY DATABASE IS proddb CONNECT IDENTIFIER IS proddb_scan;
 ADD DATABASE standbydb AS CONNECT IDENTIFIER IS standbydb MAINTAINED AS PHYSICAL;
 ENABLE CONFIGURATION;
@@ -396,7 +396,7 @@ END;
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-        <h3 class="text-lg font-semibold mb-4">Checklist de Implementação MAA</h3>
+        <h3 class="text-lg font-semibold mb-4">Checklist de Implementaçêo MAA</h3>
         <div class="space-y-2">
           <div class="flex items-center gap-3 bg-dark-700 rounded-lg p-3">
             <input type="checkbox" class="w-4 h-4">
@@ -479,7 +479,7 @@ END;
           <div class="space-y-3">
             <div class="flex items-start gap-3">
               <span class="text-red-400 mt-1">✓</span>
-              <div><h4 class="font-semibold text-neutral-100">Implementar automação</h4>
+              <div><h4 class="font-semibold text-neutral-100">Implementar automaçêo</h4>
                 <p class="text-neutral-400 text-sm">Fast-Start Failover, Application Continuity</p></div>
             </div>
             <div class="flex items-start gap-3">

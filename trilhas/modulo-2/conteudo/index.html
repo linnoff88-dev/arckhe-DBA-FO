@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trilha 2: Administração Básica - Conteúdo Completo | Oracle DBA</title>
+  <title>Trilha 2: Administraçêo Básica - Conteúdo Completo | Oracle DBA</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -22,7 +22,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -34,7 +34,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -156,11 +156,11 @@
         </div>
         <div>
           <span class="text-cyan-400 text-sm font-semibold">TRILHA 2</span>
-          <h1 class="text-3xl font-bold">Administração Básica do Oracle</h1>
+          <h1 class="text-3xl font-bold">Administraçêo Básica do Oracle</h1>
         </div>
       </div>
       <p class="text-neutral-400 max-w-2xl">
-        Aprenda os fundamentos da administração Oracle: arquitetura, instalação, configuração e
+        Aprenda os fundamentos da administraçêo Oracle: arquitetura, instalaçêo, configuraçêo e
         gerenciamento básico de instâncias e bancos de dados.
       </p>
     </div>
@@ -190,7 +190,7 @@
           <div class="px-6 pb-6 border-t border-dark-600 pt-4">
             <div class="space-y-4 mb-6">
               <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
-                <h4 class="font-semibold text-cyan-400 mb-2">📖 Definição</h4>
+                <h4 class="font-semibold text-cyan-400 mb-2">📖 Definiçêo</h4>
                 <p class="text-neutral-300 text-sm">
                   A arquitetura Oracle é dividida em duas partes: <strong>Instância</strong> (memória + processos)
                   e <strong>Database</strong> (arquivos físicos). A SGA é a memória compartilhada, a PGA é memória
@@ -198,7 +198,7 @@
                 </p>
               </div>
               <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
-                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicação Prática</h4>
+                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicaçêo Prática</h4>
                 <p class="text-neutral-300 text-sm">
                   Entender a arquitetura permite diagnosticar problemas de performance (SGA muito pequena?),
                   planejar capacidade (quanto de RAM alocar?) e interpretar alertas corretamente.
@@ -208,7 +208,7 @@
                 <h4 class="font-semibold text-purple-400 mb-2">✅ Resultado Esperado</h4>
                 <p class="text-neutral-300 text-sm">
                   Você será capaz de explicar como o Oracle funciona internamente, identificar
-                  componentes em logs de erro e tomar decisões de configuração informadas.
+                  componentes em logs de erro e tomar decisões de configuraçêo informadas.
                 </p>
               </div>
             </div>
@@ -224,14 +224,14 @@
         </div>
       </div>
 
-      <!-- Topic 2: Instalação Oracle -->
+      <!-- Topic 2: Instalaçêo Oracle -->
       <div class="bg-dark-800 rounded-xl border border-dark-600 overflow-hidden">
         <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center justify-between hover:bg-dark-700/50 transition-colors">
           <div class="flex items-center gap-4">
             <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center text-cyan-400 font-bold">2</div>
             <div class="text-left">
-              <h3 class="font-semibold text-neutral-100">Instalação do Oracle Database</h3>
-              <p class="text-sm text-neutral-400">Pré-requisitos, OUI, silent install, pós-instalação</p>
+              <h3 class="font-semibold text-neutral-100">Instalaçêo do Oracle Database</h3>
+              <p class="text-sm text-neutral-400">Pré-requisitos, OUI, silent install, pós-instalaçêo</p>
             </div>
           </div>
           <svg class="topic-arrow w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -242,17 +242,17 @@
           <div class="px-6 pb-6 border-t border-dark-600 pt-4">
             <div class="space-y-4 mb-6">
               <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
-                <h4 class="font-semibold text-cyan-400 mb-2">📖 Definição</h4>
+                <h4 class="font-semibold text-cyan-400 mb-2">📖 Definiçêo</h4>
                 <p class="text-neutral-300 text-sm">
-                  A instalação Oracle envolve verificar pré-requisitos de sistema (memória, swap, pacotes),
+                  A instalaçêo Oracle envolve verificar pré-requisitos de sistema (memória, swap, pacotes),
                   configurar usuário oracle e grupos, executar o Oracle Universal Installer (OUI) e
                   configurar variáveis de ambiente (ORACLE_HOME, ORACLE_SID, PATH).
                 </p>
               </div>
               <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
-                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicação Prática</h4>
+                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicaçêo Prática</h4>
                 <p class="text-neutral-300 text-sm">
-                  Instalação silent (sem GUI) é essencial para automação. Response files permitem
+                  Instalaçêo silent (sem GUI) é essencial para automaçêo. Response files permitem
                   reproduzir instalações. Verificar pré-requisitos evita problemas posteriores.
                 </p>
               </div>
@@ -276,7 +276,7 @@
         </div>
       </div>
 
-      <!-- Topic 3: Criação de Database -->
+      <!-- Topic 3: Criaçêo de Database -->
       <div class="bg-dark-800 rounded-xl border border-dark-600 overflow-hidden">
         <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center justify-between hover:bg-dark-700/50 transition-colors">
           <div class="flex items-center gap-4">
@@ -294,25 +294,25 @@
           <div class="px-6 pb-6 border-t border-dark-600 pt-4">
             <div class="space-y-4 mb-6">
               <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
-                <h4 class="font-semibold text-cyan-400 mb-2">📖 Definição</h4>
+                <h4 class="font-semibold text-cyan-400 mb-2">📖 Definiçêo</h4>
                 <p class="text-neutral-300 text-sm">
                   O <strong>DBCA (Database Configuration Assistant)</strong> é a ferramenta gráfica
                   para criar bancos. Permite escolher templates (Data Warehouse, OLTP, Custom),
-                  configurar armazenamento, memória e opções de recuperação.
+                  configurar armazenamento, memória e opções de recuperaçêo.
                 </p>
               </div>
               <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
-                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicação Prática</h4>
+                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicaçêo Prática</h4>
                 <p class="text-neutral-300 text-sm">
-                  Use DBCA silent mode para automação. Crie templates customizados para padronizar
+                  Use DBCA silent mode para automaçêo. Crie templates customizados para padronizar
                   ambientes. Entenda CREATE DATABASE manual para troubleshooting e ambientes especiais.
                 </p>
               </div>
               <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
                 <h4 class="font-semibold text-purple-400 mb-2">✅ Resultado Esperado</h4>
                 <p class="text-neutral-300 text-sm">
-                  Criar bancos via GUI e silent mode, entender parâmetros de criação,
-                  configurar opções de armazenamento e recuperação adequadamente.
+                  Criar bancos via GUI e silent mode, entender parâmetros de criaçêo,
+                  configurar opções de armazenamento e recuperaçêo adequadamente.
                 </p>
               </div>
             </div>
@@ -346,7 +346,7 @@
           <div class="px-6 pb-6 border-t border-dark-600 pt-4">
             <div class="space-y-4 mb-6">
               <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
-                <h4 class="font-semibold text-cyan-400 mb-2">📖 Definição</h4>
+                <h4 class="font-semibold text-cyan-400 mb-2">📖 Definiçêo</h4>
                 <p class="text-neutral-300 text-sm">
                   O Oracle tem fases de startup: <strong>NOMOUNT</strong> (lê spfile), <strong>MOUNT</strong>
                   (abre control files), <strong>OPEN</strong> (abre datafiles/redo). Shutdown pode ser
@@ -354,17 +354,17 @@
                 </p>
               </div>
               <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
-                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicação Prática</h4>
+                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicaçêo Prática</h4>
                 <p class="text-neutral-300 text-sm">
-                  Use STARTUP MOUNT para manutenção (recovery, renomear arquivos). Use SHUTDOWN IMMEDIATE
-                  para paradas planejadas. ABORT apenas em emergências - requer recovery na próxima inicialização.
+                  Use STARTUP MOUNT para manutençêo (recovery, renomear arquivos). Use SHUTDOWN IMMEDIATE
+                  para paradas planejadas. ABORT apenas em emergências - requer recovery na próxima inicializaçêo.
                 </p>
               </div>
               <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
                 <h4 class="font-semibold text-purple-400 mb-2">✅ Resultado Esperado</h4>
                 <p class="text-neutral-300 text-sm">
                   Iniciar/parar o banco em diferentes modos, diagnosticar falhas de startup,
-                  escolher opção de shutdown correta para cada situação.
+                  escolher opçêo de shutdown correta para cada situaçêo.
                 </p>
               </div>
             </div>
@@ -380,13 +380,13 @@
         </div>
       </div>
 
-      <!-- Topic 5: Parâmetros de Inicialização -->
+      <!-- Topic 5: Parâmetros de Inicializaçêo -->
       <div class="bg-dark-800 rounded-xl border border-dark-600 overflow-hidden">
         <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center justify-between hover:bg-dark-700/50 transition-colors">
           <div class="flex items-center gap-4">
             <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center text-cyan-400 font-bold">5</div>
             <div class="text-left">
-              <h3 class="font-semibold text-neutral-100">Parâmetros de Inicialização (SPFILE/PFILE)</h3>
+              <h3 class="font-semibold text-neutral-100">Parâmetros de Inicializaçêo (SPFILE/PFILE)</h3>
               <p class="text-sm text-neutral-400">spfile, pfile, ALTER SYSTEM, parâmetros essenciais</p>
             </div>
           </div>
@@ -398,15 +398,15 @@
           <div class="px-6 pb-6 border-t border-dark-600 pt-4">
             <div class="space-y-4 mb-6">
               <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
-                <h4 class="font-semibold text-cyan-400 mb-2">📖 Definição</h4>
+                <h4 class="font-semibold text-cyan-400 mb-2">📖 Definiçêo</h4>
                 <p class="text-neutral-300 text-sm">
                   <strong>SPFILE</strong> é binário e gerenciado pelo Oracle (recomendado).
                   <strong>PFILE</strong> é texto editável manualmente. ALTER SYSTEM modifica parâmetros
-                  em runtime. Parâmetros podem ser STATIC (requer restart) ou DYNAMIC (aplicação imediata).
+                  em runtime. Parâmetros podem ser STATIC (requer restart) ou DYNAMIC (aplicaçêo imediata).
                 </p>
               </div>
               <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
-                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicação Prática</h4>
+                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicaçêo Prática</h4>
                 <p class="text-neutral-300 text-sm">
                   Parâmetros críticos: SGA_TARGET, PGA_AGGREGATE_TARGET, PROCESSES, SESSIONS,
                   DB_RECOVERY_FILE_DEST. Use V$PARAMETER e V$SPPARAMETER para consultar valores.
@@ -450,7 +450,7 @@
           <div class="px-6 pb-6 border-t border-dark-600 pt-4">
             <div class="space-y-4 mb-6">
               <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
-                <h4 class="font-semibold text-cyan-400 mb-2">📖 Definição</h4>
+                <h4 class="font-semibold text-cyan-400 mb-2">📖 Definiçêo</h4>
                 <p class="text-neutral-300 text-sm">
                   <strong>Tablespace</strong> é um container lógico que agrupa datafiles.
                   Tipos: PERMANENT (dados), TEMPORARY (sorts), UNDO (rollback).
@@ -458,7 +458,7 @@
                 </p>
               </div>
               <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
-                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicação Prática</h4>
+                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicaçêo Prática</h4>
                 <p class="text-neutral-300 text-sm">
                   Monitore espaço com DBA_TABLESPACE_USAGE_METRICS. Use AUTOEXTEND com MAXSIZE
                   para crescimento controlado. OMF (Oracle Managed Files) simplifica gerenciamento.
@@ -491,7 +491,7 @@
             <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center text-cyan-400 font-bold">7</div>
             <div class="text-left">
               <h3 class="font-semibold text-neutral-100">Schemas e Owners</h3>
-              <p class="text-sm text-neutral-400">Schema = User no Oracle, owner de objetos, prefixação, privilégios</p>
+              <p class="text-sm text-neutral-400">Schema = User no Oracle, owner de objetos, prefixaçêo, privilégios</p>
             </div>
           </div>
           <svg class="topic-arrow w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -502,19 +502,19 @@
           <div class="px-6 pb-6 border-t border-dark-600 pt-4">
             <div class="space-y-4 mb-6">
               <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
-                <h4 class="font-semibold text-cyan-400 mb-2">📖 Definição</h4>
+                <h4 class="font-semibold text-cyan-400 mb-2">📖 Definiçêo</h4>
                 <p class="text-neutral-300 text-sm">
                   No Oracle, <strong>schema</strong> é sinônimo de usuário - cada user tem seu próprio schema.
-                  O schema é o owner de objetos (tabelas, views, procedures). Objetos são referenciados como
+                  O schema é o owner de objetos (tabelas, views, procedures). Objetos sêo referenciados como
                   SCHEMA.OBJETO. Usuários precisam de privilégios para acessar objetos de outros schemas.
                 </p>
               </div>
               <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
-                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicação Prática</h4>
+                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicaçêo Prática</h4>
                 <p class="text-neutral-300 text-sm">
-                  Organize aplicações por schemas separados. Use prefixação (SCHEMA.TABELA) para evitar
+                  Organize aplicações por schemas separados. Use prefixaçêo (SCHEMA.TABELA) para evitar
                   ambiguidade. Grant SELECT/INSERT/UPDATE/DELETE para controlar acesso entre schemas.
-                  Schemas facilitam backup/restore seletivo e segregação de ambientes.
+                  Schemas facilitam backup/restore seletivo e segregaçêo de ambientes.
                 </p>
               </div>
               <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
@@ -542,7 +542,7 @@
     <!-- Action Buttons -->
     <section class="mt-12">
       <div class="bg-gradient-to-r from-cyan-900/30 to-purple-900/30 rounded-xl border border-cyan-500/30 p-6">
-        <h3 class="text-lg font-semibold mb-2 text-center">Trilha 2: Administração Básica do Oracle</h3>
+        <h3 class="text-lg font-semibold mb-2 text-center">Trilha 2: Administraçêo Básica do Oracle</h3>
         <p class="text-neutral-400 text-sm text-center mb-4">Acesse o resumo da trilha ou veja em formato modal</p>
         <div class="flex flex-wrap justify-center gap-4">
           <button onclick="openTrilhaModal()" class="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2">
@@ -599,7 +599,7 @@
   <!-- Footer -->
   <footer class="bg-dark-900 border-t border-dark-700 py-8 mt-12">
     <div class="max-w-4xl mx-auto px-4 text-center">
-      <p class="text-neutral-500 text-sm">Curso Oracle DBA - Trilha 2: Administração Básica</p>
+      <p class="text-neutral-500 text-sm">Curso Oracle DBA - Trilha 2: Administraçêo Básica</p>
     </div>
   </footer>
 
@@ -643,10 +643,10 @@
     // Modal functions
     const topicPages = {
       'topic1': { title: 'Arquitetura do Oracle Database', url: 'topico-1.html' },
-      'topic2': { title: 'Instalação do Oracle Database', url: 'topico-2.html' },
+      'topic2': { title: 'Instalaçêo do Oracle Database', url: 'topico-2.html' },
       'topic3': { title: 'Criando um Database com DBCA', url: 'topico-3.html' },
       'topic4': { title: 'Startup e Shutdown do Banco', url: 'topico-4.html' },
-      'topic5': { title: 'Parâmetros de Inicialização', url: 'topico-5.html' },
+      'topic5': { title: 'Parâmetros de Inicializaçêo', url: 'topico-5.html' },
       'topic6': { title: 'Gerenciamento de Tablespaces', url: 'topico-6.html' },
       'topic7': { title: 'Schemas e Owners', url: 'topico-7.html' }
     };
@@ -669,7 +669,7 @@
 
     // Open Trilha modal
     function openTrilhaModal() {
-      document.getElementById('modal-title').textContent = 'Trilha 2: Administração Básica do Oracle';
+      document.getElementById('modal-title').textContent = 'Trilha 2: Administraçêo Básica do Oracle';
       document.getElementById('modal-iframe').src = '../index.html';
       document.getElementById('modal-overlay').classList.add('active');
       document.body.style.overflow = 'hidden';

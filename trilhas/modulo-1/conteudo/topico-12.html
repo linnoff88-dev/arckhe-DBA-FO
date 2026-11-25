@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -153,7 +153,7 @@
         </div>
         <div>
           <h1 class="text-2xl font-bold">Funções SQL</h1>
-          <p class="text-neutral-400">Numéricas, strings, datas, conversão e condicionais</p>
+          <p class="text-neutral-400">Numéricas, strings, datas, conversêo e condicionais</p>
         </div>
       </div>
     </div>
@@ -162,7 +162,7 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Funções Numéricas -->
+    <!-- Seçêo 1: Funções Numéricas -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
@@ -193,7 +193,7 @@ SELECT TRUNC(123.456, -1) FROM DUAL;     -- 120</code></pre>
           </div>
 
           <div class="bg-dark-700 rounded-lg p-4">
-            <h4 class="font-semibold text-emerald-400 mb-2">MOD - Módulo (resto da divisão)</h4>
+            <h4 class="font-semibold text-emerald-400 mb-2">MOD - Módulo (resto da divisêo)</h4>
             <pre><code class="language-sql">SELECT MOD(10, 3) FROM DUAL;             -- 1 (resto de 10÷3)
 SELECT MOD(15, 4) FROM DUAL;             -- 3
 
@@ -221,7 +221,7 @@ SELECT FLOOR(-2.3) FROM DUAL;            -- -3</code></pre>
       </div>
     </section>
 
-    <!-- Seção 2: Funções de String -->
+    <!-- Seçêo 2: Funções de String -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
@@ -231,7 +231,7 @@ SELECT FLOOR(-2.3) FROM DUAL;            -- -3</code></pre>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Conversão de Caso</h3>
+        <h3 class="text-lg font-semibold mb-4">Conversêo de Caso</h3>
 
         <div class="space-y-4">
           <div class="bg-dark-700 rounded-lg p-4">
@@ -242,19 +242,19 @@ SELECT INITCAP('oracle database') FROM DUAL;   -- Oracle Database
 
 -- Busca case-insensitive
 SELECT nome FROM funcionarios
-WHERE UPPER(nome) = UPPER('joão silva');</code></pre>
+WHERE UPPER(nome) = UPPER('joêo silva');</code></pre>
           </div>
         </div>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Manipulação de Strings</h3>
+        <h3 class="text-lg font-semibold mb-4">Manipulaçêo de Strings</h3>
 
         <div class="space-y-4">
           <div class="bg-dark-700 rounded-lg p-4">
             <h4 class="font-semibold text-cyan-400 mb-2">SUBSTR - Extrair Substring</h4>
-            <pre><code class="language-sql">SELECT SUBSTR('Oracle Database', 1, 6) FROM DUAL;     -- Oracle (posição 1, 6 chars)
-SELECT SUBSTR('Oracle Database', 8) FROM DUAL;        -- Database (posição 8 até o fim)
+            <pre><code class="language-sql">SELECT SUBSTR('Oracle Database', 1, 6) FROM DUAL;     -- Oracle (posiçêo 1, 6 chars)
+SELECT SUBSTR('Oracle Database', 8) FROM DUAL;        -- Database (posiçêo 8 até o fim)
 SELECT SUBSTR('Oracle Database', -8) FROM DUAL;       -- Database (8 chars do fim)
 
 -- Extrair código de área de telefone
@@ -272,7 +272,7 @@ WHERE LENGTH(senha) < 8;</code></pre>
           </div>
 
           <div class="bg-dark-700 rounded-lg p-4">
-            <h4 class="font-semibold text-cyan-400 mb-2">CONCAT e || (Concatenação)</h4>
+            <h4 class="font-semibold text-cyan-400 mb-2">CONCAT e || (Concatenaçêo)</h4>
             <pre><code class="language-sql">SELECT CONCAT('Oracle', ' Database') FROM DUAL;       -- Oracle Database
 SELECT 'Oracle' || ' ' || 'Database' FROM DUAL;       -- Oracle Database (operador ||)
 
@@ -316,7 +316,7 @@ FROM clientes;</code></pre>
       </div>
     </section>
 
-    <!-- Seção 3: Funções de Data -->
+    <!-- Seçêo 3: Funções de Data -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -332,7 +332,7 @@ FROM clientes;</code></pre>
           <div class="bg-dark-700 rounded-lg p-4">
             <h4 class="font-semibold text-purple-400 mb-2">SYSDATE e CURRENT_DATE</h4>
             <pre><code class="language-sql">SELECT SYSDATE FROM DUAL;                             -- Data/hora do servidor
-SELECT CURRENT_DATE FROM DUAL;                        -- Data/hora da sessão
+SELECT CURRENT_DATE FROM DUAL;                        -- Data/hora da sessêo
 
 -- Usar em INSERT
 INSERT INTO logs (id, mensagem, data_hora)
@@ -407,13 +407,13 @@ GROUP BY EXTRACT(YEAR FROM data_venda);</code></pre>
       </div>
     </section>
 
-    <!-- Seção 4: Funções de Conversão -->
+    <!-- Seçêo 4: Funções de Conversêo -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-amber-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">🔄</span>
         </div>
-        <h2 class="text-xl font-bold text-amber-400">Funções de Conversão</h2>
+        <h2 class="text-xl font-bold text-amber-400">Funções de Conversêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -493,7 +493,7 @@ WHERE data_pedido >= TO_DATE('01/01/2025', 'DD/MM/YYYY')
       </div>
     </section>
 
-    <!-- Seção 5: Funções Condicionais -->
+    <!-- Seçêo 5: Funções Condicionais -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
@@ -509,7 +509,7 @@ WHERE data_pedido >= TO_DATE('01/01/2025', 'DD/MM/YYYY')
           <div class="bg-dark-700 rounded-lg p-4">
             <h4 class="font-semibold text-emerald-400 mb-2">NVL - Substituir NULL</h4>
             <pre><code class="language-sql">SELECT NVL(comissao, 0) FROM funcionarios;            -- Se NULL, usa 0
-SELECT NVL(telefone, 'Não informado') FROM clientes;  -- Se NULL, usa texto
+SELECT NVL(telefone, 'Nêo informado') FROM clientes;  -- Se NULL, usa texto
 
 -- Calcular com NULL tratado
 SELECT nome, salario, NVL(comissao, 0) AS comissao,
@@ -518,9 +518,9 @@ FROM funcionarios;</code></pre>
           </div>
 
           <div class="bg-dark-700 rounded-lg p-4">
-            <h4 class="font-semibold text-emerald-400 mb-2">NVL2 - Valor se NULL ou NÃO NULL</h4>
-            <pre><code class="language-sql">-- NVL2(expressão, valor_se_não_null, valor_se_null)
-SELECT NVL2(comissao, 'Sim', 'Não') AS tem_comissao
+            <h4 class="font-semibold text-emerald-400 mb-2">NVL2 - Valor se NULL ou NêO NULL</h4>
+            <pre><code class="language-sql">-- NVL2(expressêo, valor_se_nêo_null, valor_se_null)
+SELECT NVL2(comissao, 'Sim', 'Nêo') AS tem_comissao
 FROM funcionarios;
 
 SELECT nome,
@@ -529,8 +529,8 @@ FROM funcionarios;</code></pre>
           </div>
 
           <div class="bg-dark-700 rounded-lg p-4">
-            <h4 class="font-semibold text-emerald-400 mb-2">COALESCE - Primeiro valor não NULL</h4>
-            <pre><code class="language-sql">-- Retorna o primeiro valor não NULL da lista
+            <h4 class="font-semibold text-emerald-400 mb-2">COALESCE - Primeiro valor nêo NULL</h4>
+            <pre><code class="language-sql">-- Retorna o primeiro valor nêo NULL da lista
 SELECT COALESCE(telefone_celular, telefone_residencial,
                 telefone_comercial, 'Sem telefone') AS contato
 FROM clientes;
@@ -547,7 +547,7 @@ FROM usuarios;</code></pre>
         <div class="space-y-4">
           <div class="bg-dark-700 rounded-lg p-4">
             <h4 class="font-semibold text-emerald-400 mb-2">DECODE - Condicional Simples</h4>
-            <pre><code class="language-sql">-- DECODE(coluna, valor1, resultado1, valor2, resultado2, ..., padrão)
+            <pre><code class="language-sql">-- DECODE(coluna, valor1, resultado1, valor2, resultado2, ..., padrêo)
 SELECT nome,
        DECODE(departamento_id,
               10, 'Tecnologia',
@@ -565,7 +565,7 @@ FROM funcionarios;</code></pre>
           </div>
 
           <div class="bg-dark-700 rounded-lg p-4">
-            <h4 class="font-semibold text-emerald-400 mb-2">CASE - Condicional Avançada (SQL Padrão)</h4>
+            <h4 class="font-semibold text-emerald-400 mb-2">CASE - Condicional Avançada (SQL Padrêo)</h4>
             <pre><code class="language-sql">-- CASE simples (igual ao DECODE)
 SELECT nome,
        CASE departamento_id
@@ -582,7 +582,7 @@ SELECT nome, salario,
            WHEN salario < 3000 THEN 'Júnior'
            WHEN salario BETWEEN 3000 AND 7000 THEN 'Pleno'
            WHEN salario > 7000 THEN 'Sênior'
-           ELSE 'Não classificado'
+           ELSE 'Nêo classificado'
        END AS nivel
 FROM funcionarios;
 
@@ -657,7 +657,7 @@ ORDER BY ano DESC, mes DESC;</code></pre>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-        <h3 class="text-lg font-semibold mb-4">Exemplo 3: Validação e Limpeza de Dados</h3>
+        <h3 class="text-lg font-semibold mb-4">Exemplo 3: Validaçêo e Limpeza de Dados</h3>
 
         <pre><code class="language-sql">SELECT
     id_cliente,
@@ -673,7 +673,7 @@ ORDER BY ano DESC, mes DESC;</code></pre>
         WHEN email LIKE '%@%' THEN 'Válido'
         ELSE 'Inválido'
     END AS status_email,
-    COALESCE(NULLIF(TRIM(endereco), ''), 'Não informado') AS endereco,
+    COALESCE(NULLIF(TRIM(endereco), ''), 'Nêo informado') AS endereco,
     ROUND((SYSDATE - data_cadastro), 0) AS dias_cadastrado,
     DECODE(SIGN(SYSDATE - ultima_compra - 90),
            1, 'Inativo',
@@ -757,14 +757,14 @@ FROM clientes;</code></pre>
 
       <div class="space-y-4">
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 1: Formatação de Relatório</h3>
+          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 1: Formataçêo de Relatório</h3>
           <p class="text-neutral-300 mb-4">
             Crie uma query que mostre funcionários com: nome em maiúsculas, salário formatado em reais,
             tempo de empresa em anos (arredondado) e categoria (Júnior/Pleno/Sênior baseado no salário).
           </p>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">SELECT
     UPPER(nome) AS nome,
@@ -782,14 +782,14 @@ ORDER BY salario DESC;</code></pre>
         </div>
 
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 2: Manipulação de Strings</h3>
+          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 2: Manipulaçêo de Strings</h3>
           <p class="text-neutral-300 mb-4">
             Extraia os 3 primeiros caracteres do nome, converta para maiúsculas e concatene com o ID
             formatado com zeros à esquerda (6 dígitos) para criar um código único.
           </p>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">SELECT
     id_funcionario,
@@ -803,12 +803,12 @@ FROM funcionarios;</code></pre>
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
           <h3 class="font-semibold text-neutral-100 mb-2">Exercício 3: Análise Temporal</h3>
           <p class="text-neutral-300 mb-4">
-            Liste funcionários admitidos nos últimos 90 dias, mostrando nome, data de admissão formatada,
-            dias desde admissão e o dia da semana da admissão.
+            Liste funcionários admitidos nos últimos 90 dias, mostrando nome, data de admissêo formatada,
+            dias desde admissêo e o dia da semana da admissêo.
           </p>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">SELECT
     nome,
@@ -854,7 +854,7 @@ ORDER BY data_admissao DESC;</code></pre>
         <span>Anterior: TCL</span>
       </a>
       <a href="topico-13.html" class="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors">
-        <span>Próximo: Agregação e GROUP BY</span>
+        <span>Próximo: Agregaçêo e GROUP BY</span>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>

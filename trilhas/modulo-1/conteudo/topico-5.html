@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -162,28 +162,28 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Definição -->
+    <!-- Seçêo 1: Definiçêo -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">📖</span>
         </div>
-        <h2 class="text-xl font-bold text-emerald-400">Definição</h2>
+        <h2 class="text-xl font-bold text-emerald-400">Definiçêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
         <h3 class="text-lg font-semibold mb-4">Os 4 Comandos Fundamentais</h3>
         <p class="text-neutral-300 mb-4">
-          Estes são os comandos SQL mais utilizados no dia a dia. Juntos, eles representam
+          Estes sêo os comandos SQL mais utilizados no dia a dia. Juntos, eles representam
           as operações <strong class="text-emerald-400">CRUD</strong> (Create, Read, Update, Delete)
-          que formam a base de qualquer aplicação que interage com banco de dados.
+          que formam a base de qualquer aplicaçêo que interage com banco de dados.
         </p>
 
         <div class="grid md:grid-cols-2 gap-4">
           <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
             <h4 class="font-semibold text-emerald-400">SELECT (Read)</h4>
             <p class="text-neutral-300 text-sm">Recupera dados do banco. É o comando mais usado - aproximadamente 80% das operações.</p>
-            <code class="text-xs text-neutral-400 mt-2 block">SELECT colunas FROM tabela WHERE condição</code>
+            <code class="text-xs text-neutral-400 mt-2 block">SELECT colunas FROM tabela WHERE condiçêo</code>
           </div>
 
           <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
@@ -195,13 +195,13 @@
           <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
             <h4 class="font-semibold text-purple-400">UPDATE (Update)</h4>
             <p class="text-neutral-300 text-sm">Modifica registros existentes. <strong class="text-red-400">Cuidado: sem WHERE afeta todos!</strong></p>
-            <code class="text-xs text-neutral-400 mt-2 block">UPDATE tabela SET coluna = valor WHERE condição</code>
+            <code class="text-xs text-neutral-400 mt-2 block">UPDATE tabela SET coluna = valor WHERE condiçêo</code>
           </div>
 
           <div class="bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500">
             <h4 class="font-semibold text-red-400">DELETE (Delete)</h4>
             <p class="text-neutral-300 text-sm">Remove registros. <strong class="text-red-400">Cuidado: sem WHERE apaga tudo!</strong></p>
-            <code class="text-xs text-neutral-400 mt-2 block">DELETE FROM tabela WHERE condição</code>
+            <code class="text-xs text-neutral-400 mt-2 block">DELETE FROM tabela WHERE condiçêo</code>
           </div>
         </div>
       </div>
@@ -216,9 +216,9 @@
           <div class="bg-dark-800 rounded-lg p-4">
             <p class="text-sm mb-2"><strong>Prática segura:</strong> Antes de executar UPDATE ou DELETE:</p>
             <ol class="list-decimal list-inside text-sm space-y-1">
-              <li>Execute um SELECT com a mesma condição WHERE</li>
-              <li>Verifique se os registros retornados são os esperados</li>
-              <li>Só então execute o UPDATE/DELETE</li>
+              <li>Execute um SELECT com a mesma condiçêo WHERE</li>
+              <li>Verifique se os registros retornados sêo os esperados</li>
+              <li>Só entêo execute o UPDATE/DELETE</li>
               <li>Use COMMIT apenas após confirmar o resultado</li>
             </ol>
           </div>
@@ -226,13 +226,13 @@
       </div>
     </section>
 
-    <!-- Seção 2: Aplicação Prática -->
+    <!-- Seçêo 2: Aplicaçêo Prática -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">🛠️</span>
         </div>
-        <h2 class="text-xl font-bold text-cyan-400">Aplicação Prática</h2>
+        <h2 class="text-xl font-bold text-cyan-400">Aplicaçêo Prática</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -249,7 +249,7 @@ CREATE TABLE funcionarios (
 );
 
 -- Inserir dados de exemplo
-INSERT INTO funcionarios VALUES (1, 'João Silva', 'Analista', 5000, 'TI', DATE '2020-03-15');
+INSERT INTO funcionarios VALUES (1, 'Joêo Silva', 'Analista', 5000, 'TI', DATE '2020-03-15');
 INSERT INTO funcionarios VALUES (2, 'Maria Santos', 'Gerente', 8000, 'RH', DATE '2018-05-20');
 INSERT INTO funcionarios VALUES (3, 'Pedro Costa', 'Desenvolvedor', 6000, 'TI', DATE '2021-01-10');
 INSERT INTO funcionarios VALUES (4, 'Ana Oliveira', 'Analista', 5500, 'Financeiro', DATE '2019-08-01');
@@ -289,7 +289,7 @@ SELECT nome, salario
 FROM funcionarios
 WHERE salario BETWEEN 5000 AND 8000;
 
--- SELECT com LIKE (padrão)
+-- SELECT com LIKE (padrêo)
 SELECT nome FROM funcionarios WHERE nome LIKE 'Jo%';      -- Começa com "Jo"
 SELECT nome FROM funcionarios WHERE nome LIKE '%Silva';   -- Termina com "Silva"
 SELECT nome FROM funcionarios WHERE nome LIKE '%ar%';    -- Contém "ar"
@@ -329,7 +329,7 @@ VALUES (7, 'Ricardo Souza', 'Estagiário', 1500, 'TI', SYSDATE);
 -- INSERT parcial (colunas com NULL ou DEFAULT)
 INSERT INTO funcionarios (id, nome, cargo, departamento)
 VALUES (8, 'Luciana Mendes', 'Consultora', 'Externo');
--- salario ficará NULL, data_admissao também (se não tiver DEFAULT)
+-- salario ficará NULL, data_admissao também (se nêo tiver DEFAULT)
 
 -- INSERT com subconsulta
 INSERT INTO funcionarios_backup
@@ -364,7 +364,7 @@ SELECT id, nome, salario
 FROM funcionarios
 WHERE departamento = 'TI';
 
--- PASSO 2: Se os registros estão corretos, executar UPDATE
+-- PASSO 2: Se os registros estêo corretos, executar UPDATE
 -- UPDATE simples: uma coluna
 UPDATE funcionarios
 SET salario = 5500
@@ -405,7 +405,7 @@ SELECT id, nome, cargo, salario FROM funcionarios;
 -- Se OK, confirmar
 COMMIT;
 
--- Se NÃO OK, desfazer
+-- Se NêO OK, desfazer
 -- ROLLBACK;</code></pre>
 
         <div class="bg-amber-900/20 border border-amber-500/30 rounded-lg p-4 mt-4">
@@ -419,7 +419,7 @@ UPDATE funcionarios SET salario = salario * 1.5 WHERE departamento = 'TI';
 -- Se algo deu errado, restaure
 -- INSERT INTO funcionarios SELECT * FROM funcionarios_bkp WHERE ...
 -- ou
--- ROLLBACK; (se ainda não fez COMMIT)</code></pre>
+-- ROLLBACK; (se ainda nêo fez COMMIT)</code></pre>
         </div>
       </div>
 
@@ -430,7 +430,7 @@ UPDATE funcionarios SET salario = salario * 1.5 WHERE departamento = 'TI';
 SELECT * FROM funcionarios
 WHERE data_admissao < DATE '2016-01-01';
 
--- PASSO 2: Se os registros estão corretos, executar DELETE
+-- PASSO 2: Se os registros estêo corretos, executar DELETE
 -- DELETE simples
 DELETE FROM funcionarios
 WHERE id = 8;
@@ -467,7 +467,7 @@ DELETE FROM funcionarios;  -- Apaga TODOS os registros!
 
 -- Diferença entre DELETE e TRUNCATE:
 -- DELETE: Pode ser revertido com ROLLBACK, gera log, dispara triggers
--- TRUNCATE: NÃO pode ser revertido, mais rápido, não dispara triggers
+-- TRUNCATE: NêO pode ser revertido, mais rápido, nêo dispara triggers
 
 TRUNCATE TABLE funcionarios;  -- DDL: COMMIT automático, sem volta!</code></pre>
         </div>
@@ -506,7 +506,7 @@ WHERE departamento = 'TI';
 
 -- 6a. Se CORRETO: Confirmar
 COMMIT;
-DBMS_OUTPUT.PUT_LINE('Correção aplicada com sucesso!');
+DBMS_OUTPUT.PUT_LINE('Correçêo aplicada com sucesso!');
 
 -- 6b. Se INCORRETO: Reverter
 -- ROLLBACK TO SAVEPOINT antes_correcao;
@@ -515,7 +515,7 @@ DBMS_OUTPUT.PUT_LINE('Correção aplicada com sucesso!');
       </div>
     </section>
 
-    <!-- Seção 3: Resultado Esperado -->
+    <!-- Seçêo 3: Resultado Esperado -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -601,7 +601,7 @@ DBMS_OUTPUT.PUT_LINE('Correção aplicada com sucesso!');
           </ol>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">-- 1. Salário > 6000
 SELECT nome, salario
@@ -635,21 +635,21 @@ ORDER BY data_admissao;</code></pre>
           </p>
           <ol class="list-decimal list-inside text-neutral-400 mb-4 space-y-1">
             <li>Insira um novo funcionário: "Mariana Costa", Analista de Dados, R$ 7000, TI</li>
-            <li>Atualize o cargo de "João Silva" para "Analista Pleno"</li>
+            <li>Atualize o cargo de "Joêo Silva" para "Analista Pleno"</li>
             <li>Aumente em 5% o salário de todos os Analistas</li>
             <li>Delete o funcionário com menor salário (mas verifique primeiro!)</li>
           </ol>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">-- 1. INSERT
 INSERT INTO funcionarios (id, nome, cargo, salario, departamento, data_admissao)
 VALUES (11, 'Mariana Costa', 'Analista de Dados', 7000, 'TI', SYSDATE);
 
 -- 2. UPDATE específico (primeiro verificar)
-SELECT * FROM funcionarios WHERE nome = 'João Silva';
-UPDATE funcionarios SET cargo = 'Analista Pleno' WHERE nome = 'João Silva';
+SELECT * FROM funcionarios WHERE nome = 'Joêo Silva';
+UPDATE funcionarios SET cargo = 'Analista Pleno' WHERE nome = 'Joêo Silva';
 
 -- 3. UPDATE com cálculo (verificar antes)
 SELECT nome, cargo, salario, salario * 1.05 AS novo_salario
@@ -674,7 +674,7 @@ COMMIT;</code></pre>
         </div>
 
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 3: Transação com SAVEPOINT</h3>
+          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 3: Transaçêo com SAVEPOINT</h3>
           <p class="text-neutral-300 mb-4">
             Simule um processo de ajuste salarial com pontos de salvamento:
           </p>
@@ -689,7 +689,7 @@ COMMIT;</code></pre>
           </ol>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">-- 1. SAVEPOINT inicial
 SAVEPOINT inicio;

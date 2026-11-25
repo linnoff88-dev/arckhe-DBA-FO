@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Planos de Execução | Trilha 4 | Oracle DBA</title>
+  <title>Planos de Execuçêo | Trilha 4 | Oracle DBA</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -152,7 +152,7 @@
           <span class="text-2xl font-bold text-orange-400">2</span>
         </div>
         <div>
-          <h1 class="text-2xl font-bold">Planos de Execução</h1>
+          <h1 class="text-2xl font-bold">Planos de Execuçêo</h1>
           <p class="text-neutral-400">EXPLAIN PLAN, AUTOTRACE, interpretar planos</p>
         </div>
       </div>
@@ -162,19 +162,19 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Definição -->
+    <!-- Seçêo 1: Definiçêo -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">📖</span>
         </div>
-        <h2 class="text-xl font-bold text-orange-400">Definição</h2>
+        <h2 class="text-xl font-bold text-orange-400">Definiçêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">O que é um Plano de Execução?</h3>
+        <h3 class="text-lg font-semibold mb-4">O que é um Plano de Execuçêo?</h3>
         <p class="text-neutral-300 mb-4">
-          O <strong class="text-orange-400">Plano de Execução</strong> é o roteiro que o Oracle cria para executar uma query.
+          O <strong class="text-orange-400">Plano de Execuçêo</strong> é o roteiro que o Oracle cria para executar uma query.
           Mostra: ordem de acesso às tabelas, tipo de acesso (full scan vs index), método de JOIN (nested loops, hash, merge),
           operações de sort/aggregate e custo estimado de cada etapa.
         </p>
@@ -182,7 +182,7 @@
         <div class="bg-dark-700 rounded-lg p-4">
           <h4 class="font-semibold text-neutral-100 mb-2">Componentes do Plano:</h4>
           <ul class="list-disc list-inside text-neutral-300 space-y-2">
-            <li><strong>Operation:</strong> Tipo de operação (TABLE ACCESS, INDEX SCAN, HASH JOIN)</li>
+            <li><strong>Operation:</strong> Tipo de operaçêo (TABLE ACCESS, INDEX SCAN, HASH JOIN)</li>
             <li><strong>Object:</strong> Tabela ou índice sendo acessado</li>
             <li><strong>Cost:</strong> Estimativa de recursos (I/O, CPU) necessários</li>
             <li><strong>Cardinality:</strong> Número estimado de linhas processadas</li>
@@ -230,19 +230,19 @@
       </div>
     </section>
 
-    <!-- Seção 2: Aplicação Prática -->
+    <!-- Seçêo 2: Aplicaçêo Prática -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">🛠️</span>
         </div>
-        <h2 class="text-xl font-bold text-cyan-400">Aplicação Prática</h2>
+        <h2 class="text-xl font-bold text-cyan-400">Aplicaçêo Prática</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Gerando Planos de Execução</h3>
+        <h3 class="text-lg font-semibold mb-4">Gerando Planos de Execuçêo</h3>
 
-        <pre><code class="language-sql">-- Método 1: EXPLAIN PLAN (não executa a query)
+        <pre><code class="language-sql">-- Método 1: EXPLAIN PLAN (nêo executa a query)
 EXPLAIN PLAN FOR
 SELECT e.employee_name, d.department_name
 FROM employees e
@@ -265,7 +265,7 @@ SET AUTOTRACE OFF
 -- Método 3: DBMS_XPLAN com SQL_ID (plano real executado)
 SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY_CURSOR('g2xb5k8f3zp9n'));
 
--- Ver estatísticas reais de execução (actual rows vs estimate)
+-- Ver estatísticas reais de execuçêo (actual rows vs estimate)
 SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY_CURSOR(
     sql_id => 'g2xb5k8f3zp9n',
     format => 'ALLSTATS LAST'
@@ -299,7 +299,7 @@ Predicate Information (identified by operation id):
 -- 3. TABLE ACCESS FULL em CUSTOMERS dentro do loop (10000x full scan!)
 -- 4. Falta índice em CUSTOMERS.CUSTOMER_ID
 
--- Solução: criar índice
+-- Soluçêo: criar índice
 CREATE INDEX idx_customers_id ON customers(customer_id);
 
 -- Após criar o índice, novo plano:
@@ -348,7 +348,7 @@ SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY_CURSOR(NULL, NULL, 'ALLSTATS LAST'));</co
       </div>
     </section>
 
-    <!-- Seção 3: Resultado Esperado -->
+    <!-- Seçêo 3: Resultado Esperado -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -373,7 +373,7 @@ SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY_CURSOR(NULL, NULL, 'ALLSTATS LAST'));</co
               <span class="text-orange-400 mt-1">✓</span>
               <div>
                 <h4 class="font-semibold text-neutral-100">Ler planos hierarquicamente</h4>
-                <p class="text-neutral-400 text-sm">Entender indentação e ordem de operações</p>
+                <p class="text-neutral-400 text-sm">Entender indentaçêo e ordem de operações</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
@@ -447,19 +447,19 @@ SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY_CURSOR(NULL, NULL, 'ALLSTATS LAST'));</co
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
           <h3 class="font-semibold text-neutral-100 mb-2">Exercício 1: Análise de Plano</h3>
           <p class="text-neutral-300 mb-4">
-            Analise este plano e identifique o problema principal e a solução.
+            Analise este plano e identifique o problema principal e a soluçêo.
           </p>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-orange-400 hover:text-orange-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-orange-400 hover:text-orange-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4 bg-dark-700 rounded-lg p-4">
               <p class="text-neutral-300 text-sm mb-2">
-                <strong>Problema:</strong> NESTED LOOPS fazendo full scan na tabela interna a cada iteração.
-                Com 5000 linhas na externa, são 5000 full scans!
+                <strong>Problema:</strong> NESTED LOOPS fazendo full scan na tabela interna a cada iteraçêo.
+                Com 5000 linhas na externa, sêo 5000 full scans!
               </p>
               <p class="text-neutral-300 text-sm">
-                <strong>Solução:</strong> Criar índice na coluna de JOIN da tabela interna ou
-                usar hint USE_HASH para forçar hash join se ambas tabelas são grandes.
+                <strong>Soluçêo:</strong> Criar índice na coluna de JOIN da tabela interna ou
+                usar hint USE_HASH para forçar hash join se ambas tabelas sêo grandes.
               </p>
             </div>
           </details>
@@ -497,7 +497,7 @@ SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY_CURSOR(NULL, NULL, 'ALLSTATS LAST'));</co
         <span>Anterior: AWR e ASH</span>
       </a>
       <a href="topico-3.html" class="flex items-center gap-2 text-orange-400 hover:text-orange-300 transition-colors">
-        <span>Próximo: Otimização de Índices</span>
+        <span>Próximo: Otimizaçêo de Índices</span>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>

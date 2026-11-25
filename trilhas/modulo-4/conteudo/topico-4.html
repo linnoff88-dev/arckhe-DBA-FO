@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -164,7 +164,7 @@
         <div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">📖</span>
         </div>
-        <h2 class="text-xl font-bold text-orange-400">Definição</h2>
+        <h2 class="text-xl font-bold text-orange-400">Definiçêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -198,20 +198,20 @@
               Corrige estimativas erradas de cardinalidade.
             </p>
             <ul class="list-disc list-inside text-neutral-400 text-sm">
-              <li>Não modifica SQL</li>
+              <li>Nêo modifica SQL</li>
               <li>Ajusta estatísticas do optimizer</li>
-              <li>Não garante plano fixo</li>
+              <li>Nêo garante plano fixo</li>
             </ul>
           </div>
 
           <div class="bg-purple-900/20 rounded-lg p-4">
             <h4 class="font-semibold text-purple-400 mb-2">SQL Plan Baseline</h4>
             <p class="text-neutral-300 text-sm mb-2">
-              Preserva planos de execução conhecidos como bons. Evita regressões
+              Preserva planos de execuçêo conhecidos como bons. Evita regressões
               após upgrades ou mudanças de estatísticas.
             </p>
             <ul class="list-disc list-inside text-neutral-400 text-sm">
-              <li>Fixa plano de execução</li>
+              <li>Fixa plano de execuçêo</li>
               <li>Previne piora de performance</li>
               <li>Evolutivo: testa planos novos</li>
             </ul>
@@ -225,7 +225,7 @@
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">🛠️</span>
         </div>
-        <h2 class="text-xl font-bold text-cyan-400">Aplicação Prática</h2>
+        <h2 class="text-xl font-bold text-cyan-400">Aplicaçêo Prática</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -253,7 +253,7 @@ EXEC DBMS_SQLTUNE.EXECUTE_TUNING_TASK('TUNE_SQL_g2xb5k8');
 SET LONG 100000 LONGCHUNKSIZE 100000 PAGESIZE 0
 SELECT DBMS_SQLTUNE.REPORT_TUNING_TASK('TUNE_SQL_g2xb5k8') FROM DUAL;
 
--- Aceitar recomendação de SQL Profile
+-- Aceitar recomendaçêo de SQL Profile
 EXEC DBMS_SQLTUNE.ACCEPT_SQL_PROFILE('TUNE_SQL_g2xb5k8', 1);
 
 -- Listar SQL Profiles criados
@@ -375,7 +375,7 @@ BEGIN
     DBMS_ADVISOR.CREATE_TASK(
         advisor_name => 'SQL Access Advisor',
         task_name    => 'INDEX_ADVISOR_TASK',
-        task_desc    => 'Recomendação de índices para workload'
+        task_desc    => 'Recomendaçêo de índices para workload'
     );
 END;
 /
@@ -491,7 +491,7 @@ ORDER BY benefit DESC;</code></pre>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
         </svg>
-        <span>Anterior: Otimização de Índices</span>
+        <span>Anterior: Otimizaçêo de Índices</span>
       </a>
       <a href="topico-5.html" class="flex items-center gap-2 text-orange-400 hover:text-orange-300 transition-colors">
         <span>Próximo: Tuning de Memória</span>

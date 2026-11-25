@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -162,7 +162,7 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: DBCA Overview -->
+    <!-- Seçêo 1: DBCA Overview -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
@@ -175,17 +175,17 @@
         <h3 class="text-lg font-semibold mb-4">O que é o DBCA?</h3>
         <p class="text-neutral-300 mb-4">
           O <strong class="text-cyan-400">Database Configuration Assistant (DBCA)</strong> é uma ferramenta gráfica
-          da Oracle que facilita a criação, configuração, e exclusão de bancos de dados. É a forma mais comum e
+          da Oracle que facilita a criaçêo, configuraçêo, e exclusêo de bancos de dados. É a forma mais comum e
           recomendada de criar um banco de dados Oracle.
         </p>
 
         <div class="bg-dark-700 rounded-lg p-4 mb-4">
           <h4 class="font-semibold text-neutral-100 mb-2">Funcionalidades do DBCA:</h4>
           <ul class="list-disc list-inside text-neutral-300 space-y-2">
-            <li><strong>Criar Banco de Dados:</strong> Usando templates ou configuração customizada</li>
+            <li><strong>Criar Banco de Dados:</strong> Usando templates ou configuraçêo customizada</li>
             <li><strong>Configurar Opções:</strong> Modificar parâmetros de bancos existentes</li>
             <li><strong>Excluir Banco:</strong> Remover completamente um banco e seus arquivos</li>
-            <li><strong>Gerenciar Templates:</strong> Criar templates personalizados para padronização</li>
+            <li><strong>Gerenciar Templates:</strong> Criar templates personalizados para padronizaçêo</li>
             <li><strong>Gerenciar Pluggable Databases (PDBs):</strong> Em bancos multitenant (12c+)</li>
           </ul>
         </div>
@@ -206,13 +206,13 @@ dbca -silent -createDatabase \
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-        <h3 class="text-lg font-semibold mb-4">Passos da Criação com DBCA (Modo Gráfico)</h3>
+        <h3 class="text-lg font-semibold mb-4">Passos da Criaçêo com DBCA (Modo Gráfico)</h3>
 
         <div class="space-y-3">
           <div class="bg-dark-700 rounded-lg p-4">
             <div class="flex items-center gap-2 mb-2">
               <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded text-sm font-bold">1</span>
-              <h4 class="font-semibold text-neutral-100">Operação</h4>
+              <h4 class="font-semibold text-neutral-100">Operaçêo</h4>
             </div>
             <p class="text-neutral-300 text-sm">Selecione "Create a database"</p>
           </div>
@@ -220,7 +220,7 @@ dbca -silent -createDatabase \
           <div class="bg-dark-700 rounded-lg p-4">
             <div class="flex items-center gap-2 mb-2">
               <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded text-sm font-bold">2</span>
-              <h4 class="font-semibold text-neutral-100">Modo de Criação</h4>
+              <h4 class="font-semibold text-neutral-100">Modo de Criaçêo</h4>
             </div>
             <p class="text-neutral-300 text-sm">Advanced Configuration (mais controle) ou Typical Configuration (rápido)</p>
           </div>
@@ -236,7 +236,7 @@ dbca -silent -createDatabase \
           <div class="bg-dark-700 rounded-lg p-4">
             <div class="flex items-center gap-2 mb-2">
               <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded text-sm font-bold">4</span>
-              <h4 class="font-semibold text-neutral-100">Identificação</h4>
+              <h4 class="font-semibold text-neutral-100">Identificaçêo</h4>
             </div>
             <p class="text-neutral-300 text-sm">Global Database Name e SID (ex: PROD.empresa.com e PROD)</p>
           </div>
@@ -244,7 +244,7 @@ dbca -silent -createDatabase \
           <div class="bg-dark-700 rounded-lg p-4">
             <div class="flex items-center gap-2 mb-2">
               <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded text-sm font-bold">5</span>
-              <h4 class="font-semibold text-neutral-100">Localização de Armazenamento</h4>
+              <h4 class="font-semibold text-neutral-100">Localizaçêo de Armazenamento</h4>
             </div>
             <p class="text-neutral-300 text-sm">File System ou ASM (Automatic Storage Management)</p>
           </div>
@@ -252,7 +252,7 @@ dbca -silent -createDatabase \
           <div class="bg-dark-700 rounded-lg p-4">
             <div class="flex items-center gap-2 mb-2">
               <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded text-sm font-bold">6</span>
-              <h4 class="font-semibold text-neutral-100">Configuração de Recovery</h4>
+              <h4 class="font-semibold text-neutral-100">Configuraçêo de Recovery</h4>
             </div>
             <p class="text-neutral-300 text-sm">Fast Recovery Area, Archive Mode</p>
           </div>
@@ -278,7 +278,7 @@ dbca -silent -createDatabase \
               <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded text-sm font-bold">9</span>
               <h4 class="font-semibold text-neutral-100">Character Set</h4>
             </div>
-            <p class="text-neutral-300 text-sm">AL32UTF8 (padrão, Unicode), WE8ISO8859P1 (Latin-1)</p>
+            <p class="text-neutral-300 text-sm">AL32UTF8 (padrêo, Unicode), WE8ISO8859P1 (Latin-1)</p>
           </div>
 
           <div class="bg-dark-700 rounded-lg p-4">
@@ -292,7 +292,7 @@ dbca -silent -createDatabase \
       </div>
     </section>
 
-    <!-- Seção 2: Templates -->
+    <!-- Seçêo 2: Templates -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -304,7 +304,7 @@ dbca -silent -createDatabase \
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
         <h3 class="text-lg font-semibold mb-4">Tipos de Templates</h3>
         <p class="text-neutral-300 mb-4">
-          O DBCA oferece templates pré-configurados que aceleram a criação de bancos de dados com características
+          O DBCA oferece templates pré-configurados que aceleram a criaçêo de bancos de dados com características
           específicas. Há dois tipos: templates com estrutura e templates sem estrutura.
         </p>
 
@@ -312,11 +312,11 @@ dbca -silent -createDatabase \
           <div class="bg-purple-900/20 p-4 rounded-xl border border-purple-500/30">
             <h4 class="font-bold text-purple-400 mb-3">Templates com Estrutura</h4>
             <p class="text-neutral-300 text-sm mb-3">
-              Contêm datafiles pré-criados. A criação é <strong>muito rápida</strong> pois apenas copia os arquivos.
+              Contêm datafiles pré-criados. A criaçêo é <strong>muito rápida</strong> pois apenas copia os arquivos.
             </p>
             <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
               <li>Seed Database Template</li>
-              <li>Criação em minutos</li>
+              <li>Criaçêo em minutos</li>
               <li>Menos flexibilidade</li>
             </ul>
           </div>
@@ -324,11 +324,11 @@ dbca -silent -createDatabase \
           <div class="bg-cyan-900/20 p-4 rounded-xl border border-cyan-500/30">
             <h4 class="font-bold text-cyan-400 mb-3">Templates sem Estrutura</h4>
             <p class="text-neutral-300 text-sm mb-3">
-              Apenas definições de configuração. DBCA executa <strong>CREATE DATABASE</strong> completo.
+              Apenas definições de configuraçêo. DBCA executa <strong>CREATE DATABASE</strong> completo.
             </p>
             <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
               <li>General Purpose, Data Warehouse</li>
-              <li>Criação mais demorada</li>
+              <li>Criaçêo mais demorada</li>
               <li>Máxima flexibilidade</li>
             </ul>
           </div>
@@ -363,7 +363,7 @@ dbca -silent -createDatabase \
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
         <h3 class="text-lg font-semibold mb-4">Criando um Template Personalizado</h3>
         <p class="text-neutral-300 mb-4">
-          Você pode criar seus próprios templates para padronizar criação de bancos em sua organização.
+          Você pode criar seus próprios templates para padronizar criaçêo de bancos em sua organizaçêo.
         </p>
 
         <pre><code class="language-shell"># Criar template a partir de banco existente
@@ -383,7 +383,7 @@ ls -lh $ORACLE_HOME/assistants/dbca/templates/</code></pre>
       </div>
     </section>
 
-    <!-- Seção 3: DBCA Modo Silencioso -->
+    <!-- Seçêo 3: DBCA Modo Silencioso -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
@@ -393,12 +393,12 @@ ls -lh $ORACLE_HOME/assistants/dbca/templates/</code></pre>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Criação Automatizada</h3>
+        <h3 class="text-lg font-semibold mb-4">Criaçêo Automatizada</h3>
         <p class="text-neutral-300 mb-4">
-          O modo silencioso permite criar bancos de dados via linha de comando, ideal para scripts e automação.
+          O modo silencioso permite criar bancos de dados via linha de comando, ideal para scripts e automaçêo.
         </p>
 
-        <pre><code class="language-shell"># Exemplo completo de criação silenciosa
+        <pre><code class="language-shell"># Exemplo completo de criaçêo silenciosa
 dbca -silent -createDatabase \
   -templateName General_Purpose.dbc \
   -gdbName PROD \
@@ -457,7 +457,7 @@ dbca
       </div>
     </section>
 
-    <!-- Seção 4: CREATE DATABASE Manual -->
+    <!-- Seçêo 4: CREATE DATABASE Manual -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
@@ -467,7 +467,7 @@ dbca
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Criação Manual do Banco de Dados</h3>
+        <h3 class="text-lg font-semibold mb-4">Criaçêo Manual do Banco de Dados</h3>
         <p class="text-neutral-300 mb-4">
           Para máximo controle, você pode criar um banco de dados manualmente usando o comando CREATE DATABASE.
           É mais complexo, mas permite entender exatamente o que o DBCA faz nos bastidores.
@@ -476,14 +476,14 @@ dbca
         <div class="bg-amber-900/20 rounded-lg p-4 border border-amber-500/30 mb-4">
           <h4 class="font-semibold text-amber-400 mb-2">⚠️ Quando Criar Manualmente?</h4>
           <ul class="list-disc list-inside text-neutral-300 text-sm space-y-1">
-            <li>Requisitos muito específicos não suportados pelo DBCA</li>
+            <li>Requisitos muito específicos nêo suportados pelo DBCA</li>
             <li>Ambientes automatizados com scripts personalizados</li>
             <li>Aprendizado profundo da arquitetura Oracle</li>
             <li>Troubleshooting de problemas do DBCA</li>
           </ul>
         </div>
 
-        <h4 class="font-semibold text-neutral-100 mb-3">Etapas da Criação Manual:</h4>
+        <h4 class="font-semibold text-neutral-100 mb-3">Etapas da Criaçêo Manual:</h4>
 
         <div class="space-y-4">
           <div class="bg-dark-700 rounded-lg p-4">
@@ -550,7 +550,7 @@ EOF</code></pre>
           </div>
 
           <div class="bg-dark-700 rounded-lg p-4">
-            <h5 class="font-semibold text-cyan-400 mb-2">5. Executar Scripts Pós-Criação</h5>
+            <h5 class="font-semibold text-cyan-400 mb-2">5. Executar Scripts Pós-Criaçêo</h5>
             <pre><code class="language-sql">-- Criar dicionário de dados
 @?/rdbms/admin/catalog.sql
 @?/rdbms/admin/catproc.sql
@@ -569,7 +569,7 @@ ALTER DATABASE OPEN;
 -- Criar SPFILE a partir do PFILE
 CREATE SPFILE FROM PFILE='$ORACLE_HOME/dbs/initMANUALDB.ora';
 
--- Verificar criação
+-- Verificar criaçêo
 SELECT name, open_mode, log_mode FROM v$database;
 SELECT tablespace_name, status FROM dba_tablespaces;</code></pre>
           </div>
@@ -577,7 +577,7 @@ SELECT tablespace_name, status FROM dba_tablespaces;</code></pre>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-        <h3 class="text-lg font-semibold mb-4">Script Completo de Criação Manual</h3>
+        <h3 class="text-lg font-semibold mb-4">Script Completo de Criaçêo Manual</h3>
         <p class="text-neutral-300 mb-4">
           Script consolidado para criar um banco manualmente:
         </p>
@@ -692,7 +692,7 @@ echo "Database MANUALDB created successfully!"</code></pre>
             <div class="flex items-start gap-3">
               <span class="text-cyan-400 mt-1">✓</span>
               <div>
-                <h4 class="font-semibold text-neutral-100">Executar scripts pós-criação</h4>
+                <h4 class="font-semibold text-neutral-100">Executar scripts pós-criaçêo</h4>
                 <p class="text-neutral-400 text-sm">catalog.sql, catproc.sql, pupbld.sql</p>
               </div>
             </div>
@@ -700,7 +700,7 @@ echo "Database MANUALDB created successfully!"</code></pre>
               <span class="text-cyan-400 mt-1">✓</span>
               <div>
                 <h4 class="font-semibold text-neutral-100">Gerenciar templates</h4>
-                <p class="text-neutral-400 text-sm">Criar templates personalizados para padronização</p>
+                <p class="text-neutral-400 text-sm">Criar templates personalizados para padronizaçêo</p>
               </div>
             </div>
           </div>
@@ -735,7 +735,7 @@ echo "Database MANUALDB created successfully!"</code></pre>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
         </svg>
-        <span>Anterior: Instalação do Oracle</span>
+        <span>Anterior: Instalaçêo do Oracle</span>
       </a>
       <a href="topico-4.html" class="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors">
         <span>Próximo: Startup e Shutdown</span>
@@ -749,7 +749,7 @@ echo "Database MANUALDB created successfully!"</code></pre>
   <!-- Footer -->
   <footer class="bg-dark-900 border-t border-dark-700 py-8 mt-12">
     <div class="max-w-4xl mx-auto px-4 text-center">
-      <p class="text-neutral-500 text-sm">Oracle DBA - Trilha 2: Administração Básica Oracle - Tópico 3</p>
+      <p class="text-neutral-500 text-sm">Oracle DBA - Trilha 2: Administraçêo Básica Oracle - Tópico 3</p>
     </div>
   </footer>
 

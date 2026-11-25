@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -162,28 +162,28 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Definição -->
+    <!-- Seçêo 1: Definiçêo -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">📖</span>
         </div>
-        <h2 class="text-xl font-bold text-orange-400">Definição</h2>
+        <h2 class="text-xl font-bold text-orange-400">Definiçêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
         <h3 class="text-lg font-semibold mb-4">AWR - Automatic Workload Repository</h3>
         <p class="text-neutral-300 mb-4">
           O <strong class="text-orange-400">AWR</strong> é o repositório centralizado de estatísticas de performance do Oracle.
-          A cada hora (padrão), um snapshot é tirado automaticamente, capturando métricas de CPU, I/O, SQL,
-          sessões, waits e muito mais. Esses snapshots são armazenados no banco por 8 dias (padrão).
+          A cada hora (padrêo), um snapshot é tirado automaticamente, capturando métricas de CPU, I/O, SQL,
+          sessões, waits e muito mais. Esses snapshots sêo armazenados no banco por 8 dias (padrêo).
         </p>
 
         <div class="bg-dark-700 rounded-lg p-4 mt-4">
           <h4 class="font-semibold text-neutral-100 mb-2">Componentes do AWR:</h4>
           <ul class="list-disc list-inside text-neutral-300 space-y-2">
             <li><strong>Snapshots:</strong> Capturas automáticas de estatísticas a cada hora</li>
-            <li><strong>Baselines:</strong> Períodos de referência (ex: horário normal de operação)</li>
+            <li><strong>Baselines:</strong> Períodos de referência (ex: horário normal de operaçêo)</li>
             <li><strong>AWR Reports:</strong> Relatórios comparando dois snapshots</li>
             <li><strong>Tabelas DBA_HIST_*:</strong> Armazenam histórico de estatísticas</li>
             <li><strong>MMON:</strong> Processo de background que coleta os dados</li>
@@ -229,7 +229,7 @@
             <h4 class="font-semibold text-orange-400 mb-2">Análise Automática</h4>
             <p class="text-neutral-300 text-sm">
               ADDM roda automaticamente após cada snapshot AWR, analisando o período entre snapshots.
-              Identifica top SQL, contenção de recursos, problemas de I/O, configuração inadequada.
+              Identifica top SQL, contençêo de recursos, problemas de I/O, configuraçêo inadequada.
             </p>
           </div>
 
@@ -244,13 +244,13 @@
       </div>
     </section>
 
-    <!-- Seção 2: Aplicação Prática -->
+    <!-- Seçêo 2: Aplicaçêo Prática -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">🛠️</span>
         </div>
-        <h2 class="text-xl font-bold text-cyan-400">Aplicação Prática</h2>
+        <h2 class="text-xl font-bold text-cyan-400">Aplicaçêo Prática</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -283,7 +283,7 @@ FROM TABLE(DBMS_WORKLOAD_REPOSITORY.AWR_REPORT_HTML(
 -- Criar snapshot manual (útil antes/depois de mudanças)
 EXEC DBMS_WORKLOAD_REPOSITORY.CREATE_SNAPSHOT();
 
--- Alterar intervalo de snapshot (padrão: 60 minutos)
+-- Alterar intervalo de snapshot (padrêo: 60 minutos)
 EXEC DBMS_WORKLOAD_REPOSITORY.MODIFY_SNAPSHOT_SETTINGS(
     interval  => 30,   -- minutos
     retention => 10080 -- minutos (7 dias)
@@ -325,7 +325,7 @@ GROUP BY sql_id, event, wait_class
 ORDER BY samples DESC
 FETCH FIRST 10 ROWS ONLY;
 
--- Identificar períodos de contenção (picos de espera)
+-- Identificar períodos de contençêo (picos de espera)
 SELECT
     TO_CHAR(sample_time, 'YYYY-MM-DD HH24:MI') AS minute,
     wait_class,
@@ -432,7 +432,7 @@ END;
       </div>
     </section>
 
-    <!-- Seção 3: Resultado Esperado -->
+    <!-- Seçêo 3: Resultado Esperado -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -480,14 +480,14 @@ END;
               <span class="text-orange-400 mt-1">✓</span>
               <div>
                 <h4 class="font-semibold text-neutral-100">Diagnosticar wait events</h4>
-                <p class="text-neutral-400 text-sm">Entender por que sessões estão esperando</p>
+                <p class="text-neutral-400 text-sm">Entender por que sessões estêo esperando</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
               <span class="text-orange-400 mt-1">✓</span>
               <div>
                 <h4 class="font-semibold text-neutral-100">Configurar coleta AWR</h4>
-                <p class="text-neutral-400 text-sm">Ajustar intervalo e retenção conforme necessidade</p>
+                <p class="text-neutral-400 text-sm">Ajustar intervalo e retençêo conforme necessidade</p>
               </div>
             </div>
           </div>
@@ -539,7 +539,7 @@ END;
           </p>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-orange-400 hover:text-orange-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-orange-400 hover:text-orange-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">-- 1. Identificar snapshot IDs do período
 SELECT snap_id, TO_CHAR(begin_interval_time, 'DD-MON HH24:MI')
@@ -576,7 +576,7 @@ FETCH FIRST 10 ROWS ONLY;</code></pre>
           </p>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-orange-400 hover:text-orange-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-orange-400 hover:text-orange-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">-- Sessions ativas e seus wait events
 SELECT
@@ -634,7 +634,7 @@ WHERE sql_id IN (
         <span>Voltar ao Índice</span>
       </a>
       <a href="topico-2.html" class="flex items-center gap-2 text-orange-400 hover:text-orange-300 transition-colors">
-        <span>Próximo: Planos de Execução</span>
+        <span>Próximo: Planos de Execuçêo</span>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JOINs, Funções de Agregação e Subqueries | Trilha 1 | Oracle DBA</title>
+  <title>JOINs, Funções de Agregaçêo e Subqueries | Trilha 1 | Oracle DBA</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -152,7 +152,7 @@
           <span class="text-2xl font-bold text-emerald-400">6</span>
         </div>
         <div>
-          <h1 class="text-2xl font-bold">JOINs, Funções de Agregação e Subqueries</h1>
+          <h1 class="text-2xl font-bold">JOINs, Funções de Agregaçêo e Subqueries</h1>
           <p class="text-neutral-400">Consultas avançadas para combinar e analisar dados</p>
         </div>
       </div>
@@ -162,20 +162,20 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Definição -->
+    <!-- Seçêo 1: Definiçêo -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">📖</span>
         </div>
-        <h2 class="text-xl font-bold text-emerald-400">Definição</h2>
+        <h2 class="text-xl font-bold text-emerald-400">Definiçêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
         <h3 class="text-lg font-semibold mb-4">JOINs - Combinando Tabelas</h3>
         <p class="text-neutral-300 mb-4">
           <strong class="text-emerald-400">JOINs</strong> permitem combinar dados de múltiplas tabelas em uma única
-          consulta. São fundamentais para trabalhar com bancos relacionais, onde dados são distribuídos em
+          consulta. Sêo fundamentais para trabalhar com bancos relacionais, onde dados sêo distribuídos em
           várias tabelas relacionadas.
         </p>
 
@@ -211,17 +211,17 @@
           <div class="bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500">
             <h4 class="font-semibold text-amber-400 mb-2">FULL OUTER JOIN</h4>
             <p class="text-neutral-300 text-sm">
-              Retorna <strong>todos</strong> de ambas as tabelas, com NULL onde não há correspondência.
+              Retorna <strong>todos</strong> de ambas as tabelas, com NULL onde nêo há correspondência.
             </p>
           </div>
         </div>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Funções de Agregação</h3>
+        <h3 class="text-lg font-semibold mb-4">Funções de Agregaçêo</h3>
         <p class="text-neutral-300 mb-4">
-          <strong class="text-cyan-400">Funções de agregação</strong> calculam um único valor a partir de um conjunto de registros.
-          São essenciais para relatórios e análises estatísticas.
+          <strong class="text-cyan-400">Funções de agregaçêo</strong> calculam um único valor a partir de um conjunto de registros.
+          Sêo essenciais para relatórios e análises estatísticas.
         </p>
 
         <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -255,7 +255,7 @@
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
         <h3 class="text-lg font-semibold mb-4">Subqueries (Subconsultas)</h3>
         <p class="text-neutral-300 mb-4">
-          <strong class="text-purple-400">Subqueries</strong> são consultas aninhadas dentro de outra consulta.
+          <strong class="text-purple-400">Subqueries</strong> sêo consultas aninhadas dentro de outra consulta.
           Podem ser usadas em WHERE, FROM, SELECT ou HAVING.
         </p>
 
@@ -280,13 +280,13 @@
       </div>
     </section>
 
-    <!-- Seção 2: Aplicação Prática -->
+    <!-- Seçêo 2: Aplicaçêo Prática -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">🛠️</span>
         </div>
-        <h2 class="text-xl font-bold text-cyan-400">Aplicação Prática</h2>
+        <h2 class="text-xl font-bold text-cyan-400">Aplicaçêo Prática</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -311,14 +311,14 @@ CREATE TABLE funcionarios (
 );
 
 -- Inserir dados
-INSERT INTO departamentos VALUES (10, 'Tecnologia', 1, 'São Paulo');
+INSERT INTO departamentos VALUES (10, 'Tecnologia', 1, 'Sêo Paulo');
 INSERT INTO departamentos VALUES (20, 'Recursos Humanos', 2, 'Rio de Janeiro');
-INSERT INTO departamentos VALUES (30, 'Financeiro', NULL, 'São Paulo');
+INSERT INTO departamentos VALUES (30, 'Financeiro', NULL, 'Sêo Paulo');
 INSERT INTO departamentos VALUES (40, 'Marketing', NULL, 'Curitiba');
 
 INSERT INTO funcionarios VALUES (1, 'Carlos Diretor', 'Diretor', 25000, 10, DATE '2010-01-15');
 INSERT INTO funcionarios VALUES (2, 'Ana Gerente', 'Gerente', 12000, 20, DATE '2015-03-20');
-INSERT INTO funcionarios VALUES (3, 'João Desenvolvedor', 'Desenvolvedor', 8000, 10, DATE '2018-07-01');
+INSERT INTO funcionarios VALUES (3, 'Joêo Desenvolvedor', 'Desenvolvedor', 8000, 10, DATE '2018-07-01');
 INSERT INTO funcionarios VALUES (4, 'Maria Analista', 'Analista', 6000, 10, DATE '2020-02-10');
 INSERT INTO funcionarios VALUES (5, 'Pedro Analista', 'Analista', 5500, 20, DATE '2019-11-15');
 INSERT INTO funcionarios VALUES (6, 'Lucia Estagiaria', 'Estagiário', 1500, NULL, DATE '2023-01-10');
@@ -333,7 +333,7 @@ COMMIT;</code></pre>
 SELECT f.nome, f.cargo, f.salario, d.dept_nome
 FROM funcionarios f
 INNER JOIN departamentos d ON f.dept_id = d.dept_id;
--- Resultado: 5 registros (Lucia não aparece - não tem departamento)
+-- Resultado: 5 registros (Lucia nêo aparece - nêo tem departamento)
 
 -- LEFT JOIN: TODOS os funcionários, com ou sem departamento
 SELECT f.nome, f.cargo, d.dept_nome
@@ -347,7 +347,7 @@ FROM funcionarios f
 RIGHT JOIN departamentos d ON f.dept_id = d.dept_id;
 -- Resultado: 7 registros (Financeiro e Marketing aparecem sem funcionários)
 
--- FULL OUTER JOIN: Combinação de LEFT e RIGHT
+-- FULL OUTER JOIN: Combinaçêo de LEFT e RIGHT
 SELECT f.nome, d.dept_nome
 FROM funcionarios f
 FULL OUTER JOIN departamentos d ON f.dept_id = d.dept_id;
@@ -377,7 +377,7 @@ SELECT
 FROM funcionarios f
 LEFT JOIN funcionarios g ON f.gerente_id = g.func_id;
 
--- Encontrar funcionários SEM departamento (órfãos)
+-- Encontrar funcionários SEM departamento (órfêos)
 SELECT f.nome, f.cargo
 FROM funcionarios f
 LEFT JOIN departamentos d ON f.dept_id = d.dept_id
@@ -391,7 +391,7 @@ WHERE f.func_id IS NULL;</code></pre>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Funções de Agregação com GROUP BY</h3>
+        <h3 class="text-lg font-semibold mb-4">Funções de Agregaçêo com GROUP BY</h3>
 
         <pre><code class="language-sql">-- COUNT: Contar funcionários
 SELECT COUNT(*) AS total_funcionarios FROM funcionarios;
@@ -406,7 +406,7 @@ SELECT
     MAX(salario) AS maior_salario
 FROM funcionarios;
 
--- GROUP BY: Agregação por grupo
+-- GROUP BY: Agregaçêo por grupo
 SELECT
     dept_id,
     COUNT(*) AS qtd_funcionarios,
@@ -428,7 +428,7 @@ LEFT JOIN funcionarios f ON d.dept_id = f.dept_id
 GROUP BY d.dept_nome
 ORDER BY qtd_funcionarios DESC;
 
--- HAVING: Filtrar grupos (não pode usar WHERE para agregações)
+-- HAVING: Filtrar grupos (nêo pode usar WHERE para agregações)
 SELECT
     dept_id,
     COUNT(*) AS qtd,
@@ -448,7 +448,7 @@ FROM departamentos d
 LEFT JOIN funcionarios f ON d.dept_id = f.dept_id
 GROUP BY d.dept_nome;
 
--- Múltiplos níveis de agregação com ROLLUP
+-- Múltiplos níveis de agregaçêo com ROLLUP
 SELECT
     d.dept_nome,
     f.cargo,
@@ -475,13 +475,13 @@ FROM funcionarios
 WHERE salario = (SELECT MAX(salario) FROM funcionarios);
 
 -- Subquery de lista com IN
--- Funcionários em departamentos de São Paulo
+-- Funcionários em departamentos de Sêo Paulo
 SELECT nome, cargo
 FROM funcionarios
 WHERE dept_id IN (
     SELECT dept_id
     FROM departamentos
-    WHERE localizacao = 'São Paulo'
+    WHERE localizacao = 'Sêo Paulo'
 );
 
 -- Subquery com NOT IN (cuidado com NULL!)
@@ -498,7 +498,7 @@ FROM funcionarios f1
 WHERE f1.salario > (
     SELECT AVG(f2.salario)
     FROM funcionarios f2
-    WHERE f2.dept_id = f1.dept_id  -- Correlação com query externa
+    WHERE f2.dept_id = f1.dept_id  -- Correlaçêo com query externa
 );
 
 -- EXISTS: Verifica existência
@@ -618,7 +618,7 @@ ORDER BY d.dept_nome, f.salario DESC;</code></pre>
       </div>
     </section>
 
-    <!-- Seção 3: Resultado Esperado -->
+    <!-- Seçêo 3: Resultado Esperado -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -642,7 +642,7 @@ ORDER BY d.dept_nome, f.salario DESC;</code></pre>
             <div class="flex items-start gap-3">
               <span class="text-emerald-400 mt-1">✓</span>
               <div>
-                <h4 class="font-semibold text-neutral-100">Funções de agregação</h4>
+                <h4 class="font-semibold text-neutral-100">Funções de agregaçêo</h4>
                 <p class="text-neutral-400 text-sm">COUNT, SUM, AVG, MIN, MAX com GROUP BY</p>
               </div>
             </div>
@@ -697,13 +697,13 @@ ORDER BY d.dept_nome, f.salario DESC;</code></pre>
             Usando as tabelas de exemplo, escreva queries para:
           </p>
           <ol class="list-decimal list-inside text-neutral-400 mb-4 space-y-1">
-            <li>Listar todos os funcionários com o nome do departamento (incluir quem não tem depto)</li>
-            <li>Listar departamentos que não têm nenhum funcionário</li>
+            <li>Listar todos os funcionários com o nome do departamento (incluir quem nêo tem depto)</li>
+            <li>Listar departamentos que nêo têm nenhum funcionário</li>
             <li>Listar funcionários junto com o nome do seu gerente direto</li>
           </ol>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">-- 1. Funcionários com departamento (LEFT JOIN)
 SELECT f.nome, f.cargo, COALESCE(d.dept_nome, 'Sem departamento') AS departamento
@@ -746,7 +746,7 @@ LEFT JOIN funcionarios g ON f.gerente_id = g.func_id;</code></pre>
           </ul>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">SELECT
     d.dept_nome AS departamento,
@@ -776,7 +776,7 @@ ORDER BY SUM(f.salario) DESC;</code></pre>
           </ol>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">-- 1. Acima da média geral
 SELECT nome, salario
@@ -795,7 +795,7 @@ JOIN departamentos d ON f.dept_id = d.dept_id
 ORDER BY diferenca DESC;
 
 -- 3. Mais bem pago por departamento (várias formas)
--- Opção 1: Subquery correlacionada
+-- Opçêo 1: Subquery correlacionada
 SELECT f.nome, f.salario, d.dept_nome
 FROM funcionarios f
 JOIN departamentos d ON f.dept_id = d.dept_id
@@ -805,7 +805,7 @@ WHERE f.salario = (
     WHERE dept_id = f.dept_id
 );
 
--- Opção 2: Com ROW_NUMBER (mais elegante)
+-- Opçêo 2: Com ROW_NUMBER (mais elegante)
 SELECT nome, salario, dept_nome
 FROM (
     SELECT

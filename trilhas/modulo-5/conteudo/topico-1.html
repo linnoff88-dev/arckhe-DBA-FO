@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -162,36 +162,36 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Definição -->
+    <!-- Seçêo 1: Definiçêo -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">📖</span>
         </div>
-        <h2 class="text-xl font-bold text-red-400">Definição</h2>
+        <h2 class="text-xl font-bold text-red-400">Definiçêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
         <h3 class="text-lg font-semibold mb-4">O que é Oracle RAC?</h3>
         <p class="text-neutral-300 mb-4">
-          <strong class="text-red-400">Oracle Real Application Clusters (RAC)</strong> é uma solução de alta disponibilidade
+          <strong class="text-red-400">Oracle Real Application Clusters (RAC)</strong> é uma soluçêo de alta disponibilidade
           e escalabilidade que permite que múltiplas instâncias Oracle rodando em diferentes servidores físicos acessem
           simultaneamente um único banco de dados compartilhado.
         </p>
         <p class="text-neutral-300 mb-4">
           Ao contrário de arquiteturas tradicionais onde uma instância é ativa e outras em standby, no RAC todas as instâncias
-          são <strong>ativas simultaneamente</strong>, processando transações em paralelo e compartilhando a mesma base de dados.
+          sêo <strong>ativas simultaneamente</strong>, processando transações em paralelo e compartilhando a mesma base de dados.
         </p>
 
         <div class="bg-dark-700 rounded-lg p-4 mt-4">
           <h4 class="font-semibold text-neutral-100 mb-2">Componentes Principais:</h4>
           <ul class="list-disc list-inside text-neutral-300 space-y-2">
             <li><strong>Oracle Clusterware:</strong> Software de cluster que gerencia disponibilidade de recursos</li>
-            <li><strong>Cluster Interconnect:</strong> Rede privada de alta velocidade para comunicação entre nós</li>
+            <li><strong>Cluster Interconnect:</strong> Rede privada de alta velocidade para comunicaçêo entre nós</li>
             <li><strong>Shared Storage:</strong> Armazenamento compartilhado (ASM/SAN) acessível por todos os nós</li>
             <li><strong>Cache Fusion:</strong> Tecnologia para sincronizar blocos de dados entre memórias dos nós</li>
             <li><strong>Voting Disk:</strong> Mecanismo de quorum para prevenir split-brain</li>
-            <li><strong>OCR (Oracle Cluster Registry):</strong> Repositório de configuração do cluster</li>
+            <li><strong>OCR (Oracle Cluster Registry):</strong> Repositório de configuraçêo do cluster</li>
           </ul>
         </div>
       </div>
@@ -229,26 +229,26 @@
           <div class="bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500">
             <h4 class="font-semibold text-red-400 mb-2">Vantagens do RAC</h4>
             <ul class="text-neutral-300 text-sm list-disc list-inside space-y-1">
-              <li>Alta disponibilidade: falha de nó não para o banco</li>
+              <li>Alta disponibilidade: falha de nó nêo para o banco</li>
               <li>Escalabilidade horizontal: adicione servidores</li>
               <li>Load balancing automático entre instâncias</li>
-              <li>Manutenção rolling (zero downtime)</li>
+              <li>Manutençêo rolling (zero downtime)</li>
             </ul>
           </div>
           <div class="bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500">
             <h4 class="font-semibold text-amber-400 mb-2">Desafios do RAC</h4>
             <ul class="text-neutral-300 text-sm list-disc list-inside space-y-1">
               <li>Custo de licenciamento Oracle RAC</li>
-              <li>Complexidade de configuração e administração</li>
+              <li>Complexidade de configuraçêo e administraçêo</li>
               <li>Necessidade de interconnect de alta velocidade</li>
-              <li>Possível contenção em cache fusion</li>
+              <li>Possível contençêo em cache fusion</li>
             </ul>
           </div>
         </div>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-        <h3 class="text-lg font-semibold mb-4">Cache Fusion: O Coração do RAC</h3>
+        <h3 class="text-lg font-semibold mb-4">Cache Fusion: O Coraçêo do RAC</h3>
         <p class="text-neutral-300 mb-4">
           <strong>Cache Fusion</strong> é a tecnologia que permite que múltiplas instâncias compartilhem blocos de dados
           em suas respectivas memórias SGA sem passar pelo disco. Quando um nó precisa de um bloco que está modificado
@@ -260,7 +260,7 @@
             <h4 class="font-semibold text-emerald-400 mb-2">Global Cache Service (GCS)</h4>
             <p class="text-neutral-300 text-sm">
               Gerencia o acesso concorrente aos blocos de dados. Mantém informações sobre qual instância
-              possui qual versão de cada bloco (current, consistent read, etc).
+              possui qual versêo de cada bloco (current, consistent read, etc).
             </p>
           </div>
 
@@ -283,13 +283,13 @@
       </div>
     </section>
 
-    <!-- Seção 2: Aplicação Prática -->
+    <!-- Seçêo 2: Aplicaçêo Prática -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">🛠️</span>
         </div>
-        <h2 class="text-xl font-bold text-cyan-400">Aplicação Prática</h2>
+        <h2 class="text-xl font-bold text-cyan-400">Aplicaçêo Prática</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -311,7 +311,7 @@ Instance PRODDB1 is running on node racnode1
 Instance PRODDB2 is running on node racnode2
 Instance PRODDB3 is running on node racnode3
 
--- Verificar configuração do database no cluster
+-- Verificar configuraçêo do database no cluster
 $ srvctl config database -d PRODDB
 
 -- Parar uma instância específica
@@ -328,17 +328,17 @@ $ srvctl status listener</code></pre>
         <h3 class="text-lg font-semibold mb-4">Conectando ao RAC: SCAN e VIP</h3>
 
         <p class="text-neutral-300 mb-4">
-          O RAC usa <strong>SCAN (Single Client Access Name)</strong> para simplificar a conexão de aplicações:
+          O RAC usa <strong>SCAN (Single Client Access Name)</strong> para simplificar a conexêo de aplicações:
         </p>
 
-        <pre><code class="language-sql">-- Configuração TNS tradicional (específica por nó)
+        <pre><code class="language-sql">-- Configuraçêo TNS tradicional (específica por nó)
 PRODDB1 =
   (DESCRIPTION =
     (ADDRESS = (PROTOCOL = TCP)(HOST = racnode1-vip)(PORT = 1521))
     (CONNECT_DATA = (SERVICE_NAME = PRODDB)(INSTANCE_NAME = PRODDB1))
   )
 
--- Configuração TNS usando SCAN (recomendado)
+-- Configuraçêo TNS usando SCAN (recomendado)
 PRODDB =
   (DESCRIPTION =
     (ADDRESS_LIST =
@@ -378,7 +378,7 @@ SELECT inst_id,
 FROM gv$buffer_pool_statistics
 ORDER BY inst_id;
 
--- Identificar contenção em cache fusion (top 10)
+-- Identificar contençêo em cache fusion (top 10)
 SELECT SUBSTR(event, 1, 40) event,
        waits,
        time_waited/100 time_waited_sec,
@@ -438,13 +438,13 @@ PRODDB_APP =
   )
 
 -- Testar failover forçando queda de instância
--- Em sessão conectada, executar em outro terminal:
+-- Em sessêo conectada, executar em outro terminal:
 $ srvctl stop instance -d PRODDB -i PRODDB1 -o immediate
--- A sessão deve migrar automaticamente para outra instância</code></pre>
+-- A sessêo deve migrar automaticamente para outra instância</code></pre>
       </div>
     </section>
 
-    <!-- Seção 3: Resultado Esperado -->
+    <!-- Seçêo 3: Resultado Esperado -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -485,7 +485,7 @@ $ srvctl stop instance -d PRODDB -i PRODDB1 -o immediate
               <span class="text-red-400 mt-1">✓</span>
               <div>
                 <h4 class="font-semibold text-neutral-100">Monitorar performance</h4>
-                <p class="text-neutral-400 text-sm">Identificar contenção em cache fusion</p>
+                <p class="text-neutral-400 text-sm">Identificar contençêo em cache fusion</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
@@ -531,7 +531,7 @@ $ srvctl stop instance -d PRODDB -i PRODDB1 -o immediate
               <span class="font-semibold text-neutral-100">Failover Time</span>
               <span class="text-emerald-400 font-mono">< 30s</span>
             </div>
-            <p class="text-neutral-400 text-sm">Tempo para migração automática de sessões após falha de nó</p>
+            <p class="text-neutral-400 text-sm">Tempo para migraçêo automática de sessões após falha de nó</p>
           </div>
 
           <div class="bg-dark-700 rounded-lg p-4">
@@ -539,7 +539,7 @@ $ srvctl stop instance -d PRODDB -i PRODDB1 -o immediate
               <span class="font-semibold text-neutral-100">Load Balance Ratio</span>
               <span class="text-emerald-400 font-mono">± 15%</span>
             </div>
-            <p class="text-neutral-400 text-sm">Distribuição de carga entre instâncias deve ser equilibrada</p>
+            <p class="text-neutral-400 text-sm">Distribuiçêo de carga entre instâncias deve ser equilibrada</p>
           </div>
         </div>
       </div>

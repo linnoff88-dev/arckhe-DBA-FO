@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -162,7 +162,7 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Conceitos -->
+    <!-- Seçêo 1: Conceitos -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
@@ -172,7 +172,7 @@
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">O que são Tablespaces?</h3>
+        <h3 class="text-lg font-semibold mb-4">O que sêo Tablespaces?</h3>
         <p class="text-neutral-300 mb-4">
           Um <strong class="text-cyan-400">tablespace</strong> é uma unidade lógica de armazenamento no Oracle Database.
           É a camada entre os objetos de banco de dados (tabelas, índices) e os arquivos físicos (datafiles).
@@ -212,7 +212,7 @@
           <div class="bg-cyan-900/20 p-4 rounded-xl border border-cyan-500/30">
             <h4 class="font-bold text-cyan-400 mb-2">Tablespace (Lógico)</h4>
             <ul class="list-disc list-inside text-neutral-300 text-sm space-y-1">
-              <li>Abstração lógica</li>
+              <li>Abstraçêo lógica</li>
               <li>Pode ter múltiplos datafiles</li>
               <li>Pode crescer adicionando datafiles</li>
               <li>Unidade de backup/recovery</li>
@@ -232,13 +232,13 @@
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-        <h3 class="text-lg font-semibold mb-4">Tablespaces Padrão do Oracle</h3>
+        <h3 class="text-lg font-semibold mb-4">Tablespaces Padrêo do Oracle</h3>
 
         <div class="space-y-3">
           <div class="bg-dark-700 rounded-lg p-4">
             <h4 class="font-semibold text-cyan-400 mb-2">SYSTEM</h4>
             <p class="text-neutral-300 text-sm">
-              Contém o dicionário de dados (metadados) do banco. <strong>Essencial</strong> - sem ele o banco não funciona.
+              Contém o dicionário de dados (metadados) do banco. <strong>Essencial</strong> - sem ele o banco nêo funciona.
               Nunca armazene dados de usuário aqui.
             </p>
           </div>
@@ -254,16 +254,16 @@
           <div class="bg-dark-700 rounded-lg p-4">
             <h4 class="font-semibold text-orange-400 mb-2">USERS</h4>
             <p class="text-neutral-300 text-sm">
-              Tablespace padrão para objetos de usuários. Pequeno, apenas para propósito de exemplo.
-              Em produção, crie tablespaces específicos por aplicação.
+              Tablespace padrêo para objetos de usuários. Pequeno, apenas para propósito de exemplo.
+              Em produçêo, crie tablespaces específicos por aplicaçêo.
             </p>
           </div>
 
           <div class="bg-dark-700 rounded-lg p-4">
             <h4 class="font-semibold text-emerald-400 mb-2">TEMP</h4>
             <p class="text-neutral-300 text-sm">
-              Tablespace temporário para operações de ordenação, hash joins, CREATE INDEX, etc.
-              Usa TEMPFILEs (não datafiles) - mais leve, sem redo.
+              Tablespace temporário para operações de ordenaçêo, hash joins, CREATE INDEX, etc.
+              Usa TEMPFILEs (nêo datafiles) - mais leve, sem redo.
             </p>
           </div>
 
@@ -278,7 +278,7 @@
       </div>
     </section>
 
-    <!-- Seção 2: Criando Tablespaces -->
+    <!-- Seçêo 2: Criando Tablespaces -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -288,7 +288,7 @@
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Criação Básica</h3>
+        <h3 class="text-lg font-semibold mb-4">Criaçêo Básica</h3>
 
         <pre><code class="language-sql">-- Criar tablespace simples com um datafile
 CREATE TABLESPACE dados_app
@@ -311,9 +311,9 @@ CREATE TABLESPACE dados_historico
 -- Criar tablespace permanente com opções avançadas
 CREATE TABLESPACE dados_producao
   DATAFILE '/u02/oradata/ORCL/prod01.dbf' SIZE 1G AUTOEXTEND ON
-  EXTENT MANAGEMENT LOCAL        -- Gerenciamento local de extents (padrão)
+  EXTENT MANAGEMENT LOCAL        -- Gerenciamento local de extents (padrêo)
   SEGMENT SPACE MANAGEMENT AUTO  -- Gerenciamento automático de espaço (ASSM)
-  DEFAULT COMPRESS FOR OLTP;     -- Compressão OLTP padrão</code></pre>
+  DEFAULT COMPRESS FOR OLTP;     -- Compressêo OLTP padrêo</code></pre>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -329,7 +329,7 @@ CREATE TEMPORARY TABLESPACE temp2
 -- Definir como default temp tablespace
 ALTER DATABASE DEFAULT TEMPORARY TABLESPACE temp2;
 
--- Ver tablespace temporário padrão
+-- Ver tablespace temporário padrêo
 SELECT property_name, property_value
 FROM database_properties
 WHERE property_name = 'DEFAULT_TEMP_TABLESPACE';</code></pre>
@@ -349,12 +349,12 @@ ALTER SYSTEM SET undo_tablespace = undotbs2;
 -- Verificar undo tablespace ativo
 SHOW PARAMETER undo_tablespace;
 
--- Após migração bem-sucedida, pode-se dropar o antigo
+-- Após migraçêo bem-sucedida, pode-se dropar o antigo
 DROP TABLESPACE undotbs1 INCLUDING CONTENTS AND DATAFILES;</code></pre>
       </div>
     </section>
 
-    <!-- Seção 3: Expandindo Tablespaces -->
+    <!-- Seçêo 3: Expandindo Tablespaces -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
@@ -455,7 +455,7 @@ ORDER BY pct_used DESC;</code></pre>
       </div>
     </section>
 
-    <!-- Seção 4: Movendo e Renomeando -->
+    <!-- Seçêo 4: Movendo e Renomeando -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
@@ -523,7 +523,7 @@ ALTER DATABASE OPEN;
       </div>
     </section>
 
-    <!-- Seção 5: Oracle Managed Files (OMF) -->
+    <!-- Seçêo 5: Oracle Managed Files (OMF) -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
@@ -536,21 +536,21 @@ ALTER DATABASE OPEN;
         <h3 class="text-lg font-semibold mb-4">O que é OMF?</h3>
         <p class="text-neutral-300 mb-4">
           <strong class="text-cyan-400">Oracle Managed Files (OMF)</strong> permite que o Oracle gerencie
-          automaticamente os nomes e localização de arquivos. Você não precisa especificar nomes de datafiles -
+          automaticamente os nomes e localizaçêo de arquivos. Você nêo precisa especificar nomes de datafiles -
           o Oracle cria e exclui arquivos automaticamente.
         </p>
 
         <div class="bg-cyan-900/20 rounded-lg p-4 border border-cyan-500/30 mb-4">
           <h4 class="font-semibold text-cyan-400 mb-2">Vantagens do OMF:</h4>
           <ul class="list-disc list-inside text-neutral-300 text-sm space-y-1">
-            <li>Simplifica criação de tablespaces e datafiles</li>
-            <li>Nomenclatura padrão e consistente</li>
-            <li>Exclusão automática de arquivos ao dropar tablespace</li>
+            <li>Simplifica criaçêo de tablespaces e datafiles</li>
+            <li>Nomenclatura padrêo e consistente</li>
+            <li>Exclusêo automática de arquivos ao dropar tablespace</li>
             <li>Reduz erros humanos com nomes de arquivo</li>
           </ul>
         </div>
 
-        <pre><code class="language-sql">-- Configurar localização padrão para OMF
+        <pre><code class="language-sql">-- Configurar localizaçêo padrêo para OMF
 ALTER SYSTEM SET db_create_file_dest = '/u02/oradata' SCOPE = BOTH;
 
 -- Para arquivos de controle
@@ -572,9 +572,9 @@ CREATE TABLESPACE dados_omf_test;
 ALTER TABLESPACE dados_omf_test ADD DATAFILE;
 -- Oracle cria automaticamente o nome
 
--- Dropar tablespace (arquivos são excluídos automaticamente!)
+-- Dropar tablespace (arquivos sêo excluídos automaticamente!)
 DROP TABLESPACE dados_omf_test INCLUDING CONTENTS AND DATAFILES;
--- Com OMF, os datafiles são apagados do SO automaticamente
+-- Com OMF, os datafiles sêo apagados do SO automaticamente
 
 -- Ver arquivos criados via OMF
 SELECT file_name, tablespace_name, bytes/1024/1024 AS size_mb
@@ -584,7 +584,7 @@ ORDER BY tablespace_name;</code></pre>
       </div>
     </section>
 
-    <!-- Seção 6: Bigfile Tablespaces -->
+    <!-- Seçêo 6: Bigfile Tablespaces -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -598,7 +598,7 @@ ORDER BY tablespace_name;</code></pre>
 
         <div class="grid md:grid-cols-2 gap-4 mb-6">
           <div class="bg-cyan-900/20 p-4 rounded-xl border border-cyan-500/30">
-            <h4 class="font-bold text-cyan-400 mb-3">Smallfile Tablespace (Padrão)</h4>
+            <h4 class="font-bold text-cyan-400 mb-3">Smallfile Tablespace (Padrêo)</h4>
             <ul class="list-disc list-inside text-neutral-300 text-sm space-y-1">
               <li>Pode ter até <strong>1022 datafiles</strong></li>
               <li>Cada datafile até 4 milhões de blocos</li>
@@ -624,7 +624,7 @@ ORDER BY tablespace_name;</code></pre>
             <li>Very Large Databases (VLDB) com tablespaces > 100 GB</li>
             <li>Ambientes com Automatic Storage Management (ASM)</li>
             <li>Reduzir quantidade de arquivos a gerenciar</li>
-            <li>Simplificar administração em ambientes muito grandes</li>
+            <li>Simplificar administraçêo em ambientes muito grandes</li>
           </ul>
         </div>
       </div>
@@ -639,7 +639,7 @@ CREATE BIGFILE TABLESPACE dados_big
   NEXT 1G
   MAXSIZE 100G;
 
--- Definir tipo padrão (BIGFILE ou SMALLFILE)
+-- Definir tipo padrêo (BIGFILE ou SMALLFILE)
 ALTER DATABASE SET DEFAULT BIGFILE TABLESPACE;
 
 -- Verificar tipo de um tablespace
@@ -647,7 +647,7 @@ SELECT tablespace_name, bigfile
 FROM dba_tablespaces
 ORDER BY tablespace_name;
 
--- Expandir bigfile tablespace (apenas resize, não pode adicionar datafile!)
+-- Expandir bigfile tablespace (apenas resize, nêo pode adicionar datafile!)
 ALTER DATABASE DATAFILE '/u02/oradata/ORCL/dados_big01.dbf' RESIZE 50G;</code></pre>
       </div>
 
@@ -655,9 +655,9 @@ ALTER DATABASE DATAFILE '/u02/oradata/ORCL/dados_big01.dbf' RESIZE 50G;</code></
         <h3 class="text-lg font-semibold mb-4">Alterando Tablespace para Bigfile</h3>
 
         <div class="bg-red-900/20 rounded-lg p-4 border border-red-500/30 mb-4">
-          <h4 class="font-semibold text-red-400 mb-2">⚠️ Atenção</h4>
+          <h4 class="font-semibold text-red-400 mb-2">⚠️ Atençêo</h4>
           <p class="text-neutral-300 text-sm">
-            <strong>Não é possível</strong> converter um tablespace SMALLFILE para BIGFILE diretamente!
+            <strong>Nêo é possível</strong> converter um tablespace SMALLFILE para BIGFILE diretamente!
             É necessário criar um novo tablespace BIGFILE e mover os objetos.
           </p>
         </div>
@@ -686,12 +686,12 @@ BEGIN
 END;
 /
 
--- 4. Após migração completa, dropar tablespace antigo
+-- 4. Após migraçêo completa, dropar tablespace antigo
 DROP TABLESPACE dados_app INCLUDING CONTENTS AND DATAFILES;</code></pre>
       </div>
     </section>
 
-    <!-- Seção 7: Operações Adicionais -->
+    <!-- Seçêo 7: Operações Adicionais -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
@@ -857,7 +857,7 @@ ORDER BY bytes DESC;</code></pre>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
         </svg>
-        <span>Anterior: Parâmetros de Inicialização</span>
+        <span>Anterior: Parâmetros de Inicializaçêo</span>
       </a>
       <a href="index.html" class="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors">
         <span>Voltar ao Índice</span>
@@ -871,7 +871,7 @@ ORDER BY bytes DESC;</code></pre>
   <!-- Footer -->
   <footer class="bg-dark-900 border-t border-dark-700 py-8 mt-12">
     <div class="max-w-4xl mx-auto px-4 text-center">
-      <p class="text-neutral-500 text-sm">Oracle DBA - Trilha 2: Administração Básica Oracle - Tópico 6</p>
+      <p class="text-neutral-500 text-sm">Oracle DBA - Trilha 2: Administraçêo Básica Oracle - Tópico 6</p>
     </div>
   </footer>
 

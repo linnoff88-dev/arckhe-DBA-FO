@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -153,7 +153,7 @@
         </div>
         <div>
           <h1 class="text-2xl font-bold">SELECT Avançado</h1>
-          <p class="text-neutral-400">DUAL, aliases, prefixação, ORDER BY, DISTINCT, ROWNUM e paginação</p>
+          <p class="text-neutral-400">DUAL, aliases, prefixaçêo, ORDER BY, DISTINCT, ROWNUM e paginaçêo</p>
         </div>
       </div>
     </div>
@@ -162,7 +162,7 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Tabela DUAL -->
+    <!-- Seçêo 1: Tabela DUAL -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
@@ -194,11 +194,11 @@ SELECT SYSDATE FROM DUAL;                    -- Data/hora atual
 SELECT USER FROM DUAL;                       -- Usuário conectado
 SELECT 10 + 5 AS resultado FROM DUAL;        -- Cálculo simples
 SELECT 'Hello, Oracle!' AS mensagem FROM DUAL;  -- Literal
-SELECT UPPER('oracle database') FROM DUAL;   -- Função de string</code></pre>
+SELECT UPPER('oracle database') FROM DUAL;   -- Funçêo de string</code></pre>
       </div>
     </section>
 
-    <!-- Seção 2: Aliases -->
+    <!-- Seçêo 2: Aliases -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
@@ -219,7 +219,7 @@ SELECT
     id_funcionario AS codigo,                -- AS é opcional
     nome funcionario,                        -- Sem AS
     salario AS "Salário Mensal",            -- Com espaço (requer aspas)
-    salario * 12 AS salario_anual,          -- Expressão calculada
+    salario * 12 AS salario_anual,          -- Expressêo calculada
     UPPER(email) email_maiusculo
 FROM funcionarios;
 
@@ -227,10 +227,10 @@ FROM funcionarios;
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Aliases de Tabelas e Prefixação</h3>
+        <h3 class="text-lg font-semibold mb-4">Aliases de Tabelas e Prefixaçêo</h3>
         <p class="text-neutral-300 mb-4">
           Aliases de tabelas simplificam queries complexas com múltiplas tabelas.
-          A <strong>prefixação</strong> (tabela.coluna) evita ambiguidade quando colunas têm o mesmo nome em tabelas diferentes.
+          A <strong>prefixaçêo</strong> (tabela.coluna) evita ambiguidade quando colunas têm o mesmo nome em tabelas diferentes.
         </p>
 
         <pre><code class="language-sql">-- Aliases de tabelas (muito útil em JOINs)
@@ -243,7 +243,7 @@ SELECT
 FROM funcionarios f            -- Alias 'f' para funcionarios
 INNER JOIN departamentos d     -- Alias 'd' para departamentos
     ON f.departamento_id = d.id_departamento
-WHERE d.localizacao = 'São Paulo'
+WHERE d.localizacao = 'Sêo Paulo'
 ORDER BY f.nome;
 
 -- Sem aliases seria mais verboso:
@@ -252,30 +252,30 @@ ORDER BY f.nome;
         <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500 mt-4">
           <h4 class="font-semibold text-emerald-400 mb-2">Boa Prática</h4>
           <p class="text-neutral-300 text-sm">
-            Sempre use prefixos (aliases de tabela) em queries com múltiplas tabelas, mesmo quando não há ambiguidade.
+            Sempre use prefixos (aliases de tabela) em queries com múltiplas tabelas, mesmo quando nêo há ambiguidade.
             Isso torna o código mais claro e evita erros futuros se a estrutura mudar.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Seção 3: ORDER BY -->
+    <!-- Seçêo 3: ORDER BY -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">🔢</span>
         </div>
-        <h2 class="text-xl font-bold text-cyan-400">ORDER BY - Ordenação de Resultados</h2>
+        <h2 class="text-xl font-bold text-cyan-400">ORDER BY - Ordenaçêo de Resultados</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Ordenação Ascendente e Descendente</h3>
+        <h3 class="text-lg font-semibold mb-4">Ordenaçêo Ascendente e Descendente</h3>
         <p class="text-neutral-300 mb-4">
           <code class="text-cyan-400">ORDER BY</code> ordena o resultado da consulta.
-          Use <code>ASC</code> (ascendente, padrão) ou <code>DESC</code> (descendente).
+          Use <code>ASC</code> (ascendente, padrêo) ou <code>DESC</code> (descendente).
         </p>
 
-        <pre><code class="language-sql">-- Ordem ascendente (padrão)
+        <pre><code class="language-sql">-- Ordem ascendente (padrêo)
 SELECT nome, salario
 FROM funcionarios
 ORDER BY salario;              -- Menor para maior (ASC implícito)
@@ -290,10 +290,10 @@ SELECT nome, departamento_id, salario
 FROM funcionarios
 ORDER BY departamento_id ASC, salario DESC;  -- Dept crescente, salário decrescente
 
--- Ordenar por posição da coluna no SELECT
+-- Ordenar por posiçêo da coluna no SELECT
 SELECT nome, salario, data_admissao
 FROM funcionarios
-ORDER BY 3 DESC, 2 DESC;       -- Posição 3 (data_admissao), depois posição 2 (salario)
+ORDER BY 3 DESC, 2 DESC;       -- Posiçêo 3 (data_admissao), depois posiçêo 2 (salario)
 
 -- Ordenar por alias
 SELECT nome AS funcionario, salario * 12 AS salario_anual
@@ -301,16 +301,16 @@ FROM funcionarios
 ORDER BY salario_anual DESC;   -- Usa o alias definido no SELECT</code></pre>
 
         <div class="bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500 mt-4">
-          <h4 class="font-semibold text-amber-400 mb-2">Atenção: NULLs na Ordenação</h4>
+          <h4 class="font-semibold text-amber-400 mb-2">Atençêo: NULLs na Ordenaçêo</h4>
           <p class="text-neutral-300 text-sm mb-2">
-            No Oracle, valores NULL são considerados "maiores" que qualquer valor.
+            No Oracle, valores NULL sêo considerados "maiores" que qualquer valor.
           </p>
           <ul class="list-disc list-inside text-neutral-400 text-sm">
             <li><code>ORDER BY coluna ASC</code> - NULLs aparecem no final</li>
             <li><code>ORDER BY coluna DESC</code> - NULLs aparecem no início</li>
             <li>Use <code>NULLS FIRST</code> ou <code>NULLS LAST</code> para controlar</li>
           </ul>
-          <pre class="mt-2"><code class="language-sql">-- Controlar posição dos NULLs
+          <pre class="mt-2"><code class="language-sql">-- Controlar posiçêo dos NULLs
 SELECT nome, data_demissao
 FROM funcionarios
 ORDER BY data_demissao NULLS LAST;  -- NULLs no final</code></pre>
@@ -318,7 +318,7 @@ ORDER BY data_demissao NULLS LAST;  -- NULLs no final</code></pre>
       </div>
     </section>
 
-    <!-- Seção 4: DISTINCT -->
+    <!-- Seçêo 4: DISTINCT -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
@@ -344,7 +344,7 @@ SELECT DISTINCT departamento_id
 FROM funcionarios;
 -- Resultado: 10, 20, 30 (sem duplicatas)
 
--- DISTINCT em múltiplas colunas (combinação única)
+-- DISTINCT em múltiplas colunas (combinaçêo única)
 SELECT DISTINCT departamento_id, cargo
 FROM funcionarios;
 -- Retorna combinações únicas de departamento + cargo
@@ -357,20 +357,20 @@ FROM funcionarios;
         <div class="bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500 mt-4">
           <h4 class="font-semibold text-amber-400 mb-2">Performance</h4>
           <p class="text-neutral-300 text-sm">
-            DISTINCT requer ordenação/comparação de todos os registros, o que pode ser custoso em grandes volumes.
+            DISTINCT requer ordenaçêo/comparaçêo de todos os registros, o que pode ser custoso em grandes volumes.
             Use apenas quando realmente necessário. Considere se um GROUP BY seria mais apropriado.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Seção 5: ROWNUM e Paginação -->
+    <!-- Seçêo 5: ROWNUM e Paginaçêo -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">📄</span>
         </div>
-        <h2 class="text-xl font-bold text-purple-400">ROWNUM e Paginação Básica</h2>
+        <h2 class="text-xl font-bold text-purple-400">ROWNUM e Paginaçêo Básica</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -392,10 +392,10 @@ FROM (
     FROM funcionarios
     ORDER BY salario DESC      -- Ordenar ANTES de aplicar ROWNUM
 )
-WHERE ROWNUM <= 3;             -- Pegar os 3 primeiros da ordenação</code></pre>
+WHERE ROWNUM <= 3;             -- Pegar os 3 primeiros da ordenaçêo</code></pre>
 
         <div class="bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500 mt-4">
-          <h4 class="font-semibold text-red-400 mb-2">Cuidado: ROWNUM é atribuído ANTES da ordenação</h4>
+          <h4 class="font-semibold text-red-400 mb-2">Cuidado: ROWNUM é atribuído ANTES da ordenaçêo</h4>
           <p class="text-neutral-300 text-sm mb-2">
             ROWNUM é atribuído quando a linha é retornada do FROM/WHERE, antes do ORDER BY.
             Para paginar dados ordenados, use subquery.
@@ -418,7 +418,7 @@ WHERE ROWNUM <= 3;             -- Depois pega as 3 primeiras</code></pre>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Paginação com ROWNUM</h3>
+        <h3 class="text-lg font-semibold mb-4">Paginaçêo com ROWNUM</h3>
         <p class="text-neutral-300 mb-4">
           Para paginar (pular linhas e pegar um intervalo), use subquery dupla:
         </p>
@@ -439,7 +439,7 @@ FROM (
     FROM (
         SELECT nome, salario
         FROM funcionarios
-        ORDER BY nome          -- Ordenação desejada
+        ORDER BY nome          -- Ordenaçêo desejada
     ) a
     WHERE ROWNUM <= 20         -- Limite superior
 )
@@ -457,7 +457,7 @@ WHERE rn BETWEEN 11 AND 20;    -- Página 2 (linhas 11-20)</code></pre>
         <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500 mt-4">
           <h4 class="font-semibold text-emerald-400 mb-2">Oracle 12c+: OFFSET e FETCH</h4>
           <p class="text-neutral-300 text-sm mb-2">
-            A partir do Oracle 12c, você pode usar a sintaxe SQL padrão OFFSET/FETCH:
+            A partir do Oracle 12c, você pode usar a sintaxe SQL padrêo OFFSET/FETCH:
           </p>
           <pre class="mt-2"><code class="language-sql">-- Sintaxe moderna (Oracle 12c+)
 SELECT nome, salario
@@ -584,8 +584,8 @@ ORDER BY total_funcionarios DESC NULLS LAST;</code></pre>
             <div class="flex items-start gap-3">
               <span class="text-emerald-400 mt-1">✓</span>
               <div>
-                <h4 class="font-semibold text-neutral-100">Implementar paginação</h4>
-                <p class="text-neutral-400 text-sm">Técnicas de paginação com ROWNUM e OFFSET/FETCH</p>
+                <h4 class="font-semibold text-neutral-100">Implementar paginaçêo</h4>
+                <p class="text-neutral-400 text-sm">Técnicas de paginaçêo com ROWNUM e OFFSET/FETCH</p>
               </div>
             </div>
           </div>
@@ -606,12 +606,12 @@ ORDER BY total_funcionarios DESC NULLS LAST;</code></pre>
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
           <h3 class="font-semibold text-neutral-100 mb-2">Exercício 1: Top 10 Salários</h3>
           <p class="text-neutral-300 mb-4">
-            Crie uma query que retorne os 10 funcionários com maiores salários, mostrando posição, nome, cargo e salário,
+            Crie uma query que retorne os 10 funcionários com maiores salários, mostrando posiçêo, nome, cargo e salário,
             ordenados do maior para o menor salário.
           </p>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">SELECT
     ROWNUM AS posicao,
@@ -635,7 +635,7 @@ WHERE ROWNUM <= 10;</code></pre>
           </p>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">SELECT DISTINCT localizacao AS cidade
 FROM departamentos
@@ -646,13 +646,13 @@ ORDER BY localizacao;</code></pre>
         </div>
 
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 3: Paginação de Funcionários</h3>
+          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 3: Paginaçêo de Funcionários</h3>
           <p class="text-neutral-300 mb-4">
             Implemente uma query que retorne a página 3 (linhas 21-30) de funcionários ordenados por nome.
           </p>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">-- Método com ROWNUM (Oracle < 12c)
 SELECT *

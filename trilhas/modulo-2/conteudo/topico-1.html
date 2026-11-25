@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -162,7 +162,7 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Definição -->
+    <!-- Seçêo 1: Definiçêo -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
@@ -179,7 +179,7 @@
         </p>
         <p class="text-neutral-300 mb-4">
           Entender essa arquitetura é fundamental para qualquer DBA, pois permite diagnosticar problemas, otimizar desempenho
-          e tomar decisões informadas sobre configuração e manutenção.
+          e tomar decisões informadas sobre configuraçêo e manutençêo.
         </p>
 
         <div class="bg-dark-700 rounded-lg p-4 mt-4">
@@ -222,7 +222,7 @@
       </div>
     </section>
 
-    <!-- Seção 2: SGA (System Global Area) -->
+    <!-- Seçêo 2: SGA (System Global Area) -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
@@ -256,7 +256,7 @@
           <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
             <h4 class="font-semibold text-purple-400 mb-2">Shared Pool</h4>
             <p class="text-neutral-300 text-sm mb-2">
-              Armazena comandos SQL compilados (cursores), planos de execução e metadados do dicionário de dados.
+              Armazena comandos SQL compilados (cursores), planos de execuçêo e metadados do dicionário de dados.
               Essencial para evitar recompilações custosas.
             </p>
             <ul class="list-disc list-inside text-neutral-400 text-sm">
@@ -270,7 +270,7 @@
             <h4 class="font-semibold text-orange-400 mb-2">Redo Log Buffer</h4>
             <p class="text-neutral-300 text-sm mb-2">
               Buffer circular que armazena informações sobre mudanças (redo entries) antes de serem escritas nos redo log files.
-              Crítico para recuperação de falhas.
+              Crítico para recuperaçêo de falhas.
             </p>
             <ul class="list-disc list-inside text-neutral-400 text-sm">
               <li>Toda mudança (INSERT, UPDATE, DELETE) gera uma entrada de redo</li>
@@ -286,7 +286,7 @@
               e operações paralelas.
             </p>
             <ul class="list-disc list-inside text-neutral-400 text-sm">
-              <li>Alivia pressão do Shared Pool</li>
+              <li>Alivia pressêo do Shared Pool</li>
               <li>Parâmetro: <code>LARGE_POOL_SIZE</code></li>
             </ul>
           </div>
@@ -313,7 +313,7 @@ SHOW PARAMETER MEMORY_TARGET;</code></pre>
       </div>
     </section>
 
-    <!-- Seção 3: PGA (Program Global Area) -->
+    <!-- Seçêo 3: PGA (Program Global Area) -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -323,18 +323,18 @@ SHOW PARAMETER MEMORY_TARGET;</code></pre>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Memória Privada de Cada Sessão</h3>
+        <h3 class="text-lg font-semibold mb-4">Memória Privada de Cada Sessêo</h3>
         <p class="text-neutral-300 mb-4">
           A <strong class="text-purple-400">PGA (Program Global Area)</strong> é uma área de memória <strong>privada</strong>
-          alocada para cada processo de servidor ou sessão. Diferente da SGA, a PGA não é compartilhada entre sessões.
+          alocada para cada processo de servidor ou sessêo. Diferente da SGA, a PGA nêo é compartilhada entre sessões.
         </p>
 
         <div class="bg-dark-700 rounded-lg p-4 mb-4">
           <h4 class="font-semibold text-neutral-100 mb-2">Principais Usos da PGA:</h4>
           <ul class="list-disc list-inside text-neutral-300 space-y-2">
-            <li><strong>Sort Area:</strong> Ordenação de dados (ORDER BY, GROUP BY, DISTINCT)</li>
+            <li><strong>Sort Area:</strong> Ordenaçêo de dados (ORDER BY, GROUP BY, DISTINCT)</li>
             <li><strong>Hash Area:</strong> Operações de hash joins</li>
-            <li><strong>Session Memory:</strong> Variáveis de sessão, cursores privados</li>
+            <li><strong>Session Memory:</strong> Variáveis de sessêo, cursores privados</li>
             <li><strong>SQL Work Areas:</strong> Operações de bitmap, merge joins</li>
           </ul>
         </div>
@@ -360,7 +360,7 @@ WHERE name IN ('aggregate PGA target parameter',
       </div>
     </section>
 
-    <!-- Seção 4: Processos de Background -->
+    <!-- Seçêo 4: Processos de Background -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
@@ -372,8 +372,8 @@ WHERE name IN ('aggregate PGA target parameter',
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
         <h3 class="text-lg font-semibold mb-4">Processos Essenciais</h3>
         <p class="text-neutral-300 mb-4">
-          Os processos de background são executados automaticamente quando a instância é iniciada.
-          Cada um tem uma função específica na manutenção e operação do banco de dados.
+          Os processos de background sêo executados automaticamente quando a instância é iniciada.
+          Cada um tem uma funçêo específica na manutençêo e operaçêo do banco de dados.
         </p>
 
         <div class="space-y-3">
@@ -416,7 +416,7 @@ WHERE name IN ('aggregate PGA target parameter',
               <h4 class="font-semibold text-neutral-100">System Monitor</h4>
             </div>
             <p class="text-neutral-300 text-sm">
-              Realiza recuperação da instância no startup (se necessário), limpa segmentos temporários não utilizados,
+              Realiza recuperaçêo da instância no startup (se necessário), limpa segmentos temporários nêo utilizados,
               e coalesca espaço livre em tablespaces.
             </p>
           </div>
@@ -428,7 +428,7 @@ WHERE name IN ('aggregate PGA target parameter',
             </div>
             <p class="text-neutral-300 text-sm">
               Monitora processos de usuário. Se um processo falha, o PMON faz a limpeza: libera locks, rollback
-              de transações não commitadas, libera recursos da SGA.
+              de transações nêo commitadas, libera recursos da SGA.
             </p>
           </div>
 
@@ -457,18 +457,18 @@ WHERE paddr != '00'
 ORDER BY name;
 
 -- Ver processos do sistema operacional (no Linux/Unix)
--- Execute no terminal, não no SQL
+-- Execute no terminal, nêo no SQL
 !ps -ef | grep ora_</code></pre>
       </div>
     </section>
 
-    <!-- Seção 5: Aplicação Prática -->
+    <!-- Seçêo 5: Aplicaçêo Prática -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">🛠️</span>
         </div>
-        <h2 class="text-xl font-bold text-cyan-400">Aplicação Prática</h2>
+        <h2 class="text-xl font-bold text-cyan-400">Aplicaçêo Prática</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -501,7 +501,7 @@ FROM V$SGASTAT
 WHERE pool IS NOT NULL
 ORDER BY pool, bytes DESC;
 
--- Verificar se há contenção de memória
+-- Verificar se há contençêo de memória
 SELECT
     name,
     value
@@ -574,7 +574,7 @@ ALTER SYSTEM SET LARGE_POOL_SIZE = 200M SCOPE=SPFILE;
               <span class="text-cyan-400 mt-1">✓</span>
               <div>
                 <h4 class="font-semibold text-neutral-100">Diferenciar Instância e Database</h4>
-                <p class="text-neutral-400 text-sm">Compreender a separação entre estruturas de memória e arquivos físicos</p>
+                <p class="text-neutral-400 text-sm">Compreender a separaçêo entre estruturas de memória e arquivos físicos</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
@@ -649,7 +649,7 @@ ALTER SYSTEM SET LARGE_POOL_SIZE = 200M SCOPE=SPFILE;
         <span>Voltar ao Índice</span>
       </a>
       <a href="topico-2.html" class="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors">
-        <span>Próximo: Instalação do Oracle</span>
+        <span>Próximo: Instalaçêo do Oracle</span>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>
@@ -660,7 +660,7 @@ ALTER SYSTEM SET LARGE_POOL_SIZE = 200M SCOPE=SPFILE;
   <!-- Footer -->
   <footer class="bg-dark-900 border-t border-dark-700 py-8 mt-12">
     <div class="max-w-4xl mx-auto px-4 text-center">
-      <p class="text-neutral-500 text-sm">Oracle DBA - Trilha 2: Administração Básica Oracle - Tópico 1</p>
+      <p class="text-neutral-500 text-sm">Oracle DBA - Trilha 2: Administraçêo Básica Oracle - Tópico 1</p>
     </div>
   </footer>
 

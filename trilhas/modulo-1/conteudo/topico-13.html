@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GROUP BY e Agregação | Trilha 1 | Oracle DBA</title>
+  <title>GROUP BY e Agregaçêo | Trilha 1 | Oracle DBA</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -152,8 +152,8 @@
           <span class="text-2xl font-bold text-emerald-400">13</span>
         </div>
         <div>
-          <h1 class="text-2xl font-bold">GROUP BY e Agregação</h1>
-          <p class="text-neutral-400">Funções de agregação, agrupamento e filtragem de grupos</p>
+          <h1 class="text-2xl font-bold">GROUP BY e Agregaçêo</h1>
+          <p class="text-neutral-400">Funções de agregaçêo, agrupamento e filtragem de grupos</p>
         </div>
       </div>
     </div>
@@ -162,27 +162,27 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Definição -->
+    <!-- Seçêo 1: Definiçêo -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">📖</span>
         </div>
-        <h2 class="text-xl font-bold text-emerald-400">Definição</h2>
+        <h2 class="text-xl font-bold text-emerald-400">Definiçêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Funções de Agregação</h3>
+        <h3 class="text-lg font-semibold mb-4">Funções de Agregaçêo</h3>
         <p class="text-neutral-300 mb-4">
-          As <strong class="text-emerald-400">funções de agregação</strong> realizam cálculos em um conjunto de valores
-          e retornam um único valor. São fundamentais para análise de dados e geração de relatórios estatísticos.
+          As <strong class="text-emerald-400">funções de agregaçêo</strong> realizam cálculos em um conjunto de valores
+          e retornam um único valor. Sêo fundamentais para análise de dados e geraçêo de relatórios estatísticos.
         </p>
 
         <div class="grid md:grid-cols-2 gap-4 mt-4">
           <div class="bg-dark-700 rounded-lg p-4">
             <h4 class="font-semibold text-emerald-400 mb-2">COUNT</h4>
             <p class="text-neutral-300 text-sm">
-              Conta o número de linhas ou valores não-nulos em uma coluna.
+              Conta o número de linhas ou valores nêo-nulos em uma coluna.
             </p>
           </div>
           <div class="bg-dark-700 rounded-lg p-4">
@@ -222,16 +222,16 @@
           <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
             <h4 class="font-semibold text-cyan-400 mb-2">COUNT(coluna)</h4>
             <p class="text-neutral-300 text-sm mb-2">
-              Conta apenas valores <strong>não-nulos</strong> na coluna especificada.
+              Conta apenas valores <strong>nêo-nulos</strong> na coluna especificada.
             </p>
             <pre><code class="language-sql">SELECT COUNT(comissao) FROM funcionarios;
--- Retorna: 35 (apenas funcionários com comissão)</code></pre>
+-- Retorna: 35 (apenas funcionários com comissêo)</code></pre>
           </div>
 
           <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
             <h4 class="font-semibold text-purple-400 mb-2">COUNT(DISTINCT coluna)</h4>
             <p class="text-neutral-300 text-sm mb-2">
-              Conta apenas valores <strong>únicos e não-nulos</strong> na coluna.
+              Conta apenas valores <strong>únicos e nêo-nulos</strong> na coluna.
             </p>
             <pre><code class="language-sql">SELECT COUNT(DISTINCT departamento_id) FROM funcionarios;
 -- Retorna: 11 (quantidade de departamentos diferentes)</code></pre>
@@ -243,7 +243,7 @@
         <h3 class="text-lg font-semibold mb-4">GROUP BY - Agrupando Resultados</h3>
         <p class="text-neutral-300 mb-4">
           A cláusula <strong class="text-emerald-400">GROUP BY</strong> agrupa linhas que possuem valores iguais
-          em colunas específicas, permitindo aplicar funções de agregação a cada grupo.
+          em colunas específicas, permitindo aplicar funções de agregaçêo a cada grupo.
         </p>
 
         <div class="bg-dark-700 rounded-lg p-4">
@@ -258,17 +258,17 @@ ORDER BY coluna;</code></pre>
       </div>
     </section>
 
-    <!-- Seção 2: Aplicação Prática -->
+    <!-- Seçêo 2: Aplicaçêo Prática -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">🛠️</span>
         </div>
-        <h2 class="text-xl font-bold text-cyan-400">Aplicação Prática</h2>
+        <h2 class="text-xl font-bold text-cyan-400">Aplicaçêo Prática</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Funções de Agregação Básicas</h3>
+        <h3 class="text-lg font-semibold mb-4">Funções de Agregaçêo Básicas</h3>
 
         <pre><code class="language-sql">-- Estatísticas gerais de salários
 SELECT
@@ -313,8 +313,8 @@ ORDER BY folha_total DESC;
         <h3 class="text-lg font-semibold mb-4">HAVING - Filtrando Grupos</h3>
 
         <p class="text-neutral-300 mb-4">
-          A cláusula <strong class="text-emerald-400">HAVING</strong> filtra grupos <strong>após</strong> a agregação,
-          enquanto <strong>WHERE</strong> filtra linhas <strong>antes</strong> da agregação.
+          A cláusula <strong class="text-emerald-400">HAVING</strong> filtra grupos <strong>após</strong> a agregaçêo,
+          enquanto <strong>WHERE</strong> filtra linhas <strong>antes</strong> da agregaçêo.
         </p>
 
         <pre><code class="language-sql">-- Departamentos com mais de 5 funcionários e salário médio > 5000
@@ -331,8 +331,8 @@ HAVING COUNT(*) > 5               -- Filtra DEPOIS de agrupar
 ORDER BY salario_medio DESC;
 
 -- Diferença entre WHERE e HAVING:
--- WHERE:  Filtra linhas individuais antes da agregação
--- HAVING: Filtra grupos resultantes após a agregação</code></pre>
+-- WHERE:  Filtra linhas individuais antes da agregaçêo
+-- HAVING: Filtra grupos resultantes após a agregaçêo</code></pre>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -367,8 +367,8 @@ ORDER BY d.nome_departamento, salario_medio DESC;</code></pre>
         <h3 class="text-lg font-semibold mb-4">Erros Comuns e Como Evitá-los</h3>
 
         <div class="bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500 mb-4">
-          <h4 class="font-semibold text-red-400 mb-2">Erro: Coluna não agregada no SELECT</h4>
-          <pre><code class="language-sql">-- INCORRETO: nome não está no GROUP BY nem em função de agregação
+          <h4 class="font-semibold text-red-400 mb-2">Erro: Coluna nêo agregada no SELECT</h4>
+          <pre><code class="language-sql">-- INCORRETO: nome nêo está no GROUP BY nem em funçêo de agregaçêo
 SELECT departamento_id, nome, AVG(salario)
 FROM funcionarios
 GROUP BY departamento_id;
@@ -382,7 +382,7 @@ GROUP BY departamento_id;
           </p>
           <ul class="list-disc list-inside text-neutral-300 space-y-1">
             <li>Na cláusula GROUP BY, OU</li>
-            <li>Dentro de uma função de agregação (COUNT, SUM, AVG, MIN, MAX)</li>
+            <li>Dentro de uma funçêo de agregaçêo (COUNT, SUM, AVG, MIN, MAX)</li>
           </ul>
         </div>
 
@@ -394,14 +394,14 @@ SELECT
 FROM funcionarios
 GROUP BY departamento_id;
 
--- CORRETO: Incluindo todas as colunas não agregadas no GROUP BY
+-- CORRETO: Incluindo todas as colunas nêo agregadas no GROUP BY
 SELECT departamento_id, cargo_id, AVG(salario)
 FROM funcionarios
 GROUP BY departamento_id, cargo_id;</code></pre>
       </div>
     </section>
 
-    <!-- Seção 3: Resultado Esperado -->
+    <!-- Seçêo 3: Resultado Esperado -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -418,7 +418,7 @@ GROUP BY departamento_id, cargo_id;</code></pre>
             <div class="flex items-start gap-3">
               <span class="text-emerald-400 mt-1">✓</span>
               <div>
-                <h4 class="font-semibold text-neutral-100">Funções de agregação</h4>
+                <h4 class="font-semibold text-neutral-100">Funções de agregaçêo</h4>
                 <p class="text-neutral-400 text-sm">Usar COUNT, SUM, AVG, MIN, MAX corretamente</p>
               </div>
             </div>
@@ -449,7 +449,7 @@ GROUP BY departamento_id, cargo_id;</code></pre>
               <span class="text-emerald-400 mt-1">✓</span>
               <div>
                 <h4 class="font-semibold text-neutral-100">Evitar erros comuns</h4>
-                <p class="text-neutral-400 text-sm">Identificar e corrigir problemas de agregação</p>
+                <p class="text-neutral-400 text-sm">Identificar e corrigir problemas de agregaçêo</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
@@ -477,12 +477,12 @@ GROUP BY departamento_id, cargo_id;</code></pre>
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
           <h3 class="font-semibold text-neutral-100 mb-2">Exercício 1: Análise de Vendas</h3>
           <p class="text-neutral-300 mb-4">
-            Crie uma consulta que mostre o total de vendas, ticket médio e quantidade de pedidos por região,
+            Crie uma consulta que mostre o total de vendas, ticket médio e quantidade de pedidos por regiêo,
             apenas para regiões com mais de 100 pedidos, ordenado por total de vendas decrescente.
           </p>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">SELECT
     r.nome_regiao,
@@ -509,7 +509,7 @@ ORDER BY total_vendas DESC;</code></pre>
           </p>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">SELECT
     d.nome_departamento,
@@ -535,7 +535,7 @@ ORDER BY salario_medio_depto DESC;</code></pre>
           </p>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">SELECT
     EXTRACT(YEAR FROM data_admissao) AS ano,

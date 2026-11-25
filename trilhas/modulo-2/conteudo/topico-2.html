@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Instalação do Oracle Database | Trilha 2 | Oracle DBA</title>
+  <title>Instalaçêo do Oracle Database | Trilha 2 | Oracle DBA</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -152,8 +152,8 @@
           <span class="text-2xl font-bold text-cyan-400">2</span>
         </div>
         <div>
-          <h1 class="text-2xl font-bold">Instalação do Oracle Database</h1>
-          <p class="text-neutral-400">Pré-requisitos, OUI, silent install, pós-instalação</p>
+          <h1 class="text-2xl font-bold">Instalaçêo do Oracle Database</h1>
+          <p class="text-neutral-400">Pré-requisitos, OUI, silent install, pós-instalaçêo</p>
         </div>
       </div>
     </div>
@@ -162,21 +162,21 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Pré-requisitos -->
+    <!-- Seçêo 1: Pré-requisitos -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">📋</span>
         </div>
-        <h2 class="text-xl font-bold text-cyan-400">Pré-requisitos para Instalação</h2>
+        <h2 class="text-xl font-bold text-cyan-400">Pré-requisitos para Instalaçêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
         <h3 class="text-lg font-semibold mb-4">Requisitos de Sistema</h3>
         <p class="text-neutral-300 mb-4">
-          Antes de iniciar a instalação do Oracle Database, é essencial verificar se o sistema atende aos
+          Antes de iniciar a instalaçêo do Oracle Database, é essencial verificar se o sistema atende aos
           requisitos mínimos de hardware e software. A falta de algum pré-requisito pode causar falhas
-          durante ou após a instalação.
+          durante ou após a instalaçêo.
         </p>
 
         <div class="grid md:grid-cols-2 gap-4 mb-6">
@@ -186,7 +186,7 @@
               <li><strong>RAM:</strong> 2 GB (recomendado 4 GB+)</li>
               <li><strong>SWAP:</strong> Igual ou maior que a RAM</li>
               <li><strong>Disco:</strong> 10 GB para software + espaço para dados</li>
-              <li><strong>Resolução:</strong> Mínimo 1024x768 para interface gráfica</li>
+              <li><strong>Resoluçêo:</strong> Mínimo 1024x768 para interface gráfica</li>
             </ul>
           </div>
 
@@ -194,15 +194,15 @@
             <h4 class="font-bold text-purple-400 mb-3">Software (Linux)</h4>
             <ul class="list-disc list-inside text-neutral-300 text-sm space-y-2">
               <li><strong>SO:</strong> Oracle Linux, Red Hat, CentOS, SUSE</li>
-              <li><strong>Kernel:</strong> Versão compatível com a versão Oracle</li>
+              <li><strong>Kernel:</strong> Versêo compatível com a versêo Oracle</li>
               <li><strong>Pacotes:</strong> binutils, glibc, make, gcc, libaio</li>
-              <li><strong>X11:</strong> Para instalação gráfica</li>
+              <li><strong>X11:</strong> Para instalaçêo gráfica</li>
             </ul>
           </div>
         </div>
 
         <div class="bg-dark-700 rounded-lg p-4">
-          <h4 class="font-semibold text-neutral-100 mb-2">Verificação de Pré-requisitos (Linux)</h4>
+          <h4 class="font-semibold text-neutral-100 mb-2">Verificaçêo de Pré-requisitos (Linux)</h4>
           <pre><code class="language-shell"># Verificar memória RAM
 free -g
 
@@ -212,7 +212,7 @@ df -h
 # Verificar espaço de SWAP
 swapon -s
 
-# Verificar versão do kernel
+# Verificar versêo do kernel
 uname -r
 
 # Verificar pacotes instalados (Red Hat/CentOS)
@@ -224,9 +224,9 @@ dpkg -l | grep -E "binutils|libc6|make|gcc|libaio"</code></pre>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-        <h3 class="text-lg font-semibold mb-4">Preparação do Ambiente (Linux)</h3>
+        <h3 class="text-lg font-semibold mb-4">Preparaçêo do Ambiente (Linux)</h3>
         <p class="text-neutral-300 mb-4">
-          O Oracle requer configuração específica de usuários, grupos e parâmetros do kernel.
+          O Oracle requer configuraçêo específica de usuários, grupos e parâmetros do kernel.
         </p>
 
         <pre><code class="language-shell"># 1. Criar grupos e usuário Oracle (como root)
@@ -272,35 +272,35 @@ EOF</code></pre>
       </div>
     </section>
 
-    <!-- Seção 2: Oracle Universal Installer (OUI) -->
+    <!-- Seçêo 2: Oracle Universal Installer (OUI) -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">🖥️</span>
         </div>
-        <h2 class="text-xl font-bold text-purple-400">Instalação com Oracle Universal Installer (OUI)</h2>
+        <h2 class="text-xl font-bold text-purple-400">Instalaçêo com Oracle Universal Installer (OUI)</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Instalação Gráfica</h3>
+        <h3 class="text-lg font-semibold mb-4">Instalaçêo Gráfica</h3>
         <p class="text-neutral-300 mb-4">
           O <strong class="text-purple-400">Oracle Universal Installer (OUI)</strong> é uma ferramenta gráfica
-          que guia você através do processo de instalação. É a forma mais comum e amigável de instalar o Oracle.
+          que guia você através do processo de instalaçêo. É a forma mais comum e amigável de instalar o Oracle.
         </p>
 
         <div class="bg-dark-700 rounded-lg p-4 mb-4">
-          <h4 class="font-semibold text-neutral-100 mb-2">Passos da Instalação Gráfica:</h4>
+          <h4 class="font-semibold text-neutral-100 mb-2">Passos da Instalaçêo Gráfica:</h4>
           <ol class="list-decimal list-inside text-neutral-300 space-y-2">
             <li>Baixar o software do site da Oracle (oracle.com/downloads)</li>
             <li>Descompactar o arquivo ZIP</li>
             <li>Executar o instalador como usuário oracle</li>
-            <li>Seguir o assistente de instalação</li>
+            <li>Seguir o assistente de instalaçêo</li>
             <li>Executar scripts root quando solicitado</li>
           </ol>
         </div>
 
         <pre><code class="language-shell"># 1. Fazer download do Oracle Database 19c (exemplo)
-# Baixe manualmente de oracle.com/downloads ou use wget com autenticação
+# Baixe manualmente de oracle.com/downloads ou use wget com autenticaçêo
 
 # 2. Descompactar (como usuário oracle)
 su - oracle
@@ -321,28 +321,28 @@ cd $ORACLE_HOME
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-        <h3 class="text-lg font-semibold mb-4">Opções de Instalação no OUI</h3>
+        <h3 class="text-lg font-semibold mb-4">Opções de Instalaçêo no OUI</h3>
 
         <div class="space-y-3">
           <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
-            <h4 class="font-semibold text-cyan-400 mb-2">1. Configuração de Instalação</h4>
+            <h4 class="font-semibold text-cyan-400 mb-2">1. Configuraçêo de Instalaçêo</h4>
             <ul class="list-disc list-inside text-neutral-300 text-sm">
               <li><strong>Create and configure a single instance database:</strong> Instala software + cria database</li>
               <li><strong>Install database software only:</strong> Apenas instala o software (recomendado)</li>
-              <li><strong>Upgrade an existing database:</strong> Para atualizar versão anterior</li>
+              <li><strong>Upgrade an existing database:</strong> Para atualizar versêo anterior</li>
             </ul>
           </div>
 
           <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
             <h4 class="font-semibold text-purple-400 mb-2">2. Classe de Sistema</h4>
             <ul class="list-disc list-inside text-neutral-300 text-sm">
-              <li><strong>Server Class:</strong> Para servidores de produção (mais opções)</li>
-              <li><strong>Desktop Class:</strong> Para ambientes de desenvolvimento (configuração simplificada)</li>
+              <li><strong>Server Class:</strong> Para servidores de produçêo (mais opções)</li>
+              <li><strong>Desktop Class:</strong> Para ambientes de desenvolvimento (configuraçêo simplificada)</li>
             </ul>
           </div>
 
           <div class="bg-orange-900/20 rounded-lg p-4 border-l-4 border-orange-500">
-            <h4 class="font-semibold text-orange-400 mb-2">3. Edição do Banco</h4>
+            <h4 class="font-semibold text-orange-400 mb-2">3. Ediçêo do Banco</h4>
             <ul class="list-disc list-inside text-neutral-300 text-sm">
               <li><strong>Enterprise Edition:</strong> Todos os recursos (licença paga)</li>
               <li><strong>Standard Edition 2:</strong> Recursos básicos (licença paga)</li>
@@ -353,28 +353,28 @@ cd $ORACLE_HOME
       </div>
     </section>
 
-    <!-- Seção 3: Silent Install -->
+    <!-- Seçêo 3: Silent Install -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">🤖</span>
         </div>
-        <h2 class="text-xl font-bold text-orange-400">Instalação Silenciosa (Silent Install)</h2>
+        <h2 class="text-xl font-bold text-orange-400">Instalaçêo Silenciosa (Silent Install)</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Instalação Não Interativa</h3>
+        <h3 class="text-lg font-semibold mb-4">Instalaçêo Nêo Interativa</h3>
         <p class="text-neutral-300 mb-4">
-          A instalação silenciosa permite instalar o Oracle sem interface gráfica, usando um arquivo de resposta (response file).
-          É ideal para automação, instalações em massa ou servidores sem X11.
+          A instalaçêo silenciosa permite instalar o Oracle sem interface gráfica, usando um arquivo de resposta (response file).
+          É ideal para automaçêo, instalações em massa ou servidores sem X11.
         </p>
 
         <div class="bg-orange-900/20 rounded-lg p-4 border border-orange-500/30 mb-4">
-          <h4 class="font-semibold text-orange-400 mb-2">Vantagens da Instalação Silenciosa:</h4>
+          <h4 class="font-semibold text-orange-400 mb-2">Vantagens da Instalaçêo Silenciosa:</h4>
           <ul class="list-disc list-inside text-neutral-300 text-sm space-y-1">
-            <li>Não requer interface gráfica (X11)</li>
+            <li>Nêo requer interface gráfica (X11)</li>
             <li>Automatizável via scripts</li>
-            <li>Instalação consistente em múltiplos servidores</li>
+            <li>Instalaçêo consistente em múltiplos servidores</li>
             <li>Pode ser executada remotamente via SSH</li>
           </ul>
         </div>
@@ -400,14 +400,14 @@ vi /tmp/my_install.rsp
 # oracle.install.db.OSKMDBA_GROUP=dba
 # oracle.install.db.OSRACDBA_GROUP=dba
 
-# 3. Executar instalação silenciosa
+# 3. Executar instalaçêo silenciosa
 ./runInstaller -silent -responseFile /tmp/my_install.rsp \
   -ignorePrereq
 
 # 4. Monitorar o log
 tail -f $ORACLE_BASE/oraInventory/logs/installActions*.log
 
-# 5. Executar scripts root quando a instalação terminar
+# 5. Executar scripts root quando a instalaçêo terminar
 # Como root:
 /u01/app/oraInventory/orainstRoot.sh
 /u01/app/oracle/product/19.0.0/dbhome_1/root.sh</code></pre>
@@ -416,7 +416,7 @@ tail -f $ORACLE_BASE/oraInventory/logs/installActions*.log
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
         <h3 class="text-lg font-semibold mb-4">Response File Mínimo</h3>
         <p class="text-neutral-300 mb-4">
-          Exemplo de um response file simplificado para instalação silenciosa:
+          Exemplo de um response file simplificado para instalaçêo silenciosa:
         </p>
 
         <pre><code class="language-shell">####################################################################
@@ -426,13 +426,13 @@ tail -f $ORACLE_BASE/oraInventory/logs/installActions*.log
 ## your installation.                                             ##
 ####################################################################
 
-# Tipo de instalação
+# Tipo de instalaçêo
 oracle.install.option=INSTALL_DB_SWONLY
 
 # Grupo Unix
 UNIX_GROUP_NAME=oinstall
 
-# Localização do inventário
+# Localizaçêo do inventário
 INVENTORY_LOCATION=/u01/app/oraInventory
 
 # Oracle Home
@@ -441,7 +441,7 @@ ORACLE_HOME=/u01/app/oracle/product/19.0.0/dbhome_1
 # Oracle Base
 ORACLE_BASE=/u01/app/oracle
 
-# Edição do banco de dados
+# Ediçêo do banco de dados
 oracle.install.db.InstallEdition=EE
 
 # Grupos DBA
@@ -452,23 +452,23 @@ oracle.install.db.OSDGDBA_GROUP=dba
 oracle.install.db.OSKMDBA_GROUP=dba
 oracle.install.db.OSRACDBA_GROUP=dba
 
-# Não configurar Security Updates
+# Nêo configurar Security Updates
 SECURITY_UPDATES_VIA_MYORACLESUPPORT=false
 DECLINE_SECURITY_UPDATES=true</code></pre>
       </div>
     </section>
 
-    <!-- Seção 4: Pós-Instalação -->
+    <!-- Seçêo 4: Pós-Instalaçêo -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">✅</span>
         </div>
-        <h2 class="text-xl font-bold text-emerald-400">Tarefas Pós-Instalação</h2>
+        <h2 class="text-xl font-bold text-emerald-400">Tarefas Pós-Instalaçêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Configuração do Ambiente</h3>
+        <h3 class="text-lg font-semibold mb-4">Configuraçêo do Ambiente</h3>
         <p class="text-neutral-300 mb-4">
           Após instalar o software Oracle, é necessário configurar variáveis de ambiente e criar o banco de dados.
         </p>
@@ -485,16 +485,16 @@ export LD_LIBRARY_PATH=$ORACLE_HOME/lib:$LD_LIBRARY_PATH
 # Recarregar o profile
 source ~/.bash_profile
 
-# Verificar configuração
+# Verificar configuraçêo
 echo $ORACLE_HOME
 which sqlplus</code></pre>
         </div>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Verificação da Instalação</h3>
+        <h3 class="text-lg font-semibold mb-4">Verificaçêo da Instalaçêo</h3>
 
-        <pre><code class="language-shell"># 1. Verificar versão instalada
+        <pre><code class="language-shell"># 1. Verificar versêo instalada
 $ORACLE_HOME/OPatch/opatch lsinventory
 
 # 2. Verificar binários principais
@@ -507,7 +507,7 @@ lsnrctl status
 # 4. Verificar Oracle Inventory
 cat /u01/app/oraInventory/ContentsXML/inventory.xml
 
-# 5. Validar instalação
+# 5. Validar instalaçêo
 cd $ORACLE_HOME/rdbms/admin
 sqlplus / as sysdba
 -- Executar no SQL*Plus:
@@ -520,7 +520,7 @@ SELECT * FROM V$VERSION;</code></pre>
           O Oracle Listener é necessário para conexões remotas ao banco de dados.
         </p>
 
-        <pre><code class="language-shell"># Criar listener com configuração padrão
+        <pre><code class="language-shell"># Criar listener com configuraçêo padrêo
 netca
 
 # Ou criar manualmente o arquivo listener.ora
@@ -597,14 +597,14 @@ systemctl start oracle-listener</code></pre>
               <span class="text-cyan-400 mt-1">✓</span>
               <div>
                 <h4 class="font-semibold text-neutral-100">Instalar com OUI</h4>
-                <p class="text-neutral-400 text-sm">Executar instalação gráfica e compreender as opções</p>
+                <p class="text-neutral-400 text-sm">Executar instalaçêo gráfica e compreender as opções</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
               <span class="text-cyan-400 mt-1">✓</span>
               <div>
-                <h4 class="font-semibold text-neutral-100">Instalação silenciosa</h4>
-                <p class="text-neutral-400 text-sm">Criar e usar response files para automação</p>
+                <h4 class="font-semibold text-neutral-100">Instalaçêo silenciosa</h4>
+                <p class="text-neutral-400 text-sm">Criar e usar response files para automaçêo</p>
               </div>
             </div>
           </div>
@@ -626,7 +626,7 @@ systemctl start oracle-listener</code></pre>
             <div class="flex items-start gap-3">
               <span class="text-cyan-400 mt-1">✓</span>
               <div>
-                <h4 class="font-semibold text-neutral-100">Validar instalação</h4>
+                <h4 class="font-semibold text-neutral-100">Validar instalaçêo</h4>
                 <p class="text-neutral-400 text-sm">Verificar binários, inventário e conectividade</p>
               </div>
             </div>
@@ -676,7 +676,7 @@ systemctl start oracle-listener</code></pre>
   <!-- Footer -->
   <footer class="bg-dark-900 border-t border-dark-700 py-8 mt-12">
     <div class="max-w-4xl mx-auto px-4 text-center">
-      <p class="text-neutral-500 text-sm">Oracle DBA - Trilha 2: Administração Básica Oracle - Tópico 2</p>
+      <p class="text-neutral-500 text-sm">Oracle DBA - Trilha 2: Administraçêo Básica Oracle - Tópico 2</p>
     </div>
   </footer>
 

@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -162,36 +162,36 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Definição -->
+    <!-- Seçêo 1: Definiçêo -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">📖</span>
         </div>
-        <h2 class="text-xl font-bold text-emerald-400">Definição</h2>
+        <h2 class="text-xl font-bold text-emerald-400">Definiçêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
         <h3 class="text-lg font-semibold mb-4">O que é Modelagem de Dados?</h3>
         <p class="text-neutral-300 mb-4">
-          <strong class="text-emerald-400">Modelagem de dados</strong> é o processo de criar uma representação visual
+          <strong class="text-emerald-400">Modelagem de dados</strong> é o processo de criar uma representaçêo visual
           e lógica das estruturas de dados de um sistema. O <strong>Diagrama Entidade-Relacionamento (DER ou ERD)</strong>
           é a ferramenta mais utilizada para essa tarefa.
         </p>
         <p class="text-neutral-300 mb-4">
-          O modelo ER foi proposto por <strong>Peter Chen</strong> em 1976 e se tornou o padrão da indústria para
+          O modelo ER foi proposto por <strong>Peter Chen</strong> em 1976 e se tornou o padrêo da indústria para
           projetar bancos de dados relacionais. Ele permite visualizar como os dados se organizam antes de criar
           as tabelas físicas no banco.
         </p>
 
         <div class="bg-dark-700 rounded-lg p-4 mt-4">
-          <h4 class="font-semibold text-neutral-100 mb-2">Níveis de Abstração:</h4>
+          <h4 class="font-semibold text-neutral-100 mb-2">Níveis de Abstraçêo:</h4>
           <div class="space-y-3">
             <div class="flex items-start gap-3">
               <span class="bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded text-xs font-bold">1</span>
               <div>
                 <h5 class="font-semibold text-neutral-100">Modelo Conceitual</h5>
-                <p class="text-neutral-400 text-sm">Visão de alto nível, foco no negócio. Independente de tecnologia.</p>
+                <p class="text-neutral-400 text-sm">Visêo de alto nível, foco no negócio. Independente de tecnologia.</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
@@ -231,7 +231,7 @@
           <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
             <h4 class="font-semibold text-cyan-400 mb-2">Atributos</h4>
             <p class="text-neutral-300 text-sm mb-2">
-              São as <strong>características</strong> ou propriedades de uma entidade.
+              Sêo as <strong>características</strong> ou propriedades de uma entidade.
             </p>
             <ul class="list-disc list-inside text-neutral-400 text-sm">
               <li>Cliente: nome, cpf, email</li>
@@ -319,13 +319,13 @@
       </div>
     </section>
 
-    <!-- Seção 2: Aplicação Prática -->
+    <!-- Seçêo 2: Aplicaçêo Prática -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">🛠️</span>
         </div>
-        <h2 class="text-xl font-bold text-cyan-400">Aplicação Prática</h2>
+        <h2 class="text-xl font-bold text-cyan-400">Aplicaçêo Prática</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -342,7 +342,7 @@
             <li>Cada pedido pertence a um único cliente</li>
             <li>Um pedido contém vários produtos</li>
             <li>Cada produto pode estar em vários pedidos</li>
-            <li>Produtos são organizados em categorias</li>
+            <li>Produtos sêo organizados em categorias</li>
             <li>Uma categoria pode ter várias subcategorias</li>
           </ul>
         </div>
@@ -432,14 +432,14 @@ CREATE INDEX idx_pedidos_data ON pedidos(data_pedido);
 CREATE INDEX idx_produtos_categoria ON produtos(categoria_id);
 CREATE INDEX idx_itens_produto ON itens_pedido(id_produto);
 
--- Comentários nas tabelas (documentação)
+-- Comentários nas tabelas (documentaçêo)
 COMMENT ON TABLE clientes IS 'Cadastro de clientes do e-commerce';
-COMMENT ON COLUMN clientes.cpf IS 'CPF do cliente sem formatação';
+COMMENT ON COLUMN clientes.cpf IS 'CPF do cliente sem formataçêo';
 COMMENT ON TABLE itens_pedido IS 'Tabela associativa entre pedidos e produtos';</code></pre>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-        <h3 class="text-lg font-semibold mb-4">Normalização: As 3 Formas Normais</h3>
+        <h3 class="text-lg font-semibold mb-4">Normalizaçêo: As 3 Formas Normais</h3>
 
         <div class="space-y-4">
           <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
@@ -467,7 +467,7 @@ COMMENT ON TABLE itens_pedido IS 'Tabela associativa entre pedidos e produtos';<
           <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
             <h4 class="font-semibold text-purple-400 mb-2">3ª Forma Normal (3FN)</h4>
             <p class="text-neutral-300 text-sm mb-2">
-              <strong>Eliminar dependências transitivas</strong> - atributos não-chave não devem depender de outros atributos não-chave.
+              <strong>Eliminar dependências transitivas</strong> - atributos nêo-chave nêo devem depender de outros atributos nêo-chave.
             </p>
             <div class="text-xs text-neutral-400">
               <span class="text-red-400">❌ Errado:</span> FUNCIONARIO com cidade e estado (estado depende de cidade)<br>
@@ -478,7 +478,7 @@ COMMENT ON TABLE itens_pedido IS 'Tabela associativa entre pedidos e produtos';<
       </div>
     </section>
 
-    <!-- Seção 3: Resultado Esperado -->
+    <!-- Seçêo 3: Resultado Esperado -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -525,7 +525,7 @@ COMMENT ON TABLE itens_pedido IS 'Tabela associativa entre pedidos e produtos';<
             <div class="flex items-start gap-3">
               <span class="text-emerald-400 mt-1">✓</span>
               <div>
-                <h4 class="font-semibold text-neutral-100">Aplicar normalização</h4>
+                <h4 class="font-semibold text-neutral-100">Aplicar normalizaçêo</h4>
                 <p class="text-neutral-400 text-sm">Eliminar redundâncias até 3FN</p>
               </div>
             </div>
@@ -564,7 +564,7 @@ COMMENT ON TABLE itens_pedido IS 'Tabela associativa entre pedidos e produtos';<
           </ol>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4 bg-dark-700 rounded-lg p-4">
               <ol class="list-decimal list-inside text-neutral-300 space-y-2">
                 <li><strong>N:N</strong> - Requer tabela associativa AUTOR_LIVRO</li>
@@ -589,7 +589,7 @@ COMMENT ON TABLE itens_pedido IS 'Tabela associativa entre pedidos e produtos';<
           </ul>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">-- Autores
 CREATE TABLE autores (
@@ -645,7 +645,7 @@ CREATE TABLE emprestimos (
         </div>
 
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 3: Normalização</h3>
+          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 3: Normalizaçêo</h3>
           <p class="text-neutral-300 mb-4">
             A tabela abaixo está desnormalizada. Normalize-a até a 3ª Forma Normal:
           </p>
@@ -664,9 +664,9 @@ CREATE TABLE emprestimos (
 );</code></pre>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
-              <pre><code class="language-sql">-- Departamentos (3FN: gerente não depende da venda)
+              <pre><code class="language-sql">-- Departamentos (3FN: gerente nêo depende da venda)
 CREATE TABLE departamentos (
     id_depto   NUMBER PRIMARY KEY,
     nome       VARCHAR2(50) NOT NULL,

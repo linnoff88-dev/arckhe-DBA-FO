@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Otimização de Índices | Trilha 4 | Oracle DBA</title>
+  <title>Otimizaçêo de Índices | Trilha 4 | Oracle DBA</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -150,8 +150,8 @@
           <span class="text-2xl font-bold text-orange-400">3</span>
         </div>
         <div>
-          <h1 class="text-2xl font-bold">Otimização de Índices</h1>
-          <p class="text-neutral-400">Tipos, criação, manutenção e quando usar</p>
+          <h1 class="text-2xl font-bold">Otimizaçêo de Índices</h1>
+          <p class="text-neutral-400">Tipos, criaçêo, manutençêo e quando usar</p>
         </div>
       </div>
     </div>
@@ -164,7 +164,7 @@
         <div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">📖</span>
         </div>
-        <h2 class="text-xl font-bold text-orange-400">Definição</h2>
+        <h2 class="text-xl font-bold text-orange-400">Definiçêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -172,7 +172,7 @@
 
         <div class="space-y-4">
           <div class="bg-orange-900/20 rounded-lg p-4 border-l-4 border-orange-500">
-            <h4 class="font-semibold text-orange-400 mb-2">B-Tree (Padrão)</h4>
+            <h4 class="font-semibold text-orange-400 mb-2">B-Tree (Padrêo)</h4>
             <p class="text-neutral-300 text-sm mb-2">
               Estrutura de árvore balanceada. Ideal para alta cardinalidade (muitos valores distintos).
               Usado em 90% dos casos: colunas de ID, datas, nomes, códigos.
@@ -185,7 +185,7 @@ CREATE UNIQUE INDEX idx_emp_cpf ON employees(cpf);</code></pre>
             <h4 class="font-semibold text-emerald-400 mb-2">Bitmap</h4>
             <p class="text-neutral-300 text-sm mb-2">
               Para baixa cardinalidade (poucos valores distintos). Comum em Data Warehouse.
-              Não use em OLTP (alto custo de manutenção com INSERTs/UPDATEs).
+              Nêo use em OLTP (alto custo de manutençêo com INSERTs/UPDATEs).
             </p>
             <pre><code class="language-sql">-- Bom para: sexo (M/F), status (A/I), departamento (10 valores)
 CREATE BITMAP INDEX idx_emp_gender ON employees(gender);
@@ -195,7 +195,7 @@ CREATE BITMAP INDEX idx_prod_category ON products(category_id);</code></pre>
           <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
             <h4 class="font-semibold text-cyan-400 mb-2">Function-Based</h4>
             <p class="text-neutral-300 text-sm mb-2">
-              Indexa resultado de função aplicada à coluna. Necessário quando query usa função no WHERE.
+              Indexa resultado de funçêo aplicada à coluna. Necessário quando query usa funçêo no WHERE.
             </p>
             <pre><code class="language-sql">-- Para queries com UPPER(), LOWER(), TO_DATE(), etc
 CREATE INDEX idx_emp_upper_name ON employees(UPPER(name));
@@ -214,7 +214,7 @@ CREATE INDEX idx_emp_dept_status ON employees(department_id, status);
 -- Ordem importa! Este índice serve para:
 -- WHERE department_id = X (usa índice)
 -- WHERE department_id = X AND status = Y (usa índice completo)
--- WHERE status = Y (NÃO usa o índice - status não é a primeira coluna)</code></pre>
+-- WHERE status = Y (NêO usa o índice - status nêo é a primeira coluna)</code></pre>
           </div>
         </div>
       </div>
@@ -225,7 +225,7 @@ CREATE INDEX idx_emp_dept_status ON employees(department_id, status);
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">🛠️</span>
         </div>
-        <h2 class="text-xl font-bold text-cyan-400">Aplicação Prática</h2>
+        <h2 class="text-xl font-bold text-cyan-400">Aplicaçêo Prática</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -241,7 +241,7 @@ SELECT
     distinct_keys,
     blevel,                    -- Profundidade da árvore (ideal: 2-3)
     leaf_blocks,               -- Blocos folha
-    clustering_factor          -- Quão organizado está (quanto menor, melhor)
+    clustering_factor          -- Quêo organizado está (quanto menor, melhor)
 FROM dba_indexes
 WHERE table_name = 'EMPLOYEES';
 
@@ -261,7 +261,7 @@ ALTER INDEX idx_employees_email MONITORING USAGE;
 -- Após algumas horas/dias, verificar
 SELECT * FROM v$object_usage WHERE index_name = 'IDX_EMPLOYEES_EMAIL';
 
--- Identificar índices não usados (candidatos a DROP)
+-- Identificar índices nêo usados (candidatos a DROP)
 SELECT
     index_name,
     table_name,
@@ -273,9 +273,9 @@ WHERE used = 'NO' AND monitoring = 'YES';</code></pre>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Manutenção de Índices</h3>
+        <h3 class="text-lg font-semibold mb-4">Manutençêo de Índices</h3>
 
-        <pre><code class="language-sql">-- Verificar fragmentação
+        <pre><code class="language-sql">-- Verificar fragmentaçêo
 SELECT
     index_name,
     blevel,                               -- > 4 indica problema
@@ -291,7 +291,7 @@ ALTER INDEX idx_employees_email REBUILD ONLINE;  -- ONLINE mantém acesso durant
 
 -- Rebuild em paralelo (mais rápido)
 ALTER INDEX idx_employees_dept REBUILD ONLINE PARALLEL 4;
-ALTER INDEX idx_employees_dept NOPARALLEL;  -- Volta ao padrão após rebuild
+ALTER INDEX idx_employees_dept NOPARALLEL;  -- Volta ao padrêo após rebuild
 
 -- Coalesce (reorganiza sem recriar - mais rápido que rebuild)
 ALTER INDEX idx_employees_email COALESCE;
@@ -310,7 +310,7 @@ ANALYZE INDEX idx_employees_email VALIDATE STRUCTURE;</code></pre>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-        <h3 class="text-lg font-semibold mb-4">Decisões: Criar ou Não Criar?</h3>
+        <h3 class="text-lg font-semibold mb-4">Decisões: Criar ou Nêo Criar?</h3>
 
         <div class="grid md:grid-cols-2 gap-4">
           <div class="bg-emerald-900/20 rounded-lg p-4">
@@ -327,7 +327,7 @@ ANALYZE INDEX idx_employees_email VALIDATE STRUCTURE;</code></pre>
           </div>
 
           <div class="bg-red-900/20 rounded-lg p-4">
-            <h4 class="font-semibold text-red-400 mb-2">Quando NÃO criar índice</h4>
+            <h4 class="font-semibold text-red-400 mb-2">Quando NêO criar índice</h4>
             <ul class="list-disc list-inside text-neutral-300 text-sm space-y-1">
               <li>Tabelas pequenas (<1000 linhas)</li>
               <li>Colunas com baixa cardinalidade (OLTP)</li>
@@ -343,7 +343,7 @@ ANALYZE INDEX idx_employees_email VALIDATE STRUCTURE;</code></pre>
         <div class="mt-4 bg-dark-700 rounded-lg p-4">
           <h4 class="font-semibold text-neutral-100 mb-2">Regra de Ouro:</h4>
           <p class="text-neutral-300 text-sm">
-            Índices aceleram SELECT mas tornam INSERT/UPDATE/DELETE mais lentos (overhead de manutenção).
+            Índices aceleram SELECT mas tornam INSERT/UPDATE/DELETE mais lentos (overhead de manutençêo).
             Balanceie conforme workload: OLTP = poucos índices seletivos; DW = mais índices, inclusive bitmaps.
           </p>
         </div>
@@ -379,7 +379,7 @@ ANALYZE INDEX idx_employees_email VALIDATE STRUCTURE;</code></pre>
               <span class="text-orange-400 mt-1">✓</span>
               <div>
                 <h4 class="font-semibold text-neutral-100">Monitorar uso</h4>
-                <p class="text-neutral-400 text-sm">Identificar índices não utilizados</p>
+                <p class="text-neutral-400 text-sm">Identificar índices nêo utilizados</p>
               </div>
             </div>
           </div>
@@ -387,14 +387,14 @@ ANALYZE INDEX idx_employees_email VALIDATE STRUCTURE;</code></pre>
             <div class="flex items-start gap-3">
               <span class="text-orange-400 mt-1">✓</span>
               <div>
-                <h4 class="font-semibold text-neutral-100">Detectar fragmentação</h4>
+                <h4 class="font-semibold text-neutral-100">Detectar fragmentaçêo</h4>
                 <p class="text-neutral-400 text-sm">BLEVEL, deleted entries, clustering factor</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
               <span class="text-orange-400 mt-1">✓</span>
               <div>
-                <h4 class="font-semibold text-neutral-100">Fazer manutenção</h4>
+                <h4 class="font-semibold text-neutral-100">Fazer manutençêo</h4>
                 <p class="text-neutral-400 text-sm">REBUILD, COALESCE quando necessário</p>
               </div>
             </div>
@@ -402,7 +402,7 @@ ANALYZE INDEX idx_employees_email VALIDATE STRUCTURE;</code></pre>
               <span class="text-orange-400 mt-1">✓</span>
               <div>
                 <h4 class="font-semibold text-neutral-100">Remover índices desnecessários</h4>
-                <p class="text-neutral-400 text-sm">Reduzir overhead de manutenção</p>
+                <p class="text-neutral-400 text-sm">Reduzir overhead de manutençêo</p>
               </div>
             </div>
           </div>
@@ -435,7 +435,7 @@ ANALYZE INDEX idx_employees_email VALIDATE STRUCTURE;</code></pre>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
         </svg>
-        <span>Anterior: Planos de Execução</span>
+        <span>Anterior: Planos de Execuçêo</span>
       </a>
       <a href="topico-4.html" class="flex items-center gap-2 text-orange-400 hover:text-orange-300 transition-colors">
         <span>Próximo: Tuning de SQL</span>

@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -162,20 +162,20 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Definição -->
+    <!-- Seçêo 1: Definiçêo -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">📖</span>
         </div>
-        <h2 class="text-xl font-bold text-emerald-400">Definição</h2>
+        <h2 class="text-xl font-bold text-emerald-400">Definiçêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
         <h3 class="text-lg font-semibold mb-4">O que é uma VIEW?</h3>
         <p class="text-neutral-300 mb-4">
           Uma <strong class="text-emerald-400">VIEW</strong> é uma consulta SQL armazenada que atua como uma
-          <strong>tabela virtual</strong>. Ela não armazena dados fisicamente, mas apresenta dados de uma ou mais
+          <strong>tabela virtual</strong>. Ela nêo armazena dados fisicamente, mas apresenta dados de uma ou mais
           tabelas base através de uma consulta SELECT predefinida.
         </p>
 
@@ -183,7 +183,7 @@
           <h4 class="font-semibold text-neutral-100 mb-2">Características Principais:</h4>
           <ul class="list-disc list-inside text-neutral-300 space-y-2">
             <li><strong>Tabela virtual:</strong> Apresenta dados sem armazená-los fisicamente</li>
-            <li><strong>Simplificação:</strong> Oculta complexidade de consultas com múltiplos JOINs</li>
+            <li><strong>Simplificaçêo:</strong> Oculta complexidade de consultas com múltiplos JOINs</li>
             <li><strong>Segurança:</strong> Restringe acesso a colunas ou linhas específicas</li>
             <li><strong>Consistência:</strong> Garante que todos usem a mesma lógica de consulta</li>
             <li><strong>Independência:</strong> Protege aplicações de mudanças na estrutura das tabelas</li>
@@ -215,13 +215,13 @@
       </div>
     </section>
 
-    <!-- Seção 2: Aplicação Prática -->
+    <!-- Seçêo 2: Aplicaçêo Prática -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">🛠️</span>
         </div>
-        <h2 class="text-xl font-bold text-cyan-400">Aplicação Prática</h2>
+        <h2 class="text-xl font-bold text-cyan-400">Aplicaçêo Prática</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -311,7 +311,7 @@ WHERE status = 'ATIVO';
 
         <p class="text-neutral-300 mb-4">
           O <strong class="text-emerald-400">WITH CHECK OPTION</strong> impede que operações DML
-          (INSERT, UPDATE, DELETE) violem a condição WHERE da VIEW.
+          (INSERT, UPDATE, DELETE) violem a condiçêo WHERE da VIEW.
         </p>
 
         <pre><code class="language-sql">-- VIEW com CHECK OPTION
@@ -326,7 +326,7 @@ FROM funcionarios
 WHERE departamento_id = 10
 WITH CHECK OPTION CONSTRAINT ck_depto_ti;
 
--- Permitido: UPDATE dentro da condição da VIEW
+-- Permitido: UPDATE dentro da condiçêo da VIEW
 UPDATE vw_funcionarios_depto_ti
 SET salario = 8000
 WHERE id_funcionario = 100;
@@ -339,16 +339,16 @@ WHERE id_funcionario = 100;
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Views Atualizáveis vs Não Atualizáveis</h3>
+        <h3 class="text-lg font-semibold mb-4">Views Atualizáveis vs Nêo Atualizáveis</h3>
 
         <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500 mb-4">
           <h4 class="font-semibold text-emerald-400 mb-2">View Atualizável</h4>
           <p class="text-neutral-300 text-sm mb-2">Permite INSERT, UPDATE e DELETE se:</p>
           <ul class="list-disc list-inside text-neutral-300 text-sm space-y-1">
             <li>Baseada em uma única tabela</li>
-            <li>Não contém funções de agregação (SUM, AVG, COUNT, etc.)</li>
-            <li>Não usa DISTINCT, GROUP BY, ou HAVING</li>
-            <li>Não usa operadores de conjunto (UNION, INTERSECT, MINUS)</li>
+            <li>Nêo contém funções de agregaçêo (SUM, AVG, COUNT, etc.)</li>
+            <li>Nêo usa DISTINCT, GROUP BY, ou HAVING</li>
+            <li>Nêo usa operadores de conjunto (UNION, INTERSECT, MINUS)</li>
           </ul>
         </div>
 
@@ -359,11 +359,11 @@ FROM funcionarios
 WHERE departamento_id = 10;
 
 -- Operações DML funcionam
-INSERT INTO vw_depto_ti VALUES (201, 'João Silva', 'joao@empresa.com', 7000);
+INSERT INTO vw_depto_ti VALUES (201, 'Joêo Silva', 'joao@empresa.com', 7000);
 UPDATE vw_depto_ti SET salario = 7500 WHERE id_funcionario = 201;
 DELETE FROM vw_depto_ti WHERE id_funcionario = 201;
 
--- VIEW NÃO ATUALIZÁVEL (usa JOIN e agregação)
+-- VIEW NêO ATUALIZÁVEL (usa JOIN e agregaçêo)
 CREATE OR REPLACE VIEW vw_estatisticas_depto AS
 SELECT
     d.nome_departamento,
@@ -384,7 +384,7 @@ UPDATE vw_estatisticas_depto SET salario_medio = 8000;
         <pre><code class="language-sql">-- Remover uma VIEW
 DROP VIEW vw_funcionarios_ativos;
 
--- Consultar definição de uma VIEW
+-- Consultar definiçêo de uma VIEW
 SELECT text
 FROM user_views
 WHERE view_name = 'VW_FUNCIONARIOS_COMPLETO';
@@ -443,7 +443,7 @@ WHERE owner = 'PUBLIC'
       </div>
     </section>
 
-    <!-- Seção 3: Resultado Esperado -->
+    <!-- Seçêo 3: Resultado Esperado -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -520,11 +520,11 @@ WHERE owner = 'PUBLIC'
           <h3 class="font-semibold text-neutral-100 mb-2">Exercício 1: View de Segurança</h3>
           <p class="text-neutral-300 mb-4">
             Crie uma VIEW que exponha dados de funcionários sem revelar informações salariais sensíveis.
-            Inclua nome, email, departamento e tempo de empresa, mas não salário ou comissões.
+            Inclua nome, email, departamento e tempo de empresa, mas nêo salário ou comissões.
           </p>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">CREATE OR REPLACE VIEW vw_funcionarios_publico AS
 SELECT
@@ -552,11 +552,11 @@ WHERE f.status = 'ATIVO';</code></pre>
           <h3 class="font-semibold text-neutral-100 mb-2">Exercício 2: View com CHECK OPTION</h3>
           <p class="text-neutral-300 mb-4">
             Crie uma VIEW para funcionários júniores (salário <= 5000) com CHECK OPTION,
-            garantindo que aumentos salariais não violem esse critério através da VIEW.
+            garantindo que aumentos salariais nêo violem esse critério através da VIEW.
           </p>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">CREATE OR REPLACE VIEW vw_funcionarios_junior AS
 SELECT
@@ -586,22 +586,22 @@ WHERE id_funcionario = 100;
         </div>
 
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 3: Synonyms para Integração</h3>
+          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 3: Synonyms para Integraçêo</h3>
           <p class="text-neutral-300 mb-4">
             Crie synonyms para simplificar o acesso a tabelas de diferentes schemas em um ambiente
-            de integração, onde o schema de produção é PROD_HR e você está em DEV_APP.
+            de integraçêo, onde o schema de produçêo é PROD_HR e você está em DEV_APP.
           </p>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
-              <pre><code class="language-sql">-- Criar synonyms privados para acesso aos dados de produção
+              <pre><code class="language-sql">-- Criar synonyms privados para acesso aos dados de produçêo
 CREATE SYNONYM funcionarios FOR prod_hr.funcionarios;
 CREATE SYNONYM departamentos FOR prod_hr.departamentos;
 CREATE SYNONYM cargos FOR prod_hr.cargos;
 CREATE SYNONYM historico_cargos FOR prod_hr.historico_cargos;
 
--- Criar synonyms para views do schema de produção
+-- Criar synonyms para views do schema de produçêo
 CREATE SYNONYM vw_func_completo FOR prod_hr.vw_funcionarios_completo;
 
 -- Agora o código pode usar nomes simples
@@ -645,7 +645,7 @@ ORDER BY synonym_name;</code></pre>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
         </svg>
-        <span>Anterior: GROUP BY e Agregação</span>
+        <span>Anterior: GROUP BY e Agregaçêo</span>
       </a>
       <a href="topico-15.html" class="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors">
         <span>Próximo: Constraints Completas</span>

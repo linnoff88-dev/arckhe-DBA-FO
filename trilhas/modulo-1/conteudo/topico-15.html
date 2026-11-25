@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -162,19 +162,19 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Definição -->
+    <!-- Seçêo 1: Definiçêo -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">📖</span>
         </div>
-        <h2 class="text-xl font-bold text-emerald-400">Definição</h2>
+        <h2 class="text-xl font-bold text-emerald-400">Definiçêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">O que são Constraints?</h3>
+        <h3 class="text-lg font-semibold mb-4">O que sêo Constraints?</h3>
         <p class="text-neutral-300 mb-4">
-          <strong class="text-emerald-400">Constraints</strong> são regras aplicadas a colunas ou tabelas
+          <strong class="text-emerald-400">Constraints</strong> sêo regras aplicadas a colunas ou tabelas
           para garantir a <strong>integridade e validade</strong> dos dados. O Oracle automaticamente
           valida e aplica essas regras em todas as operações DML.
         </p>
@@ -201,7 +201,7 @@
         <div class="space-y-3">
           <div class="bg-emerald-900/20 rounded-lg p-3 border-l-4 border-emerald-500">
             <h4 class="font-semibold text-emerald-400 text-sm">PRIMARY KEY (PK)</h4>
-            <p class="text-neutral-300 text-xs">Identifica unicamente cada registro. Não permite NULL nem duplicatas.</p>
+            <p class="text-neutral-300 text-xs">Identifica unicamente cada registro. Nêo permite NULL nem duplicatas.</p>
           </div>
           <div class="bg-cyan-900/20 rounded-lg p-3 border-l-4 border-cyan-500">
             <h4 class="font-semibold text-cyan-400 text-sm">FOREIGN KEY (FK)</h4>
@@ -221,19 +221,19 @@
           </div>
           <div class="bg-amber-900/20 rounded-lg p-3 border-l-4 border-amber-500">
             <h4 class="font-semibold text-amber-400 text-sm">DEFAULT</h4>
-            <p class="text-neutral-300 text-xs">Define valor padrão quando nenhum valor é fornecido.</p>
+            <p class="text-neutral-300 text-xs">Define valor padrêo quando nenhum valor é fornecido.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Seção 2: Aplicação Prática -->
+    <!-- Seçêo 2: Aplicaçêo Prática -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">🛠️</span>
         </div>
-        <h2 class="text-xl font-bold text-cyan-400">Aplicação Prática</h2>
+        <h2 class="text-xl font-bold text-cyan-400">Aplicaçêo Prática</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -265,7 +265,7 @@ CREATE TABLE alocacoes (
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
         <h3 class="text-lg font-semibold mb-4">FOREIGN KEY - ON DELETE CASCADE e SET NULL</h3>
 
-        <pre><code class="language-sql">-- FOREIGN KEY INLINE (comportamento padrão: restritivo)
+        <pre><code class="language-sql">-- FOREIGN KEY INLINE (comportamento padrêo: restritivo)
 CREATE TABLE funcionarios (
     id_funcionario  NUMBER(10) PRIMARY KEY,
     nome            VARCHAR2(100) NOT NULL,
@@ -331,7 +331,7 @@ CREATE TABLE funcionarios (
     CONSTRAINT uk_func_cpf UNIQUE (cpf)
 );
 
--- UNIQUE COMPOSTA (combinação de colunas)
+-- UNIQUE COMPOSTA (combinaçêo de colunas)
 CREATE TABLE contratos (
     id_contrato   NUMBER(10) PRIMARY KEY,
     fornecedor_id NUMBER(10) NOT NULL,
@@ -400,7 +400,7 @@ CREATE TABLE pedidos (
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">DEFAULT - Valores Padrão</h3>
+        <h3 class="text-lg font-semibold mb-4">DEFAULT - Valores Padrêo</h3>
 
         <pre><code class="language-sql">CREATE TABLE auditoria_login (
     id_log          NUMBER(10) PRIMARY KEY,
@@ -425,17 +425,17 @@ CREATE TABLE documentos (
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Constraints Nomeadas vs Não Nomeadas</h3>
+        <h3 class="text-lg font-semibold mb-4">Constraints Nomeadas vs Nêo Nomeadas</h3>
 
         <div class="bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500 mb-4">
           <h4 class="font-semibold text-amber-400 mb-2">Importante!</h4>
           <p class="text-neutral-300 text-sm">
             Sempre nomeie suas constraints usando <strong>CONSTRAINT nome</strong>.
-            Constraints não nomeadas recebem nomes automáticos (SYS_C0012345) difíceis de identificar.
+            Constraints nêo nomeadas recebem nomes automáticos (SYS_C0012345) difíceis de identificar.
           </p>
         </div>
 
-        <pre><code class="language-sql">-- ❌ RUIM: Constraint não nomeada
+        <pre><code class="language-sql">-- ❌ RUIM: Constraint nêo nomeada
 CREATE TABLE clientes (
     id_cliente NUMBER(10) PRIMARY KEY,
     email      VARCHAR2(100) UNIQUE,
@@ -556,7 +556,7 @@ WHERE table_name = 'FUNCIONARIOS'
       </div>
     </section>
 
-    <!-- Seção 3: Resultado Esperado -->
+    <!-- Seçêo 3: Resultado Esperado -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -647,11 +647,11 @@ WHERE table_name = 'FUNCIONARIOS'
           <h3 class="font-semibold text-neutral-100 mb-2">Exercício 1: Sistema de Pedidos</h3>
           <p class="text-neutral-300 mb-4">
             Crie as tabelas CLIENTES, PEDIDOS e ITENS_PEDIDO com todas as constraints apropriadas,
-            incluindo PKs, FKs com CASCADE, CHECKs de validação e DEFAULTs.
+            incluindo PKs, FKs com CASCADE, CHECKs de validaçêo e DEFAULTs.
           </p>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">CREATE TABLE clientes (
     id_cliente     NUMBER(10),
@@ -721,7 +721,7 @@ CREATE TABLE itens_pedido (
           </p>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">-- Adicionar PRIMARY KEY
 ALTER TABLE produtos
@@ -773,7 +773,7 @@ MODIFY data_cadastro DATE DEFAULT SYSDATE;</code></pre>
           </p>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">-- Listar todas as constraints por tipo
 SELECT
@@ -837,7 +837,7 @@ ORDER BY c.table_name;</code></pre>
       <div class="bg-gradient-to-r from-emerald-900/30 to-cyan-900/30 rounded-xl border border-emerald-500/30 p-6">
         <h3 class="text-lg font-semibold mb-4 text-center">Parabéns! Você completou a Trilha 1</h3>
         <p class="text-neutral-300 text-center mb-6">
-          Continue sua jornada avançando para a Trilha 2, onde você aprenderá sobre Arquitetura e Administração do Oracle Database.
+          Continue sua jornada avançando para a Trilha 2, onde você aprenderá sobre Arquitetura e Administraçêo do Oracle Database.
         </p>
         <div class="flex flex-wrap justify-center gap-4">
           <a href="index.html" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2">

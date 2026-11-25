@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -162,7 +162,7 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Modos de Startup -->
+    <!-- Seçêo 1: Modos de Startup -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
@@ -185,8 +185,8 @@
               <h4 class="font-semibold text-cyan-400">NOMOUNT</h4>
             </div>
             <p class="text-neutral-300 text-sm mb-2">
-              <strong>Instância iniciada</strong>, mas banco de dados ainda não associado.
-              SGA é alocada, processos de background são iniciados, e arquivo de parâmetros é lido.
+              <strong>Instância iniciada</strong>, mas banco de dados ainda nêo associado.
+              SGA é alocada, processos de background sêo iniciados, e arquivo de parâmetros é lido.
             </p>
             <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
               <li><strong>Usado para:</strong> Criar novo banco de dados, recriar control files</li>
@@ -202,13 +202,13 @@
               <h4 class="font-semibold text-purple-400">MOUNT</h4>
             </div>
             <p class="text-neutral-300 text-sm mb-2">
-              <strong>Banco montado</strong> - Control files são abertos e lidos. Oracle conhece a localização
-              de todos os datafiles e redo log files, mas ainda não os abriu.
+              <strong>Banco montado</strong> - Control files sêo abertos e lidos. Oracle conhece a localizaçêo
+              de todos os datafiles e redo log files, mas ainda nêo os abriu.
             </p>
             <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
-              <li><strong>Usado para:</strong> Operações de manutenção (backup completo, recovery, archivelog)</li>
+              <li><strong>Usado para:</strong> Operações de manutençêo (backup completo, recovery, archivelog)</li>
               <li><strong>Arquivo lido:</strong> Control files</li>
-              <li><strong>Disponível:</strong> Comandos de manutenção do banco</li>
+              <li><strong>Disponível:</strong> Comandos de manutençêo do banco</li>
             </ul>
             <pre class="mt-3"><code class="language-sql">STARTUP MOUNT;
 -- Ou a partir de NOMOUNT:
@@ -221,7 +221,7 @@ ALTER DATABASE MOUNT;</code></pre>
               <h4 class="font-semibold text-emerald-400">OPEN</h4>
             </div>
             <p class="text-neutral-300 text-sm mb-2">
-              <strong>Banco aberto</strong> - Todos os datafiles e redo log files online são abertos.
+              <strong>Banco aberto</strong> - Todos os datafiles e redo log files online sêo abertos.
               O banco está disponível para operações normais de usuários.
             </p>
             <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
@@ -229,7 +229,7 @@ ALTER DATABASE MOUNT;</code></pre>
               <li><strong>Arquivos abertos:</strong> Datafiles, redo log files</li>
               <li><strong>Disponível:</strong> Acesso completo aos dados</li>
             </ul>
-            <pre class="mt-3"><code class="language-sql">STARTUP;  -- Padrão, vai até OPEN
+            <pre class="mt-3"><code class="language-sql">STARTUP;  -- Padrêo, vai até OPEN
 -- Ou a partir de MOUNT:
 ALTER DATABASE OPEN;</code></pre>
           </div>
@@ -243,7 +243,7 @@ ALTER DATABASE OPEN;</code></pre>
           <div class="bg-dark-700 rounded-lg p-4">
             <h4 class="font-semibold text-cyan-400 mb-2">STARTUP FORCE</h4>
             <p class="text-neutral-300 text-sm mb-2">
-              Força o shutdown e reinicialização do banco. Equivale a SHUTDOWN ABORT seguido de STARTUP.
+              Força o shutdown e reinicializaçêo do banco. Equivale a SHUTDOWN ABORT seguido de STARTUP.
             </p>
             <pre><code class="language-sql">STARTUP FORCE;</code></pre>
           </div>
@@ -252,7 +252,7 @@ ALTER DATABASE OPEN;</code></pre>
             <h4 class="font-semibold text-purple-400 mb-2">STARTUP RESTRICT</h4>
             <p class="text-neutral-300 text-sm mb-2">
               Abre o banco em modo restrito. Apenas usuários com privilégio RESTRICTED SESSION podem conectar.
-              Útil para manutenção.
+              Útil para manutençêo.
             </p>
             <pre><code class="language-sql">STARTUP RESTRICT;
 
@@ -264,7 +264,7 @@ ALTER SYSTEM DISABLE RESTRICTED SESSION;</code></pre>
           <div class="bg-dark-700 rounded-lg p-4">
             <h4 class="font-semibold text-orange-400 mb-2">STARTUP READ ONLY</h4>
             <p class="text-neutral-300 text-sm mb-2">
-              Abre o banco em modo somente leitura. Nenhuma modificação é permitida.
+              Abre o banco em modo somente leitura. Nenhuma modificaçêo é permitida.
               Ideal para ambientes de relatório ou standby databases.
             </p>
             <pre><code class="language-sql">STARTUP MOUNT;
@@ -277,7 +277,7 @@ SELECT open_mode FROM v$database;</code></pre>
           <div class="bg-dark-700 rounded-lg p-4">
             <h4 class="font-semibold text-emerald-400 mb-2">STARTUP UPGRADE</h4>
             <p class="text-neutral-300 text-sm mb-2">
-              Usado durante upgrade de versão do Oracle. Abre o banco com compatibilidade reduzida.
+              Usado durante upgrade de versêo do Oracle. Abre o banco com compatibilidade reduzida.
             </p>
             <pre><code class="language-sql">STARTUP UPGRADE;</code></pre>
           </div>
@@ -285,7 +285,7 @@ SELECT open_mode FROM v$database;</code></pre>
       </div>
     </section>
 
-    <!-- Seção 2: Opções de Shutdown -->
+    <!-- Seçêo 2: Opções de Shutdown -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
@@ -312,18 +312,18 @@ SELECT open_mode FROM v$database;</code></pre>
             </p>
             <div class="bg-dark-700/50 rounded p-3 mb-2">
               <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
-                <li>❌ Não permite novas conexões</li>
+                <li>❌ Nêo permite novas conexões</li>
                 <li>⏳ Aguarda todos os usuários desconectarem</li>
                 <li>✅ Commit automático de transações abertas</li>
                 <li>✅ Checkpoint é feito</li>
-                <li>✅ Não requer instance recovery no próximo startup</li>
+                <li>✅ Nêo requer instance recovery no próximo startup</li>
               </ul>
             </div>
             <p class="text-neutral-400 text-xs mb-2">
-              <strong>Quando usar:</strong> Shutdown planejado em produção sem pressa
+              <strong>Quando usar:</strong> Shutdown planejado em produçêo sem pressa
             </p>
             <pre><code class="language-sql">SHUTDOWN NORMAL;
--- Pode demorar MUITO se houver sessões que não desconectam</code></pre>
+-- Pode demorar MUITO se houver sessões que nêo desconectam</code></pre>
           </div>
 
           <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
@@ -336,16 +336,16 @@ SELECT open_mode FROM v$database;</code></pre>
             </p>
             <div class="bg-dark-700/50 rounded p-3 mb-2">
               <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
-                <li>❌ Não permite novas conexões</li>
-                <li>❌ Não permite novas transações em sessões existentes</li>
+                <li>❌ Nêo permite novas conexões</li>
+                <li>❌ Nêo permite novas transações em sessões existentes</li>
                 <li>⏳ Aguarda transações ativas finalizarem (COMMIT ou ROLLBACK)</li>
                 <li>🔌 Desconecta sessões assim que transações terminam</li>
                 <li>✅ Checkpoint é feito</li>
-                <li>✅ Não requer instance recovery no próximo startup</li>
+                <li>✅ Nêo requer instance recovery no próximo startup</li>
               </ul>
             </div>
             <p class="text-neutral-400 text-xs mb-2">
-              <strong>Quando usar:</strong> Shutdown planejado em produção (modo mais usado)</p>
+              <strong>Quando usar:</strong> Shutdown planejado em produçêo (modo mais usado)</p>
             <pre><code class="language-sql">SHUTDOWN TRANSACTIONAL;</code></pre>
           </div>
 
@@ -355,22 +355,22 @@ SELECT open_mode FROM v$database;</code></pre>
               <span class="px-2 py-1 bg-purple-500/20 text-purple-400 rounded text-xs">Mais Usado</span>
             </div>
             <p class="text-neutral-300 text-sm mb-3">
-              O modo mais comum na prática. <strong>Força desconexão</strong> de todos os usuários imediatamente.
+              O modo mais comum na prática. <strong>Força desconexêo</strong> de todos os usuários imediatamente.
             </p>
             <div class="bg-dark-700/50 rounded p-3 mb-2">
               <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
-                <li>❌ Não permite novas conexões</li>
-                <li>🔄 Faz ROLLBACK de transações ativas (não commitadas)</li>
+                <li>❌ Nêo permite novas conexões</li>
+                <li>🔄 Faz ROLLBACK de transações ativas (nêo commitadas)</li>
                 <li>🔌 Desconecta todas as sessões imediatamente</li>
                 <li>✅ Checkpoint é feito</li>
-                <li>✅ Não requer instance recovery no próximo startup</li>
+                <li>✅ Nêo requer instance recovery no próximo startup</li>
               </ul>
             </div>
             <p class="text-neutral-400 text-xs mb-2">
-              <strong>Quando usar:</strong> Manutenções programadas, situação normal de shutdown
+              <strong>Quando usar:</strong> Manutenções programadas, situaçêo normal de shutdown
             </p>
             <pre><code class="language-sql">SHUTDOWN IMMEDIATE;
--- Modo padrão recomendado pela Oracle para uso geral</code></pre>
+-- Modo padrêo recomendado pela Oracle para uso geral</code></pre>
           </div>
 
           <div class="bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500">
@@ -383,10 +383,10 @@ SELECT open_mode FROM v$database;</code></pre>
             </p>
             <div class="bg-dark-700/50 rounded p-3 mb-2">
               <ul class="list-disc list-inside text-neutral-400 text-sm space-y-1">
-                <li>❌ Não permite novas conexões</li>
-                <li>❌ NÃO faz ROLLBACK de transações</li>
+                <li>❌ Nêo permite novas conexões</li>
+                <li>❌ NêO faz ROLLBACK de transações</li>
                 <li>🔌 Desconecta todas as sessões instantaneamente</li>
-                <li>❌ NÃO faz checkpoint</li>
+                <li>❌ NêO faz checkpoint</li>
                 <li>⚠️ <strong>REQUER instance recovery no próximo startup</strong></li>
               </ul>
             </div>
@@ -401,7 +401,7 @@ SELECT open_mode FROM v$database;</code></pre>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-        <h3 class="text-lg font-semibold mb-4">Comparação dos Modos de Shutdown</h3>
+        <h3 class="text-lg font-semibold mb-4">Comparaçêo dos Modos de Shutdown</h3>
 
         <div class="overflow-x-auto">
           <table class="w-full border-collapse text-sm">
@@ -470,7 +470,7 @@ SELECT open_mode FROM v$database;</code></pre>
       </div>
     </section>
 
-    <!-- Seção 3: Troubleshooting -->
+    <!-- Seçêo 3: Troubleshooting -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -484,15 +484,15 @@ SELECT open_mode FROM v$database;</code></pre>
 
         <div class="space-y-4">
           <div class="bg-dark-700 rounded-lg p-4">
-            <h4 class="font-semibold text-red-400 mb-2">Erro: ORA-01078 / ORA-01565 - Arquivo de parâmetros não encontrado</h4>
+            <h4 class="font-semibold text-red-400 mb-2">Erro: ORA-01078 / ORA-01565 - Arquivo de parâmetros nêo encontrado</h4>
             <p class="text-neutral-300 text-sm mb-3">
-              Oracle não consegue localizar o SPFILE ou PFILE.
+              Oracle nêo consegue localizar o SPFILE ou PFILE.
             </p>
-            <pre><code class="language-sql">-- Verificar localização padrão
+            <pre><code class="language-sql">-- Verificar localizaçêo padrêo
 -- Linux: $ORACLE_HOME/dbs/spfile<SID>.ora ou init<SID>.ora
 -- Windows: %ORACLE_HOME%\database\spfile<SID>.ora
 
--- Solução: especificar PFILE manualmente
+-- Soluçêo: especificar PFILE manualmente
 STARTUP PFILE='/caminho/para/initORCL.ora';
 
 -- Ou criar SPFILE a partir de PFILE
@@ -502,33 +502,33 @@ CREATE SPFILE FROM PFILE='/caminho/para/initORCL.ora';</code></pre>
           <div class="bg-dark-700 rounded-lg p-4">
             <h4 class="font-semibold text-red-400 mb-2">Erro: ORA-00205 - Control file identificado incorretamente</h4>
             <p class="text-neutral-300 text-sm mb-3">
-              Control file corrompido ou não encontrado.
+              Control file corrompido ou nêo encontrado.
             </p>
-            <pre><code class="language-sql">-- Ver localização dos control files
+            <pre><code class="language-sql">-- Ver localizaçêo dos control files
 SHOW PARAMETER control_files;
 
--- Solução 1: Copiar de backup
+-- Soluçêo 1: Copiar de backup
 -- cp /backup/control01.ctl /u02/oradata/ORCL/control01.ctl
 
--- Solução 2: Recriar control file (último recurso)
+-- Soluçêo 2: Recriar control file (último recurso)
 -- Executar script gerado previamente por:
 -- ALTER DATABASE BACKUP CONTROLFILE TO TRACE;</code></pre>
           </div>
 
           <div class="bg-dark-700 rounded-lg p-4">
-            <h4 class="font-semibold text-red-400 mb-2">Erro: ORA-01157 / ORA-01110 - Datafile não encontrado</h4>
+            <h4 class="font-semibold text-red-400 mb-2">Erro: ORA-01157 / ORA-01110 - Datafile nêo encontrado</h4>
             <p class="text-neutral-300 text-sm mb-3">
-              Um datafile especificado no control file não existe ou não é acessível.
+              Um datafile especificado no control file nêo existe ou nêo é acessível.
             </p>
             <pre><code class="language-sql">-- Identificar datafile problemático
 SELECT file_id, file_name, status
 FROM dba_data_files
 WHERE status != 'AVAILABLE';
 
--- Solução 1: Restaurar datafile de backup
+-- Soluçêo 1: Restaurar datafile de backup
 -- cp /backup/users01.dbf /u02/oradata/ORCL/users01.dbf
 
--- Solução 2: Se tablespace não for crítico, fazer offline
+-- Soluçêo 2: Se tablespace nêo for crítico, fazer offline
 ALTER DATABASE DATAFILE '/u02/oradata/ORCL/users01.dbf' OFFLINE DROP;
 ALTER DATABASE OPEN;</code></pre>
           </div>
@@ -536,10 +536,10 @@ ALTER DATABASE OPEN;</code></pre>
           <div class="bg-dark-700 rounded-lg p-4">
             <h4 class="font-semibold text-red-400 mb-2">Erro: ORA-00600 - Erro interno Oracle</h4>
             <p class="text-neutral-300 text-sm mb-3">
-              Erro interno grave. Pode indicar corrupção.
+              Erro interno grave. Pode indicar corrupçêo.
             </p>
             <pre><code class="language-sql">-- Verificar alert log para mais detalhes
--- Localização: $ORACLE_BASE/diag/rdbms/<dbname>/<SID>/trace/alert_<SID>.log
+-- Localizaçêo: $ORACLE_BASE/diag/rdbms/<dbname>/<SID>/trace/alert_<SID>.log
 
 -- Tentar startup em modo restrito
 STARTUP RESTRICT;
@@ -569,14 +569,14 @@ FROM v$transaction t, v$session s
 WHERE t.addr = s.taddr
 ORDER BY t.used_ublk DESC;
 
--- Solução: Aguardar ou usar SHUTDOWN ABORT
+-- Soluçêo: Aguardar ou usar SHUTDOWN ABORT
 SHUTDOWN ABORT;</code></pre>
           </div>
 
           <div class="bg-dark-700 rounded-lg p-4">
-            <h4 class="font-semibold text-orange-400 mb-2">Não consigo fazer shutdown (permissão negada)</h4>
+            <h4 class="font-semibold text-orange-400 mb-2">Nêo consigo fazer shutdown (permissêo negada)</h4>
             <p class="text-neutral-300 text-sm mb-3">
-              Usuário não tem privilégio SYSDBA ou SYSOPER.
+              Usuário nêo tem privilégio SYSDBA ou SYSOPER.
             </p>
             <pre><code class="language-sql">-- Conectar como SYSDBA
 sqlplus / as sysdba
@@ -624,7 +624,7 @@ FROM v$session
 WHERE type != 'BACKGROUND'
 ORDER BY username;
 
--- Matar uma sessão específica (em casos extremos)
+-- Matar uma sessêo específica (em casos extremos)
 ALTER SYSTEM KILL SESSION 'sid,serial#' IMMEDIATE;
 
 -- Ver últimas linhas do alert log (Linux)
@@ -636,7 +636,7 @@ SELECT logins FROM v$instance;
       </div>
     </section>
 
-    <!-- Seção 4: Práticas Recomendadas -->
+    <!-- Seçêo 4: Práticas Recomendadas -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
@@ -664,7 +664,7 @@ SELECT logins FROM v$instance;
           <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
             <h4 class="font-semibold text-purple-400 mb-2">3. Monitore o alert log após problemas</h4>
             <p class="text-neutral-300 text-sm">
-              O alert log é sua principal fonte de informação sobre erros durante startup/shutdown.
+              O alert log é sua principal fonte de informaçêo sobre erros durante startup/shutdown.
             </p>
           </div>
 
@@ -778,7 +778,7 @@ SELECT logins FROM v$instance;
         <span>Anterior: Criando Database com DBCA</span>
       </a>
       <a href="topico-5.html" class="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors">
-        <span>Próximo: Parâmetros de Inicialização</span>
+        <span>Próximo: Parâmetros de Inicializaçêo</span>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>
@@ -789,7 +789,7 @@ SELECT logins FROM v$instance;
   <!-- Footer -->
   <footer class="bg-dark-900 border-t border-dark-700 py-8 mt-12">
     <div class="max-w-4xl mx-auto px-4 text-center">
-      <p class="text-neutral-500 text-sm">Oracle DBA - Trilha 2: Administração Básica Oracle - Tópico 4</p>
+      <p class="text-neutral-500 text-sm">Oracle DBA - Trilha 2: Administraçêo Básica Oracle - Tópico 4</p>
     </div>
   </footer>
 

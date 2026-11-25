@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -162,7 +162,7 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Tipos de Dados Caracteres -->
+    <!-- Seçêo 1: Tipos de Dados Caracteres -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
@@ -180,7 +180,7 @@
 
         <div class="bg-dark-700 rounded-lg p-4 mb-4">
           <h4 class="font-semibold text-neutral-100 mb-2">Sintaxe e Limites:</h4>
-          <pre><code class="language-sql">-- Tamanho em bytes (padrão)
+          <pre><code class="language-sql">-- Tamanho em bytes (padrêo)
 nome VARCHAR2(100)
 
 -- Tamanho em caracteres (recomendado para Unicode)
@@ -198,7 +198,7 @@ nome VARCHAR2(100 CHAR)
               <strong>Use sempre VARCHAR2!</strong>
             </p>
             <ul class="list-disc list-inside text-neutral-400 text-sm">
-              <li>VARCHAR2 é o padrão Oracle</li>
+              <li>VARCHAR2 é o padrêo Oracle</li>
               <li>VARCHAR está reservado para futuro uso</li>
               <li>Comportamento do VARCHAR pode mudar</li>
               <li>VARCHAR2 armazena valores NULL corretamente</li>
@@ -211,7 +211,7 @@ nome VARCHAR2(100 CHAR)
               Cuidado com caracteres multibyte!
             </p>
             <ul class="list-disc list-inside text-neutral-400 text-sm">
-              <li>BYTE: tamanho em bytes (padrão)</li>
+              <li>BYTE: tamanho em bytes (padrêo)</li>
               <li>CHAR: tamanho em caracteres</li>
               <li>1 caractere pode ocupar até 4 bytes (UTF-8)</li>
               <li>Use CHAR para evitar problemas</li>
@@ -228,7 +228,7 @@ CREATE TABLE clientes (
 );
 
 -- Testando BYTE vs CHAR
-INSERT INTO clientes VALUES (1, 'João', 'joao@email.com', 'Cliente VIP');
+INSERT INTO clientes VALUES (1, 'Joêo', 'joao@email.com', 'Cliente VIP');
 INSERT INTO clientes VALUES (2, '日本語テスト', 'teste@email.com', 'Teste Unicode');</code></pre>
       </div>
 
@@ -253,7 +253,7 @@ CREATE TABLE enderecos (
 -- CUIDADO: CHAR preenche com espaços!
 INSERT INTO enderecos VALUES ('SP', '01310100', 'M', 'F');
 
--- Comparação com VARCHAR2
+-- Comparaçêo com VARCHAR2
 SELECT * FROM enderecos WHERE uf = 'SP';      -- Funciona
 SELECT * FROM enderecos WHERE uf = 'SP  ';    -- Também funciona (trailing spaces)</code></pre>
 
@@ -267,7 +267,7 @@ SELECT * FROM enderecos WHERE uf = 'SP  ';    -- Também funciona (trailing spac
       </div>
     </section>
 
-    <!-- Seção 2: Tipos de Dados Numéricos -->
+    <!-- Seçêo 2: Tipos de Dados Numéricos -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
@@ -279,7 +279,7 @@ SELECT * FROM enderecos WHERE uf = 'SP  ';    -- Também funciona (trailing spac
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
         <h3 class="text-lg font-semibold mb-4">NUMBER - Tipo Universal para Números</h3>
         <p class="text-neutral-300 mb-4">
-          <strong class="text-emerald-400">NUMBER</strong> armazena números com precisão fixa ou flutuante.
+          <strong class="text-emerald-400">NUMBER</strong> armazena números com precisêo fixa ou flutuante.
         </p>
 
         <div class="bg-dark-700 rounded-lg p-4 mb-4">
@@ -301,14 +301,14 @@ CREATE TABLE exemplos_number (
     peso            NUMBER(8, 3),       -- 99999.999 (medidas precisas)
     percentual      NUMBER(5, 2),       -- 100.00 (0% a 100%)
 
-    -- Sem especificação (até 38 dígitos)
+    -- Sem especificaçêo (até 38 dígitos)
     valor_generico  NUMBER,             -- Qualquer número
 
     -- Escala negativa (arredonda)
     populacao       NUMBER(10, -3)      -- Arredonda para milhares: 1234000
 );
 
--- Exemplos de inserção
+-- Exemplos de inserçêo
 INSERT INTO exemplos_number VALUES (
     1,                  -- id
     150,                -- quantidade
@@ -333,9 +333,9 @@ FROM exemplos_number;</code></pre>
           <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
             <h4 class="font-semibold text-emerald-400 mb-2">Recomendações</h4>
             <ul class="list-disc list-inside text-neutral-300 text-sm space-y-1">
-              <li>Sempre especifique precisão e escala</li>
+              <li>Sempre especifique precisêo e escala</li>
               <li>Use NUMBER(10,2) para valores monetários</li>
-              <li>Evite NUMBER sem parâmetros em produção</li>
+              <li>Evite NUMBER sem parâmetros em produçêo</li>
               <li>Para IDs, use NUMBER(10) ou NUMBER(19)</li>
             </ul>
           </div>
@@ -343,17 +343,17 @@ FROM exemplos_number;</code></pre>
           <div class="bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500">
             <h4 class="font-semibold text-red-400 mb-2">Evite</h4>
             <ul class="list-disc list-inside text-neutral-300 text-sm space-y-1">
-              <li>INTEGER (use NUMBER com precisão)</li>
-              <li>FLOAT, REAL (use NUMBER para precisão)</li>
-              <li>NUMBER sem especificação em tabelas</li>
-              <li>Escala maior que precisão</li>
+              <li>INTEGER (use NUMBER com precisêo)</li>
+              <li>FLOAT, REAL (use NUMBER para precisêo)</li>
+              <li>NUMBER sem especificaçêo em tabelas</li>
+              <li>Escala maior que precisêo</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Seção 3: Tipos de Dados Temporal -->
+    <!-- Seçêo 3: Tipos de Dados Temporal -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -365,7 +365,7 @@ FROM exemplos_number;</code></pre>
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
         <h3 class="text-lg font-semibold mb-4">DATE - Data e Hora</h3>
         <p class="text-neutral-300 mb-4">
-          <strong class="text-emerald-400">DATE</strong> armazena data e hora com precisão de segundos.
+          <strong class="text-emerald-400">DATE</strong> armazena data e hora com precisêo de segundos.
         </p>
 
         <pre><code class="language-sql">-- Criando tabela com DATE
@@ -380,7 +380,7 @@ CREATE TABLE eventos (
 -- Inserindo datas de diversas formas
 INSERT INTO eventos VALUES (
     1,
-    'Reunião',
+    'Reuniêo',
     SYSDATE,                    -- Data/hora atual
     DATE '2025-01-15',          -- Formato ISO (apenas data)
     TO_DATE('15/01/2025 14:30', 'DD/MM/YYYY HH24:MI')  -- Com hora
@@ -399,16 +399,16 @@ FROM eventos;</code></pre>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">TIMESTAMP - Precisão de Frações de Segundo</h3>
+        <h3 class="text-lg font-semibold mb-4">TIMESTAMP - Precisêo de Frações de Segundo</h3>
         <p class="text-neutral-300 mb-4">
-          <strong class="text-emerald-400">TIMESTAMP</strong> estende DATE com precisão de até 9 casas decimais (nanossegundos).
+          <strong class="text-emerald-400">TIMESTAMP</strong> estende DATE com precisêo de até 9 casas decimais (nanossegundos).
         </p>
 
         <pre><code class="language-sql">-- Tipos de TIMESTAMP
 CREATE TABLE logs_sistema (
     id                NUMBER(19) PRIMARY KEY,
     mensagem          VARCHAR2(4000 CHAR),
-    timestamp_local   TIMESTAMP(6),              -- Precisão de 6 casas decimais
+    timestamp_local   TIMESTAMP(6),              -- Precisêo de 6 casas decimais
     timestamp_tz      TIMESTAMP WITH TIME ZONE,  -- Com fuso horário
     timestamp_ltz     TIMESTAMP WITH LOCAL TIME ZONE  -- Convertido para fuso local
 );
@@ -433,7 +433,7 @@ FROM dual;</code></pre>
             <h4 class="font-semibold text-neutral-100 mb-2">Quando usar DATE?</h4>
             <ul class="list-disc list-inside text-neutral-400 text-sm">
               <li>Datas de nascimento, eventos</li>
-              <li>Precisão de segundos é suficiente</li>
+              <li>Precisêo de segundos é suficiente</li>
               <li>Economiza espaço (7 bytes)</li>
             </ul>
           </div>
@@ -450,7 +450,7 @@ FROM dual;</code></pre>
       </div>
     </section>
 
-    <!-- Seção 4: LOBs -->
+    <!-- Seçêo 4: LOBs -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
@@ -519,7 +519,7 @@ FROM documentos;</code></pre>
         <div class="bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500 mt-4">
           <h4 class="font-semibold text-amber-400 mb-2">Importante sobre LOBs:</h4>
           <ul class="list-disc list-inside text-neutral-300 text-sm space-y-1">
-            <li>LOBs são armazenados fora da linha (out-of-line) por padrão</li>
+            <li>LOBs sêo armazenados fora da linha (out-of-line) por padrêo</li>
             <li>Use DBMS_LOB package para manipular LOBs grandes</li>
             <li>VARCHAR2(4000) é mais eficiente que CLOB para textos pequenos</li>
             <li>Considere armazenar arquivos no filesystem e apenas referências no BD</li>
@@ -528,7 +528,7 @@ FROM documentos;</code></pre>
       </div>
     </section>
 
-    <!-- Seção 5: Conversões -->
+    <!-- Seçêo 5: Conversões -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center">
@@ -542,7 +542,7 @@ FROM documentos;</code></pre>
 
         <div class="grid md:grid-cols-2 gap-4 mb-4">
           <div class="bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500">
-            <h4 class="font-semibold text-amber-400 mb-2">Conversão Implícita</h4>
+            <h4 class="font-semibold text-amber-400 mb-2">Conversêo Implícita</h4>
             <p class="text-neutral-300 text-sm mb-2">
               Oracle converte automaticamente. <strong>Pode causar problemas!</strong>
             </p>
@@ -555,11 +555,11 @@ WHERE data_evento = '15/01/2025';  -- String → Date</code></pre>
           </div>
 
           <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
-            <h4 class="font-semibold text-emerald-400 mb-2">Conversão Explícita</h4>
+            <h4 class="font-semibold text-emerald-400 mb-2">Conversêo Explícita</h4>
             <p class="text-neutral-300 text-sm mb-2">
               Use funções TO_*. <strong>Recomendado!</strong>
             </p>
-            <pre class="text-xs mt-2"><code class="language-sql">-- Conversão explícita e segura
+            <pre class="text-xs mt-2"><code class="language-sql">-- Conversêo explícita e segura
 SELECT * FROM funcionarios
 WHERE id = TO_NUMBER('123');
 
@@ -607,7 +607,7 @@ FROM dual;
 -- CUIDADO com erros!
 SELECT TO_NUMBER('ABC') FROM dual;  -- ORA-01722: invalid number
 
--- Use validação com REGEXP_LIKE
+-- Use validaçêo com REGEXP_LIKE
 SELECT
     CASE
         WHEN REGEXP_LIKE('12345', '^\d+$')
@@ -641,18 +641,18 @@ FROM dual;
 -- HH24 = hora 24h (00-23)
 -- MI = minuto (00-59)
 -- SS = segundo (00-59)
--- FF = fração de segundo</code></pre>
+-- FF = fraçêo de segundo</code></pre>
 
         <div class="bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500 mt-4">
-          <h4 class="font-semibold text-red-400 mb-2">Nunca Confie em Conversão Implícita de Datas!</h4>
+          <h4 class="font-semibold text-red-400 mb-2">Nunca Confie em Conversêo Implícita de Datas!</h4>
           <p class="text-neutral-300 text-sm">
-            Formatos de data variam por configuração (NLS_DATE_FORMAT). Sempre use TO_DATE explicitamente!
+            Formatos de data variam por configuraçêo (NLS_DATE_FORMAT). Sempre use TO_DATE explicitamente!
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Seção 6: Resultado Esperado -->
+    <!-- Seçêo 6: Resultado Esperado -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-amber-500/20 rounded-lg flex items-center justify-center">
@@ -676,7 +676,7 @@ FROM dual;
             <div class="flex items-start gap-3">
               <span class="text-emerald-400 mt-1">✓</span>
               <div>
-                <h4 class="font-semibold text-neutral-100">Especificar precisão</h4>
+                <h4 class="font-semibold text-neutral-100">Especificar precisêo</h4>
                 <p class="text-neutral-400 text-sm">VARCHAR2(100 CHAR), NUMBER(10,2)</p>
               </div>
             </div>

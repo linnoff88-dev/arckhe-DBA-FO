@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -153,7 +153,7 @@
         </div>
         <div>
           <h1 class="text-2xl font-bold">Scripts SQL Essenciais</h1>
-          <p class="text-neutral-400">Scripts de monitoramento, administração e diagnóstico</p>
+          <p class="text-neutral-400">Scripts de monitoramento, administraçêo e diagnóstico</p>
         </div>
       </div>
     </div>
@@ -162,7 +162,7 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Scripts de Monitoramento -->
+    <!-- Seçêo 1: Scripts de Monitoramento -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-amber-500/20 rounded-lg flex items-center justify-center">
@@ -221,7 +221,7 @@ ORDER BY s.logon_time DESC;</code></pre>
 
         <!-- Script 3: Top SQLs por Tempo -->
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-          <h3 class="text-lg font-semibold mb-2 text-amber-400">Top SQLs por Tempo de Execução</h3>
+          <h3 class="text-lg font-semibold mb-2 text-amber-400">Top SQLs por Tempo de Execuçêo</h3>
           <p class="text-neutral-300 text-sm mb-4">
             Identifica os comandos SQL que consomem mais tempo total de CPU e elapsed time.
           </p>
@@ -263,7 +263,7 @@ WHERE name IN ('total PGA inuse', 'total PGA allocated', 'maximum PGA allocated'
       </div>
     </section>
 
-    <!-- Seção 2: Scripts de Diagnóstico -->
+    <!-- Seçêo 2: Scripts de Diagnóstico -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
@@ -277,7 +277,7 @@ WHERE name IN ('total PGA inuse', 'total PGA allocated', 'maximum PGA allocated'
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
           <h3 class="text-lg font-semibold mb-2 text-cyan-400">Identificar Locks e Bloqueios</h3>
           <p class="text-neutral-300 text-sm mb-4">
-            Mostra sessões que estão bloqueando outras e o que está sendo bloqueado.
+            Mostra sessões que estêo bloqueando outras e o que está sendo bloqueado.
           </p>
           <pre><code class="language-sql">-- Identifica locks e bloqueios
 SELECT
@@ -348,7 +348,7 @@ ORDER BY owner, object_type, object_name;</code></pre>
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
           <h3 class="text-lg font-semibold mb-2 text-cyan-400">Análise de Redo Logs</h3>
           <p class="text-neutral-300 text-sm mb-4">
-            Verifica a taxa de geração de redo logs e frequência de switches.
+            Verifica a taxa de geraçêo de redo logs e frequência de switches.
           </p>
           <pre><code class="language-sql">-- Switches de redo por hora
 SELECT
@@ -362,13 +362,13 @@ ORDER BY hour DESC;</code></pre>
       </div>
     </section>
 
-    <!-- Seção 3: Scripts de Administração -->
+    <!-- Seçêo 3: Scripts de Administraçêo -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">⚙️</span>
         </div>
-        <h2 class="text-xl font-bold text-purple-400">Scripts de Administração</h2>
+        <h2 class="text-xl font-bold text-purple-400">Scripts de Administraçêo</h2>
       </div>
 
       <div class="space-y-6">
@@ -376,7 +376,7 @@ ORDER BY hour DESC;</code></pre>
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
           <h3 class="text-lg font-semibold mb-2 text-purple-400">Informações Gerais do Banco</h3>
           <p class="text-neutral-300 text-sm mb-4">
-            Exibe informações básicas do banco: versão, nome, modo de abertura, etc.
+            Exibe informações básicas do banco: versêo, nome, modo de abertura, etc.
           </p>
           <pre><code class="language-sql">-- Informações da instância e database
 SELECT
@@ -477,7 +477,7 @@ ORDER BY timestamp DESC;</code></pre>
             <span class="text-emerald-400 mt-1">✓</span>
             <div>
               <h4 class="font-semibold text-neutral-100">Salve os scripts em arquivos .sql</h4>
-              <p class="text-neutral-300 text-sm">Mantenha uma biblioteca organizada de scripts para reutilização rápida.</p>
+              <p class="text-neutral-300 text-sm">Mantenha uma biblioteca organizada de scripts para reutilizaçêo rápida.</p>
             </div>
           </div>
           <div class="flex items-start gap-3">
@@ -490,7 +490,7 @@ ORDER BY timestamp DESC;</code></pre>
           <div class="flex items-start gap-3">
             <span class="text-emerald-400 mt-1">✓</span>
             <div>
-              <h4 class="font-semibold text-neutral-100">Agende execução automática</h4>
+              <h4 class="font-semibold text-neutral-100">Agende execuçêo automática</h4>
               <p class="text-neutral-300 text-sm">Use DBMS_SCHEDULER para executar scripts de monitoramento periodicamente.</p>
             </div>
           </div>
@@ -505,7 +505,7 @@ ORDER BY timestamp DESC;</code></pre>
             <span class="text-emerald-400 mt-1">✓</span>
             <div>
               <h4 class="font-semibold text-neutral-100">Teste em ambiente de desenvolvimento</h4>
-              <p class="text-neutral-300 text-sm">Sempre teste scripts novos antes de executar em produção.</p>
+              <p class="text-neutral-300 text-sm">Sempre teste scripts novos antes de executar em produçêo.</p>
             </div>
           </div>
         </div>

@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -162,25 +162,25 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Definição -->
+    <!-- Seçêo 1: Definiçêo -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">📖</span>
         </div>
-        <h2 class="text-xl font-bold text-emerald-400">Definição</h2>
+        <h2 class="text-xl font-bold text-emerald-400">Definiçêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
         <h3 class="text-lg font-semibold mb-4">O que é SQL?</h3>
         <p class="text-neutral-300 mb-4">
-          <strong class="text-emerald-400">SQL (Structured Query Language)</strong> é a linguagem padrão para
+          <strong class="text-emerald-400">SQL (Structured Query Language)</strong> é a linguagem padrêo para
           interagir com bancos de dados relacionais. Desenvolvida na IBM nos anos 1970, foi padronizada pelo
-          ANSI em 1986 e ISO em 1987. Apesar de existir um padrão, cada SGBD (Oracle, SQL Server, MySQL)
+          ANSI em 1986 e ISO em 1987. Apesar de existir um padrêo, cada SGBD (Oracle, SQL Server, MySQL)
           possui extensões próprias.
         </p>
         <p class="text-neutral-300">
-          O SQL é dividido em <strong>subcategorias</strong> baseadas no tipo de operação:
+          O SQL é dividido em <strong>subcategorias</strong> baseadas no tipo de operaçêo:
         </p>
       </div>
 
@@ -207,7 +207,7 @@
             <div class="w-10 h-10 bg-cyan-500/30 rounded-lg flex items-center justify-center text-xl">✏️</div>
             <div>
               <h3 class="font-bold text-cyan-400">DML - Data Manipulation Language</h3>
-              <p class="text-neutral-400 text-sm">Manipulação de dados</p>
+              <p class="text-neutral-400 text-sm">Manipulaçêo de dados</p>
             </div>
           </div>
           <p class="text-neutral-300 text-sm mb-3">
@@ -224,7 +224,7 @@
             <div class="w-10 h-10 bg-purple-500/30 rounded-lg flex items-center justify-center text-xl">🏗️</div>
             <div>
               <h3 class="font-bold text-purple-400">DDL - Data Definition Language</h3>
-              <p class="text-neutral-400 text-sm">Definição de estrutura</p>
+              <p class="text-neutral-400 text-sm">Definiçêo de estrutura</p>
             </div>
           </div>
           <p class="text-neutral-300 text-sm mb-3">
@@ -277,13 +277,13 @@
       </div>
     </section>
 
-    <!-- Seção 2: Aplicação Prática -->
+    <!-- Seçêo 2: Aplicaçêo Prática -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">🛠️</span>
         </div>
-        <h2 class="text-xl font-bold text-cyan-400">Aplicação Prática</h2>
+        <h2 class="text-xl font-bold text-cyan-400">Aplicaçêo Prática</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -302,7 +302,7 @@ FROM employees
 WHERE department_id = 50
   AND salary > 5000;
 
--- SELECT com ordenação
+-- SELECT com ordenaçêo
 SELECT first_name, last_name, hire_date
 FROM employees
 ORDER BY hire_date DESC;
@@ -430,13 +430,13 @@ DROP SEQUENCE seq_project_id;
 DROP TABLE projects CASCADE CONSTRAINTS;  -- Remove com dependências
 
 -- TRUNCATE: Apaga todos os dados (mais rápido que DELETE)
-TRUNCATE TABLE logs;  -- Não pode ser revertido com ROLLBACK!</code></pre>
+TRUNCATE TABLE logs;  -- Nêo pode ser revertido com ROLLBACK!</code></pre>
 
         <div class="bg-red-900/20 border border-red-500/30 rounded-lg p-4 mt-4">
-          <h4 class="font-semibold text-red-400 mb-2">⚠️ Atenção: DDL faz COMMIT automático!</h4>
+          <h4 class="font-semibold text-red-400 mb-2">⚠️ Atençêo: DDL faz COMMIT automático!</h4>
           <p class="text-neutral-300 text-sm">
-            Comandos DDL executam um COMMIT implícito antes E depois da execução.
-            Isso significa que você <strong>não pode fazer ROLLBACK</strong> de um DROP TABLE ou TRUNCATE!
+            Comandos DDL executam um COMMIT implícito antes E depois da execuçêo.
+            Isso significa que você <strong>nêo pode fazer ROLLBACK</strong> de um DROP TABLE ou TRUNCATE!
           </p>
         </div>
       </div>
@@ -484,7 +484,7 @@ SELECT * FROM user_role_privs;</code></pre>
         <pre><code class="language-sql">-- Cenário: Transferência bancária
 -- Debitar de uma conta e creditar em outra
 
--- Início da transação (implícito ao primeiro DML)
+-- Início da transaçêo (implícito ao primeiro DML)
 UPDATE contas SET saldo = saldo - 1000 WHERE conta_id = 123;
 UPDATE contas SET saldo = saldo + 1000 WHERE conta_id = 456;
 
@@ -501,15 +501,15 @@ UPDATE employees SET salary = salary * 1.05 WHERE department_id = 50;
 SAVEPOINT antes_promocao;
 UPDATE employees SET job_id = 'IT_PROG' WHERE employee_id = 107;
 
--- Ops! Erro na promoção, mas bonus está OK
+-- Ops! Erro na promoçêo, mas bonus está OK
 ROLLBACK TO SAVEPOINT antes_promocao;
 
 -- Confirma apenas o bonus
 COMMIT;
 
--- SET TRANSACTION: Configurar propriedades da transação
+-- SET TRANSACTION: Configurar propriedades da transaçêo
 SET TRANSACTION READ ONLY;  -- Apenas leitura
-SET TRANSACTION READ WRITE; -- Leitura e escrita (padrão)
+SET TRANSACTION READ WRITE; -- Leitura e escrita (padrêo)
 SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;  -- Máximo isolamento</code></pre>
 
         <div class="bg-dark-700 rounded-lg p-4 mt-4">
@@ -521,7 +521,7 @@ SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;  -- Máximo isolamento</code></pre
             </tr>
             <tr>
               <td class="text-neutral-400 py-1">DDL (CREATE, ALTER, DROP)</td>
-              <td class="text-red-400 py-1">COMMIT automático (não pode desfazer)</td>
+              <td class="text-red-400 py-1">COMMIT automático (nêo pode desfazer)</td>
             </tr>
             <tr>
               <td class="text-neutral-400 py-1">DCL (GRANT, REVOKE)</td>
@@ -529,14 +529,14 @@ SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;  -- Máximo isolamento</code></pre
             </tr>
             <tr>
               <td class="text-neutral-400 py-1">DQL (SELECT)</td>
-              <td class="text-neutral-400 py-1">Não afeta (apenas leitura)</td>
+              <td class="text-neutral-400 py-1">Nêo afeta (apenas leitura)</td>
             </tr>
           </table>
         </div>
       </div>
     </section>
 
-    <!-- Seção 3: Resultado Esperado -->
+    <!-- Seçêo 3: Resultado Esperado -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -561,7 +561,7 @@ SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;  -- Máximo isolamento</code></pre
               <span class="text-emerald-400 mt-1">✓</span>
               <div>
                 <h4 class="font-semibold text-neutral-100">Entender COMMIT/ROLLBACK</h4>
-                <p class="text-neutral-400 text-sm">Saber quando mudanças são permanentes</p>
+                <p class="text-neutral-400 text-sm">Saber quando mudanças sêo permanentes</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
@@ -610,7 +610,7 @@ SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;  -- Máximo isolamento</code></pre
 
       <div class="space-y-4">
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 1: Classificação de Comandos</h3>
+          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 1: Classificaçêo de Comandos</h3>
           <p class="text-neutral-300 mb-4">
             Classifique cada comando abaixo em DQL, DML, DDL, DCL ou TCL:
           </p>
@@ -626,7 +626,7 @@ SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;  -- Máximo isolamento</code></pre
           </ol>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4 bg-dark-700 rounded-lg p-4">
               <ol class="list-decimal list-inside text-neutral-300 space-y-1">
                 <li>DQL (Data Query Language)</li>
@@ -643,7 +643,7 @@ SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;  -- Máximo isolamento</code></pre
         </div>
 
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 2: Cenário de Transação</h3>
+          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 2: Cenário de Transaçêo</h3>
           <p class="text-neutral-300 mb-4">
             Analise a sequência de comandos e responda: quais dados foram realmente salvos no banco?
           </p>
@@ -658,7 +658,7 @@ INSERT INTO products VALUES (5, 'Produto E', 500);
 ROLLBACK;</code></pre>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4 bg-dark-700 rounded-lg p-4">
               <p class="text-neutral-300 mb-2"><strong>Produtos salvos: 1 e 4</strong></p>
               <ul class="list-disc list-inside text-neutral-400 space-y-1">
@@ -680,14 +680,14 @@ ROLLBACK;</code></pre>
           </p>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">-- (a) Criar usuário
 CREATE USER reports_user IDENTIFIED BY senha123
     DEFAULT TABLESPACE users
     QUOTA 10M ON users;
 
--- Permitir conexão
+-- Permitir conexêo
 GRANT CREATE SESSION TO reports_user;
 
 -- (b) Conceder acesso de leitura

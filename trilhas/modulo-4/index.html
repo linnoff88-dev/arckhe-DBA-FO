@@ -24,7 +24,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -36,7 +36,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -140,7 +140,7 @@
       </span>
       <h1 class="text-4xl sm:text-5xl font-bold mb-4">⚡ Performance e Tuning</h1>
       <p class="text-xl text-neutral-400 max-w-2xl mx-auto">
-        Diagnóstico, otimização de SQL e tuning interno
+        Diagnóstico, otimizaçêo de SQL e tuning interno
       </p>
     </div>
 
@@ -185,9 +185,9 @@
     <!-- Intro -->
     <section class="mb-12">
       <div class="bg-gradient-to-br from-orange-900/30 to-dark-800 rounded-2xl p-8 border border-orange-500/30">
-        <h2 class="text-2xl font-bold text-orange-400 mb-4">Introdução</h2>
+        <h2 class="text-2xl font-bold text-orange-400 mb-4">Introduçêo</h2>
         <p class="text-neutral-300 text-lg">
-          Um banco de dados que funciona é bom, mas um banco de dados <strong class="text-orange-400">rápido é essencial</strong>. Otimização de desempenho, ou <em>tuning</em>, é uma das disciplinas mais desafiadoras e valorizadas de um DBA. Vamos aprender a diagnosticar gargalos, otimizar SQL e ajustar componentes internos.
+          Um banco de dados que funciona é bom, mas um banco de dados <strong class="text-orange-400">rápido é essencial</strong>. Otimizaçêo de desempenho, ou <em>tuning</em>, é uma das disciplinas mais desafiadoras e valorizadas de um DBA. Vamos aprender a diagnosticar gargalos, otimizar SQL e ajustar componentes internos.
         </p>
       </div>
     </section>
@@ -224,35 +224,35 @@
       </div>
     </section>
 
-    <!-- 4.2 Plano de Execução -->
+    <!-- 4.2 Plano de Execuçêo -->
     <section class="mb-12">
       <div class="bg-dark-800 rounded-2xl p-8 border border-dark-600">
         <div class="flex items-center mb-6">
           <span class="text-4xl mr-4">📊</span>
           <div>
-            <h2 class="text-2xl font-bold text-neutral-100">4.2 Tuning de SQL: Plano de Execução</h2>
+            <h2 class="text-2xl font-bold text-neutral-100">4.2 Tuning de SQL: Plano de Execuçêo</h2>
             <p class="text-neutral-400">A "receita" do otimizador</p>
           </div>
         </div>
 
         <p class="text-neutral-300 mb-6">
-          O <strong class="text-orange-400">Plano de Execução</strong> é a "receita" que o Otimizador Oracle cria para buscar dados. Descreve os passos: qual tabela primeiro, se usa índice, como faz o join, etc.
+          O <strong class="text-orange-400">Plano de Execuçêo</strong> é a "receita" que o Otimizador Oracle cria para buscar dados. Descreve os passos: qual tabela primeiro, se usa índice, como faz o join, etc.
         </p>
 
         <div class="grid md:grid-cols-2 gap-4 mb-6">
           <div class="bg-red-900/20 p-4 rounded-xl border border-red-500/30">
             <h4 class="font-bold text-red-400 mb-2">Full Table Scan</h4>
-            <p class="text-neutral-300 text-sm">Oracle lê tabela inteira para encontrar poucas linhas. Sinal de índice faltando ou não usado.</p>
+            <p class="text-neutral-300 text-sm">Oracle lê tabela inteira para encontrar poucas linhas. Sinal de índice faltando ou nêo usado.</p>
           </div>
           <div class="bg-red-900/20 p-4 rounded-xl border border-red-500/30">
             <h4 class="font-bold text-red-400 mb-2">Tipo de Join Inadequado</h4>
-            <p class="text-neutral-300 text-sm">Oracle pode escolher Nested Loops, Hash Join ou Sort Merge que não é ideal para o volume de dados.</p>
+            <p class="text-neutral-300 text-sm">Oracle pode escolher Nested Loops, Hash Join ou Sort Merge que nêo é ideal para o volume de dados.</p>
           </div>
         </div>
 
         <div class="bg-dark-700/50 rounded-xl p-6">
-          <h4 class="font-bold text-orange-400 mb-3">Gerando o Plano de Execução</h4>
-          <pre><code class="language-sql">-- Gerar plano de execução
+          <h4 class="font-bold text-orange-400 mb-3">Gerando o Plano de Execuçêo</h4>
+          <pre><code class="language-sql">-- Gerar plano de execuçêo
 EXPLAIN PLAN FOR
 SELECT * FROM HR.EMPLOYEES WHERE LAST_NAME = 'Smith';
 
@@ -287,7 +287,7 @@ SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY);</code></pre>
             </ul>
           </div>
           <div class="bg-red-900/20 p-6 rounded-xl border border-red-500/30">
-            <h4 class="font-bold text-red-400 mb-3">✗ Quando NÃO Criar</h4>
+            <h4 class="font-bold text-red-400 mb-3">✗ Quando NêO Criar</h4>
             <ul class="space-y-2 text-neutral-300 text-sm">
               <li>• Tabelas pequenas</li>
               <li>• Colunas com muitos valores duplicados</li>
@@ -303,13 +303,13 @@ CREATE INDEX idx_emp_dept_id ON EMPREGADOS(DEPT_ID);</code></pre>
       </div>
     </section>
 
-    <!-- 4.4 Gestão de Memória -->
+    <!-- 4.4 Gestêo de Memória -->
     <section class="mb-12">
       <div class="bg-dark-800 rounded-2xl p-8 border border-dark-600">
         <div class="flex items-center mb-6">
           <span class="text-4xl mr-4">🧠</span>
           <div>
-            <h2 class="text-2xl font-bold text-neutral-100">4.4 Gestão de Memória e Tuning Interno</h2>
+            <h2 class="text-2xl font-bold text-neutral-100">4.4 Gestêo de Memória e Tuning Interno</h2>
             <p class="text-neutral-400">SGA, PGA e AMM</p>
           </div>
         </div>
@@ -326,7 +326,7 @@ CREATE INDEX idx_emp_dept_id ON EMPREGADOS(DEPT_ID);</code></pre>
         </div>
 
         <div class="bg-emerald-900/20 p-4 rounded-xl border border-emerald-500/30">
-          <h4 class="font-bold text-emerald-400 mb-2">Gestão Automática de Memória (AMM)</h4>
+          <h4 class="font-bold text-emerald-400 mb-2">Gestêo Automática de Memória (AMM)</h4>
           <p class="text-neutral-300 text-sm">
             A partir do Oracle 11g, defina apenas <code class="text-emerald-400">MEMORY_TARGET</code> e o Oracle gerencia dinamicamente SGA/PGA.
           </p>
@@ -352,7 +352,7 @@ CREATE INDEX idx_emp_dept_id ON EMPREGADOS(DEPT_ID);</code></pre>
           </div>
           <div class="bg-dark-700/50 rounded-xl p-4 border-l-4 border-purple-500">
             <h4 class="font-bold text-purple-400 mb-2">SQL Trace e TKPROF</h4>
-            <p class="text-neutral-300 text-sm">Habilita trace de sessão. TKPROF formata em relatório legível com plano de execução, tempos de CPU, I/O.</p>
+            <p class="text-neutral-300 text-sm">Habilita trace de sessêo. TKPROF formata em relatório legível com plano de execuçêo, tempos de CPU, I/O.</p>
           </div>
         </div>
       </div>
@@ -372,7 +372,7 @@ CREATE INDEX idx_emp_dept_id ON EMPREGADOS(DEPT_ID);</code></pre>
         <div class="space-y-4">
           <div class="bg-dark-700/50 rounded-xl p-4">
             <p class="text-neutral-100 font-semibold mb-2">1. Identificando Query Lenta</p>
-            <p class="text-neutral-400 text-sm">Gere o plano de execução para: <code>SELECT * FROM HR.EMPLOYEES WHERE LAST_NAME = 'Smith';</code></p>
+            <p class="text-neutral-400 text-sm">Gere o plano de execuçêo para: <code>SELECT * FROM HR.EMPLOYEES WHERE LAST_NAME = 'Smith';</code></p>
           </div>
           <div class="bg-dark-700/50 rounded-xl p-4">
             <p class="text-neutral-100 font-semibold mb-2">2. Criando um Índice</p>
@@ -398,7 +398,7 @@ CREATE INDEX idx_emp_dept_id ON EMPREGADOS(DEPT_ID);</code></pre>
           </summary>
           <div class="mt-4 space-y-4">
             <div class="bg-dark-700/50 rounded-xl p-4">
-              <p class="text-orange-400 font-semibold mb-2">1. Plano de Execução</p>
+              <p class="text-orange-400 font-semibold mb-2">1. Plano de Execuçêo</p>
               <pre><code class="language-sql">EXPLAIN PLAN FOR
 SELECT * FROM HR.EMPLOYEES WHERE LAST_NAME = 'Smith';
 

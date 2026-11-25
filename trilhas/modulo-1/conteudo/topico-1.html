@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -162,13 +162,13 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Definição -->
+    <!-- Seçêo 1: Definiçêo -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">📖</span>
         </div>
-        <h2 class="text-xl font-bold text-emerald-400">Definição</h2>
+        <h2 class="text-xl font-bold text-emerald-400">Definiçêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -190,7 +190,7 @@
             <li><strong>Dados organizados em tabelas:</strong> Estrutura bidimensional clara e intuitiva</li>
             <li><strong>Relacionamentos entre tabelas:</strong> Conexões lógicas através de chaves</li>
             <li><strong>Integridade referencial:</strong> Garante consistência dos dados relacionados</li>
-            <li><strong>Linguagem SQL:</strong> Interface padrão para manipulação dos dados</li>
+            <li><strong>Linguagem SQL:</strong> Interface padrêo para manipulaçêo dos dados</li>
             <li><strong>ACID:</strong> Atomicidade, Consistência, Isolamento e Durabilidade das transações</li>
           </ul>
         </div>
@@ -212,7 +212,7 @@
             <tbody class="text-neutral-300">
               <tr>
                 <td class="border border-dark-600 px-4 py-2">1</td>
-                <td class="border border-dark-600 px-4 py-2">João Silva</td>
+                <td class="border border-dark-600 px-4 py-2">Joêo Silva</td>
                 <td class="border border-dark-600 px-4 py-2">10</td>
                 <td class="border border-dark-600 px-4 py-2">5000.00</td>
               </tr>
@@ -244,20 +244,20 @@
             <h4 class="font-semibold text-emerald-400 mb-2">Coluna (Atributo/Campo)</h4>
             <p class="text-neutral-300 text-sm">
               Cada coluna representa uma <strong>característica</strong> da entidade.
-              Ex: NOME, SALARIO são atributos do funcionário.
+              Ex: NOME, SALARIO sêo atributos do funcionário.
             </p>
           </div>
         </div>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-        <h3 class="text-lg font-semibold mb-4">Chaves: O Coração do Modelo Relacional</h3>
+        <h3 class="text-lg font-semibold mb-4">Chaves: O Coraçêo do Modelo Relacional</h3>
 
         <div class="space-y-4">
           <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
             <h4 class="font-semibold text-emerald-400 mb-2">Chave Primária (Primary Key - PK)</h4>
             <p class="text-neutral-300 text-sm mb-2">
-              <strong>Identifica unicamente</strong> cada registro na tabela. Não pode ser nula e deve ser única.
+              <strong>Identifica unicamente</strong> cada registro na tabela. Nêo pode ser nula e deve ser única.
             </p>
             <ul class="list-disc list-inside text-neutral-400 text-sm">
               <li>Pode ser uma coluna única (simples) ou múltiplas colunas (composta)</li>
@@ -272,7 +272,7 @@
               <strong>Cria relacionamentos</strong> entre tabelas, referenciando a chave primária de outra tabela.
             </p>
             <ul class="list-disc list-inside text-neutral-400 text-sm">
-              <li>Garante integridade referencial (não permite referências inválidas)</li>
+              <li>Garante integridade referencial (nêo permite referências inválidas)</li>
               <li>Pode ser nula (relacionamento opcional)</li>
               <li>Exemplo: DEPARTAMENTO_ID em FUNCIONARIOS referencia ID em DEPARTAMENTOS</li>
             </ul>
@@ -292,13 +292,13 @@
       </div>
     </section>
 
-    <!-- Seção 2: Aplicação Prática -->
+    <!-- Seçêo 2: Aplicaçêo Prática -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">🛠️</span>
         </div>
-        <h2 class="text-xl font-bold text-cyan-400">Aplicação Prática</h2>
+        <h2 class="text-xl font-bold text-cyan-400">Aplicaçêo Prática</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -328,12 +328,12 @@ CREATE TABLE funcionarios (
 );
 
 -- Inserindo departamentos
-INSERT INTO departamentos VALUES (10, 'Tecnologia', 'São Paulo', 500000);
+INSERT INTO departamentos VALUES (10, 'Tecnologia', 'Sêo Paulo', 500000);
 INSERT INTO departamentos VALUES (20, 'Recursos Humanos', 'Rio de Janeiro', 200000);
-INSERT INTO departamentos VALUES (30, 'Financeiro', 'São Paulo', 300000);
+INSERT INTO departamentos VALUES (30, 'Financeiro', 'Sêo Paulo', 300000);
 
 -- Inserindo funcionários
-INSERT INTO funcionarios VALUES (1, 'João Silva', 'joao@empresa.com', DATE '2020-03-15', 5000, 10);
+INSERT INTO funcionarios VALUES (1, 'Joêo Silva', 'joao@empresa.com', DATE '2020-03-15', 5000, 10);
 INSERT INTO funcionarios VALUES (2, 'Maria Santos', 'maria@empresa.com', DATE '2019-07-01', 6500, 20);
 INSERT INTO funcionarios VALUES (3, 'Pedro Costa', 'pedro@empresa.com', DATE '2021-01-10', 4500, 10);
 
@@ -341,7 +341,7 @@ COMMIT;</code></pre>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Integridade Referencial em Ação</h3>
+        <h3 class="text-lg font-semibold mb-4">Integridade Referencial em Açêo</h3>
 
         <p class="text-neutral-300 mb-4">
           Veja como o Oracle protege a integridade dos dados:
@@ -355,13 +355,13 @@ INSERT INTO funcionarios VALUES (4, 'Ana Lima', 'ana@empresa.com', SYSDATE, 5500
 DELETE FROM departamentos WHERE id_departamento = 10;
 -- ERRO: ORA-02292: integrity constraint violated - child record found
 
--- Para permitir exclusão em cascata, use:
+-- Para permitir exclusêo em cascata, use:
 ALTER TABLE funcionarios DROP CONSTRAINT funcionarios_fk;
 ALTER TABLE funcionarios ADD CONSTRAINT funcionarios_fk
     FOREIGN KEY (departamento_id)
     REFERENCES departamentos(id_departamento)
     ON DELETE CASCADE;
--- Agora, ao excluir um departamento, seus funcionários também são excluídos
+-- Agora, ao excluir um departamento, seus funcionários também sêo excluídos
 
 -- Ou use SET NULL para apenas remover a referência:
 ALTER TABLE funcionarios DROP CONSTRAINT funcionarios_fk;
@@ -388,8 +388,8 @@ ORDER BY d.nome, f.nome;
 -- Resultado:
 -- ID_FUNCIONARIO  FUNCIONARIO    SALARIO  DEPARTAMENTO         LOCALIZACAO
 -- 2               Maria Santos   6500     Recursos Humanos     Rio de Janeiro
--- 1               João Silva     5000     Tecnologia           São Paulo
--- 3               Pedro Costa    4500     Tecnologia           São Paulo
+-- 1               Joêo Silva     5000     Tecnologia           Sêo Paulo
+-- 3               Pedro Costa    4500     Tecnologia           Sêo Paulo
 
 -- Verificando a estrutura das tabelas
 DESC funcionarios;
@@ -402,7 +402,7 @@ WHERE table_name = 'FUNCIONARIOS';</code></pre>
       </div>
     </section>
 
-    <!-- Seção 3: Resultado Esperado -->
+    <!-- Seçêo 3: Resultado Esperado -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -476,7 +476,7 @@ WHERE table_name = 'FUNCIONARIOS';</code></pre>
 
       <div class="space-y-4">
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 1: Criação de Tabelas</h3>
+          <h3 class="font-semibold text-neutral-100 mb-2">Exercício 1: Criaçêo de Tabelas</h3>
           <p class="text-neutral-300 mb-4">
             Crie as tabelas PROJETOS e ALOCACOES seguindo as especificações:
           </p>
@@ -486,7 +486,7 @@ WHERE table_name = 'FUNCIONARIOS';</code></pre>
           </ul>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">-- Tabela de Projetos
 CREATE TABLE projetos (
@@ -514,11 +514,11 @@ CREATE TABLE alocacoes (
           <h3 class="font-semibold text-neutral-100 mb-2">Exercício 2: Consulta com JOIN</h3>
           <p class="text-neutral-300 mb-4">
             Escreva uma consulta que liste todos os funcionários, seus departamentos
-            e os projetos em que estão alocados, mostrando também quem não está em nenhum projeto.
+            e os projetos em que estêo alocados, mostrando também quem nêo está em nenhum projeto.
           </p>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4">
               <pre><code class="language-sql">SELECT
     f.nome AS funcionario,
@@ -551,15 +551,15 @@ ORDER BY f.nome, p.nome;</code></pre>
 );</code></pre>
 
           <details class="mt-4">
-            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Solução</summary>
+            <summary class="cursor-pointer text-emerald-400 hover:text-emerald-300 font-medium">Ver Soluçêo</summary>
             <div class="mt-4 bg-dark-700 rounded-lg p-4">
               <h4 class="font-semibold text-red-400 mb-2">Problemas identificados:</h4>
               <ul class="list-disc list-inside text-neutral-300 space-y-2">
                 <li><strong>Sem chave primária:</strong> numero_pedido deveria ser PK</li>
                 <li><strong>Redundância:</strong> dados do cliente repetidos em cada pedido</li>
                 <li><strong>Estrutura fixa:</strong> limita a 2 produtos por pedido</li>
-                <li><strong>Campo calculado:</strong> total não deveria ser armazenado</li>
-                <li><strong>Falta normalização:</strong> deveria ter tabelas separadas para CLIENTES, PRODUTOS e ITENS_PEDIDO</li>
+                <li><strong>Campo calculado:</strong> total nêo deveria ser armazenado</li>
+                <li><strong>Falta normalizaçêo:</strong> deveria ter tabelas separadas para CLIENTES, PRODUTOS e ITENS_PEDIDO</li>
               </ul>
             </div>
           </details>

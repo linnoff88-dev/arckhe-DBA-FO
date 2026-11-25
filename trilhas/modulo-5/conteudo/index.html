@@ -22,7 +22,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -34,7 +34,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -190,19 +190,19 @@
           <div class="px-6 pb-6 border-t border-dark-600 pt-4">
             <div class="space-y-4 mb-6">
               <div class="bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500">
-                <h4 class="font-semibold text-red-400 mb-2">📖 Definição</h4>
+                <h4 class="font-semibold text-red-400 mb-2">📖 Definiçêo</h4>
                 <p class="text-neutral-300 text-sm">
                   <strong>Oracle RAC</strong> permite que múltiplas instâncias Oracle em diferentes servidores acessem
                   um único banco de dados compartilhado. Oferece escalabilidade horizontal e alta disponibilidade através
-                  de arquitetura shared-everything, cluster interconnect para comunicação rápida entre nós e cache fusion
-                  para coordenação de blocos de dados em memória.
+                  de arquitetura shared-everything, cluster interconnect para comunicaçêo rápida entre nós e cache fusion
+                  para coordenaçêo de blocos de dados em memória.
                 </p>
               </div>
               <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
-                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicação Prática</h4>
+                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicaçêo Prática</h4>
                 <p class="text-neutral-300 text-sm">
                   Use RAC quando precisar de escalabilidade (adicionar servidores aumenta capacidade) e disponibilidade
-                  contínua (falha de um nó não para o banco). Essencial para aplicações críticas 24/7. Requer Oracle
+                  contínua (falha de um nó nêo para o banco). Essencial para aplicações críticas 24/7. Requer Oracle
                   Clusterware, armazenamento compartilhado (ASM/SAN) e rede de interconnect dedicada de alta velocidade.
                 </p>
               </div>
@@ -233,7 +233,7 @@
             <div class="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center text-red-400 font-bold">2</div>
             <div class="text-left">
               <h3 class="font-semibold text-neutral-100">ASM - Automatic Storage Management</h3>
-              <p class="text-sm text-neutral-400">Disk groups, redundância, rebalanceamento e administração ASM</p>
+              <p class="text-sm text-neutral-400">Disk groups, redundância, rebalanceamento e administraçêo ASM</p>
             </div>
           </div>
           <svg class="topic-arrow w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -244,7 +244,7 @@
           <div class="px-6 pb-6 border-t border-dark-600 pt-4">
             <div class="space-y-4 mb-6">
               <div class="bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500">
-                <h4 class="font-semibold text-red-400 mb-2">📖 Definição</h4>
+                <h4 class="font-semibold text-red-400 mb-2">📖 Definiçêo</h4>
                 <p class="text-neutral-300 text-sm">
                   <strong>ASM</strong> é o gerenciador de volumes e sistema de arquivos integrado ao Oracle.
                   Organiza discos físicos em disk groups, distribui dados automaticamente (striping), oferece
@@ -253,11 +253,11 @@
                 </p>
               </div>
               <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
-                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicação Prática</h4>
+                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicaçêo Prática</h4>
                 <p class="text-neutral-300 text-sm">
                   Use ASMCA para criar disk groups, ASMCMD para gerenciar arquivos ASM. Configure redundância
                   apropriada: EXTERNAL (usa RAID do storage), NORMAL (espelhamento duplo) ou HIGH (triplo).
-                  ASM é essencial para RAC (armazenamento compartilhado) e simplifica gestão em ambientes standalone.
+                  ASM é essencial para RAC (armazenamento compartilhado) e simplifica gestêo em ambientes standalone.
                 </p>
               </div>
               <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
@@ -287,7 +287,7 @@
             <div class="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center text-red-400 font-bold">3</div>
             <div class="text-left">
               <h3 class="font-semibold text-neutral-100">Oracle Data Guard</h3>
-              <p class="text-sm text-neutral-400">Standby físico/lógico, switchover, failover e proteção de dados</p>
+              <p class="text-sm text-neutral-400">Standby físico/lógico, switchover, failover e proteçêo de dados</p>
             </div>
           </div>
           <svg class="topic-arrow w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -298,27 +298,27 @@
           <div class="px-6 pb-6 border-t border-dark-600 pt-4">
             <div class="space-y-4 mb-6">
               <div class="bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500">
-                <h4 class="font-semibold text-red-400 mb-2">📖 Definição</h4>
+                <h4 class="font-semibold text-red-400 mb-2">📖 Definiçêo</h4>
                 <p class="text-neutral-300 text-sm">
                   <strong>Data Guard</strong> mantém cópias sincronizadas do banco primário em standby databases.
                   <strong>Standby físico</strong> replica blocos (identical copy), <strong>standby lógico</strong> usa
-                  SQL Apply. Oferece proteção contra desastres, failover automático (Fast-Start Failover) e switchover
+                  SQL Apply. Oferece proteçêo contra desastres, failover automático (Fast-Start Failover) e switchover
                   planejado sem downtime. Modos: SYNC (zero data loss) e ASYNC (performance).
                 </p>
               </div>
               <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
-                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicação Prática</h4>
+                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicaçêo Prática</h4>
                 <p class="text-neutral-300 text-sm">
                   Configure Data Guard com DGMGRL (Data Guard Broker). Use standby físico para DR e relatórios
                   (Active Data Guard). Standby lógico permite queries e DML limitado. Teste failover regularmente.
-                  Configure Far Sync para replicação síncrona de longa distância sem impacto de latência.
+                  Configure Far Sync para replicaçêo síncrona de longa distância sem impacto de latência.
                 </p>
               </div>
               <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
                 <h4 class="font-semibold text-purple-400 mb-2">✅ Resultado Esperado</h4>
                 <p class="text-neutral-300 text-sm">
-                  Implementar configurações Data Guard, realizar switchover e failover, monitorar lag de replicação,
-                  resolver problemas de transporte de logs e configurar proteção contra perda de dados.
+                  Implementar configurações Data Guard, realizar switchover e failover, monitorar lag de replicaçêo,
+                  resolver problemas de transporte de logs e configurar proteçêo contra perda de dados.
                 </p>
               </div>
             </div>
@@ -352,7 +352,7 @@
           <div class="px-6 pb-6 border-t border-dark-600 pt-4">
             <div class="space-y-4 mb-6">
               <div class="bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500">
-                <h4 class="font-semibold text-red-400 mb-2">📖 Definição</h4>
+                <h4 class="font-semibold text-red-400 mb-2">📖 Definiçêo</h4>
                 <p class="text-neutral-300 text-sm">
                   <strong>MAA (Maximum Availability Architecture)</strong> é o framework de best practices da Oracle
                   para atingir disponibilidade máxima. Combina RAC (HA local), Data Guard (DR remoto), ASM (storage resiliente),
@@ -361,18 +361,18 @@
                 </p>
               </div>
               <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
-                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicação Prática</h4>
+                <h4 class="font-semibold text-emerald-400 mb-2">🛠️ Aplicaçêo Prática</h4>
                 <p class="text-neutral-300 text-sm">
                   Arquitetura típica MAA: RAC primário (2+ nós) + Data Guard standby em datacenter remoto (também RAC).
-                  Use GoldenGate para replicação bidirecional ativa-ativa. Implemente monitoramento proativo,
-                  automação de failover, testes regulares de DR e planos de recuperação documentados. RTO < 5 min, RPO = 0.
+                  Use GoldenGate para replicaçêo bidirecional ativa-ativa. Implemente monitoramento proativo,
+                  automaçêo de failover, testes regulares de DR e planos de recuperaçêo documentados. RTO < 5 min, RPO = 0.
                 </p>
               </div>
               <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
                 <h4 class="font-semibold text-purple-400 mb-2">✅ Resultado Esperado</h4>
                 <p class="text-neutral-300 text-sm">
                   Projetar e implementar arquiteturas MAA completas, calcular RTO/RPO, integrar tecnologias de HA/DR,
-                  criar runbooks de recuperação e atingir uptime de 99.99%+ (menos de 1h downtime/ano).
+                  criar runbooks de recuperaçêo e atingir uptime de 99.99%+ (menos de 1h downtime/ano).
                 </p>
               </div>
             </div>

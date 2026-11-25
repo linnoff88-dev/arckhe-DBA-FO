@@ -22,7 +22,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -34,7 +34,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -138,7 +138,7 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Arquitetura Completa -->
+    <!-- Seçêo 1: Arquitetura Completa -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-amber-500/20 rounded-lg flex items-center justify-center">
@@ -148,7 +148,7 @@
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4 text-center">Visão Geral: Instância + Database</h3>
+        <h3 class="text-lg font-semibold mb-4 text-center">Visêo Geral: Instância + Database</h3>
         <div class="bg-dark-900 rounded-lg p-6 diagram-box text-sm text-neutral-300 overflow-x-auto">
           <pre>
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -222,7 +222,7 @@
       </div>
     </section>
 
-    <!-- Seção 2: SGA Detalhada -->
+    <!-- Seçêo 2: SGA Detalhada -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
@@ -273,7 +273,7 @@
 │  ┌───────────────────────────────────────────────────────┐     │
 │  │              LARGE POOL (Opcional)                    │     │
 │  │  • Usado por RMAN, Shared Server, Parallel Queries   │     │
-│  │  • Reduz fragmentação do Shared Pool                 │     │
+│  │  • Reduz fragmentaçêo do Shared Pool                 │     │
 │  │  • Tamanho: LARGE_POOL_SIZE                          │     │
 │  └───────────────────────────────────────────────────────┘     │
 │                                                                 │
@@ -291,7 +291,7 @@
       </div>
     </section>
 
-    <!-- Seção 3: Processos de Background -->
+    <!-- Seçêo 3: Processos de Background -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -323,7 +323,7 @@
               <h4 class="font-semibold text-purple-400">SMON - System Monitor</h4>
             </div>
             <ul class="text-neutral-300 text-sm space-y-1 list-disc list-inside">
-              <li>Recovery na inicialização (instance recovery)</li>
+              <li>Recovery na inicializaçêo (instance recovery)</li>
               <li>Limpa segmentos temporários</li>
               <li>Coalece espaços livres em tablespaces</li>
               <li>Recupera transações mortas</li>
@@ -389,7 +389,7 @@
       </div>
     </section>
 
-    <!-- Seção 4: Estruturas Físicas -->
+    <!-- Seçêo 4: Estruturas Físicas -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
@@ -485,7 +485,7 @@
       </div>
     </section>
 
-    <!-- Seção 5: Fluxo de Dados -->
+    <!-- Seçêo 5: Fluxo de Dados -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
@@ -495,7 +495,7 @@
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4 text-center">Fluxo de uma Transação (UPDATE)</h3>
+        <h3 class="text-lg font-semibold mb-4 text-center">Fluxo de uma Transaçêo (UPDATE)</h3>
         <div class="bg-dark-900 rounded-lg p-6 diagram-box text-sm text-neutral-300 overflow-x-auto">
           <pre>
 1. User Process executa: UPDATE employees SET salary = 5000 WHERE id = 123;
@@ -504,7 +504,7 @@
    ┌─────────────────────────────────────────────────────────┐
    │ ① Verifica se bloco está no DB Buffer Cache             │
    │    • Se SIM → lê da memória (logical read)              │
-   │    • Se NÃO → lê do datafile (physical read)            │
+   │    • Se NêO → lê do datafile (physical read)            │
    └─────────────────────────────────────────────────────────┘
                           ↓
    ┌─────────────────────────────────────────────────────────┐
@@ -522,15 +522,15 @@
    ┌─────────────────────────────────────────────────────────┐
    │ ④ Atualiza bloco no DB Buffer Cache                    │
    │    • Bloco agora é "dirty" (modificado)                 │
-   │    • Ainda NÃO está no disco                            │
+   │    • Ainda NêO está no disco                            │
    └─────────────────────────────────────────────────────────┘
 
 3. User executa: COMMIT;
 
    ┌─────────────────────────────────────────────────────────┐
    │ ⑤ LGWR escreve Redo Log Buffer → Redo Log Files        │
-   │    • SYNC write (aguarda confirmação do OS)             │
-   │    • Transação é DURÁVEL após este ponto                │
+   │    • SYNC write (aguarda confirmaçêo do OS)             │
+   │    • Transaçêo é DURÁVEL após este ponto                │
    └─────────────────────────────────────────────────────────┘
                           ↓
    ┌─────────────────────────────────────────────────────────┐
@@ -544,13 +544,13 @@
    │ ⑦ DBWn escreve dirty blocks → Data Files               │
    │    • Acontece em checkpoints                            │
    │    • Ou quando buffer cache está cheio                  │
-   │    • NÃO bloqueia o COMMIT                              │
+   │    • NêO bloqueia o COMMIT                              │
    └─────────────────────────────────────────────────────────┘
 
 IMPORTANTE:
 - COMMIT força LGWR a escrever (redo logs SEMPRE antes de retornar)
-- COMMIT NÃO força DBWn (datafiles escritos depois, de forma lazy)
-- Recovery usa redo logs para replicar mudanças não escritas em datafiles
+- COMMIT NêO força DBWn (datafiles escritos depois, de forma lazy)
+- Recovery usa redo logs para replicar mudanças nêo escritas em datafiles
 </pre>
         </div>
       </div>
@@ -592,7 +592,7 @@ IMPORTANTE:
             <span class="text-emerald-400 mt-1">✓</span>
             <div>
               <h4 class="font-semibold text-neutral-100">Planejamento</h4>
-              <p class="text-neutral-300 text-sm">Use para decidir alocação de memória, quantidade de processos, etc.</p>
+              <p class="text-neutral-300 text-sm">Use para decidir alocaçêo de memória, quantidade de processos, etc.</p>
             </div>
           </div>
         </div>

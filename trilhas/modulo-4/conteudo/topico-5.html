@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -164,7 +164,7 @@
         <div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">📖</span>
         </div>
-        <h2 class="text-xl font-bold text-orange-400">Definição</h2>
+        <h2 class="text-xl font-bold text-orange-400">Definiçêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -188,13 +188,13 @@
           <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
             <h4 class="font-semibold text-cyan-400 mb-2">PGA - Program Global Area (Memória Privada)</h4>
             <p class="text-neutral-300 text-sm mb-2">
-              Memória privada de cada sessão/processo. Usada para:
+              Memória privada de cada sessêo/processo. Usada para:
             </p>
             <ul class="list-disc list-inside text-neutral-300 text-sm space-y-1">
               <li><strong>Sort Area:</strong> Operações de ORDER BY, GROUP BY</li>
               <li><strong>Hash Area:</strong> Hash joins e agregações</li>
               <li><strong>Bitmap Merge:</strong> Merge de índices bitmap</li>
-              <li><strong>Session Memory:</strong> Variáveis de sessão, cursores</li>
+              <li><strong>Session Memory:</strong> Variáveis de sessêo, cursores</li>
             </ul>
           </div>
 
@@ -202,7 +202,7 @@
             <h4 class="font-semibold text-purple-400 mb-2">Automatic Memory Management</h4>
             <p class="text-neutral-300 text-sm">
               <strong>MEMORY_TARGET:</strong> Oracle gerencia automaticamente SGA e PGA dinamicamente.
-              Recomendado para maioria dos casos (menos administração, boa adaptação à carga).
+              Recomendado para maioria dos casos (menos administraçêo, boa adaptaçêo à carga).
             </p>
           </div>
         </div>
@@ -214,13 +214,13 @@
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">🛠️</span>
         </div>
-        <h2 class="text-xl font-bold text-cyan-400">Aplicação Prática</h2>
+        <h2 class="text-xl font-bold text-cyan-400">Aplicaçêo Prática</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
         <h3 class="text-lg font-semibold mb-4">Configurando Memória</h3>
 
-        <pre><code class="language-sql">-- Ver configuração atual
+        <pre><code class="language-sql">-- Ver configuraçêo atual
 SELECT name, value/1024/1024 AS value_mb, description
 FROM v$parameter
 WHERE name IN (
@@ -229,18 +229,18 @@ WHERE name IN (
     'pga_aggregate_target', 'pga_aggregate_limit'
 );
 
--- Opção 1: Gerenciamento Automático (Recomendado)
+-- Opçêo 1: Gerenciamento Automático (Recomendado)
 ALTER SYSTEM SET memory_target = 4G SCOPE=SPFILE;
 ALTER SYSTEM SET memory_max_target = 8G SCOPE=SPFILE;
 -- Restart necessário
 
--- Opção 2: Manual SGA + PGA
+-- Opçêo 2: Manual SGA + PGA
 ALTER SYSTEM SET memory_target = 0 SCOPE=SPFILE;  -- Desabilita AMM
 ALTER SYSTEM SET sga_target = 3G SCOPE=SPFILE;
 ALTER SYSTEM SET pga_aggregate_target = 1G SCOPE=SPFILE;
 -- Restart necessário
 
--- Opção 3: Manual detalhado (componentes individuais)
+-- Opçêo 3: Manual detalhado (componentes individuais)
 ALTER SYSTEM SET sga_target = 0 SCOPE=SPFILE;     -- Desabilita ASMM
 ALTER SYSTEM SET db_cache_size = 2G SCOPE=SPFILE;
 ALTER SYSTEM SET shared_pool_size = 800M SCOPE=SPFILE;
@@ -337,7 +337,7 @@ FROM v$sql
 ORDER BY sharable_mem DESC
 FETCH FIRST 20 ROWS ONLY;
 
--- Flush shared pool (cuidado em produção!)
+-- Flush shared pool (cuidado em produçêo!)
 ALTER SYSTEM FLUSH SHARED_POOL;</code></pre>
       </div>
 
@@ -452,7 +452,7 @@ FROM
               <span class="text-orange-400 mt-1">✓</span>
               <div>
                 <h4 class="font-semibold text-neutral-100">Diagnosticar problemas</h4>
-                <p class="text-neutral-400 text-sm">Identificar contenção, falta de memória</p>
+                <p class="text-neutral-400 text-sm">Identificar contençêo, falta de memória</p>
               </div>
             </div>
           </div>
@@ -476,8 +476,8 @@ FROM
             <span class="text-neutral-300"> > 95% = Excelente | 90-95% = Bom | < 90% = Aumentar PGA</span>
           </div>
           <div class="bg-amber-900/20 rounded-lg p-3">
-            <strong class="text-amber-400">Atenção:</strong>
-            <span class="text-neutral-300"> Hit ratios altos não garantem boa performance. Analise sempre em conjunto com wait events e AWR.</span>
+            <strong class="text-amber-400">Atençêo:</strong>
+            <span class="text-neutral-300"> Hit ratios altos nêo garantem boa performance. Analise sempre em conjunto com wait events e AWR.</span>
           </div>
         </div>
       </div>

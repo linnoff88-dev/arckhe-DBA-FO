@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -147,7 +147,7 @@
         </div>
         <div>
           <h1 class="text-2xl font-bold">Oracle Data Guard</h1>
-          <p class="text-neutral-400">Standby físico/lógico, switchover, failover e proteção de dados</p>
+          <p class="text-neutral-400">Standby físico/lógico, switchover, failover e proteçêo de dados</p>
         </div>
       </div>
     </div>
@@ -157,23 +157,23 @@
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center"><span class="text-xl">📖</span></div>
-        <h2 class="text-xl font-bold text-red-400">Definição</h2>
+        <h2 class="text-xl font-bold text-red-400">Definiçêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
         <h3 class="text-lg font-semibold mb-4">O que é Data Guard?</h3>
         <p class="text-neutral-300 mb-4">
-          <strong class="text-red-400">Oracle Data Guard</strong> é a solução de disaster recovery e alta disponibilidade
+          <strong class="text-red-400">Oracle Data Guard</strong> é a soluçêo de disaster recovery e alta disponibilidade
           que mantém uma ou mais cópias standby sincronizadas do banco de dados primário. Protege contra perda de dados,
-          corrupção, desastres naturais e permite manutenção com zero data loss.
+          corrupçêo, desastres naturais e permite manutençêo com zero data loss.
         </p>
         <div class="bg-dark-700 rounded-lg p-4">
           <h4 class="font-semibold text-neutral-100 mb-2">Componentes Principais:</h4>
           <ul class="list-disc list-inside text-neutral-300 space-y-2">
-            <li><strong>Primary Database:</strong> Banco de dados de produção ativo</li>
+            <li><strong>Primary Database:</strong> Banco de dados de produçêo ativo</li>
             <li><strong>Standby Database:</strong> Cópia sincronizada (física ou lógica)</li>
             <li><strong>Redo Transport:</strong> Transferência de redo logs para standby</li>
-            <li><strong>Redo Apply:</strong> Aplicação de changes no standby</li>
+            <li><strong>Redo Apply:</strong> Aplicaçêo de changes no standby</li>
             <li><strong>Data Guard Broker (DGMGRL):</strong> Ferramenta de gerenciamento</li>
             <li><strong>Fast-Start Failover:</strong> Failover automático em caso de falha</li>
           </ul>
@@ -186,26 +186,26 @@
           <div class="bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500">
             <h4 class="font-semibold text-red-400 mb-2">Physical Standby (Mais Comum)</h4>
             <p class="text-neutral-300 text-sm mb-2">
-              Réplica block-by-block idêntica ao primário. Usa Redo Apply (Media Recovery) para manter sincronização.
+              Réplica block-by-block idêntica ao primário. Usa Redo Apply (Media Recovery) para manter sincronizaçêo.
             </p>
             <ul class="list-disc list-inside text-neutral-400 text-sm">
-              <li>Proteção máxima contra corrupção de dados</li>
+              <li>Proteçêo máxima contra corrupçêo de dados</li>
               <li>Active Data Guard: permite queries enquanto aplica redo</li>
               <li>Pode ser usado para backups e offload de relatórios</li>
-              <li>Sincronização total: estruturas, dados, índices, tudo</li>
+              <li>Sincronizaçêo total: estruturas, dados, índices, tudo</li>
             </ul>
           </div>
 
           <div class="bg-emerald-900/20 rounded-lg p-4 border-l-4 border-emerald-500">
             <h4 class="font-semibold text-emerald-400 mb-2">Logical Standby</h4>
             <p class="text-neutral-300 text-sm mb-2">
-              Converte redo em SQL statements e aplica via SQL Apply. Mantém estrutura lógica, não física.
+              Converte redo em SQL statements e aplica via SQL Apply. Mantém estrutura lógica, nêo física.
             </p>
             <ul class="list-disc list-inside text-neutral-400 text-sm">
               <li>Permite manter tabelas/esquemas adicionais no standby</li>
               <li>Pode ter índices diferentes do primário</li>
               <li>Útil para rolling upgrades e migrations</li>
-              <li>Mais complexo e com limitações (algumas operações não suportadas)</li>
+              <li>Mais complexo e com limitações (algumas operações nêo suportadas)</li>
             </ul>
           </div>
 
@@ -217,18 +217,18 @@
             <ul class="list-disc list-inside text-neutral-400 text-sm">
               <li>Perfeito para testes de upgrade ou patches</li>
               <li>Usa flashback database para reverter mudanças</li>
-              <li>Continua recebendo redo mas não aplica até reverter</li>
+              <li>Continua recebendo redo mas nêo aplica até reverter</li>
             </ul>
           </div>
         </div>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
-        <h3 class="text-lg font-semibold mb-4">Modos de Proteção</h3>
+        <h3 class="text-lg font-semibold mb-4">Modos de Proteçêo</h3>
         <div class="grid md:grid-cols-3 gap-4">
           <div class="bg-dark-700 rounded-lg p-4">
             <h4 class="font-semibold text-red-400 mb-2">Maximum Protection</h4>
-            <p class="text-neutral-300 text-sm">Zero data loss. Primary para se standby não confirmar recebimento. Requer SYNC transport.</p>
+            <p class="text-neutral-300 text-sm">Zero data loss. Primary para se standby nêo confirmar recebimento. Requer SYNC transport.</p>
           </div>
           <div class="bg-dark-700 rounded-lg p-4">
             <h4 class="font-semibold text-emerald-400 mb-2">Maximum Availability</h4>
@@ -245,7 +245,7 @@
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center"><span class="text-xl">🛠️</span></div>
-        <h2 class="text-xl font-bold text-cyan-400">Aplicação Prática</h2>
+        <h2 class="text-xl font-bold text-cyan-400">Aplicaçêo Prática</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -290,13 +290,13 @@ ALTER DATABASE RECOVER MANAGED STANDBY DATABASE DISCONNECT FROM SESSION;</code><
         <pre><code class="language-sql">-- Iniciar DGMGRL
 $ dgmgrl /
 
--- Criar configuração Data Guard
+-- Criar configuraçêo Data Guard
 CREATE CONFIGURATION dg_config AS PRIMARY DATABASE IS proddb CONNECT IDENTIFIER IS proddb;
 
 -- Adicionar standby database
 ADD DATABASE standbydb AS CONNECT IDENTIFIER IS standbydb MAINTAINED AS PHYSICAL;
 
--- Habilitar configuração
+-- Habilitar configuraçêo
 ENABLE CONFIGURATION;
 
 -- Verificar status
@@ -304,7 +304,7 @@ SHOW CONFIGURATION;
 SHOW DATABASE proddb;
 SHOW DATABASE standbydb;
 
--- Verificar lag de aplicação
+-- Verificar lag de aplicaçêo
 SHOW DATABASE standbydb 'ApplyLag';
 SHOW DATABASE standbydb 'TransportLag';
 
@@ -330,7 +330,7 @@ ALTER DATABASE COMMIT TO SWITCHOVER TO PRIMARY;
 SHUTDOWN IMMEDIATE;
 STARTUP;
 
--- FAILOVER (não planejado, possível data loss)
+-- FAILOVER (nêo planejado, possível data loss)
 -- Via DGMGRL:
 FAILOVER TO standbydb;
 
@@ -350,12 +350,12 @@ ALTER DATABASE RECOVER MANAGED STANDBY DATABASE DISCONNECT;</code></pre>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
         <h3 class="text-lg font-semibold mb-4">Monitoramento Data Guard</h3>
-        <pre><code class="language-sql">-- Verificar status de aplicação de redo (no STANDBY)
+        <pre><code class="language-sql">-- Verificar status de aplicaçêo de redo (no STANDBY)
 SELECT process, status, thread#, sequence#, block#, blocks
 FROM v$managed_standby
 WHERE process IN ('MRP0', 'RFS');
 
--- Ver lag de aplicação
+-- Ver lag de aplicaçêo
 SELECT name, value, unit, time_computed
 FROM v$dataguard_stats
 WHERE name IN ('transport lag', 'apply lag');
@@ -394,13 +394,13 @@ WHERE dest_id = 2;</code></pre>
             </div>
             <div class="flex items-start gap-3">
               <span class="text-red-400 mt-1">✓</span>
-              <div><h4 class="font-semibold text-neutral-100">Configurar proteção</h4>
+              <div><h4 class="font-semibold text-neutral-100">Configurar proteçêo</h4>
                 <p class="text-neutral-400 text-sm">Escolher modo apropriado (SYNC/ASYNC)</p></div>
             </div>
             <div class="flex items-start gap-3">
               <span class="text-red-400 mt-1">✓</span>
               <div><h4 class="font-semibold text-neutral-100">Executar switchover</h4>
-                <p class="text-neutral-400 text-sm">Realizar manutenção planejada sem downtime</p></div>
+                <p class="text-neutral-400 text-sm">Realizar manutençêo planejada sem downtime</p></div>
             </div>
           </div>
           <div class="space-y-3">
@@ -411,7 +411,7 @@ WHERE dest_id = 2;</code></pre>
             </div>
             <div class="flex items-start gap-3">
               <span class="text-red-400 mt-1">✓</span>
-              <div><h4 class="font-semibold text-neutral-100">Monitorar replicação</h4>
+              <div><h4 class="font-semibold text-neutral-100">Monitorar replicaçêo</h4>
                 <p class="text-neutral-400 text-sm">Identificar e resolver lags e gaps</p></div>
             </div>
             <div class="flex items-start gap-3">

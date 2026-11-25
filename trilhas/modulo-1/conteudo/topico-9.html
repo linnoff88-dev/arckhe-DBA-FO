@@ -25,7 +25,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .dark body { background-color: #0f172a; }
-    /* Light mode - versão colorida e vibrante */
+    /* Light mode - versêo colorida e vibrante */
     html:not(.dark) body { background-color: #f0fdf4; }
     html:not(.dark) .bg-dark-900 { background-color: #f0fdf4 !important; }
     html:not(.dark) .bg-dark-800 { background-color: #ffffff !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
@@ -37,7 +37,7 @@
     html:not(.dark) .text-neutral-300 { color: #065f46 !important; }
     html:not(.dark) .text-neutral-400 { color: #047857 !important; }
     html:not(.dark) .text-neutral-500 { color: #059669 !important; }
-    /* Navegação no modo claro */
+    /* Navegaçêo no modo claro */
     html:not(.dark) .bg-dark-900\/95 { background-color: rgba(240, 253, 244, 0.95) !important; }
     /* Cores das trilhas - vibrantes */
     html:not(.dark) .text-emerald-400 { color: #047857 !important; }
@@ -153,7 +153,7 @@
         </div>
         <div>
           <h1 class="text-2xl font-bold">Operadores SQL</h1>
-          <p class="text-neutral-400">Operadores aritméticos, de comparação, lógicos e especiais</p>
+          <p class="text-neutral-400">Operadores aritméticos, de comparaçêo, lógicos e especiais</p>
         </div>
       </div>
     </div>
@@ -162,7 +162,7 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <!-- Seção 1: Operadores Aritméticos -->
+    <!-- Seçêo 1: Operadores Aritméticos -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
@@ -179,7 +179,7 @@
             <thead>
               <tr class="bg-emerald-900/30">
                 <th class="border border-dark-600 px-4 py-2 text-left text-emerald-400">Operador</th>
-                <th class="border border-dark-600 px-4 py-2 text-left text-emerald-400">Descrição</th>
+                <th class="border border-dark-600 px-4 py-2 text-left text-emerald-400">Descriçêo</th>
                 <th class="border border-dark-600 px-4 py-2 text-left text-emerald-400">Exemplo</th>
                 <th class="border border-dark-600 px-4 py-2 text-left text-emerald-400">Resultado</th>
               </tr>
@@ -187,25 +187,25 @@
             <tbody class="text-neutral-300">
               <tr>
                 <td class="border border-dark-600 px-4 py-2 font-mono font-bold">+</td>
-                <td class="border border-dark-600 px-4 py-2">Adição</td>
+                <td class="border border-dark-600 px-4 py-2">Adiçêo</td>
                 <td class="border border-dark-600 px-4 py-2 font-mono text-sm">10 + 5</td>
                 <td class="border border-dark-600 px-4 py-2">15</td>
               </tr>
               <tr class="bg-dark-700/50">
                 <td class="border border-dark-600 px-4 py-2 font-mono font-bold">-</td>
-                <td class="border border-dark-600 px-4 py-2">Subtração</td>
+                <td class="border border-dark-600 px-4 py-2">Subtraçêo</td>
                 <td class="border border-dark-600 px-4 py-2 font-mono text-sm">10 - 5</td>
                 <td class="border border-dark-600 px-4 py-2">5</td>
               </tr>
               <tr>
                 <td class="border border-dark-600 px-4 py-2 font-mono font-bold">*</td>
-                <td class="border border-dark-600 px-4 py-2">Multiplicação</td>
+                <td class="border border-dark-600 px-4 py-2">Multiplicaçêo</td>
                 <td class="border border-dark-600 px-4 py-2 font-mono text-sm">10 * 5</td>
                 <td class="border border-dark-600 px-4 py-2">50</td>
               </tr>
               <tr class="bg-dark-700/50">
                 <td class="border border-dark-600 px-4 py-2 font-mono font-bold">/</td>
-                <td class="border border-dark-600 px-4 py-2">Divisão</td>
+                <td class="border border-dark-600 px-4 py-2">Divisêo</td>
                 <td class="border border-dark-600 px-4 py-2 font-mono text-sm">10 / 4</td>
                 <td class="border border-dark-600 px-4 py-2">2.5</td>
               </tr>
@@ -230,7 +230,7 @@ SELECT
 
     -- Expressões compostas
     (10 + 5) * 2 AS com_parenteses,        -- 30
-    10 + 5 * 2 AS sem_parenteses,          -- 20 (multiplicação primeiro)
+    10 + 5 * 2 AS sem_parenteses,          -- 20 (multiplicaçêo primeiro)
 
     -- Operações com NULL
     10 + NULL AS soma_null,                 -- NULL
@@ -259,7 +259,7 @@ SELECT
     quantidade * (preco_original * 0.85) AS total_liquido  -- 15% desconto médio
 FROM produtos;
 
--- Calculando comissão de vendedores
+-- Calculando comissêo de vendedores
 SELECT
     vendedor,
     total_vendas,
@@ -280,13 +280,13 @@ FROM pedidos;</code></pre>
       </div>
     </section>
 
-    <!-- Seção 2: Operadores de Comparação -->
+    <!-- Seçêo 2: Operadores de Comparaçêo -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
           <span class="text-xl">⚖️</span>
         </div>
-        <h2 class="text-xl font-bold text-cyan-400">Operadores de Comparação</h2>
+        <h2 class="text-xl font-bold text-cyan-400">Operadores de Comparaçêo</h2>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
@@ -297,7 +297,7 @@ FROM pedidos;</code></pre>
             <thead>
               <tr class="bg-emerald-900/30">
                 <th class="border border-dark-600 px-4 py-2 text-left text-emerald-400">Operador</th>
-                <th class="border border-dark-600 px-4 py-2 text-left text-emerald-400">Descrição</th>
+                <th class="border border-dark-600 px-4 py-2 text-left text-emerald-400">Descriçêo</th>
                 <th class="border border-dark-600 px-4 py-2 text-left text-emerald-400">Exemplo</th>
               </tr>
             </thead>
@@ -336,7 +336,7 @@ FROM pedidos;</code></pre>
           </table>
         </div>
 
-        <pre><code class="language-sql">-- Exemplos de operadores de comparação
+        <pre><code class="language-sql">-- Exemplos de operadores de comparaçêo
 SELECT * FROM funcionarios WHERE salario = 5000;        -- Exatamente 5000
 SELECT * FROM funcionarios WHERE salario != 5000;       -- Diferente de 5000
 SELECT * FROM funcionarios WHERE salario <> 5000;       -- Diferente de 5000 (mesmo que !=)
@@ -345,12 +345,12 @@ SELECT * FROM funcionarios WHERE salario < 5000;        -- Menor que 5000
 SELECT * FROM funcionarios WHERE salario >= 5000;       -- 5000 ou mais
 SELECT * FROM funcionarios WHERE salario <= 5000;       -- 5000 ou menos
 
--- Comparação com datas
+-- Comparaçêo com datas
 SELECT * FROM eventos WHERE data_evento = DATE '2025-01-15';
 SELECT * FROM eventos WHERE data_evento > SYSDATE;      -- Eventos futuros
 SELECT * FROM eventos WHERE data_evento < SYSDATE - 30; -- Mais de 30 dias atrás
 
--- Comparação com strings (ordem alfabética)
+-- Comparaçêo com strings (ordem alfabética)
 SELECT * FROM clientes WHERE nome > 'M';                -- Nomes de M a Z
 SELECT * FROM produtos WHERE codigo >= 'A100';</code></pre>
       </div>
@@ -362,17 +362,17 @@ SELECT * FROM produtos WHERE codigo >= 'A100';</code></pre>
           <div class="bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500">
             <h4 class="font-semibold text-amber-400 mb-2">NULL em Comparações</h4>
             <p class="text-neutral-300 text-sm mb-2">
-              NULL não é igual a nada, nem mesmo a NULL!
+              NULL nêo é igual a nada, nem mesmo a NULL!
             </p>
-            <pre class="text-xs"><code class="language-sql">-- ERRADO: Não funciona
+            <pre class="text-xs"><code class="language-sql">-- ERRADO: Nêo funciona
 SELECT * FROM funcionarios WHERE comissao = NULL;
 
 -- CORRETO: Use IS NULL
 SELECT * FROM funcionarios WHERE comissao IS NULL;
 
--- Comparações com NULL sempre retornam NULL (não TRUE nem FALSE)
+-- Comparações com NULL sempre retornam NULL (nêo TRUE nem FALSE)
 SELECT
-    NULL = NULL AS teste1,      -- NULL (não TRUE!)
+    NULL = NULL AS teste1,      -- NULL (nêo TRUE!)
     NULL <> 5 AS teste2,         -- NULL
     5 > NULL AS teste3           -- NULL
 FROM dual;</code></pre>
@@ -383,19 +383,19 @@ FROM dual;</code></pre>
             <p class="text-neutral-300 text-sm mb-2">
               Oracle diferencia maiúsculas e minúsculas em strings!
             </p>
-            <pre class="text-xs"><code class="language-sql">-- Estes são DIFERENTES
-SELECT * FROM clientes WHERE nome = 'João';   -- Encontra 'João'
-SELECT * FROM clientes WHERE nome = 'JOÃO';   -- Encontra 'JOÃO'
-SELECT * FROM clientes WHERE nome = 'joão';   -- Encontra 'joão'
+            <pre class="text-xs"><code class="language-sql">-- Estes sêo DIFERENTES
+SELECT * FROM clientes WHERE nome = 'Joêo';   -- Encontra 'Joêo'
+SELECT * FROM clientes WHERE nome = 'JOêO';   -- Encontra 'JOêO'
+SELECT * FROM clientes WHERE nome = 'joêo';   -- Encontra 'joêo'
 
 -- Para busca case-insensitive, use UPPER ou LOWER
-SELECT * FROM clientes WHERE UPPER(nome) = 'JOÃO';</code></pre>
+SELECT * FROM clientes WHERE UPPER(nome) = 'JOêO';</code></pre>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Seção 3: Operadores Lógicos -->
+    <!-- Seçêo 3: Operadores Lógicos -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -421,7 +421,7 @@ WHERE salario > 5000
           <div class="bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
             <h4 class="font-semibold text-cyan-400 mb-2">OR</h4>
             <p class="text-neutral-300 text-sm mb-2">
-              Pelo menos uma condição deve ser verdadeira
+              Pelo menos uma condiçêo deve ser verdadeira
             </p>
             <pre class="text-xs"><code class="language-sql">SELECT * FROM funcionarios
 WHERE departamento = 'TI'
@@ -431,7 +431,7 @@ WHERE departamento = 'TI'
           <div class="bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
             <h4 class="font-semibold text-purple-400 mb-2">NOT</h4>
             <p class="text-neutral-300 text-sm mb-2">
-              Inverte o resultado da condição
+              Inverte o resultado da condiçêo
             </p>
             <pre class="text-xs"><code class="language-sql">SELECT * FROM funcionarios
 WHERE NOT departamento = 'TI';
@@ -454,7 +454,7 @@ WHERE (categoria = 'Eletrônicos' AND preco < 1000)
 
 -- NOT com outros operadores
 SELECT * FROM clientes
-WHERE NOT (cidade = 'São Paulo' AND estado = 'SP');
+WHERE NOT (cidade = 'Sêo Paulo' AND estado = 'SP');
 
 -- Tabela verdade
 SELECT
@@ -511,7 +511,7 @@ FROM dual;</code></pre>
       </div>
     </section>
 
-    <!-- Seção 4: Operadores Especiais -->
+    <!-- Seçêo 4: Operadores Especiais -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
@@ -555,7 +555,7 @@ WHERE departamento = 'TI'
    OR departamento = 'RH'
    OR departamento = 'Financeiro';
 
--- NOT IN: valor não está na lista
+-- NOT IN: valor nêo está na lista
 SELECT * FROM funcionarios
 WHERE departamento NOT IN ('TI', 'RH');
 
@@ -571,11 +571,11 @@ WHERE departamento_id IN (
 
         <div class="bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500 mt-4">
           <h4 class="font-semibold text-amber-400 mb-2">CUIDADO com NULL em IN/NOT IN:</h4>
-          <pre class="text-xs"><code class="language-sql">-- Se a lista contém NULL, NOT IN pode não retornar nada!
+          <pre class="text-xs"><code class="language-sql">-- Se a lista contém NULL, NOT IN pode nêo retornar nada!
 SELECT * FROM funcionarios
-WHERE departamento NOT IN ('TI', 'RH', NULL);  -- Pode não retornar registros!
+WHERE departamento NOT IN ('TI', 'RH', NULL);  -- Pode nêo retornar registros!
 
--- Solução: remover NULLs da lista ou usar IS NULL separadamente</code></pre>
+-- Soluçêo: remover NULLs da lista ou usar IS NULL separadamente</code></pre>
         </div>
       </div>
 
@@ -591,7 +591,7 @@ WHERE departamento NOT IN ('TI', 'RH', NULL);  -- Pode não retornar registros!
         </div>
 
         <pre><code class="language-sql">-- LIKE com %
-SELECT * FROM clientes WHERE nome LIKE 'João%';       -- Começa com 'João'
+SELECT * FROM clientes WHERE nome LIKE 'Joêo%';       -- Começa com 'Joêo'
 SELECT * FROM clientes WHERE nome LIKE '%Silva';      -- Termina com 'Silva'
 SELECT * FROM clientes WHERE nome LIKE '%Santos%';    -- Contém 'Santos'
 
@@ -603,7 +603,7 @@ SELECT * FROM produtos WHERE codigo LIKE '_B__';      -- Segundo caractere é B
 SELECT * FROM emails WHERE email LIKE '_a%@gmail.com';  -- Segundo caractere é 'a', termina com @gmail.com
 
 -- NOT LIKE
-SELECT * FROM clientes WHERE nome NOT LIKE '%Test%';  -- Não contém 'Test'
+SELECT * FROM clientes WHERE nome NOT LIKE '%Test%';  -- Nêo contém 'Test'
 
 -- LIKE é case-sensitive!
 SELECT * FROM clientes WHERE UPPER(nome) LIKE '%SILVA%';  -- Case-insensitive
@@ -618,7 +618,7 @@ SELECT * FROM produtos WHERE descricao LIKE '%50\%%' ESCAPE '\';  -- Busca '50%'
         <pre><code class="language-sql">-- IS NULL: verifica se é nulo
 SELECT * FROM funcionarios WHERE comissao IS NULL;
 
--- IS NOT NULL: verifica se não é nulo
+-- IS NOT NULL: verifica se nêo é nulo
 SELECT * FROM funcionarios WHERE comissao IS NOT NULL;
 
 -- NUNCA use = NULL ou != NULL
@@ -630,7 +630,7 @@ SELECT * FROM funcionarios
 WHERE comissao IS NOT NULL
   AND comissao > 1000;
 
--- Função NVL para substituir NULL
+-- Funçêo NVL para substituir NULL
 SELECT
     nome,
     NVL(comissao, 0) AS comissao_tratada,  -- Se NULL, usa 0
@@ -639,7 +639,7 @@ FROM funcionarios;</code></pre>
       </div>
     </section>
 
-    <!-- Seção 5: Precedência -->
+    <!-- Seçêo 5: Precedência -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center">
@@ -649,16 +649,16 @@ FROM funcionarios;</code></pre>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
-        <h3 class="text-lg font-semibold mb-4">Ordem de Avaliação</h3>
+        <h3 class="text-lg font-semibold mb-4">Ordem de Avaliaçêo</h3>
 
         <div class="bg-dark-700 rounded-lg p-4 mb-4">
           <h4 class="font-semibold text-neutral-100 mb-2">Da maior para menor precedência:</h4>
           <ol class="list-decimal list-inside text-neutral-300 text-sm space-y-1">
             <li><strong>Parênteses ( )</strong> - Maior prioridade</li>
-            <li><strong>*, /</strong> - Multiplicação e divisão</li>
-            <li><strong>+, -</strong> - Adição e subtração</li>
-            <li><strong>=, !=, &lt;, &gt;, &lt;=, &gt;=, LIKE, IN, BETWEEN, IS NULL</strong> - Comparação</li>
-            <li><strong>NOT</strong> - Negação lógica</li>
+            <li><strong>*, /</strong> - Multiplicaçêo e divisêo</li>
+            <li><strong>+, -</strong> - Adiçêo e subtraçêo</li>
+            <li><strong>=, !=, &lt;, &gt;, &lt;=, &gt;=, LIKE, IN, BETWEEN, IS NULL</strong> - Comparaçêo</li>
+            <li><strong>NOT</strong> - Negaçêo lógica</li>
             <li><strong>AND</strong> - E lógico</li>
             <li><strong>OR</strong> - OU lógico (menor prioridade)</li>
           </ol>
@@ -724,7 +724,7 @@ WHERE (status = 'APROVADO' AND valor > 1000)
       </div>
     </section>
 
-    <!-- Seção 6: Resultado Esperado -->
+    <!-- Seçêo 6: Resultado Esperado -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 bg-amber-500/20 rounded-lg flex items-center justify-center">
@@ -748,7 +748,7 @@ WHERE (status = 'APROVADO' AND valor > 1000)
             <div class="flex items-start gap-3">
               <span class="text-emerald-400 mt-1">✓</span>
               <div>
-                <h4 class="font-semibold text-neutral-100">Operadores de comparação</h4>
+                <h4 class="font-semibold text-neutral-100">Operadores de comparaçêo</h4>
                 <p class="text-neutral-400 text-sm">=, !=, &lt;&gt;, &gt;, &lt;, &gt;=, &lt;=</p>
               </div>
             </div>
